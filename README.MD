@@ -10,39 +10,15 @@ Authored by AndrewPla
 
 ## Installing
 
-The easiest way to get TOPdeskPS is using the [PowerShell Gallery](https://powershellgallery.com/packages/TOPdeskPS/)!
 
 ### Inspecting the module
 
-Best practice is that you inspect modules prior to installing them. You can do this by saving the module to a local path:
-
-``` PowerShell
-PS> Save-Module -Name TOPdeskPS -Path <path>
-```
 
 ### Installing the module
 
-Once you trust a module, you can install it using:
-
-``` PowerShell
-PS> Install-Module -Name TOPdeskPS
-```
-
 ### Updating TOPdeskPS
 
-Once installed from the PowerShell Gallery, you can update it using:
-
-``` PowerShell
-PS> Update-Module -Name TOPdeskPS
-```
-
 ### Uninstalling TOPdeskPS
-
-To uninstall TOPdeskPS:
-
-``` PowerShell
-PS> Uninstall-Module -Name TOPdeskPS
-```
 
 ## Contributing to TOPdeskPS
 
