@@ -1,7 +1,5 @@
 # TOPdeskPS
 
-![Build Status](https://build.status.url.here)
-
 ## Description
 
 Module to interact with TopDesk through a REST API.
