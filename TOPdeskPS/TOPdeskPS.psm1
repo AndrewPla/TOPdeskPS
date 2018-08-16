@@ -1,34 +1,55 @@
-$script:PSModuleRoot = $PSScriptRoot
+$script:ModuleRoot = $PSScriptRoot
+$script:ModuleVersion = "0.0.2"
 
-# this is the login token that we define with Connect-TdSeervice
 $script:__LoginToken = ''
-
-$FunctionFolders = @('Public', 'Private')
-
-ForEach ($folder in $FunctionFolders) {
-    Write-Verbose "Processing $folder"
-    $folderPath = Join-Path -Path $PSScriptRoot -ChildPath $folder
-    Write-Verbose "FolderPath = $folderPath"
-    If (Test-Path -Path $folderPath) {
-        Write-Verbose -Message "Importing from $folder"
-        $functions = Get-ChildItem -Path $folderPath -Filter '*.ps1' -Recurse
-        ForEach ($function in $functions) {
-            Write-Verbose -Message "  Importing $($function.fullname)"
-            . $function.fullname
-        }
-
-    }
-    else { Write-Verbose "$Folderpath doesn't exist"}
+function Import-ModuleFile
+{
+	<#
+		.SYNOPSIS
+			Loads files into the module on module import.
+		
+		.DESCRIPTION
+			This helper function is used during module initialization.
+			It should always be dotsourced itself, in order to proper function.
+			
+			This provides a central location to react to files being imported, if later desired
+		
+		.PARAMETER Path
+			The path to the file to load
+		
+		.EXAMPLE
+			PS C:\> . Import-ModuleFile -File $function.FullName
+	
+			Imports the file stored in $function according to import policy
+	#>
+	[CmdletBinding()]
+	Param (
+		[string]
+		$Path
+	)
+	
+	if ($doDotSource) { . $Path }
+	else { $ExecutionContext.InvokeCommand.InvokeScript($false, ([scriptblock]::Create([io.file]::ReadAllText($Path))), $null, $null) }
 }
 
-$publicFunctions = (Get-ChildItem -Path "$PSScriptRoot\public" -Filter '*.ps1' -Recurse).BaseName
+# Detect whether at some level dotsourcing was enforced
+$script:doDotSource = Get-PSFConfigValue -FullName TOPdeskPS.Import.DoDotSource -Fallback $false
+if ($TOPdeskPS_dotsourcemodule) { $script:doDotSource = $true }
 
-#ToDo Figure out private function scope
-$privateFunctions = (Get-ChildItem -Path "$PSScriptRoot\private" -Filter '*.ps1' -Recurse).BaseName
+# Execute Preimport actions
+. Import-ModuleFile -Path "$ModuleRoot\internal\scripts\preimport.ps1"
 
+# Import all internal functions
+foreach ($function in (Get-ChildItem "$ModuleRoot\internal\functions" -Filter "*.ps1" -Recurse -ErrorAction Ignore))
+{
+	. Import-ModuleFile -Path $function.FullName
+}
 
-Export-ModuleMember -Function $publicFunctions
+# Import all public functions
+foreach ($function in (Get-ChildItem "$ModuleRoot\functions" -Filter "*.ps1" -Recurse -ErrorAction Ignore))
+{
+	. Import-ModuleFile -Path $function.FullName
+}
 
-#ToDo Remove line below when ready 
-Export-modulemember -function $privateFunctions
-
+# Execute Postimport actions
+. Import-ModuleFile -Path "$ModuleRoot\internal\scripts\postimport.ps1"

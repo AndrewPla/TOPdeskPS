@@ -76,8 +76,7 @@ function Get-TDIncident {
 	)
 	
 	begin {
-		
-		#ToDo delete this testing part
+		Write-Verbose "[$($MyInvocation.MyCommand.Name)] Function started"
 		Write-Verbose "ParameterSetName $($PSCmdlet.ParameterSetName)"
 		Write-Verbose "PSBoundParameters $($PSBoundParameters.Keys -join ", ")"
 		
