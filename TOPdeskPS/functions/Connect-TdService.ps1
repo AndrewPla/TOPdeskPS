@@ -1,0 +1,120 @@
+function Connect-TdService {
+<#
+	.SYNOPSIS
+		Connects to the TOPdesk Service
+	
+	.DESCRIPTION
+		Establishes a connection to TOPdesk.
+	
+	.PARAMETER Credential
+		A description of the Credential parameter.
+	
+	.PARAMETER UserType
+		A description of the UserType parameter.
+	
+	.PARAMETER PassThru
+		Passes the login token through to the console. Can be useful for troubleshooting or if you want to generate a login token to be consumed by a different applicaiton.
+	
+	.PARAMETER Url
+		This is the Url of your topdesk instance. Example: 'Company.TOPdesk.net'
+	
+	.PARAMETER Register
+		Saves your TOPdesk url so you don't need to manually specify it each time. For more information
+	
+	.EXAMPLE
+		PS C:\> Connect-TdService
+		Prompts you for your TOPdesk credentials and then connects to TOPdesk.
+	
+	.EXAMPLE
+		PS C:\> Connect-TdService -Credential $Cred
+		Connects to TOPdesk using the credential stored in the variable Cred.
+	
+	.OUTPUTS
+		Output (if any)
+	
+	.NOTES
+		Additional information about the function.
+	
+	.INPUTS
+		Inputs (if any)
+#>
+	
+	[CmdletBinding(ConfirmImpact = 'Low',
+				   SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(Mandatory = $true)]
+		[ValidateNotNullOrEmpty()]
+		[PSCredential]
+		$Credential,
+		
+		[ValidateSet('person', 'operator')]
+		$UserType = 'operator',
+		
+		[switch]
+		$PassThru,
+		
+		[Parameter(Mandatory = $false)]
+		[ValidateNotNullOrEmpty()]
+		[ValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?')]
+		[System.String]
+		$Url = (
+			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull)
+		,
+		
+		[switch]
+		$Register
+	)
+	
+	begin {
+		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
+		
+		$resourceUri = "$url/tas/api/login/$UserType"
+		Write-PSFMessage -Level Verbose -Message "ResourceURI: $resourceUri" -Tag 'debug', 'internal'
+		
+		Write-PSFMessage -Level Verbose -Message "Generating header for $($Credential.UserName)"
+		$headers = @{
+			'Authorization' = "Basic $(ConvertTo-Base64 "$($Credential.username):$($Credential.GetNetworkCredential().password)")"
+		}
+	}
+	process {
+		Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
+		Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
+		
+		if (-not $PSCmdlet.ShouldProcess("Item")) {
+			return
+		}
+		
+		$parameter = @{
+			URI	    = $resourceURi
+			Method  = "GET"
+			Headers = $headers
+		}
+		
+		$result = Invoke-RestMethod @parameter -ErrorAction Stop
+		if ($result.item.name -like 'item') {
+			Write-Error 'invalid url given.'	
+		}
+
+		else {
+			Write-PSFMessage -Level Verbose -Message 'LoginToken received and set.'
+			$Script:__LoginToken = "TOKEN id=`"$result`""
+		}
+		
+		if ($PassThru) {
+			Write-Output $Script:__LoginToken
+		}
+		
+		if ($Register) {
+			Set-PSFConfig -FullName TOPdeskPS.Url -Value $Url
+			Register-PSFConfig -FullName TOPdeskPS.Url
+		}
+		else {
+			Set-PSFConfig -FullName TOPdeskPS.Url -Value $Url
+		}
+	}
+	end {
+		Write-PSFMessage -Message 'Function Complete'
+	}
+}
+
