@@ -1,14 +1,15 @@
-﻿<#
+﻿
+function Convertto-Base64
+{
+	<#
 	.SYNOPSIS
-		Converts 
+		Converts an object to base64
 
 	.EXAMPLE
 		PS C:\> Convertto-Base64 -InputObject 'string'
 		
 	
 #>
-function Convertto-Base64
-{
 	[CmdletBinding()]
 	Param (
 		$InputObject
