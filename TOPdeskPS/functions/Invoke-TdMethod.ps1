@@ -54,7 +54,6 @@
 		}
 	}
 	process {
-		Write-Output "logintoken = $Script:__LoginToken"
 		
 		$Params = @{
 			'Body' = ($Body | ConvertTo-Json)

@@ -65,6 +65,7 @@
 	FunctionsToExport = @(
 		'Connect-TdService',
 		'Disconnect-TdService',
+		'Get-TdCategory'
 		'Get-TdIncident',
 		'New-TdIncident',
 		'Invoke-TdMethod'
