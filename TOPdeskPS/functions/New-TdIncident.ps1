@@ -57,9 +57,15 @@
 		The name of the category for the incident. Can be set by operators. If not provided to partial incidents, the category will be automatically copied from the main incident.
 	
 	.PARAMETER Subcategory
-		The name of the category for the incident. Can be set by operators. 
+		The name of the category for the incident. Can be set by operators.
 		If a subcategory is provided without a category, the corresponding category will be filledi n automatically, unless there are multiple matching categories, in which case the request will fail.
 		If not provided to partial incidents, the category will be automatically copied from the main incident.
+	
+	.PARAMETER Confirm
+	    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+	
+	.PARAMETER WhatIf
+	    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 	
 	.EXAMPLE
 		PS C:\> New-TdIncident -CallerEmail 'user@Company.net' -Action 'Initial Action' -BriefDescription 'Example Incident' -Request 'Printer Assistance'
@@ -69,7 +75,7 @@
 		
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	param
 	(
 		[string]
@@ -81,7 +87,7 @@
 		
 		[Parameter(Mandatory = $true,
 				   HelpMessage = 'Email of the caller for the incident')]
-		[ValidatePattern('\w+([-+.'''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*')]
+		[PSFValidatePattern('\w+([-+.'''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*', ErrorMessage = '{0} is not a valid email address.')]
 		[string]
 		$CallerEmail,
 		
@@ -109,7 +115,7 @@
 		Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
 		Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
 		
-		if (-not $PSCmdlet.ShouldProcess("Item")) {
+		if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $CallerEmail -Action "Creating incident for $CallerEmail.")) {
 			return
 		}
 		
@@ -146,7 +152,7 @@
 			Subcategory {
 				Write-PSFMessage -Level InternalComment -Message "Adding Subcategory to Body"
 				$SubcategoryValue = @{
-						name = $Subcategory
+					name = $Subcategory
 				}
 				$Body | Add-Member -MemberType NoteProperty -Name 'subcategory' -Value $SubcategoryValue
 			}
