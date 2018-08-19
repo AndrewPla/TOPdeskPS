@@ -6,7 +6,6 @@ however if you have enough configuration settings to justify having multiple cop
 feel totally free to split them into multiple files.
 #>
 
-<#
-# Example Configuration
-Set-PSFConfig -Module 'TOPdeskPS' -Name 'Example.Setting' -Value 10 -Initialize -Validation 'integer' -Handler { } -Description "Example configuration setting. Your module can then use the setting using 'Get-PSFConfigValue'"
-#>
+
+Set-PSFConfig -Module 'TOPdeskPS' -Name 'url' -Value $null -Initialize -Validation 'string' -Description "This is the address of your TOPdesk instance. EX: Company.TopDesk.net "
+ 

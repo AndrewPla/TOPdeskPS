@@ -62,7 +62,13 @@
 	# NestedModules = @()
 	
 	# Functions to export from this module
-	FunctionsToExport = 'Connect-TdService'
+	FunctionsToExport = @(
+		'Connect-TdService',
+		'Disconnect-TdService',
+		'Get-TdIncident',
+		'New-TdIncident',
+		'Invoke-TdMethod'
+	)
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = ''
