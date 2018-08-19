@@ -1,42 +1,21 @@
-﻿function New-TdIncident {
+﻿function Update-TdIncident {
 <#
 	.SYNOPSIS
-		Creates a new incident
+		Updates an incident
 	
 	.DESCRIPTION
-		This command creates a new incident in TOPdesk
+		This command updates various properties of an incident.
+	
+	.PARAMETER IncidentNumber
+		Number of the TOPdesk incident that you want to update.
 	
 	.PARAMETER Action
-		Initial action.
-		The following html tags can be used to format the text:
-		
-		<i>
-		<em>
-		<b>
-		<strong>
-		<u>
-		<a>
-		<img> BASE64-encoding has to be used. Only pictures up to the size of 450x450 pixels are supported. Allowed picture-formats:
-		gif, png, bmp, pcx, iff, ras, pnm, psd, jpg
-		Example:
-		<img src="data:image/png;base64,iVBORw0KGgoAAA...">
-		
-		Line breaks can be added via <br> tags and are automatically added after a closing <p> or <div>.
-		Can be set by operators and persons.
+		A description of the Action parameter.
 	
 	.PARAMETER BriefDescription
 		Brief description for the incident. This can be set by operators.
 		For partials, if not provided, will be automatically copied from the main incident.
 		Can be set by persons only when the appropriate setting for the new call form is checked.
-	
-	.PARAMETER CallerEmail
-		This is the email of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
-	
-	.PARAMETER Status
-		Status of the incident. Available values:
-		FirstLine
-		SecondLine
-		Partial
 	
 	.PARAMETER Request
 		The initial request for the incident. You will likely want to use a here-string to construct the request of the incident.
@@ -57,37 +36,35 @@
 		The name of the category for the incident. Can be set by operators. If not provided to partial incidents, the category will be automatically copied from the main incident.
 	
 	.PARAMETER Subcategory
-		The name of the category for the incident. Can be set by operators. 
+		The name of the category for the incident. Can be set by operators.
 		If a subcategory is provided without a category, the corresponding category will be filledi n automatically, unless there are multiple matching categories, in which case the request will fail.
 		If not provided to partial incidents, the category will be automatically copied from the main incident.
 	
+	.PARAMETER CallerEmail
+		This is the email of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
+	
 	.EXAMPLE
-		PS C:\> New-TdIncident -CallerEmail 'user@Company.net' -Action 'Initial Action' -BriefDescription 'Example Incident' -Request 'Printer Assistance'
-		This creates a basic incident for the Caller 'user@Company.net'
+		PS C:\> Update-Incident
 	
 	.NOTES
-		
+		Additional information about the function.
 #>
 	
 	[CmdletBinding()]
 	param
 	(
+		[Parameter(Mandatory = $true,
+				   ValueFromPipelineByPropertyName = $true)]
+		[Alias('Number')]
+		[string]
+		$IncidentNumber,
+		
 		[string]
 		$Action,
 		
 		[ValidateCount(0, 80)]
 		[string]
 		$BriefDescription,
-		
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'Email of the caller for the incident')]
-		[ValidatePattern('\w+([-+.'''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*')]
-		[string]
-		$CallerEmail,
-		
-		[ValidateSet('FirstLine', 'SecondLine', 'Partial')]
-		[string]
-		$Status = 'FirstLine',
 		
 		[string]
 		$Request,
@@ -96,18 +73,22 @@
 		$Category,
 		
 		[string]
-		$Subcategory
+		$Subcategory,
+		
+		[ValidatePattern('\w+([-+.'''''''''''''''''''''''''''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*')]
+		[string]
+		$CallerEmail
 	)
 	
 	begin {
-		$IncidentURL = (Get-TdUrl) + '/tas/api/incidents'
-		Write-PSFMessage -Level internalcomment -Message "IncidentURL: $IncidentURL"
-		Write-PSFMessage -Level verbose -Message 'Generating Authorization Header'
+		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
+		
 	}
-	
 	process {
 		Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
 		Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
+		
+		$IncidentURL = (Get-TdUrl) + "/tas/api/incidents/number/$($IncidentNumber.ToLower())"
 		
 		if (-not $PSCmdlet.ShouldProcess("Item")) {
 			return
@@ -146,7 +127,7 @@
 			Subcategory {
 				Write-PSFMessage -Level InternalComment -Message "Adding Subcategory to Body"
 				$SubcategoryValue = @{
-						name = $Subcategory
+					name = $Subcategory
 				}
 				$Body | Add-Member -MemberType NoteProperty -Name 'subcategory' -Value $SubcategoryValue
 			}
@@ -157,20 +138,17 @@
 				}
 				$Body | Add-Member -MemberType NoteProperty -Name 'category' -Value $CategoryValue
 			}
-			default {
-				Write-PSFMessage -Level InternalComment -Message "This is a beautiful body!"
-			}
+			
 		}
 		
 		$Params = @{
 			'Uri'    = $IncidentURL
 			'Body'   = $Body
-			'Method' = 'Post'
+			'Method' = 'Put'
 		}
 		
 		Invoke-TdMethod @Params
 	}
-	
 	end {
 		
 	}

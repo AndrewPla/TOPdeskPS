@@ -52,7 +52,7 @@
 	# ScriptsToProcess = @()
 	
 	# Type files (.ps1xml) to be loaded when importing this module
-	# TypesToProcess = @('xml\TOPdeskPS.Types.ps1xml')
+	 #TypesToProcess = @('xml\TOPdeskPS.Types.ps1xml')
 	
 	# Format files (.ps1xml) to be loaded when importing this module
 	FormatsToProcess = @('xml\TOPdeskPS.Format.ps1xml')
@@ -67,8 +67,11 @@
 		'Disconnect-TdService',
 		'Get-TdCategory'
 		'Get-TdIncident',
+		'Get-TdOperator',
+		'Get-TdSubcategory',
 		'New-TdIncident',
-		'Invoke-TdMethod'
+		'Invoke-TdMethod',
+		'Update-TdIncident'
 	)
 	
 	# Cmdlets to export from this module

@@ -1,8 +1,26 @@
-﻿function Get-TdSubCategory
-{
+﻿function Get-TdSubcategory {
+	<#
+	.SYNOPSIS
+		Get subcategories from TOPdesk
+	
+	.DESCRIPTION
+		Gets either one subcategory or a list of subcategories from TOPdesk.
+	
+	.PARAMETER Name
+		This is the name of the subcategory that you want. This can be useful if you want to pass a subcategory id to a different command.
+	
+	.EXAMPLE
+		PS C:\> Get-TdSubcategory
+			Gets a list of all subcategories
+	.EXAMPLE
+		PS C:\> Get-TdSubcategory -Name 'Applications'
+			Gets the Subcategory with the name 'Applications'
+
+#>
 	[CmdletBinding()]
 	Param (
-	
+		[System.String]
+		$Name
 	)
 	
 	begin
@@ -17,7 +35,12 @@
 			'uri' = $SubcategoryUrl
 		}
 		$Subcategories = Invoke-TdMethod @Params
-		$Subcategories
+		if ($Name) {
+			$Subcategories -match $Name
+		}
+		else {
+			$Subcategories
+		}
 	}
 	end
 	{
