@@ -1,17 +1,26 @@
-﻿function Disconnect-TdService
-{
-	[CmdletBinding()]
-	Param (
-		
-	)
+﻿function Disconnect-TdService {
+<#
+	.SYNOPSIS
+		Disconnects you from the TOPdesk service and invalidates your login token.
 	
-	begin
-	{
+	.DESCRIPTION
+		A detailed description of the Disconnect-TdService function.
+	
+	.EXAMPLE
+				PS C:\> Disconnect-TdService
+	
+	.NOTES
+		Additional information about the function.
+#>
+	
+	[CmdletBinding()]
+	param ()
+	
+	begin {
 		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
 		Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
 	}
-	process
-	{
+	process {
 		$ResourceUri = (get-TdUrl) + '/tas/api/logout'
 		Write-PSFMessage -Level InternalComment -Message "ResourceUri: $ResourceUri"
 		$headers = @{
@@ -20,7 +29,7 @@
 		
 		$parameter = @{
 			URI	    = $resourceURi
-			Method = 'GET'
+			Method  = 'GET'
 			Headers = $headers
 		}
 		
@@ -29,8 +38,7 @@
 		$result
 		$Script:__LoginToken = $null
 	}
-	end
-	{
+	end {
 		Write-PSFMessage -Level InternalComment 'Function complete.'
 	}
 }
