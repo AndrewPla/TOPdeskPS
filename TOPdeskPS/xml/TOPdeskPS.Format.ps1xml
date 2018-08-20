@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-16"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<ViewDefinitions>
 		<View>
@@ -10,9 +10,9 @@
 				<ListEntries>
 					<ListEntry>
 						<ListItems>
-							<ListItem> 
+							<ListItem>
 								<PropertyName>Number</PropertyName>
-							</ListItem>	
+							</ListItem>
 							<ListItem>
 								<PropertyName>id</PropertyName>
 							</ListItem>

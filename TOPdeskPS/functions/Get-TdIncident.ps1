@@ -24,21 +24,17 @@
 		Retrieve only incidents that are resolved depending on the setting "Call is resolved when" (Module Settings -> Call Management -> General)
 	
 	.PARAMETER Archived
-		Whether to retrieve archived incidents. 
+		Whether to retrieve archived incidents.
 	
 	.PARAMETER Number
 		This is the incident number of the incident that you would like to retrieve.
 	
 	.EXAMPLE
 		PS C:\> Get-TdIncident
+		Grabs a list of 10 incidents
+	#>
 	
-	.NOTES
-		Additional information about the function.
-#>
-	
-	[CmdletBinding(DefaultParameterSetName = 'List',
-				   ConfirmImpact = 'Low',
-				   SupportsShouldProcess = $false)]
+	[CmdletBinding(DefaultParameterSetName = 'List')]
 	param
 	(
 		[ValidateRange(1, 100)]

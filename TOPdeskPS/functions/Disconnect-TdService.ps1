@@ -4,13 +4,11 @@
 		Disconnects you from the TOPdesk service and invalidates your login token.
 	
 	.DESCRIPTION
-		A detailed description of the Disconnect-TdService function.
+		Disconnects you from the TOPdesk service and invalidates your login token.
 	
 	.EXAMPLE
-				PS C:\> Disconnect-TdService
-	
-	.NOTES
-		Additional information about the function.
+		PS C:\> Disconnect-TdService
+		Disconnects from TOPdesk and invalidates your token.
 #>
 	
 	[CmdletBinding()]
