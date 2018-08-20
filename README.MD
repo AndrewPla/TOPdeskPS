@@ -1,6 +1,5 @@
-![Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
+[![Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation){
 
-[<img src="https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation"/>](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
 # TOPdeskPS
 
 ## Description
@@ -9,14 +8,11 @@ Module to interact with TopDesk through a REST API.
 
 Authored by AndrewPla
 
-## Installing
-
-
-### Inspecting the module
-
-
-### Installing the module
-
+## Installing the module
+TOPdeskPS is published to the PowerShell gallery and can be installed by running:
+```powershell
+  Install-Module -Name TOPdeskPS -Repository PSGallery -Scope CurrentUser
+``` 
 ### Updating TOPdeskPS
 
 ### Uninstalling TOPdeskPS
