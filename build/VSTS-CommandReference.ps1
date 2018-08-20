@@ -6,6 +6,11 @@ Import-Module TOPdeskPS -Force
 Write-Host " - "
 Write-Host "###############################################################"
 Write-Host " - "
+Write-Host "  Importing PSFramework"
+Import-Module PSFramework -Force
+Write-Host " - "
+Write-Host "###############################################################"
+Write-Host " - "
 
 $commandReferenceBasePath = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\docs\commands"
 
