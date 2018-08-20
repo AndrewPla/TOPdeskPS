@@ -1,4 +1,4 @@
-﻿$script:ModuleRoot = $PSScriptRoot
+$script:ModuleRoot = $PSScriptRoot
 $script:ModuleVersion = (Invoke-Expression (Get-Content "$ModuleRoot\TOPdeskPS.psd1" -Raw)).ModuleVersion
 
 $script:__LoginToken = $null
