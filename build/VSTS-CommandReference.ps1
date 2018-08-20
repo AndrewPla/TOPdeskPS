@@ -1,13 +1,13 @@
 Write-Host "###############################################################"
 Write-Host " - "
 Write-Host "Importing Required modules"
-Write-Host "  Importing PSFramework"
+Write-Host "  Importing TOPdeskPS"
 Import-Module TOPdeskPS -Force
 Write-Host " - "
 Write-Host "###############################################################"
 Write-Host " - "
 
-$commandReferenceBasePath = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\documentation\commands"
+$commandReferenceBasePath = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\docs\commands"
 
 #region TOPdeskPS
 $moduleName = "TOPdeskPS"
@@ -47,7 +47,7 @@ git config user.name "AndrewPla"
 git config user.email "AndrewPla@Outlook.com"
 git add .
 git commit -m "VSTS Documentation Update ***NO_CI***"
-$errorMessage = git push "https://$env:SYSTEM_ACCESSTOKEN@github.com/PowershellFrameworkCollective/PowershellFrameworkCollective.github.io.git" head:$branch 2>&1
+$errorMessage = git push "https://$env:SYSTEM_ACCESSTOKEN@github.com/AndrewPla/TOPdeskPS.git" head:$branch 2>&1
 if ($LASTEXITCODE -gt 0) {
 	throw $errorMessage
 }
