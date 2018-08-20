@@ -10,7 +10,7 @@ These quick start guides are designeed to get you up and running with TOPdeskPS.
 - Use TOPdeskPS to automate the closure of incidents
 
 ## Documentation
-- Full Command List
+- [Command Reference](https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS.html)
 - Prepare TOPdesk for TOPdeskPS
 
 
