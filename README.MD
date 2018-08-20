@@ -6,8 +6,6 @@
 
 PowerShell module to interact with TOPdesk through its REST API. This module can be used by your standard operator to perform day to day and it can also be used to automate various TOPdesk actions.
 
-Authored by AndrewPla
-
 ## Installing the module
 TOPdeskPS is published to the PowerShell gallery and can be installed by running:
 ```powershell
