@@ -81,7 +81,7 @@
 		
 		[Parameter(Mandatory = $true,
 				   HelpMessage = 'Email of the caller for the incident')]
-		[ValidatePattern('\w+([-+.'''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*')]
+		[PSFValidatePattern('\w+([-+.'''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*',ErrorMessage = '{0} is not a valid email address.')]
 		[string]
 		$CallerEmail,
 		

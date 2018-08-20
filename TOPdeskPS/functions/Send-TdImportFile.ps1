@@ -13,9 +13,12 @@
 	.PARAMETER Credential
 		Credential of the user with webdav permissions. This Credential is handled seperately from normal web requests as this doesn't interact with the normal API.
 	
+	.PARAMETER EnableException
+		Specify whether you want this command to throw an exception if it encounters an error.
+	
 	.EXAMPLE
-				PS C:\> Send-TdImportFile -Credential (Get-Credential) -File 'C:\Users.csv'
-				Uploads the C:\Users.csv file to TOPdesk using the credential specified in -Credential.
+		PS C:\> Send-TdImportFile -Credential (Get-Credential) -File 'C:\Users.csv'
+		Uploads the C:\Users.csv file to TOPdesk using the credential specified in -Credential.
 	
 	.NOTES
 		See About_TOPdesk_files for more
@@ -38,7 +41,10 @@
 		
 		[Parameter(Mandatory = $true)]
 		[PSCredential]
-		$Credential
+		$Credential,
+		
+		[switch]
+		$EnableException
 	)
 	
 	begin {
@@ -66,16 +72,16 @@
 			
 			switch ($_.Exception.Response.StatusCode.Value__) {
 				401 {
-					Write-Error "Invalid Credentials."
+					Write-PSFMessage "Invalid Credentials." -Level Warning -ErrorRecord $_ -OverrideExceptionMessage -EnableException $EnableException.tobool()
 				}
 				403 {
-					Write-Error "Unable to upload to TOPdesk. Make sure that you have write permissions on $ImportDirectory directory."
+					Write-PSFMessage "Unable to upload to TOPdesk. Make sure that you have write permissions on $ImportDirectory directory." -Level Warning -ErrorRecord $_ -OverrideExceptionMessage -EnableException $EnableException.tobool()
 				}
 				409 {
-					Write-Error "Unknown directory on remote. Make sure that $ImportDirectory directory exists."
+					Write-PSFMessage "Unknown directory on remote. Make sure that $ImportDirectory directory exists." -Level Warning -ErrorRecord $_ -OverrideExceptionMessage -EnableException $EnableException.tobool()
 				}
 				500 {
-					Write-Error "Unknown server error."
+					Write-PSFMessage "Unknown server error." -Level Warning -ErrorRecord $_ -OverrideExceptionMessage -EnableException $EnableException.tobool()
 				}
 			}
 		}

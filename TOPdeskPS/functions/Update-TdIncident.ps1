@@ -44,13 +44,14 @@
 		This is the email of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
 	
 	.EXAMPLE
-		PS C:\> Update-Incident
+		PS C:\> Update-TdIncident -IncidentNumber 'I1805-221' -Action 'Example Action'
+		Updates incident I1805-221 with the action 'Example Action'
 	
 	.NOTES
 		Additional information about the function.
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	param
 	(
 		[Parameter(Mandatory = $true,
@@ -75,7 +76,7 @@
 		[string]
 		$Subcategory,
 		
-		[ValidatePattern('\w+([-+.'''''''''''''''''''''''''''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*')]
+		[PSFValidatePattern('\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*', ErrorMessage = '{0} is not a valid email address.')]
 		[string]
 		$CallerEmail
 	)
@@ -90,7 +91,7 @@
 		
 		$IncidentURL = (Get-TdUrl) + "/tas/api/incidents/number/$($IncidentNumber.ToLower())"
 		
-		if (-not $PSCmdlet.ShouldProcess("Item")) {
+		if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $IncidentNumber -Action 'Updating the incident.')) {
 			return
 		}
 		

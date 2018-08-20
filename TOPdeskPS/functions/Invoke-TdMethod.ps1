@@ -13,16 +13,17 @@
 		A description of the Uri parameter.
 	
 	.PARAMETER Body
-		A description of the Body parameter.
+		The body of the request to be sent to TOPdesk. Accepts a PSCustomObject and converts it to JSON.
 	
 	.PARAMETER Method
-		A description of the Method parameter.
+		The method that you want to pass
 	
 	.PARAMETER Headers
 		A description of the Headers parameter.
 	
 	.EXAMPLE
 		PS C:\> Invoke-TdMethod
+		Just a quick description.
 	
 	.NOTES
 		Additional information about the function.
@@ -63,7 +64,6 @@
 			'ContentType' = $ContentType
 		}
 		Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
-		
 		Invoke-RestMethod @Params
 	}
 	end {

@@ -36,9 +36,7 @@
 		Additional information about the function.
 #>
 	
-	[CmdletBinding(DefaultParameterSetName = 'List',
-				   ConfirmImpact = 'Low',
-				   SupportsShouldProcess = $false)]
+	[CmdletBinding(DefaultParameterSetName = 'List')]
 	param
 	(
 		[ValidateRange(1, 100)]

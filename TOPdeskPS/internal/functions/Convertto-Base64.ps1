@@ -1,14 +1,19 @@
 ﻿
 function Convertto-Base64
 {
-	<#
+<#
 	.SYNOPSIS
 		Converts an object to base64
-
+	
+	.DESCRIPTION
+		A detailed description of the Convertto-Base64 function.
+	
+	.PARAMETER InputObject
+		A description of the InputObject parameter.
+	
 	.EXAMPLE
 		PS C:\> Convertto-Base64 -InputObject 'string'
-		
-	
+		Converts the string to Base64
 #>
 	[CmdletBinding()]
 	Param (
@@ -22,11 +27,6 @@ function Convertto-Base64
 	process
 	{
 		$bytes = [System.Text.Encoding]::ASCII.GetBytes($InputObject)
-		$base64 = [System.Convert]::ToBase64String($bytes)
-		$base64
-	}
-	end
-	{
-	
+		[System.Convert]::ToBase64String($bytes)
 	}
 }

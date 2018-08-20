@@ -1,4 +1,4 @@
-function Connect-TdService {
+﻿function Connect-TdService {
 <#
 	.SYNOPSIS
 		Connects to the TOPdesk Service
@@ -20,6 +20,10 @@ function Connect-TdService {
 	
 	.PARAMETER Register
 		Saves your TOPdesk url so you don't need to manually specify it each time. For more information
+	
+	.PARAMETER EnableException
+		Specify whether you want this command to throw an exception if it encounters an error.
+
 	
 	.EXAMPLE
 		PS C:\> Connect-TdService
@@ -54,16 +58,16 @@ function Connect-TdService {
 		[switch]
 		$PassThru,
 		
-		[Parameter(Mandatory = $false)]
-		[ValidateNotNullOrEmpty()]
-		[ValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?')]
+		[PSFValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?', ErrorMessage = '{0} is not a valid TOPdesk Url.')]
 		[System.String]
 		$Url = (
-			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull)
-		,
+			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull),
 		
 		[switch]
-		$Register
+		$Register,
+		
+		[switch]
+		$EnableException
 	)
 	
 	begin {
@@ -93,16 +97,17 @@ function Connect-TdService {
 		
 		$result = Invoke-RestMethod @parameter -ErrorAction Stop
 		if ($result.item.name -like 'item') {
-			Write-Error 'invalid url given.'	
+			Stop-PSFFunction -Message 'invalid url given.' -EnableException $EnableException -Cmdlet $PSCmdlet
+			return
 		}
-
+		
 		else {
 			Write-PSFMessage -Level Verbose -Message 'LoginToken received and set.'
 			$Script:__LoginToken = "TOKEN id=`"$result`""
 		}
 		
 		if ($PassThru) {
-			Write-Output $Script:__LoginToken
+			$Script:__LoginToken
 		}
 		
 		if ($Register) {
@@ -114,6 +119,9 @@ function Connect-TdService {
 		}
 	}
 	end {
+		if (Test-PSFFunctionInterrupt) {
+			return
+		}
 		Write-PSFMessage -Message 'Function Complete'
 	}
 }
