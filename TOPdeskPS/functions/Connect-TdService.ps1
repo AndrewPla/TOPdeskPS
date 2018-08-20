@@ -22,8 +22,7 @@
 		Saves your TOPdesk url so you don't need to manually specify it each time. For more information
 	
 	.PARAMETER EnableException
-		Specify whether you want this command to throw an exception if it encounters an error.
-
+	 	Specify whether you want this command to throw an exception if it encounters an error.
 	
 	.EXAMPLE
 		PS C:\> Connect-TdService
@@ -43,8 +42,8 @@
 		Inputs (if any)
 #>
 	
-	[CmdletBinding(ConfirmImpact = 'Low',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
+	[OutputType([System.String])]
 	param
 	(
 		[Parameter(Mandatory = $true)]
@@ -84,10 +83,6 @@
 	process {
 		Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
 		Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
-		
-		if (-not $PSCmdlet.ShouldProcess("Item")) {
-			return
-		}
 		
 		$parameter = @{
 			URI	    = $resourceURi

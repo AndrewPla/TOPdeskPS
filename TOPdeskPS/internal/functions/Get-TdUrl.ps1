@@ -9,9 +9,13 @@
 	.EXAMPLE
 		PS C:\> Get-TdUrl
 		Grabs the TOPdesk url from the config system using Get-PSFConfigValue
-
+	
+	.NOTES
+		Additional information about the function.
 #>
+	
 	[CmdletBinding()]
+	[OutputType([System.String])]
 	param ()
 	
 	begin {
@@ -23,8 +27,8 @@
 		}
 		catch {
 			throw 'Unable to find your TOPdesk url. Try running Connect-TdService.'
-		}		
+		}
 	}
-	end {	
+	end {
 	}
 }
