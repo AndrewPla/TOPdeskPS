@@ -22,7 +22,7 @@
 		Saves your TOPdesk url so you don't need to manually specify it each time. For more information
 	
 	.PARAMETER EnableException
-	 	Specify whether you want this command to throw an exception if it encounters an error.
+		Specify whether you want this command to throw an exception if it encounters an error.
 	
 	.EXAMPLE
 		PS C:\> Connect-TdService
@@ -42,7 +42,7 @@
 		Inputs (if any)
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Connect-TdService')]
 	[OutputType([System.String])]
 	param
 	(

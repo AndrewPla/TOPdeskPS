@@ -27,7 +27,8 @@
 		Additional information about the function.
 #>
 	
-	[CmdletBinding(DefaultParameterSetName = 'List')]
+	[CmdletBinding(DefaultParameterSetName = 'List',
+				   HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdOperator')]
 	param
 	(
 		[Alias('LoginName')]

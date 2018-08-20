@@ -62,10 +62,10 @@
 		If not provided to partial incidents, the category will be automatically copied from the main incident.
 	
 	.PARAMETER Confirm
-	    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 	
 	.PARAMETER WhatIf
-	    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 	
 	.EXAMPLE
 		PS C:\> New-TdIncident -CallerEmail 'user@Company.net' -Action 'Initial Action' -BriefDescription 'Example Incident' -Request 'Printer Assistance'
@@ -75,7 +75,8 @@
 		
 #>
 	
-	[CmdletBinding(SupportsShouldProcess = $true)]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/New-TdIncident',
+				   SupportsShouldProcess = $true)]
 	param
 	(
 		[string]

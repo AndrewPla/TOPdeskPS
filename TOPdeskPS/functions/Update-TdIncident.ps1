@@ -35,11 +35,6 @@
 	.PARAMETER Category
 		The name of the category for the incident. Can be set by operators. If not provided to partial incidents, the category will be automatically copied from the main incident.
 	
-	.PARAMETER Confirm
-	    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
-	
-	.PARAMETER WhatIf
-	    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 	.PARAMETER Subcategory
 		The name of the category for the incident. Can be set by operators.
 		If a subcategory is provided without a category, the corresponding category will be filledi n automatically, unless there are multiple matching categories, in which case the request will fail.
@@ -47,6 +42,12 @@
 	
 	.PARAMETER CallerEmail
 		This is the email of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
+	
+	.PARAMETER Confirm
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+	
+	.PARAMETER WhatIf
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 	
 	.EXAMPLE
 		PS C:\> Update-TdIncident -IncidentNumber 'I1805-221' -Action 'Example Action'
@@ -56,7 +57,8 @@
 		Additional information about the function.
 #>
 	
-	[CmdletBinding(SupportsShouldProcess = $true)]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Update-TdIncident',
+				   SupportsShouldProcess = $true)]
 	param
 	(
 		[Parameter(Mandatory = $true,

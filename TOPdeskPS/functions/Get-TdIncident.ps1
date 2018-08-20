@@ -32,9 +32,13 @@
 	.EXAMPLE
 		PS C:\> Get-TdIncident
 		Grabs a list of 10 incidents
-	#>
 	
-	[CmdletBinding(DefaultParameterSetName = 'List')]
+	.NOTES
+		Additional information about the function.
+#>
+	
+	[CmdletBinding(DefaultParameterSetName = 'List',
+				   HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdIncident')]
 	param
 	(
 		[ValidateRange(1, 100)]
