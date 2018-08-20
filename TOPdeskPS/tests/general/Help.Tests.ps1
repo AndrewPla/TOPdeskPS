@@ -74,7 +74,17 @@ foreach ($command in $commands) {
             }
             $testhelperrors += 1
         }
-        
+		
+		$testhelpall += 1
+		if ($command.HelpUri -notlike "https://andrewpla.github.io/TOPdeskPS/commands/$commandname") {
+			# Each command needs a helpuri that points to where the auto-generated docs go.
+			It "should contain a proper helpuri" {
+				$Command.HelpUri | Should Be "https://andrewpla.github.io/TOPdeskPS/commands/$commandname"
+			}
+			$testhelperrors += 1
+		}
+		
+		
         $testhelpall += 1
         if ([String]::IsNullOrEmpty($Help.Description.Text)) {
             # Should be a description for every function
