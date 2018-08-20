@@ -11,14 +11,17 @@
 	
 	.EXAMPLE
 		PS C:\> Get-TdCategory
-			Gets a list of all categories
+		Gets a list of all categories
+	
 	.EXAMPLE
 		PS C:\> Get-TdCategory -Name 'End User Support'
-			Gets the category with the name 'End User Support'
-
+		Gets the category with the name 'End User Support'
+	
+	.NOTES
+		Additional information about the function.
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdCategory')]
 	param
 	(
 		[System.String]

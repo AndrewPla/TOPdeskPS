@@ -24,7 +24,7 @@
 		See About_TOPdesk_files for more
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Send-TdImportFile')]
 	param
 	(
 		[ValidateScript({

@@ -29,7 +29,7 @@
 		Additional information about the function.
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod')]
 	param
 	(
 		[system.string]
@@ -44,8 +44,6 @@
 		[ValidateSet('Get', 'Set', 'Put', 'Patch', 'Delete', 'Post', 'Head', 'Merge', 'Options')]
 		[string]
 		$Method = 'Get'
-		
-	
 	)
 	
 	begin {

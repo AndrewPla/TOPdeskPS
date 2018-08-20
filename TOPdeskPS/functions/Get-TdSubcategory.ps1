@@ -1,5 +1,5 @@
 ﻿function Get-TdSubcategory {
-	<#
+<#
 	.SYNOPSIS
 		Get subcategories from TOPdesk
 	
@@ -11,26 +11,29 @@
 	
 	.EXAMPLE
 		PS C:\> Get-TdSubcategory
-			Gets a list of all subcategories
+		Gets a list of all subcategories
+	
 	.EXAMPLE
 		PS C:\> Get-TdSubcategory -Name 'Applications'
-			Gets the Subcategory with the name 'Applications'
-
+		Gets the Subcategory with the name 'Applications'
+	
+	.NOTES
+		Additional information about the function.
 #>
-	[CmdletBinding()]
-	Param (
+	
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdSubcategory')]
+	param
+	(
 		[System.String]
 		$Name
 	)
 	
-	begin
-	{
+	begin {
 		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
 		$SubcategoryURL = (Get-TdUrl) + '/tas/api/incidents/subcategories'
 		
 	}
-	process
-	{
+	process {
 		$Params = @{
 			'uri' = $SubcategoryUrl
 		}
@@ -42,8 +45,7 @@
 			$Subcategories
 		}
 	}
-	end
-	{
-	
+	end {
+		
 	}
 }
