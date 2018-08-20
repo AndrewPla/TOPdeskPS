@@ -15,7 +15,7 @@ TOPdeskPS is published to the PowerShell gallery and can be installed by running
 ``` 
 
 ## Documentation
-For the full web based documentation visit the [TOPdeskPS site](andrewpla.github.io/TOPdeskPS) 
+For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS) 
 
 ## Release History
 
