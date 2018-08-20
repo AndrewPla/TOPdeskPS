@@ -17,6 +17,8 @@ LONG DESCRIPTION
 		Disconnect from TOPdesk by running Disconnect-TdService
 		This will invalidate your login token.
 		PS C:\> Disconnect-TdService
+		
+	Updating Incidents
 
 KEYWORDS
 	TOPdeskPS
