@@ -24,7 +24,7 @@
 		Retrieve only incidents that are resolved depending on the setting "Call is resolved when" (Module Settings -> Call Management -> General)
 	
 	.PARAMETER Archived
-		Whether to retrieve archived incidents. 
+		Whether to retrieve archived incidents.
 	
 	.PARAMETER Number
 		This is the incident number of the incident that you would like to retrieve.

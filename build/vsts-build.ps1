@@ -10,4 +10,6 @@ param (
 )
 
 if ($WhatIf) { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\TOPdeskPS" -NuGetApiKey $ApiKey -Force -WhatIf }
-else { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\TOPdeskPS" -NuGetApiKey $ApiKey -Force }
+else {
+	Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\TOPdeskPS" -NuGetApiKey $ApiKey -Force
+}

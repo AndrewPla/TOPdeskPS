@@ -6,11 +6,11 @@ SHORT DESCRIPTION
 	
 LONG DESCRIPTION
 	Connecting to TOPdesk
-		Before running any other commands you will need to connect to TOPdesk. 
+		Before running any other commands you will need to connect to TOPdesk.
 		PS C:\> Connect-TdService -Credential (Get-Credential) -Url 'https://MyCompany.topdesk.net' -Register
 		
 	Getting Incidents
-		Incidents are retrieved with the Get-TdIncident command. 
+		Incidents are retrieved with the Get-TdIncident command.
 		PS C:\> Get-TdIncident
 		
 	Disconnecting from TOPdesk
