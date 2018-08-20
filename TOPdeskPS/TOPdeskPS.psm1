@@ -1,5 +1,5 @@
-﻿$script:ModuleRoot = $PSScriptRoot
-$script:ModuleVersion = (Invoke-Expression (Get-Content "$ModuleRoot\TOPdeskPS.psd1" -Raw)).ModuleVersion
+$script:ModuleRoot = $PSScriptRoot
+$script:ModuleVersion = "0.0.2" #(Invoke-Expression (Get-Content "$ModuleRoot\TOPdeskPS.psd1" -Raw)).ModuleVersion
 
 $script:__LoginToken = $null
 function Import-ModuleFile
