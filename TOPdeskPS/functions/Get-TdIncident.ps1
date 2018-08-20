@@ -87,27 +87,27 @@
 				
 				
 				if ($PSBoundParameters.keys -contains 'Completed') {
-					Write-Verbose "Completed = $Completed"
+					Write-PSFMessage -Level InternalComment -Message "Completed = $Completed"
 					$uri = "$uri&closed=$Closed"
 				}
 				
 				if ($PSBoundParameters.keys -contains 'Closed') {
-					Write-Verbose "Closed = $Closed"
+					Write-PSFMessage -Level InternalComment -Message "Closed = $Closed"
 					$uri = "$uri&closed=$Closed"
 				}
 				
 				if ($PSBoundParameters.keys -contains 'Resolved') {
-					Write-Verbose "Resolved = $Resolved"
+					Write-PSFMessage -Level InternalComment -Message "Resolved = $Resolved"
 					$uri = "$uri&resolved=$Resolved"
 				}
 				
 				if ($PSBoundParameters.keys -contains 'Archive') {
-					Write-Verbose "Archive = $Archive"
+					Write-PSFMessage -Level InternalComment -Message "Archive = $Archive"
 					$uri = "$uri&archive=$Archive"
 				}
 				
 				
-				Write-Verbose "URI: $uri"
+				Write-PSFMessage -Level InternalComment -Message "URI: $uri"
 				$Params = @{
 					'uri' = $uri
 				}
@@ -117,7 +117,7 @@
 			Number {
 				$Incidents = @()
 				foreach ($num in $Number) {
-					Write-Verbose "Grabbing Incident # $num"
+					Write-PSFMessage -Level InternalComment -Message "Grabbing Incident # $num"
 					$uri = "$IncidentURL/number/$($num.ToLower())"
 					$Params = @{
 						'uri' = $uri
@@ -129,9 +129,9 @@
 		}
 		
 		foreach ($Incident in $Incidents) {
-			Write-Verbose "Processing Incident : $($Incident.Number)"
-			$Incident.psobject.typenames.Insert(0, 'TOPdeskPS.Incident')
-			$Incident
+			Write-PSFMessage "Processing Incident : $($Incident.Number)" -Level Verbose
+			$Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
+			#$Incident
 		}
 	}
 	end {
