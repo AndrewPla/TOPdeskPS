@@ -1,4 +1,4 @@
-theme: jekyll-theme-slate
+theme: jekyll-theme-cayman
 title: Welcome to TOPdeskPS
 name: TOPdeskPS
 description: PowerShell module to interact with the TOPdesk REST Api
