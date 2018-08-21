@@ -14,7 +14,7 @@
 		Additional information about the function.
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdUrl')]
 	[OutputType([System.String])]
 	param ()
 	

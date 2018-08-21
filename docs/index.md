@@ -1,9 +1,6 @@
-TOPdeskPS is a PowerShell module to interact with the TOPdesk Rest Api.
-
-
 
 # Quick Start
-These quick start guides are designeed to get you up and running with TOPdeskPS.
+These quick start guides are designed to get you up and running with TOPdeskPS.
 - Connecting to TOPdeskPS for the first time
 - Look at current incidents
 - Get a list of all operators

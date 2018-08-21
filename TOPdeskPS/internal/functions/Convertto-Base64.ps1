@@ -18,7 +18,7 @@ function Convertto-Base64 {
 		Additional information about the function.
 #>
 	
-	[CmdletBinding()]
+	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Convertto-Base64')]
 	[OutputType([System.String])]
 	param
 	(

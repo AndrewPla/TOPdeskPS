@@ -18,8 +18,8 @@
 	.PARAMETER Method
 		The method that you want to pass
 	
-	.PARAMETER Headers
-		A description of the Headers parameter.
+	.PARAMETER Token
+		Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
 	
 	.EXAMPLE
 		PS C:\> Invoke-TdMethod
@@ -43,17 +43,27 @@
 		
 		[ValidateSet('Get', 'Set', 'Put', 'Patch', 'Delete', 'Post', 'Head', 'Merge', 'Options')]
 		[string]
-		$Method = 'Get'
+		$Method = 'Get',
+		
+		[string]
+		$Token
 	)
 	
 	begin {
 		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-		$Headers = @{
-			'Authorization' = $Script:__LoginToken
-		}
+		
 	}
 	process {
-		
+		if ($Token) {
+			$Headers = @{
+				'Authorization' = $Token
+			}
+		}
+		else {
+			$Headers = @{
+				'Authorization' = $Script:__LoginToken
+			}
+		}
 		$Params = @{
 			'Body' = ($Body | ConvertTo-Json)
 			'Method' = $Method
