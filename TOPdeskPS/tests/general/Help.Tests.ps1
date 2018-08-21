@@ -80,27 +80,13 @@ foreach ($command in $commands) {
 		}
 		
 		$testhelpall += 1
-		if ($command.HelpUri -notlike "https://andrewpla.github.io/TOPdeskPS/commands/$commandname") {
+		if ($command.HelpUri -notlike "https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/$commandname") {
 			# Each command needs a helpuri that points to where the auto-generated docs go.
 			It "should contain a proper helpuri" {
 				$Command.HelpUri | Should Be "https://andrewpla.github.io/TOPdeskPS/commands/$commandname"
 			}
 			$testhelperrors += 1
-		}
-		
-		$testhelpall += 1
-		if ($command.HelpUri) {
-			# Verify that the helpuri points to a valid location.
-			It "helpuri responds to Invoke-WebRequest" {
-				# Change TLS to 1.2
-				[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-				{
-					Invoke-WebRequest -Path $command.helpuri
-				} | Should Not Throw
-			}
-			$testhelperrors += 1
-		}
-		
+		}		
 		
 		$testhelpall += 1
 		if ([String]::IsNullOrEmpty($Help.Description.Text)) {
