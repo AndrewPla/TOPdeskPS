@@ -99,8 +99,10 @@
 		[string]
 		$Request,
 		
+		[PsfValidateSet(TabCompletion = 'TdCategory')]
 		[string]
 		$Category,
+		
 		
 		[string]
 		$Subcategory
