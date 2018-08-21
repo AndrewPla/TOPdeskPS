@@ -1,3 +1,6 @@
+![Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
+
+[<img src="https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation"/>](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
 # TOPdeskPS
 
 ## Description
