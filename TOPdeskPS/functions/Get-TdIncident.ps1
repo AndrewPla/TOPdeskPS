@@ -49,19 +49,19 @@
 		$Start = 0,
 		
 		[Parameter(ParameterSetName = 'List')]
-		[boolean]
+		[switch]
 		$Completed,
 		
 		[Parameter(ParameterSetName = 'List')]
-		[boolean]
+		[switch]
 		$Closed,
 		
 		[Parameter(ParameterSetName = 'List')]
-		[boolean]
+		[switch]
 		$Resolved,
 		
 		[Parameter(ParameterSetName = 'List')]
-		[boolean]
+		[switch]
 		$Archived,
 		
 		[Parameter(ParameterSetName = 'Number',
