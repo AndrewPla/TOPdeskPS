@@ -1,31 +1,19 @@
-![Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
+[![Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)]
 
-[<img src="https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation"/>](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
 # TOPdeskPS
 
 ## Description
 
-Module to interact with TopDesk through a REST API.
+PowerShell module to interact with TOPdesk through its REST API. This module can be used by your standard operator to perform day to day and it can also be used to automate various TOPdesk actions.
 
-Authored by AndrewPla
+## Installing the module
+TOPdeskPS is published to the PowerShell gallery and can be installed by running:
+```powershell
+  Install-Module -Name TOPdeskPS -Repository PSGallery -Scope CurrentUser
+``` 
 
-## Installing
-
-
-### Inspecting the module
-
-
-### Installing the module
-
-### Updating TOPdeskPS
-
-### Uninstalling TOPdeskPS
-
-## Contributing to TOPdeskPS
-
-Interested in contributing? Read how you can [Contribute](contributing.md) to TOPdeskPS
-
-This project maintains a [Code of Conduct](code-of-conduct.md) that establishes how the project is governed and how everyone involved is expected to behave. You can report unacceptable behavior to [32366464+AndrewPla@users.noreply.github.com](mailto:32366464+AndrewPla@users.noreply.github.com).
+## Documentation
+For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS) 
 
 ## Release History
 
