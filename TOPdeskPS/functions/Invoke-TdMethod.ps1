@@ -18,8 +18,8 @@
 	.PARAMETER Method
 		The method that you want to pass
 	
-	.PARAMETER Headers
-		A description of the Headers parameter.
+	.PARAMETER Token
+		Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
 	
 	.EXAMPLE
 		PS C:\> Invoke-TdMethod
