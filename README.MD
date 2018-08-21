@@ -1,4 +1,4 @@
-[![Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)]
+[Build Status](https://andrewplatech.visualstudio.com/TOPdeskPS/_apis/build/status/TOPdeskPS-TestValidation)
 
 # TOPdeskPS
 
