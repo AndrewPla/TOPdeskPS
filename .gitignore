@@ -302,3 +302,4 @@ __pycache__/
 *.psproj
 *.psprojs
 *.temppoint.*
+*.restorepoint.ps1
