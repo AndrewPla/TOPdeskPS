@@ -3,7 +3,7 @@
 	ModuleToProcess   = 'TOPdeskPS.psm1'
 	
 	# Version number of this module.
-	ModuleVersion	  = '0.0.2'
+	ModuleVersion	  = '0.0.3'
 	
 	# ID used to uniquely identify this module
 	GUID			  = '3c6f28d6-772c-4325-8236-d4bc99373aa9'
@@ -99,19 +99,19 @@
 		PSData = @{
 			
 			# Tags applied to this module. These help with module discovery in online galleries.
-			# Tags = @()
+			 Tags = @('TOPdesk','API','ITSM','ITIL','Incident','Ticket','Tickets')
 			
 			# A URL to the license for this module.
-			# LicenseUri = ''
+			 LicenseUri = 'https://github.com/AndrewPla/TOPdeskPS/blob/master/LICENSE.md'
 			
 			# A URL to the main website for this project.
-			# ProjectUri = ''
+			 ProjectUri = 'https://andrewpla.github.io/TOPdeskPS'
 			
 			# A URL to an icon representing this module.
 			# IconUri = ''
 			
 			# ReleaseNotes of this module
-			# ReleaseNotes = ''
+			 ReleaseNotes = 'https://github.com/AndrewPla/TOPdeskPS/blob/master/CHANGELOG.md'
 			
 		} # End of PSData hashtable
 		
