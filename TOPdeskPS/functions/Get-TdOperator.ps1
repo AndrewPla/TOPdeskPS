@@ -23,8 +23,6 @@
 		PS C:\> Get-TdOperator -TOPdeskLoginName 'user@company.net'
 		Returns the operator information for the operator with a login name of 'user@company.net' This field may not necessarily be an email address. This depends on how your TOPdesk instance is setup.
 	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(DefaultParameterSetName = 'List',

@@ -22,11 +22,9 @@
 		Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
 	
 	.EXAMPLE
-		PS C:\> Invoke-TdMethod
-		Just a quick description.
+		PS C:\> Invoke-TdMethod -Token $Token -Body $Body
+		Sends a Get request to your TOPdesk instance.
 	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod')]

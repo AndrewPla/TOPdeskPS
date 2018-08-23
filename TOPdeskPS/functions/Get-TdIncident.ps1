@@ -32,9 +32,6 @@
 	.EXAMPLE
 		PS C:\> Get-TdIncident
 		Grabs a list of 10 incidents
-	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(DefaultParameterSetName = 'List',

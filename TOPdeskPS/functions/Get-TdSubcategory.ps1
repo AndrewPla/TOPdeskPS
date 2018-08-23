@@ -17,8 +17,6 @@
 		PS C:\> Get-TdSubcategory -Name 'Applications'
 		Gets the Subcategory with the name 'Applications'
 	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdSubcategory')]

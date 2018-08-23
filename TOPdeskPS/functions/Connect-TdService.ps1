@@ -30,16 +30,7 @@
 	
 	.EXAMPLE
 		PS C:\> Connect-TdService -Credential $Cred
-		Connects to TOPdesk using the credential stored in the variable Cred.
-	
-	.OUTPUTS
-		Output (if any)
-	
-	.NOTES
-		Additional information about the function.
-	
-	.INPUTS
-		Inputs (if any)
+		Connects to TOPdesk using the credential stored in the variable Cred
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Connect-TdService')]

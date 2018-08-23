@@ -19,9 +19,6 @@
 	.EXAMPLE
 		PS C:\> Get-TdCategory -Name 'End User Support'
 		Gets the category with the name 'End User Support'
-	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdCategory')]

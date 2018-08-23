@@ -70,9 +70,6 @@
 	.EXAMPLE
 		PS C:\> New-TdIncident -CallerEmail 'user@Company.net' -Action 'Initial Action' -BriefDescription 'Example Incident' -Request 'Printer Assistance'
 		This creates a basic incident for the Caller 'user@Company.net'
-	
-	.NOTES
-		
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/New-TdIncident',
