@@ -99,7 +99,7 @@
 		
 		if ($Register) {
 			Register-PSFConfig -FullName TOPdeskPS.Url
-		}	
+		}
 	}
 	end {
 		if (Test-PSFFunctionInterrupt) {
