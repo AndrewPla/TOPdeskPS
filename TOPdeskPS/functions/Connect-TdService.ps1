@@ -30,16 +30,7 @@
 	
 	.EXAMPLE
 		PS C:\> Connect-TdService -Credential $Cred
-		Connects to TOPdesk using the credential stored in the variable Cred.
-	
-	.OUTPUTS
-		Output (if any)
-	
-	.NOTES
-		Additional information about the function.
-	
-	.INPUTS
-		Inputs (if any)
+		Connects to TOPdesk using the credential stored in the variable Cred
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Connect-TdService')]
@@ -104,24 +95,11 @@
 		if ($PassThru) {
 			$Script:__LoginToken
 		}
+		Set-PSFConfig -FullName TOPdeskPS.Url -Value $Url
 		
 		if ($Register) {
-			Set-PSFConfig -FullName TOPdeskPS.Url -Value $Url
 			Register-PSFConfig -FullName TOPdeskPS.Url
 		}
-		else {
-			Set-PSFConfig -FullName TOPdeskPS.Url -Value $Url
-		}
-		
-		
-		Write-PSFMessage 'Registering TdCategories Tab Completion' -Level Verbose
-		
-		Register-PSFTeppScriptblock -Name 'TdCategory' -ScriptBlock {
-			(Get-TdCategory).Name
-		}
-		$CommandstoRegister = 'New-TdIncident','Update-TdIncident'
-		Register-PSFTeppArgumentCompleter -Command $CommandstoRegister -Parameter Category -Name TdCategory
-		
 	}
 	end {
 		if (Test-PSFFunctionInterrupt) {

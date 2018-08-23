@@ -9,9 +9,6 @@
 	.EXAMPLE
 		PS C:\> Disconnect-TdService
 		Disconnects from TOPdesk and invalidates your token.
-	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Disconnect-TdService')]

@@ -52,9 +52,6 @@
 	.EXAMPLE
 		PS C:\> Update-TdIncident -IncidentNumber 'I1805-221' -Action 'Example Action'
 		Updates incident I1805-221 with the action 'Example Action'
-	
-	.NOTES
-		Additional information about the function.
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Update-TdIncident',
