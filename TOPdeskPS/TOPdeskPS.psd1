@@ -1,6 +1,6 @@
 ﻿@{
 	# Script module or binary module file associated with this manifest
-	ModuleToProcess   = 'TOPdeskPS.psm1'
+	RootModule   = 'TOPdeskPS.psm1'
 	
 	# Version number of this module.
 	ModuleVersion	  = '0.0.3'
