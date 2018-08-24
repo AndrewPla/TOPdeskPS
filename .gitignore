@@ -301,5 +301,5 @@ __pycache__/
 # PowerShell Studio
 *.psproj
 *.psprojs
-*.temppoint.*
+*.temppoint.ps1
 *.restorepoint.ps1
