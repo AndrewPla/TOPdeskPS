@@ -3,7 +3,7 @@
 	RootModule   = 'TOPdeskPS.psm1'
 	
 	# Version number of this module.
-	ModuleVersion	  = '0.0.3'
+	ModuleVersion	  = '0.0.4'
 	
 	# ID used to uniquely identify this module
 	GUID			  = '3c6f28d6-772c-4325-8236-d4bc99373aa9'
