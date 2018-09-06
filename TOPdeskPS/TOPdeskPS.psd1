@@ -73,7 +73,7 @@
 		'Get-TdSubcategory',
 		'New-TdIncident',
 		'Invoke-TdMethod',
-		'Send-TdImportFile',
+		'Send-TdWebDAVFile',
 		'Update-TdIncident'
 	)
 	
