@@ -67,11 +67,10 @@
     begin {
         Write-PSFMessage "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param' -Level InternalComment
         $FileName = Get-Item -Path $File | Select-Object -ExpandProperty Name
-        if (-not $TOPdeskURL) {
-			$TOPdeskURL = Get-TdUrl -erroraction stop
-		        }
+        if (-not $TOPdeskURL) { $TOPdeskURL = Get-TdUrl -erroraction Stop }
         $UploadUrl = $TOPdeskURL + '/webdav' + "$Folder/$FileName"
         Write-PSFMessage "UploadUrl: $UploadUrl" -Level InternalComment
+        $Folder = $Folder.name.ToString().tolower()
     }
     process {
         Write-PSFMessage "Processing $File" -Level Verbose
@@ -105,7 +104,6 @@
                 }
             }
         }
-		
     }
     end {}
 }
