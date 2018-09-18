@@ -50,9 +50,9 @@
 		
 		[PSFValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?', ErrorMessage = '{0} is not a valid TOPdesk Url.')]
 		[System.String]
+		[ValidateScript({if (-not $_){throw 'No Url set. Please specify a url using the -Url parameter.'}})]
 		$Url = (
-			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull),
-		
+			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue),
 		[switch]
 		$Register,
 		
