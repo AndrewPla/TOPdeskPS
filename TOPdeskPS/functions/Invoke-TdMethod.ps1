@@ -1,5 +1,5 @@
 ﻿function Invoke-TdMethod {
-<#
+    <#
 	.SYNOPSIS
 		internal wrapper for Invoke-RestMethod
 	
@@ -27,52 +27,55 @@
 	
 #>
 	
-	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod')]
-	param
-	(
-		[system.string]
-		$ContentType = 'application/json',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod')]
+    param
+    (
+        [system.string]
+        $ContentType = 'application/json',
 		
-		[uri]
-		$Uri,
+        [uri]
+        $Uri,
 		
-		[pscustomobject]
-		$Body,
+        [pscustomobject]
+        $Body,
 		
-		[ValidateSet('Get', 'Set', 'Put', 'Patch', 'Delete', 'Post', 'Head', 'Merge', 'Options')]
-		[string]
-		$Method = 'Get',
+        [ValidateSet('Get', 'Set', 'Put', 'Patch', 'Delete', 'Post', 'Head', 'Merge', 'Options')]
+        [string]
+        $Method = 'Get',
 		
-		[string]
-		$Token
-	)
+        [string]
+        $Token
+    )
 	
-	begin {
-		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
+    begin {
+        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
+        if (-not $Script:__LoginToken) {
+            throw 'no connection to topdesk, try running Connect-TdService'
+        }
+    }
+    process {
+        if ($Token) {
+            $Headers = @{
+                'Authorization' = $Token
+            }
+        }
+        else {
+            $Headers = @{
+                'Authorization' = $Script:__LoginToken
+            }
+        }
+        $Params = @{
+            'Body'        = ($Body | ConvertTo-Json)
+            'Method'      = $Method
+            'Uri'         = $Uri
+            'Headers'     = $Headers
+            'ContentType' = $ContentType
+        }
+        Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
+        Invoke-RestMethod @Params 
+     
+    }
+    end {
 		
-	}
-	process {
-		if ($Token) {
-			$Headers = @{
-				'Authorization' = $Token
-			}
-		}
-		else {
-			$Headers = @{
-				'Authorization' = $Script:__LoginToken
-			}
-		}
-		$Params = @{
-			'Body' = ($Body | ConvertTo-Json)
-			'Method' = $Method
-			'Uri'  = $Uri
-			'Headers' = $Headers
-			'ContentType' = $ContentType
-		}
-		Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
-		Invoke-RestMethod @Params
-	}
-	end {
-		
-	}
+    }
 }
