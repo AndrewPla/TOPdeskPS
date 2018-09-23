@@ -1,36 +1,36 @@
 ﻿function Connect-TdService {
 <#
 	.SYNOPSIS
-		Connects to the TOPdesk Service
+		Connects to the TOPdesk
 	
 	.DESCRIPTION
-		Establishes a connection to TOPdesk.
+		Sends a login request and saves the login token. This command can also be used to generate new 
 	
 	.PARAMETER Credential
-		A description of the Credential parameter.
+		Credentials used to access TOPdesk.
 	
 	.PARAMETER UserType
-		A description of the UserType parameter.
+		Specify whether you want to login as a person or an operator. Default value: operator
 	
 	.PARAMETER PassThru
-		Passes the login token through to the console. Can be useful for troubleshooting or if you want to generate a login token to be consumed by a different applicaiton.
+		Passes the login token through to the console. Can be useful for troubleshooting or if you want to generate a login token to be consumed by a different application.
 	
 	.PARAMETER Url
-		This is the Url of your topdesk instance. Example: 'Company.TOPdesk.net'
+		This is the Url of your TOPdesk instance. You must add https:// Example: 'https://Company.TOPdesk.net'
 	
 	.PARAMETER Register
-		Saves your TOPdesk url so you don't need to manually specify it each time. For more information
+		Saves your TOPdesk url so you don't need to manually specify it each time. For more information see about_TOPdeskPS_Registration
 	
 	.PARAMETER EnableException
 		Specify whether you want this command to throw an exception if it encounters an error.
 	
 	.EXAMPLE
-		PS C:\> Connect-TdService
+		PS C:\> Connect-TdService -Url 'https://company.topdesk.net' -Credential (Get-Credential)
 		Prompts you for your TOPdesk credentials and then connects to TOPdesk.
 	
 	.EXAMPLE
-		PS C:\> Connect-TdService -Credential $Cred
-		Connects to TOPdesk using the credential stored in the variable Cred
+		PS C:\> Connect-TdService -Credential $Cred -Url 'https://company.topdesk.net' -Register
+		Connects to TOPdesk and save the Url so you don't need to enter it the next time you run connect-tdservice
 #>
 	
 	[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Connect-TdService')]
@@ -50,7 +50,6 @@
 		
 		[PSFValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?', ErrorMessage = '{0} is not a valid TOPdesk Url.')]
 		[System.String]
-		[ValidateScript({if (-not $_){throw 'No Url set. Please specify a url using the -Url parameter.'}})]
 		$Url = (
 			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue),
 		[switch]
