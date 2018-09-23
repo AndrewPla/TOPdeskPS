@@ -1,17 +1,16 @@
 ﻿function Get-TdIncident {
 <#
 	.SYNOPSIS
-		Grabs Incidents from TOPdesk
+		Gets Incidents
 	
 	.DESCRIPTION
 		This command returns incidents from TOPdesk. The most you can grab per request is 100.
 	
 	.PARAMETER PageSize
-		The Amount of incidents to be returned per request. The default value is 10 and the maximum value is 100.
+		The amount of incidents to be returned per request. The default value is 10 and the maximum value is 100.
 	
 	.PARAMETER Start
-		This is the offset at which you want to start listing incidents at. This is useful if you want to grab more than 100 incidents.
-		
+		This is the offset at which you want to start listing incidents. This is useful if you want to grab more than 100 incidents.
 		The default value is 0.
 	
 	.PARAMETER Completed
