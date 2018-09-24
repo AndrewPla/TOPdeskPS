@@ -49,9 +49,7 @@
 	
     begin {
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-        if (-not $Script:__LoginToken) {
-            throw 'no connection to topdesk, try running Connect-TdService'
-        }
+      
     }
     process {
         if ($Token) {
@@ -60,6 +58,9 @@
             }
         }
         else {
+            if (-not $Script:__LoginToken) {
+                throw 'no connection to topdesk, try running Connect-TdService'
+            }
             $Headers = @{
                 'Authorization' = $Script:__LoginToken
             }
