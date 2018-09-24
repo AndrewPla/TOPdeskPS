@@ -1,7 +1,7 @@
 ﻿function Get-TdIncident {
 <#
 	.SYNOPSIS
-		Gets Incidents
+		Gets incidents
 	
 	.DESCRIPTION
 		This command returns incidents from TOPdesk. The most you can grab per request is 100.
