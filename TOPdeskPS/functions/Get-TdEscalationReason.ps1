@@ -4,6 +4,9 @@ function Get-TdEscalationReason {
         Gets all EscalationReasons
     .DESCRIPTION
             Gets all EscalationReasons
+    .PARAMETER Name
+        Name of the escalation reason that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdEscalationReason
         Gets list of all EscalationReasons
@@ -19,8 +22,6 @@ function Get-TdEscalationReason {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

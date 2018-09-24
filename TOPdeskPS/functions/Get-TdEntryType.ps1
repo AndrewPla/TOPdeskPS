@@ -4,6 +4,9 @@ function Get-TdEntryType {
         Gets entry types
     .DESCRIPTION
         Gets entry types
+    .PARAMETER Name
+        Name of the entry type that you want returned. Wildcards are supported. Default value is '*'
+    
     .EXAMPLE
         PS C:\> Get-Tdentrytype
         Gets list of all entry types
@@ -11,7 +14,7 @@ function Get-TdEntryType {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]$Name
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/entry_types'
@@ -19,8 +22,6 @@ function Get-TdEntryType {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

@@ -4,6 +4,9 @@ function Get-TdImpact {
         Gets list of impacts
     .DESCRIPTION
         Gets list of impacts
+    .PARAMETER Name
+        Name of the impact that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdImpact
         Gets list of impacts
@@ -19,8 +22,6 @@ function Get-TdImpact {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

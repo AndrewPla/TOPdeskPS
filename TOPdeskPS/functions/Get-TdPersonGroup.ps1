@@ -4,6 +4,9 @@ function Get-TdPersonGroup {
         Gets person groups
     .DESCRIPTION
         Gets person groups
+     .PARAMETER Name
+        Name of the person group that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdPersonGroup
         Gets person groups
@@ -11,7 +14,7 @@ function Get-TdPersonGroup {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]$Name = '*'
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/persongroups'
@@ -20,5 +23,5 @@ function Get-TdPersonGroup {
         'uri' = $uri
     }
     $res = Invoke-TdMethod @Params
-    $res
+    $res | where-object name -like $Name
 }

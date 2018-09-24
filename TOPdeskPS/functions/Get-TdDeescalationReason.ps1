@@ -4,6 +4,9 @@ function Get-TdDeescalationReason {
         Gets deescalation reasons
     .DESCRIPTION
         Gets deescalation reasons
+    .PARAMETER Name
+        Name of the deescalation reason that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdDeescalationReason
         Gets list of all deescalation reasons
@@ -11,7 +14,8 @@ function Get-TdDeescalationReason {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]
+        $Name
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/deescalation-reasons'
@@ -19,8 +23,6 @@ function Get-TdDeescalationReason {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

@@ -4,6 +4,9 @@ function Get-TdCountry {
         Gets Country
     .DESCRIPTION
         Gets Countries
+     .PARAMETER Name
+        Name of the Country that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdCountry
         Gets list of all Countries
@@ -11,7 +14,8 @@ function Get-TdCountry {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]
+        $Name
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/countries'
@@ -19,8 +23,7 @@ function Get-TdCountry {
     $Params = @{
         'uri' = $uri
                 }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
+    
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object Name -like $Name
 }

@@ -4,6 +4,9 @@ function Get-TdDuration {
         Gets durations
     .DESCRIPTION
         Gets list of durations
+    .PARAMETER Name
+        Name of the duration that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-Tdduration
         Gets list of all durations
@@ -11,7 +14,7 @@ function Get-TdDuration {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]$Name
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/durations'
@@ -19,8 +22,6 @@ function Get-TdDuration {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-object Name -like $Name
 }

@@ -6,9 +6,9 @@
 	.DESCRIPTION
 		Gets either one subcategory or a list of subcategories from TOPdesk.
 	
-	.PARAMETER Name
-		This is the name of the subcategory that you want. This can be useful if you want to pass a subcategory id to a different command.
-	
+    .PARAMETER Name
+        Name of the subcategory that you want returned. Wildcards are supported. Default value is '*'
+
 	.EXAMPLE
 		PS C:\> Get-TdSubcategory
 		Gets a list of all subcategories
@@ -23,27 +23,13 @@
 	param
 	(
 		[System.String]
-		$Name
+		$Name = '*'
 	)
-	
-	begin {
 		Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
 		$SubcategoryURL = (Get-TdUrl) + '/tas/api/incidents/subcategories'
-		
-	}
-	process {
 		$Params = @{
 			'uri' = $SubcategoryUrl
 		}
 		$Subcategories = Invoke-TdMethod @Params
-		if ($Name) {
-			$Subcategories -match $Name
-		}
-		else {
-			$Subcategories
-		}
-	}
-	end {
-		
-	}
+		$Subcategories | Where-Object name -like $name
 }

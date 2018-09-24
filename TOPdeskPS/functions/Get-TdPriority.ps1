@@ -4,6 +4,8 @@ function Get-TdPriority {
         Gets priorities
     .DESCRIPTION
         Gets priorities
+     .PARAMETER Name
+        Name of the priority that you want returned. Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdPriority
         Gets list of all priorities
@@ -11,7 +13,7 @@ function Get-TdPriority {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]$Name = '*'
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/priorities'
@@ -19,8 +21,6 @@ function Get-TdPriority {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

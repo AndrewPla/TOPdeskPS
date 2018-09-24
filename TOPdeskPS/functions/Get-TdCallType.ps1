@@ -4,6 +4,8 @@ function Get-TdCallType {
         Gets call types
     .DESCRIPTION
         Gets call types
+    .PARAMETER Name
+        Name of the call type that you want returned. Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdCallType
         Gets list of call types
@@ -11,7 +13,8 @@ function Get-TdCallType {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]
+        $Name
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/call_types'
@@ -19,7 +22,6 @@ function Get-TdCallType {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }
