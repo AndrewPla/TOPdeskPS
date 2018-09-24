@@ -59,16 +59,18 @@
         [ValidateSet('accesslogs', 'csvexport', 'database_backup', 'import', 'photos', 'topsis', 'upload', 'web')]
         [System.IO.FileInfo]
         $Folder,
-		
-        [string]
-        $TOPdeskURL
+        
+        [Alias('TOPdeskUrl')]
+       	[PSFValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?', ErrorMessage = '{0} is not a valid TOPdesk Url.')]
+        [System.String]
+        $Url = (
+            Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
     )
 	
     begin {
         Write-PSFMessage "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param' -Level InternalComment
         $FileName = Get-Item -Path $File | Select-Object -ExpandProperty Name
-        if (-not $TOPdeskURL) { $TOPdeskURL = Get-TdUrl -erroraction Stop }
-        $UploadUrl = $TOPdeskURL + '/webdav' + "$Folder/$FileName"
+        $UploadUrl = $Url + '/webdav' + "$Folder/$FileName"
         Write-PSFMessage "UploadUrl: $UploadUrl" -Level InternalComment
         $Folder = $Folder.name.ToString().tolower()
     }
