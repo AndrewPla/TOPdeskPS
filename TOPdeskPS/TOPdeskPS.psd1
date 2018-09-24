@@ -66,7 +66,8 @@
     # Functions to export from this module
     FunctionsToExport = @(
         'Connect-TdService'
-        'Disconnect-TdService'
+		'Disconnect-TdService'
+		'Get-TdApiVersion'
         'Get-TdArchiveReason'
         'Get-TdBudgetHolder'
         'Get-TdCallType'
@@ -80,7 +81,8 @@
         'Get-TdImpact'
         'Get-TdIncident'
         'Get-TdIncidentAction'
-        'Get-TdOperator'
+		'Get-TdOperator'
+		'Get-TdPersonGroup'
         'Get-TdPriority'
 		'Get-TdProcessingStatus'
 		'Get-TdServiceWindow'
