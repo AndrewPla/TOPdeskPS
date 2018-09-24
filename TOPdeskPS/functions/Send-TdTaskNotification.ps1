@@ -43,7 +43,7 @@ function Send-TdTaskNotification {
     if ($Body) {$internalBody |Add-Member -Name 'body' -Value $Body -MemberType noteproperty}
     if($url){$internalBody | Add-Member -Name 'url' -Value $url -MemberType noteproperty}
     if ($OperatorId) {$internalBody | Add-Member -Name 'operatorIds' -Value $operatorId -MemberType noteproperty}
-    if($OperatorGroupId){$internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupsId -MemberType noteproperty}
+    if($OperatorGroupId){$internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupId -MemberType noteproperty}
     $Params = @{
         'Uri'    = $Uri
         'Body'   = $internalBody
