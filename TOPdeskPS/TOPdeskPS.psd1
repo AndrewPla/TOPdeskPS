@@ -90,8 +90,9 @@
 		'Get-TdTimeSpentReason'
 		'Get-TdUrgency'
         'Invoke-TdMethod'
-        'New-TdIncident'
-        'Send-TdWebDAVFile'
+		'New-TdIncident'
+		'Send-TdTaskNotification'
+		'Send-TdWebDAVFile'
         'Update-TdIncident'
     )
 	
