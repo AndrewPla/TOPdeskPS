@@ -3,6 +3,7 @@
 ## 0.0.5 - ?/?/2018
 
 ### Added
+* Get-TdApiVersion
 * Get-TdArchiveReason
 * Get-TdBudgetHolder
 * Get-TdCallType
@@ -21,6 +22,8 @@
 * Get-TdServiceWindow
 * Get-TdUrgency
 * Get-TdTimeSpentReason
+* Send-TdIncidentFile
+* Send-TdTaskNotification
 
 
 ## 0.0.3 - 8/22/2018
