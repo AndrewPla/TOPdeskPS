@@ -3,7 +3,7 @@
     RootModule        = 'TOPdeskPS.psm1'
 	
     # Version number of this module.
-    ModuleVersion     = '0.0.4'
+    ModuleVersion     = '0.0.5'
 	
     # ID used to uniquely identify this module
     GUID              = '3c6f28d6-772c-4325-8236-d4bc99373aa9'
@@ -42,7 +42,7 @@
     # this module
     RequiredModules   = @(
         @{
-            ModuleName = 'PSFramework'; ModuleVersion = '0.9.25.107'
+            ModuleName = 'PSFramework'; ModuleVersion = '0.10.27.128'
         }
     )
 	
