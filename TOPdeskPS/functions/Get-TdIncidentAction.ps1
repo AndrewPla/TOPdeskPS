@@ -5,7 +5,7 @@ function Get-TdIncidentAction {
     .DESCRIPTION
         Returns all actions for an incident.
     .PARAMETER Number
-        This is the number of the TOPdesk incident.
+        This is the incident number.
 	.PARAMETER PageSize
 		The amount of actions to be returned per request. The default value is 10 and the maximum value is 100.
 	
