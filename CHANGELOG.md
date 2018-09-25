@@ -22,8 +22,10 @@
 * Get-TdServiceWindow
 * Get-TdUrgency
 * Get-TdTimeSpentReason
+* New-TdOperator
 * Send-TdIncidentFile
 * Send-TdTaskNotification
+* Get-TdOperatorGroup
 
 
 ## 0.0.3 - 8/22/2018
