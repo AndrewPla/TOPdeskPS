@@ -20,30 +20,42 @@ function Send-TdTaskNotification {
     #>
     [CmdletBinding()]
     param (
+        [system.string]    
+        [Parameter(Mandatory)]
         $Title,
         
+        [system.string]
         $Body,
 
+        [ValidateScript( {
+                if ($_ -notlike '/tas/secure/*') {
+                    throw 'Url must start with /tas/secure/'
+                }
+                $true
+            })]
+        [system.string]
         $Url,
-
+        
+        [Parameter(ParameterSetName = 'Operator', Mandatory)]
         [string[]]
         $OperatorId,
-
+        
+        [Parameter(ParameterSetName = 'OperatorGroup', Mandatory)]
         [string[]]
         $OperatorGroupId
     )
     [array]$OperatorId = $OperatorId
     [array]$OperatorGroupId = $OperatorGroupId
 
-   $uri = (Get-TdUrl) + '/tas/api/tasknotifications/custom'
+    $uri = (Get-TdUrl) + '/tas/api/tasknotifications/custom'
     Write-PSFMessage "TaskNotification URL - $uri"
-   $internalBody = [PSCustomObject]@{
+    $internalBody = [PSCustomObject]@{
         title = $Title
     }
     if ($Body) {$internalBody |Add-Member -Name 'body' -Value $Body -MemberType noteproperty}
-    if($url){$internalBody | Add-Member -Name 'url' -Value $url -MemberType noteproperty}
+    if ($url) {$internalBody | Add-Member -Name 'url' -Value $url -MemberType noteproperty}
     if ($OperatorId) {$internalBody | Add-Member -Name 'operatorIds' -Value $operatorId -MemberType noteproperty}
-    if($OperatorGroupId){$internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupId -MemberType noteproperty}
+    if ($OperatorGroupId) {$internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupId -MemberType noteproperty}
     $Params = @{
         'Uri'    = $Uri
         'Body'   = $internalBody
