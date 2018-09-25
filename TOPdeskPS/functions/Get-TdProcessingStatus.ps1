@@ -4,6 +4,8 @@ function Get-TdProcessingStatus {
         Gets processing statuses
     .DESCRIPTION
         Gets processing statuses
+    .PARAMETER Name
+        Name of the processing status that you want returned. Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdProcessingStatus
         Gets list of all processing statuses
@@ -11,7 +13,7 @@ function Get-TdProcessingStatus {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]$Name = '*'
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/processing_status'
@@ -19,8 +21,6 @@ function Get-TdProcessingStatus {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

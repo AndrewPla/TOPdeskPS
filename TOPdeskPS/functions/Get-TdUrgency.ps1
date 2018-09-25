@@ -4,6 +4,9 @@ function Get-TdUrgency {
         Gets list of all urgencies
     .DESCRIPTION
         Gets list of all urgencies
+    .PARAMETER Name
+        Name of the urgency that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdUrgency
         Gets list of all urgencies
@@ -11,7 +14,7 @@ function Get-TdUrgency {
     #>
     [CmdletBinding()]
     param (
-        
+        $Name = '*'
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/urgencies'
@@ -19,8 +22,6 @@ function Get-TdUrgency {
     $Params = @{
         'uri' = $uri
     }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }

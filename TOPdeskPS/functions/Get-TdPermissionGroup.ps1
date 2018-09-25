@@ -4,6 +4,9 @@ function Get-TdPermissionGroup {
         Get permission groups
     .DESCRIPTION
         Get permission groups
+    .PARAMETER Name
+        Name of the permission group that you want returned. Wildcards are supported. Default value is '*'
+
     .EXAMPLE
         PS C:\> Get-TdPermissionGroup
         Get permission groups
@@ -11,7 +14,7 @@ function Get-TdPermissionGroup {
     #>
     [CmdletBinding()]
     param (
-        
+        [system.string]$Name = '*'
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/permissiongroups'
@@ -20,5 +23,5 @@ function Get-TdPermissionGroup {
         'uri' = $uri
     }
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Where-Object name -like $Name
 }
