@@ -102,7 +102,6 @@
 					$uri = "$uri&archive=$Archive"
 				}
 				
-				
 				Write-PSFMessage -Level InternalComment -Message "URI: $uri"
 				$Params = @{
 					'uri' = $uri
