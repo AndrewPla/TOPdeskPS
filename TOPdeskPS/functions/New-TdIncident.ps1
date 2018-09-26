@@ -120,8 +120,7 @@
 		}
 		
 		Write-PSFMessage -Level Verbose -Message "Generating Body of request"
-		$Body = [PSCustomObject]@{
-		}
+		$Body = [PSCustomObject]@{}
 		
 		switch ($PSBoundParameters.Keys) {
 			Action {
