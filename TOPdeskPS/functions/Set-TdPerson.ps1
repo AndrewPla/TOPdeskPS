@@ -264,10 +264,7 @@ function Set-TdPerson {
                 }
                 Write-PSFMessage -Level InternalComment -Message "Adding departmentId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'departmentId' -Value $departmentIdObject
-            }
-
-
-        
+            }        
         }
 
        	$Params = @{
