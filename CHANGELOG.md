@@ -28,6 +28,7 @@
 * New-TdPerson
 * Send-TdIncidentFile
 * Send-TdTaskNotification
+* Set-TdPerson
 * Get-TdOperatorGroup
 
 ## 0.0.3 - 8/22/2018
