@@ -3,8 +3,10 @@
 ## 0.0.5 - ?/?/2018
 
 ### Added
+
 * Get-TdApiVersion
 * Get-TdArchiveReason
+* Get-TdBranch
 * Get-TdBudgetHolder
 * Get-TdCallType
 * Get-TdCategory
@@ -16,17 +18,17 @@
 * Get-TdEscalationReason
 * Get-TdImpact
 * Get-TdIncidentAction
+* Get-TdPerson
 * Get-TdPersonGroup
 * Get-TdPriority
 * Get-TdProcessingStatus
 * Get-TdServiceWindow
 * Get-TdUrgency
 * Get-TdTimeSpentReason
-* New-TdOperator
+* New-TdPerson
 * Send-TdIncidentFile
 * Send-TdTaskNotification
 * Get-TdOperatorGroup
-
 
 ## 0.0.3 - 8/22/2018
 
