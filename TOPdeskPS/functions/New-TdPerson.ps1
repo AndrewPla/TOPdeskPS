@@ -32,7 +32,6 @@ function New-TdPerson {
         Login name, operator requires permission “Settings > Login Settings”
     .PARAMETER Password
         Password, operator requires permission "Settings > Login Settings". Is mandatory when “Functional Settings > Login Settings > Self Service Portal > Password mandatory on Person card” is set.
-       
     .PARAMETER PhoneNumber
         PhoneNumber of the person
     .PARAMETER MobileNumber
@@ -62,7 +61,7 @@ function New-TdPerson {
     .PARAMETER authorizeSubsidiaryBranches
         Person can authorize requests from the subsidiary branches (only works when the person is a manager and authorizeBranch is true)
    .PARAMETER IsManager
-        Specify if the person is a manager or not
+        Specify if the person is a manager
     .PARAMETER ManagerId
         Id of the person's manager.
     .PARAMETER BudgetHolderId
