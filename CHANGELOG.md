@@ -1,5 +1,39 @@
 # TOPdeskPS Release History
 
+## 0.0.5 - ?/?/2018
+
+### Added
+
+* Get-TdApiVersion
+* Get-TdArchiveReason
+* Get-TdBranch
+* Get-TdBudgetHolder
+* Get-TdCallType
+* Get-TdCategory
+* Get-TdChange
+* Get-TdClosureCode
+* Get-TdCountry
+* Get-TdDeescealationReason
+* Get-TdDuration
+* Get-TdEntryType
+* Get-TdEscalationReason
+* Get-TdImpact
+* Get-TdIncidentAction
+* Get-TdKnowledgeItem
+* Get-TdPerson
+* Get-TdPersonGroup
+* Get-TdPriority
+* Get-TdProcessingStatus
+* Get-TdServiceWindow
+* Get-TdUrgency
+* Get-TdTimeSpentReason
+* New-TdPerson
+* New-TdChange
+* Send-TdIncidentFile
+* Send-TdTaskNotification
+* Set-TdPerson
+* Get-TdOperatorGroup
+
 ## 0.0.3 - 8/22/2018
 
 ### Fixed
