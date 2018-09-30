@@ -12,7 +12,7 @@
         Gets list of all deescalation reasons
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdDeescalationReason')]
     param (
         [system.string]
         $Name

@@ -172,8 +172,9 @@
             'Body'   = $Body
             'Method' = 'Post'
         }
-
-        Invoke-TdMethod @Params
+        if ($PSCmdlet.ShouldProcess("The Request" , "Creating new incident")) {
+            Invoke-TdMethod @Params
+        }
     }
 
     end {

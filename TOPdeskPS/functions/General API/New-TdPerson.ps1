@@ -73,7 +73,9 @@
         PS C:\> New-TdPerson -LastName 'Doe' -FirstName 'John' -NetworkLoginName 'john.doe@company.com' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
         #>
-    [CmdletBinding(DefaultParameterSetName = 'BranchName', HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdPerson')]
+    [CmdletBinding(DefaultParameterSetName = 'BranchName',
+    SupportsShouldProcess,
+        HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdPerson')]
     param (
         [Alias('LastName')]
         [Parameter(Mandatory)]
@@ -271,7 +273,10 @@
             'Body'   = $Body
             'Method' = 'Post'
         }
-        Invoke-TdMethod @Params
+        if ($PSCmdlet.ShouldProcess("The Request" , "Creating new change request")) {
+            Invoke-TdMethod @Params
+        }
+
     }
 
     end {

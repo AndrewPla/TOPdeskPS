@@ -34,7 +34,8 @@
         PS C:\> <example usage>
         Explanation of what the example does
     #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChange')]
+    [CmdletBinding( SupportsShouldProcess,
+        HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChange')]
     param (
         [Parameter(Mandatory)]
         [system.string]
@@ -152,7 +153,10 @@
             'Body'   = $body
             'Method' = 'Post'
         }
-        Invoke-TdMethod @params
+        if ($PSCmdlet.ShouldProcess("Request" , "Sending change request $BriefDescription")) {
+            Invoke-TdMethod @params
+        }
+
     }
 
     end {

@@ -11,7 +11,7 @@
         Gets list of all processing statuses
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdProcessingStatus')]
     param (
         [system.string]$Name = '*'
     )
