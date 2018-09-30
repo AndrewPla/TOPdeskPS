@@ -4,6 +4,8 @@
         Gets archive reasons
     .DESCRIPTION
         Can get all archive reasons, or specify which one you want by a Name lookup.
+    .PARAMETER Name
+        Name of the branch that you want returned.Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TDArchiveReason -Name 'No longer employed'
         Gets the archive reason with the name 'no longer employed'

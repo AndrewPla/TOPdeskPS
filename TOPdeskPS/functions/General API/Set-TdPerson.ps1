@@ -78,6 +78,7 @@
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
         #>
     [CmdletBinding(DefaultParameterSetName = 'BranchName',
+        SupportsShouldProcess,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdPerson')]
     param (
         [Parameter(Mandatory)]
@@ -277,7 +278,10 @@
             Body   = $Body
             Method = 'put'
         }
-        Invoke-TdMethod @Params
+        if ($PSCmdlet.ShouldProcess("The changes" , "Changing person $id")) {
+            Invoke-TdMethod @Params
+        }
+
     }
 
     end {
