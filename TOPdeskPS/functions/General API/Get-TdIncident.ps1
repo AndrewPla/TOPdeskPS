@@ -126,11 +126,8 @@
 		foreach ($Incident in $Incidents) {
 			Write-PSFMessage "Processing Incident : $($Incident.Number)" -Level Verbose
 			$Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
-			#$Incident
 		}
 	}
 	end {
-		Write-PSFMessage -Message 'Function Complete'
-		
 	}
 }

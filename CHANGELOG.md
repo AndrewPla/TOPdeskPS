@@ -10,6 +10,7 @@
 * Get-TdBudgetHolder
 * Get-TdCallType
 * Get-TdCategory
+* Get-TdChange
 * Get-TdClosureCode
 * Get-TdCountry
 * Get-TdDeescealationReason
@@ -18,6 +19,7 @@
 * Get-TdEscalationReason
 * Get-TdImpact
 * Get-TdIncidentAction
+* Get-TdKnowledgeItem
 * Get-TdPerson
 * Get-TdPersonGroup
 * Get-TdPriority
@@ -26,8 +28,10 @@
 * Get-TdUrgency
 * Get-TdTimeSpentReason
 * New-TdPerson
+* New-TdChange
 * Send-TdIncidentFile
 * Send-TdTaskNotification
+* Set-TdChange
 * Set-TdPerson
 * Get-TdOperatorGroup
 
