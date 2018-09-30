@@ -6,6 +6,8 @@
         Creates new persons in TOPdesk. Logged in operator must have:
         Write permissions on persons; Branch filters apply
         Login data write permissions to set login name and password
+    .PARAMETER Id
+        The Id of the person you are interacting with.
     .PARAMETER Surname
         Surname of the person
     .PARAMETER BranchId
@@ -65,7 +67,9 @@
     .PARAMETER ManagerId
         Id of the person's manager.
     .PARAMETER BudgetHolderId
-        The Id of the poerson's budgetholder
+        The Id of the person's budgetholder
+    .PARAMETER DepartmentId
+        The Id of the person's department
     .EXAMPLE
         PS C:\> New-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This is the minimum required to create a person: BranchId and a lastname.
@@ -73,7 +77,8 @@
         PS C:\> New-TdPerson -LastName 'Doe' -FirstName 'John' -NetworkLoginName 'john.doe@company.com' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
         #>
-    [CmdletBinding(DefaultParameterSetName = 'BranchName')]
+    [CmdletBinding(DefaultParameterSetName = 'BranchName',
+        HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdPerson')]
     param (
         [Parameter(Mandatory)]
         [Alias('PersonId')]
@@ -108,7 +113,7 @@
         [switch]$ShowSubsidiaries,
         [switch]$AuthorizeAll,
         [switch]$AuthorizeDepartment,
-        [switch]$AuthorizeBudgetolder,
+        [switch]$AuthorizeBudgetHolder,
         [switch]$AuthorizeBranch,
         [switch]$AuthorizeSubsidiaryBranches,
         [switch]$IsManager,
