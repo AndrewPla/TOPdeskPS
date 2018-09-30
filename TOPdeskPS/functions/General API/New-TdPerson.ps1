@@ -74,7 +74,7 @@
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
         #>
     [CmdletBinding(DefaultParameterSetName = 'BranchName',
-    SupportsShouldProcess = $true,
+        SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdPerson')]
     param (
         [Alias('LastName')]
