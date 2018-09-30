@@ -34,7 +34,7 @@
         PS C:\> <example usage>
         Explanation of what the example does
     #>
-    [CmdletBinding( SupportsShouldProcess,
+    [CmdletBinding( SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChange')]
     param (
         [Parameter(Mandatory)]
