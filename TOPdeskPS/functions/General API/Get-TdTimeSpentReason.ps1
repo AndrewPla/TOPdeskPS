@@ -23,6 +23,6 @@
     $Params = @{
         'uri' = $uri
     }
- $res = Invoke-TdMethod @Params
+    $res = Invoke-TdMethod @Params
     $res | where-object name -like $name
 }

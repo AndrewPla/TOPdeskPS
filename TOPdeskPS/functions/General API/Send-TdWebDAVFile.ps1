@@ -2,17 +2,17 @@
     <#
 	.SYNOPSIS
 		Sends a file to your TOPdesk webdav share
-	
+
 	.DESCRIPTION
 		adds a file to your TOPdesk/webdav/Import folder. This can be useful for you to upload files that are imported regularly in your environment.
 		Common uses could be to regularly upload your users from a csv, or you could upload asset information that is imported.
-	
+
 	.PARAMETER File
 		This is the path of the file that you want to upload to TOPdesk.
-	
+
 	.PARAMETER Credential
 		Credential of the user with webdav permissions. This Credential is handled seperately from normal web requests as this doesn't interact with the normal API.
-	
+
 	.PARAMETER Folder
 		Name of the TOPdesk webDAV folder that you want to upload a file into
 		Valid Values:
@@ -24,18 +24,18 @@
 		topsis
 		upload
 		web
-		
+
 	.PARAMETER TOPdeskURL
 		This is the url to your TOPdesk instance. By default this will check your config for your last url.
-	
+
 	.EXAMPLE
 		PS C:\> Send-TdWebDAVFile -Credential (Get-Credential) -File 'C:\Users.csv' -Folder upload
 		Uploads the C:\Users.csv file to TOPdesk using the credential specified in -Credential.
-	
+
 	.NOTES
 		See Help About_TOPdesk_files for more
 #>
-	
+
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Send-TdImportFile')]
     param
     (
@@ -50,23 +50,23 @@
             })]
         [System.IO.FileInfo]
         $File,
-		
+
         [Parameter(Mandatory = $true)]
         [PSCredential]
         $Credential,
-		
+
         [Parameter(Mandatory = $true)]
         [ValidateSet('accesslogs', 'csvexport', 'database_backup', 'import', 'photos', 'topsis', 'upload', 'web')]
         [System.IO.FileInfo]
         $Folder,
-        
+
         [Alias('TOPdeskUrl')]
        	[PSFValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?', ErrorMessage = '{0} is not a valid TOPdesk Url.')]
         [System.String]
         $Url = (
             Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
     )
-	
+
     begin {
         Write-PSFMessage "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param' -Level InternalComment
         $FileName = Get-Item -Path $File | Select-Object -ExpandProperty Name

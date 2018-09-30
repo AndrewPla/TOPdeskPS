@@ -37,7 +37,7 @@
     begin {
         if (-not $ContentType) {
             Add-Type -AssemblyName System.Web
- 
+
             $mimeType = [System.Web.MimeMapping]::GetMimeMapping($File)
             if ($mimeType) {
                 $ContentType = $mimeType
@@ -100,7 +100,7 @@
     }
     $headers = @{
         'Authorization' = $Script:__LoginToken
-    }        
+    }
     $body = @{
         File = $File
     }

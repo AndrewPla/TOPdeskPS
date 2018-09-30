@@ -20,17 +20,17 @@
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/knowledgeBase/public'
     Write-PSFMessage -Level InternalComment -Message "knowledgeBase url: $uri"
- 
+
     $body = [PSCustomObject]@{}
     #TODO get this working! may need to reach out to TOPdesk.
     $body | Add-Member -MemberType NoteProperty -Name query -Value "{  knowledgeItems(search: {term: `"$Term`"})}"
-    
-    
-       	$Params = @{
-            'Uri'    = $uri
-            'Body'   = $Body
-            'Method' = 'Post'
-        }
-        Invoke-TdMethod @Params
- 
+
+
+    $Params = @{
+        'Uri'    = $uri
+        'Body'   = $Body
+        'Method' = 'Post'
+    }
+    Invoke-TdMethod @Params
+
 }

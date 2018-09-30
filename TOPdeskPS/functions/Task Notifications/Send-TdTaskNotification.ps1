@@ -20,10 +20,10 @@
     #>
     [CmdletBinding()]
     param (
-        [system.string]    
+        [system.string]
         [Parameter(Mandatory)]
         $Title,
-        
+
         [system.string]
         $Body,
 
@@ -35,11 +35,11 @@
             })]
         [system.string]
         $Url,
-        
+
         [Parameter(ParameterSetName = 'Operator', Mandatory)]
         [string[]]
         $OperatorId,
-        
+
         [Parameter(ParameterSetName = 'OperatorGroup', Mandatory)]
         [string[]]
         $OperatorGroupId

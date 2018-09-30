@@ -22,8 +22,8 @@
     Write-PSFMessage -Level InternalComment -Message "countries url: $uri"
     $Params = @{
         'uri' = $uri
-                }
-    
+    }
+
     $res = Invoke-TdMethod @Params
     $res | Where-Object Name -like $Name
 }

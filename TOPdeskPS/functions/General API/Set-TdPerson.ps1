@@ -3,7 +3,7 @@
     .SYNOPSIS
         Modify properties on a person
     .DESCRIPTION
-        Creates new persons in TOPdesk. Logged in operator must have:     	
+        Creates new persons in TOPdesk. Logged in operator must have:
         Write permissions on persons; Branch filters apply
         Login data write permissions to set login name and password
     .PARAMETER Surname
@@ -52,8 +52,8 @@
         Person can see requests with subsidiary branches (showBranches has to be true as well)
     .PARAMETER AuthorizeAll
     Person Person can authorize requests with the same department, budget holder, branch or subsidiary branch (only works when the person is a manager)
-    .PARAMETER AuthorizeDepartment 
-    Person can authorize requests from the same department (only works when the person is a manager)    
+    .PARAMETER AuthorizeDepartment
+    Person can authorize requests from the same department (only works when the person is a manager)
    .PARAMETER AuthorizeBudgetHolder
    Person can authorize requests with the same budget holder (only works when the person is a manager)
    .PARAMETER AuthorizeBranch
@@ -69,7 +69,7 @@
     .EXAMPLE
         PS C:\> New-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This is the minimum required to create a person: BranchId and a lastname.
-    .EXAMPLE 
+    .EXAMPLE
         PS C:\> New-TdPerson -LastName 'Doe' -FirstName 'John' -NetworkLoginName 'john.doe@company.com' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
         #>
@@ -82,7 +82,7 @@
         [Alias('LastName')]
         [system.string]$Surname,
 
-        [system.string]$BranchId,        
+        [system.string]$BranchId,
         [system.string]$FirstName,
         [system.string]$FirstInitials,
         [System.string]$Prefixes,
@@ -116,10 +116,10 @@
         [system.string]$BudgetholderID
 
     )
-    
+
     begin {
     }
-    
+
     process {
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
@@ -226,7 +226,7 @@
                 Write-PSFMessage -Level InternalComment -Message "Adding isManager to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'isManager' -Value $isManager.ToString().ToLower()
             }
-          
+
             BranchId {
                 $branchIdObject = @{
                     id = $BranchId
@@ -249,7 +249,7 @@
                 Write-PSFMessage -Level InternalComment -Message "Adding budgetHolderId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'budgetHolder' -Value $budgetHolderIdObject
             }
-            
+
             locationId {
                 $locationIdObject = @{
                     id = $locationId
@@ -257,14 +257,14 @@
                 Write-PSFMessage -Level InternalComment -Message "Adding locationId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'locationId' -Value $locationIdObject
             }
-            
+
             departmentId {
                 $departmentIdObject = @{
                     id = $departmentId
                 }
                 Write-PSFMessage -Level InternalComment -Message "Adding departmentId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'departmentId' -Value $departmentIdObject
-            }        
+            }
         }
 
        	$Params = @{
@@ -274,7 +274,7 @@
         }
         Invoke-TdMethod @Params
     }
-    
+
     end {
     }
 }

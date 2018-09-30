@@ -22,7 +22,7 @@
     Write-PSFMessage -Level InternalComment -Message "closurecodes url: $uri"
     $Params = @{
         'uri' = $uri
-                }
+    }
     $res = Invoke-TdMethod @Params
     $res | Where-Object name -like $Name
 }
