@@ -12,7 +12,7 @@
         Gets person groups
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPersonGroup')]
     param (
         [system.string]$Name = '*'
     )

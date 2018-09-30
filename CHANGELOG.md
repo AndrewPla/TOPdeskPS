@@ -31,7 +31,6 @@
 * New-TdChange
 * Send-TdIncidentFile
 * Send-TdTaskNotification
-* Set-TdChange
 * Set-TdPerson
 * Get-TdOperatorGroup
 

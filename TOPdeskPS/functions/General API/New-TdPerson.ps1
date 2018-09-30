@@ -24,7 +24,7 @@
         NetworkLoginName for the user
     .PARAMETER LocationId
         LocationId of the person
-    .PARAMETER DepertmentId
+    .PARAMETER DepartmentId
         DepartmentId of the person
     .PARAMETER DepartmentFree
             Department text-field (has to be used when “Modules Settings > Supporting Files > Department(person) > Plain text field” is set)
@@ -73,7 +73,7 @@
         PS C:\> New-TdPerson -LastName 'Doe' -FirstName 'John' -NetworkLoginName 'john.doe@company.com' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
         #>
-    [CmdletBinding(DefaultParameterSetName = 'BranchName')]
+    [CmdletBinding(DefaultParameterSetName = 'BranchName', HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdPerson')]
     param (
         [Alias('LastName')]
         [Parameter(Mandatory)]
@@ -105,7 +105,7 @@
         [switch]$ShowSubsidiaries,
         [switch]$AuthorizeAll,
         [switch]$AuthorizeDepartment,
-        [switch]$AuthorizeBudgetolder,
+        [switch]$AuthorizeBudgetHolder,
         [switch]$AuthorizeBranch,
         [switch]$AuthorizeSubsidiaryBranches,
         [switch]$IsManager,

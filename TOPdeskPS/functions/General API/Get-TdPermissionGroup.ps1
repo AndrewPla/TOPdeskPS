@@ -12,7 +12,7 @@
         Get permission groups
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPermissionGroup')]
     param (
         [system.string]$Name = '*'
     )

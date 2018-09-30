@@ -12,7 +12,7 @@
         Gets list of all closurecodes
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdClosureCode')]
     param (
         [system.string]
         $Name = '*'

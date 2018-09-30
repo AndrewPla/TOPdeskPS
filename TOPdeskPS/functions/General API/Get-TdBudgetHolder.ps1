@@ -11,7 +11,7 @@
         Gets list of all budgetholders
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(Helpuri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdBudgetHolder')]
     param (
         [system.string]
         $Name = '*'

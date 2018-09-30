@@ -11,7 +11,7 @@
         Get all Operator groups
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperatorGroup')]
     param (
         [Alias('GroupName')]
         [system.string]$Name = '*'

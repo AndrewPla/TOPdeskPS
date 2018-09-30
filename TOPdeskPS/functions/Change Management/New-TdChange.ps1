@@ -34,7 +34,7 @@
         PS C:\> <example usage>
         Explanation of what the example does
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChange')]
     param (
         [Parameter(Mandatory)]
         [system.string]
@@ -80,11 +80,11 @@
         #TODO add phases
 
     )
-    
+
     begin {
         $uri = (get-tdurl) + '/tas/api/operatorChanges'
     }
-    
+
     process {
 
         $body = [PSCustomObject]@{}
@@ -154,7 +154,7 @@
         }
         Invoke-TdMethod @params
     }
-    
+
     end {
     }
 }

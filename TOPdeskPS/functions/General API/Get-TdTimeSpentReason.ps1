@@ -12,7 +12,7 @@
         Gets all time spent reasons
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdTimeSpentReason')]
     param (
         [system.string]$Name = '*'
     )

@@ -10,10 +10,10 @@
         Name of the branch that you want returned.Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdBranch
-        Gets Branch 
+        Gets Branch
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdBranch')]
     param (
         [switch]
         $Archived,
@@ -29,7 +29,7 @@
         Write-PSFMessage -Level InternalComment -Message "Archive = $Archive"
         $uri = "$uri&archive=$Archive"
     }
-    
+
     $Params = @{
         'uri' = $uri
     }

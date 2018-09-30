@@ -12,7 +12,7 @@
         Gets list of all service windows
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdServiceWindow')]
     param (
         [system.string]$Name = '*'
     )

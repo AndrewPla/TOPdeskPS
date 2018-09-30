@@ -12,7 +12,7 @@
         Gets list of all durations
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(Helpuri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdDuration')]
     param (
         [system.string]$Name
     )

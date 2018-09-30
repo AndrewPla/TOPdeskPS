@@ -2,21 +2,16 @@
     <#
 	.SYNOPSIS
 		Gets changes
-
 	.DESCRIPTION
-		This command returns changes. You can select a change by it's Id, or just view all changes available to you.
-    .PARAMETER Name
-        Name of the subcategory that you want returned. Wildcards are supported. Default value is '*'
-
+		This command returns changes. This returns changes available to the account used with Connect-TdService.
 	.EXAMPLE
 		PS C:\> Get-TdChange
-		Grabs a list of 10 incidents
+		Grabs changes
 #>
 
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
     param
     (
-        [System.String]$Id
     )
 
     begin {

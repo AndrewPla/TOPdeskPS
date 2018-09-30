@@ -6,14 +6,10 @@
         Gets archive reasons
     .PARAMETER Name
         Name of the archive reason that you want returned. Wildcards are supported. Default value is '*'
-    .EXAMPLE
-        PS C:\> Get-TdArchiveReason
-        Gets list of all archive reasons
     .EXAMPLE PS C:\> Get-TDArchiveReason -Name 'No longer employed'
         Gets the archive reason with the name 'no longer employed'
-
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdArchiveReason')]
     param (
         [system.string]
         $Name = '*'

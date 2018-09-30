@@ -12,7 +12,7 @@
         PS C:\> <example usage>
         Explanation of what the example does
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdIncidentFile')]
     param (
 
         [Alias('IncidentNumber')]

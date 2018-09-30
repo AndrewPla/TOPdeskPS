@@ -11,7 +11,7 @@
         Gets list of call types
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(Helpuri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdCallType')]
     param (
         [system.string]
         $Name

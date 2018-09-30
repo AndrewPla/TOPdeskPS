@@ -1,7 +1,7 @@
 ﻿function Get-TdPerson {
     <#
     .SYNOPSIS
-        Gets persons 
+        Gets persons
     .DESCRIPTION
         Gets persons
     .PARAMETER PageSize
@@ -11,18 +11,18 @@
 		The default value is 0.
     .PARAMETER Archived
         Whether to retrieve archived incidents.
-    .PARAMETER FirstName 
+    .PARAMETER FirstName
         Retrieve only persons with first name starting with this
-    .PARAMETER LastName 
+    .PARAMETER LastName
         Retrieve only persons with last name starting with this
-    .PARAMETER NetworkLoginName 
+    .PARAMETER NetworkLoginName
         Retrieve only users with network login nmae starting with this. Parameter is ignored for SSP users.
     .PARAMETER SspLoginName
         Retrieve only persons with Self Service Portal name starting with this. Parameter is ignored for SSP users.
-    .PARAMETER Email 
-        Retrieve only persons with email starting with this        
+    .PARAMETER Email
+        Retrieve only persons with email starting with this
     .PARAMETER MobileNumber
-     Retrieve only persons with mobile number ending with this. Spaces and dashes are ignored. For example: 6-12345678 will match both +316 12345678 and 06 1234 5678      
+     Retrieve only persons with mobile number ending with this. Spaces and dashes are ignored. For example: 6-12345678 will match both +316 12345678 and 06 1234 5678
     .EXAMPLE
         PS C:\> Get-TdPerson -FirstName 'Bob' -Archived
             Returns all persons with the firstname starting with Bob. This will also search archived files.
@@ -31,7 +31,7 @@
             Returns the person whose email is 'user@company.com'
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPerson')]
     param (
         [system.string]$FirstName,
 
@@ -42,7 +42,7 @@
 
         [system.string]$NetworkLoginName,
 
-        [System.String]$SspLoginName,        
+        [System.String]$SspLoginName,
 
         [system.string]$MobileNumber,
 
@@ -50,20 +50,20 @@
 
         [ValidateRange(1, 100)]
         [int]$PageSize = 10,
-		
+
         [int]$Start = 0
     )
     Write-PSFMessage -Level debug -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/persons'
     $uri = "$Uri/?start=$Start&page_size=$PageSize"
-    Write-PSFMessage -Message "persongroups url: $uri" -Level debug 
-  
+    Write-PSFMessage -Message "persongroups url: $uri" -Level debug
+
     Write-PSFMessage "Creating Uri based on parameters" -Level debug
     if ($PSBoundParameters.keys -contains 'FirstName') {
         $uri = "$uri&firstname=$FirstName"
         Write-PSFMessage "FirstName added - $uri" -Level debug
     }
-    
+
     if ($PSBoundParameters.keys -contains 'lastname') {
         $uri = "$uri&lastname=$LastName"
         Write-PSFMessage "LastName added - $uri" -Level debug
@@ -83,17 +83,17 @@
         $uri = "$uri&email=$email"
         Write-PSFMessage "email added - $uri" -Level debug
     }
-    
+
     if ($PSBoundParameters.keys -contains 'MobileNumber') {
         $uri = "$uri&mobile_number=$MobileNumber"
         Write-PSFMessage "MobileNumber added - $uri" -Level debug
     }
 
     if ($PSBoundParameters.keys -contains 'Archive') {
-        $uri = "$uri&archive=$Archive"   
+        $uri = "$uri&archive=$Archive"
         Write-PSFMessage "Archive added - $uri" -Level debug
     }
-  
+
     $Params = @{
         'uri' = $uri
     }

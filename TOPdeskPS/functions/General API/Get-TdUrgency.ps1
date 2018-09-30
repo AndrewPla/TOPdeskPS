@@ -12,7 +12,7 @@
         Gets list of all urgencies
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdUrgency')]
     param (
         $Name = '*'
     )

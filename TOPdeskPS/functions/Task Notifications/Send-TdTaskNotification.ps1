@@ -10,15 +10,15 @@
         The body of the custom notification. It will be displayed as the second line of the notification.
     .PARAMETER Url
         A link that will be opened if the receiver of the notification clicks on the notification. It must start with '/tas/secure/’
-    .PARAMETER OperatorIds
+    .PARAMETER OperatorId
         List of operator UUIDs to specify which operators this task notification will be sent to. Both ‘operatorGroupIds’ and 'operatorIds can’t be empty at the same time. Non-existing operators will be silently ignored.
-    .PARAMETER OperatorGroupIds
+    .PARAMETER OperatorGroupId
         List of operator group UUIDs to specify which operators this task notification will be sent to. Both ‘operatorGroupIds’ and ‘operatorIds’ can’t be empty at the same time. Non-existing operator groups will be silently ignored.
     .EXAMPLE
         PS C:\> Send-TdTaskNotification -Title 'Example notification' -Body 'Your assistance is needed' -OperatorIds $Operator
         Sends a notificiation to $Operator
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdTaskNotification')]
     param (
         [system.string]
         [Parameter(Mandatory)]

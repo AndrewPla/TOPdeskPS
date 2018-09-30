@@ -12,9 +12,9 @@
         Gets list of impacts
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdImpact')]
     param (
-        
+
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/impacts'

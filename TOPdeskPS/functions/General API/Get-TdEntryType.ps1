@@ -6,13 +6,13 @@
         Gets entry types
     .PARAMETER Name
         Name of the entry type that you want returned. Wildcards are supported. Default value is '*'
-    
+
     .EXAMPLE
         PS C:\> Get-Tdentrytype
         Gets list of all entry types
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdEntryType')]
     param (
         [system.string]$Name
     )

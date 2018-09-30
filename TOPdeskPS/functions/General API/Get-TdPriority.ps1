@@ -11,7 +11,7 @@
         Gets list of all priorities
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPriority')]
     param (
         [system.string]$Name = '*'
     )

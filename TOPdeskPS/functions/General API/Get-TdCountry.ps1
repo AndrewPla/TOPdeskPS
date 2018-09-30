@@ -12,7 +12,7 @@
         Gets list of all Countries
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdCountry')]
     param (
         [system.string]
         $Name

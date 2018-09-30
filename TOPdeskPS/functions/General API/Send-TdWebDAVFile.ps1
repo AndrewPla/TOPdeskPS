@@ -25,8 +25,8 @@
 		upload
 		web
 
-	.PARAMETER TOPdeskURL
-		This is the url to your TOPdesk instance. By default this will check your config for your last url.
+	.PARAMETER Url
+		This is the url to your TOPdesk instance. If you used Connect-TdService -Register then you don't need to specify one.
 
 	.EXAMPLE
 		PS C:\> Send-TdWebDAVFile -Credential (Get-Credential) -File 'C:\Users.csv' -Folder upload
@@ -36,7 +36,7 @@
 		See Help About_TOPdesk_files for more
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Send-TdImportFile')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Send-TdWebDAVFile')]
     param
     (
         [ValidateScript( {
