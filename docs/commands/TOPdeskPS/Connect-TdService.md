@@ -34,7 +34,7 @@ Prompts you for your TOPdesk credentials and then connects to TOPdesk.
 Connect-TdService -Credential $Cred
 ```
 
-Connects to TOPdesk using the credential stored in the variable Cred.
+Connects to TOPdesk using the credential stored in the variable Cred
 
 ## PARAMETERS
 
@@ -138,11 +138,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### Inputs (if any)
 ## OUTPUTS
 
-### Output (if any)
+### System.String
 ## NOTES
-Additional information about the function.
 
 ## RELATED LINKS

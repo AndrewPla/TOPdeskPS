@@ -14,8 +14,8 @@ Grabs Incidents from TOPdesk
 
 ### List (Default)
 ```
-Get-TdIncident [-PageSize <Int32>] [-Start <Int32>] [-Completed <Boolean>] [-Closed <Boolean>]
- [-Resolved <Boolean>] [-Archived <Boolean>] [<CommonParameters>]
+Get-TdIncident [-PageSize <Int32>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved] [-Archived]
+ [<CommonParameters>]
 ```
 
 ### Number
@@ -77,7 +77,7 @@ Retrieve only incidents that are completed / not completed.
 Set this parameter to $false to only retrieve not completed incidents, and set it to $true to only receive completed incidents.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: List
 Aliases:
 
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 Retrieve only incidents that are closed /not closed.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: List
 Aliases:
 
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 Retrieve only incidents that are resolved depending on the setting "Call is resolved when" (Module Settings -\> Call Management -\> General)
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: List
 Aliases:
 
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 Whether to retrieve archived incidents.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: List
 Aliases:
 

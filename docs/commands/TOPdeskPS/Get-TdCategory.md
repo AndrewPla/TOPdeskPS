@@ -13,7 +13,7 @@ Get categories from TOPdesk
 ## SYNTAX
 
 ```
-Get-TdCategory [[-Name] <String>] [<CommonParameters>]
+Get-TdCategory [[-Name] <String>] [[-Token] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,6 +48,22 @@ Aliases:
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Token
+REST login token.
+This isn't needed if you want to use the token generated with Connect-TdService
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -14,7 +14,7 @@ internal wrapper for Invoke-RestMethod
 
 ```
 Invoke-TdMethod [[-ContentType] <String>] [[-Uri] <Uri>] [[-Body] <PSObject>] [[-Method] <String>]
- [<CommonParameters>]
+ [[-Token] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,10 +24,10 @@ A detailed description of the Invoke-TdMethod function.
 
 ### EXAMPLE 1
 ```
-Invoke-TdMethod
+Invoke-TdMethod -Token $Token -Body $Body
 ```
 
-Just a quick description.
+Sends a Get request to your TOPdesk instance.
 
 ## PARAMETERS
 
@@ -92,6 +92,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Token
+Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -101,6 +116,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-Additional information about the function.
 
 ## RELATED LINKS
