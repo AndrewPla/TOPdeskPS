@@ -1,4 +1,4 @@
-function New-TdOperator {
+﻿function New-TdOperator {
     [CmdletBinding()]
     param (
         [Alias('LastName')]

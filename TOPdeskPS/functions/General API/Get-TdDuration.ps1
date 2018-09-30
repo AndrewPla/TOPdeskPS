@@ -1,4 +1,4 @@
-function Get-TdDuration {
+﻿function Get-TdDuration {
     <#
     .SYNOPSIS
         Gets durations

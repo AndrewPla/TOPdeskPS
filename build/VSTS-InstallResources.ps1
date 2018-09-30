@@ -1,4 +1,4 @@
-Write-Host " - "
+﻿Write-Host " - "
 Write-Host "###############################################################"
 Write-Host " - "
 Write-Host "Installing TOPdeskPS master"

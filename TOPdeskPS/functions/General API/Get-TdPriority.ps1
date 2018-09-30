@@ -1,4 +1,4 @@
-function Get-TdPriority {
+﻿function Get-TdPriority {
     <#
     .SYNOPSIS
         Gets priorities

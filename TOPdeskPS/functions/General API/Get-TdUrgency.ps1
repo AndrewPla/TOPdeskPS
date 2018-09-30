@@ -1,4 +1,4 @@
-function Get-TdUrgency {
+﻿function Get-TdUrgency {
     <#
     .SYNOPSIS
         Gets list of all urgencies

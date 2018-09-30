@@ -1,4 +1,4 @@
-function Get-TdImpact {
+﻿function Get-TdImpact {
     <#
     .SYNOPSIS
         Gets list of impacts

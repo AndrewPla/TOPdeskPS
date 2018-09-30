@@ -1,4 +1,4 @@
-function Get-TdDeescalationReason {
+﻿function Get-TdDeescalationReason {
     <#
     .SYNOPSIS
         Gets deescalation reasons

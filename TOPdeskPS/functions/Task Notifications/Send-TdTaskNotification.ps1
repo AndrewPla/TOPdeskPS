@@ -1,4 +1,4 @@
-function Send-TdTaskNotification {
+﻿function Send-TdTaskNotification {
     <#
     .SYNOPSIS
         Create custom task notifications

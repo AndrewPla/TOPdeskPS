@@ -1,4 +1,4 @@
-function Get-TdKnowledgeItem {
+﻿function Get-TdKnowledgeItem {
     <#
     .SYNOPSIS
         Gets knowledge items

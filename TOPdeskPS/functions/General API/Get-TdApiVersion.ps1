@@ -1,4 +1,4 @@
-function Get-TdApiVersion {
+﻿function Get-TdApiVersion {
     <#
     .SYNOPSIS
         Gets version of the TOPdesk API

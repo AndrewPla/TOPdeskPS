@@ -1,4 +1,4 @@
-function Send-TdIncidentFile {
+﻿function Send-TdIncidentFile {
     <#
     .SYNOPSIS
         Upload a file to an incident identified

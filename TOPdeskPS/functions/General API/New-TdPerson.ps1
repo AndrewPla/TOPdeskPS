@@ -1,4 +1,4 @@
-function New-TdPerson {
+﻿function New-TdPerson {
     <#
     .SYNOPSIS
         Creates new persons

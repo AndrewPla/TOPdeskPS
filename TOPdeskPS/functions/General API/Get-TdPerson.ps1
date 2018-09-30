@@ -1,4 +1,4 @@
-function Get-TdPerson {
+﻿function Get-TdPerson {
     <#
     .SYNOPSIS
         Gets persons 

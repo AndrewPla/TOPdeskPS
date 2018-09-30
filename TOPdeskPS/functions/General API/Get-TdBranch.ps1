@@ -1,4 +1,4 @@
-function Get-TdBranch {
+﻿function Get-TdBranch {
     <#
     .SYNOPSIS
         Gets Branches

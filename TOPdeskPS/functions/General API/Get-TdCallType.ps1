@@ -1,4 +1,4 @@
-function Get-TdCallType {
+﻿function Get-TdCallType {
     <#
     .SYNOPSIS
         Gets call types

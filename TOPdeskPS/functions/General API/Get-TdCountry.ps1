@@ -1,4 +1,4 @@
-function Get-TdCountry {
+﻿function Get-TdCountry {
     <#
     .SYNOPSIS
         Gets Country

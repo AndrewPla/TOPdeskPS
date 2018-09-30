@@ -1,4 +1,4 @@
-function Get-TdPersonGroup {
+﻿function Get-TdPersonGroup {
     <#
     .SYNOPSIS
         Gets person groups

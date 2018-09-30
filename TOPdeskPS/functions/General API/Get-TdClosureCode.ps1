@@ -1,4 +1,4 @@
-function Get-TdClosureCode {
+﻿function Get-TdClosureCode {
     <#
     .SYNOPSIS
         Gets closure codes

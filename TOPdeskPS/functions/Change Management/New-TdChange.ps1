@@ -1,4 +1,4 @@
-function New-TdChange {
+﻿function New-TdChange {
     <#
     .SYNOPSIS
         Create a new Request for Change

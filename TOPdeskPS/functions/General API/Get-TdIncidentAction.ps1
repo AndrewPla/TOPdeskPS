@@ -1,4 +1,4 @@
-function Get-TdIncidentAction {
+﻿function Get-TdIncidentAction {
     <#
     .SYNOPSIS
        Gets actions from an incident

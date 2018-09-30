@@ -1,4 +1,4 @@
-function Get-TdProcessingStatus {
+﻿function Get-TdProcessingStatus {
     <#
     .SYNOPSIS
         Gets processing statuses

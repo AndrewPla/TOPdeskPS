@@ -1,4 +1,4 @@
-function Set-TdChange {
+﻿function Set-TdChange {
     <#
     .SYNOPSIS
         Sets properties on a change

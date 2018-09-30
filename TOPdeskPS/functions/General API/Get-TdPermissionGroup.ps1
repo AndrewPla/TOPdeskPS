@@ -1,4 +1,4 @@
-function Get-TdPermissionGroup {
+﻿function Get-TdPermissionGroup {
     <#
     .SYNOPSIS
         Get permission groups

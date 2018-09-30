@@ -1,4 +1,4 @@
-function Get-TdEntryType {
+﻿function Get-TdEntryType {
     <#
     .SYNOPSIS
         Gets entry types

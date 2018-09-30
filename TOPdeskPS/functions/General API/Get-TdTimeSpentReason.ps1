@@ -1,4 +1,4 @@
-function Get-TdTimeSpentReason {
+﻿function Get-TdTimeSpentReason {
     <#
     .SYNOPSIS
         Gets all time spent reasons

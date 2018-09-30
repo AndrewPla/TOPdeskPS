@@ -1,4 +1,4 @@
-function Get-TdEscalationReason {
+﻿function Get-TdEscalationReason {
     <#
     .SYNOPSIS
         Gets all EscalationReasons

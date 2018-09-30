@@ -1,4 +1,4 @@
-function Get-TdOperatorGroup {
+﻿function Get-TdOperatorGroup {
     <#
     .SYNOPSIS
         Get Operator groups

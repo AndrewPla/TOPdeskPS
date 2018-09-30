@@ -1,4 +1,4 @@
-function Get-TdServiceWindow {
+﻿function Get-TdServiceWindow {
     <#
     .SYNOPSIS
         Gets all service windows
