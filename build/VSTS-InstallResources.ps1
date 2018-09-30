@@ -2,7 +2,7 @@
 Write-Host "###############################################################"
 Write-Host " - "
 Write-Host "Installing TOPdeskPS master"
-Invoke-WebRequest "https://raw.githubusercontent.com/AndrewPla/TOPdeskPS/master/install.ps1" -UseBasicParsing | Invoke-Expression
+Install-Module TOPdeskPS -ErrorAction Stop -Force
 
 Write-Host " - "
 Write-Host "###############################################################"
