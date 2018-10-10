@@ -30,18 +30,19 @@ function Get-TdChange {
     begin {
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
         $Uri = (Get-TdUrl) + '/tas/api/assetmgmt/assets'
-        Write-PSFMessage -Level InternalComment -Message "Uri - $Uri"
     }
     process {
-        Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
-        Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
-        $uri = $uri + "/$Change"
-        $params = @{
-            'uri'  = $uri
-            Method = 'Get'
+        if ($PSBoundParameters.keys -contains 'NameFragment') {
+            $uri = "$uri&nameFragment=$NameFragment"
         }
-        $res = Invoke-TdMethod @params
-        $res
+        if ($PSBoundParameters.keys -contains 'Archived') {
+            $uri = "$uri&archived=$Archived"
+        }
+
+        $Params = @{
+            'uri' = $uri
+        }
+        $Assets = Invoke-TdMethod @Params
     }
     end {
     }
