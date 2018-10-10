@@ -11,6 +11,7 @@
 * New-TdAsset
 * Get-TdAssetTemplate
 * Remove-TdAsset
+* Set-TdAsset
 
 ### Fixed
 

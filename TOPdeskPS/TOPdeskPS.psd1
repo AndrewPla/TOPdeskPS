@@ -108,6 +108,7 @@
         'Send-TdIncidentfile'
         'Send-TdTaskNotification'
         'Send-TdWebDAVFile'
+        'Set-TdAsset'
         'Set-TdPerson'
         'Update-TdIncident'
     )
