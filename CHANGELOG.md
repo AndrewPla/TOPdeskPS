@@ -7,6 +7,8 @@
 * New-TdChangeAction
 * Get-TdChangeActivity
 * Get-TdAsset
+* Get-TdAssetTemplateBlank
+* New-TdAsset
 
 ### Fixed
 
