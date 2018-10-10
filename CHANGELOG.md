@@ -6,6 +6,7 @@
 
 * New-TdChangeAction
 * Get-TdChangeActivity
+* Get-TdAsset
 
 ### Fixed
 

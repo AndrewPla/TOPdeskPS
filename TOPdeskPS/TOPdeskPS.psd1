@@ -67,6 +67,7 @@
     FunctionsToExport = @(
         'Connect-TdService'
         'Disconnect-TdService'
+        'Get-TdAsset'
         'Get-TdApiVersion'
         'Get-TdArchiveReason'
         'Get-TdBranch'
