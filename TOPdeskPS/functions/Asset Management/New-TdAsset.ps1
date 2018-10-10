@@ -10,7 +10,7 @@ function New-TdAsset {
         The Name, or assetId of the asset that you want to create. Example: TestComputer
     .PARAMETER Body
         This object contains key-value pairs, where the key is the field’s id, and the value is the value of this field.
-        This model must contain every mandatory field with a value.
+        This model must contain every mandatory field with a value. Note: do not add a name or type_id key as they are handled seperately in the parameters name and TemplateId, respectively.
 
         Example:
         {
@@ -27,10 +27,14 @@ function New-TdAsset {
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdAsset')]
     param (
         #TODO add support for pipeline
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName)]
+        [Alias('Id')]
         [system.string]$TemplateId,
 
-        [pscustomobject]$Body
+        [pscustomobject]$Body,
+
+        #TODO determine if I should make this mandatory. I believe it can be, but I need to spend more time in Assetmgmt to decide further
+        [System.string]$Name
     )
 
     begin {
@@ -44,6 +48,9 @@ function New-TdAsset {
         switch ($PSBoundParameters.Keys) {
             TemplateId {
                 $body | Add-Member -MemberType NoteProperty -Name 'type_id' -Value $TemplateId
+            }
+            Name {
+                $body | Add-Member -MemberType NoteProperty -Name 'name' -Value $Name
             }
         }
         Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
