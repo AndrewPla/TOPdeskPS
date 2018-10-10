@@ -10,6 +10,7 @@
 * Get-TdAssetTemplateBlank
 * New-TdAsset
 * Get-TdAssetTemplate
+* Remove-TdAsset
 
 ### Fixed
 
