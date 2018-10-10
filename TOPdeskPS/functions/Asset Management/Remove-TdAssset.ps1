@@ -5,7 +5,8 @@ function Remove-TdAsset {
 
 	.DESCRIPTION
 		Deletes the given assets.It may be possible that one or more assets couldn’t be deleted because they have existing links from other components. In this case those assets’ ids will be listed in the ‘failed’ list of the response, but it doesn’t affect deletion of other assets.
-
+ .PARAMETER AssetId
+        Id of the asset to remove
 	.PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
