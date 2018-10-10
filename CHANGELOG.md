@@ -9,6 +9,7 @@
 * Get-TdAsset
 * Get-TdAssetTemplateBlank
 * New-TdAsset
+* Get-TdAssetTemplate
 
 ### Fixed
 
