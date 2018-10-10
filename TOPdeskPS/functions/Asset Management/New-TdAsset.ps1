@@ -18,6 +18,12 @@ function New-TdAsset {
          "textField": "string",
         "dropdownField": "string"
         }
+        	.PARAMETER Confirm
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+	.PARAMETER WhatIf
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
     .EXAMPLE
         PS C:\> New-TdAsset -TemplateId $templateId -Name 'TestComputer' -body @{Type = 'Computer'}
         Creates a new asset named TestComputer. It also sets the asset type to 'Computer'

@@ -11,7 +11,7 @@ function Get-TdAssetTemplate {
         Name of the AssetTemplate that you want returned. Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdAssetTemplate -Name 'Work*'
-        returns all templates with a name matching 'work*'. In this instance it would return a 'Workstation' template.
+        Returns all templates with a name matching 'work*'. In this instance it would return a 'Workstation' template.
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAssetTemplate')]
     param (
