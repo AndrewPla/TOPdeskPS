@@ -97,6 +97,7 @@
         'Get-TdUrgency'
         'Invoke-TdMethod'
         'New-TdChange'
+        'New-TdChangeAction'
         'New-TdIncident'
         'New-TdPerson'
         'Send-TdIncidentfile'
