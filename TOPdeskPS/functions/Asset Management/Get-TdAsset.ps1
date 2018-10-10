@@ -1,4 +1,4 @@
-function Get-TdChange {
+function Get-TdAsset {
     <#
 	.SYNOPSIS
 		Returns TOPdesk assets
@@ -14,8 +14,8 @@ function Get-TdChange {
     .PARAMETER ShowAssignments
         When it’s given it returns more meta information, including all person and location related assignments. See ‘/assignments’ endpoint documentation for more details about the response format.
 	.EXAMPLE
-		PS C:\> Get-TdAsset -Asset 'C1810-1234'
-		Get the Asset information
+		PS C:\> Get-TdAsset
+		Get all topdesk assets
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAsset')]
@@ -29,20 +29,37 @@ function Get-TdChange {
 
     begin {
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-        $Uri = (Get-TdUrl) + '/tas/api/assetmgmt/assets'
     }
     process {
-        if ($PSBoundParameters.keys -contains 'NameFragment') {
-            $uri = "$uri&nameFragment=$NameFragment"
+        if ($PSBoundParameters.keys -eq '') {
+            $Uri = (Get-TdUrl) + '/tas/api/assetmgmt/assets'
         }
-        if ($PSBoundParameters.keys -contains 'Archived') {
-            $uri = "$uri&archived=$Archived"
+        else {
+            $Uri = (Get-TdUrl) + '/tas/api/assetmgmt/assets/?'
         }
 
+        if ($PSBoundParameters.keys -contains 'NameFragment') {
+            $uri = "$uri&nameFragment=$NameFragment&"
+        }
+        if ($PSBoundParameters.keys -contains 'Archived') {
+            $uri = "$uri&archived=$Archived&"
+        }
+        if ($PSBoundParameters.keys -contains 'ShowAssignments') {
+            $uri = "$uri&showAssignments=$ShowAssignments&"
+        }
+        if ($PSBoundParameters.keys -contains 'TemplateName') {
+            $uri = "$uri&templateName=$TemplateName&"
+        }
+
+        if ($uri[-1] -match '&') {
+            Write-PSFMessage 'Trimming &' -Level debug
+            $RemoveCount = $uri.length - 1
+            $uri.remove($removeCount)
+        }
         $Params = @{
             'uri' = $uri
         }
-        $Assets = Invoke-TdMethod @Params
+        Invoke-TdMethod @Params
     }
     end {
     }

@@ -42,7 +42,7 @@
                     $uri = $uri + "change=$chan&"
                 }
                 if ($PSBoundParameters.keys -contains 'Archive') {
-                    $uri = $uri + "archive=$Archive"
+                    $uri = $uri + "archive=$Archive&"
                 }
                 if ($Uri[-1] -match '&'){
                     Write-PSFMessage 'Trimming &' -Level debug
