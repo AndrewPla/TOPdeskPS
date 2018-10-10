@@ -8,7 +8,7 @@ function Get-TdAssetTemplate {
     .PARAMETER Archived
         Whether to retrieve archived asset templates.  Leave out for all, or specify true/false for only archived, or only active templates, respectively.
     .PARAMETER Name
-        Name of the AssetTemplate that you want returned.Wildcards are supported. Default value is '*'
+        Name of the AssetTemplate that you want returned. Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdAssetTemplate -Name 'Work*'
         returns all templates with a name matching 'work*'. In this instance it would return a 'Workstation' template.
