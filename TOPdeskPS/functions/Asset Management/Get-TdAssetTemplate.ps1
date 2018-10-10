@@ -15,11 +15,12 @@ function Get-TdAssetTemplate {
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAssetTemplate')]
     param (
-        [switch]
-        $Archived,
-
+        [Parameter(Position = 0)]
         [System.String]
-        $Name = '*'
+        $Name = '*',
+
+        [switch]
+        $Archived
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/assetmgmt/templates'
