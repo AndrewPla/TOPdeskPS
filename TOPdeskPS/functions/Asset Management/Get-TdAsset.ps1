@@ -25,6 +25,7 @@ function Get-TdAsset {
         [switch]$Archived,
         [switch]$ShowAssignments,
         [system.string]$TemplateName
+
     )
 
     begin {
@@ -59,7 +60,9 @@ function Get-TdAsset {
         $Params = @{
             'uri' = $uri
         }
-        Invoke-TdMethod @Params
+        $res = Invoke-TdMethod @Params
+        $res | Select-Object -ExpandProperty dataset -ErrorAction SilentlyContinue
+
     }
     end {
     }
