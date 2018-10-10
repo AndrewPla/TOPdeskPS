@@ -1,6 +1,17 @@
 # TOPdeskPS Release History
 
-## 0.0.5 - ?/?/2018
+## 0.0.6 - ??????
+
+### Added
+
+* New-TdChangeAction
+* Get-TdChangeActivity
+
+### Fixed
+
+* Get-TdChange now returns the proper changes
+
+## 0.0.5 - 9/30/2018
 
 ### Added
 
