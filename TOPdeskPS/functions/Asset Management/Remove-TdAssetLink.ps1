@@ -11,9 +11,8 @@ function Remove-TdAssetLink {
 	.PARAMETER WhatIf
 		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
     .EXAMPLE
-        PS C:\> $LinkId = Get-TdAssetLink -AssetId $assetId | Select-Object LinkId
-        PS C:\> Remove-TdAssetLink -LinkId $LinkId
-            Removes the asset link inside $LinkId.
+        PS C:\> Get-TdAssetLink -AssetId $assetId | Remove-TdAssetLink
+            Removes the asset links for $assetId
 
 #>
 
