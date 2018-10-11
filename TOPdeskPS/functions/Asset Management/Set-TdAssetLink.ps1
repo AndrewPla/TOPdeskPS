@@ -10,6 +10,8 @@ function Set-TdAssetLink {
         The id of the asset to be the source of the link. For a child relation, this will be the parent, for a parent relation, this will be the child. For capabilities, this asset will provide the capability.
     .PARAMETER TargetAssetId
         The id of the asset to be the target of the link. For a child relation, this will be the child, for a parent relation, this will be the parent. For capabilities, this asset will use the capability.
+    .PARAMETER Type
+        Defines the direction of the relation. ‘child’ means the ‘target’ is the child of the 'source’. ‘child’ is the default value. Ignored if a CapabilityId is present.
     .PARAMETER CapabilityId
         The id of the capability that is offered through the link. Don’t specify it for parent-child relation
 	.PARAMETER Confirm
