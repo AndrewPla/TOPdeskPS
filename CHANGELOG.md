@@ -14,6 +14,7 @@
 * Set-TdAsset
 * Get-TdAssetLink
 * Set-TdAssetLink
+* Get-TdAssetLinkPossibleRelation
 
 ### Fixed
 

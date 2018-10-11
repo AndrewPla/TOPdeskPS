@@ -71,6 +71,7 @@
         'Get-TdApiVersion'
         'Get-TdArchiveReason'
         'Get-TdAssetLink'
+        'Get-TdAssetLinkPossibleRelation'
         'Get-TdAssetTemplate'
         'Get-TdAssetTemplateBlank'
         'Get-TdBranch'
