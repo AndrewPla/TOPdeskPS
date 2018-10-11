@@ -21,6 +21,7 @@
 * Remove-TdAssetAssignment
 * Send-TdAssetFile
 * Get-TdAssetFile
+* Remove-TdAssetFile
 
 ### Fixed
 

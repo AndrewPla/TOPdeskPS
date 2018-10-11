@@ -111,6 +111,7 @@
         'New-TdPerson'
         'Remove-TdAsset'
         'Remove-TdAssetAssignment'
+        'Remove-TdAssetFile'
         'Remove-TdAssetLink'
         'Send-TdAssetFile'
         'Send-TdIncidentfile'
