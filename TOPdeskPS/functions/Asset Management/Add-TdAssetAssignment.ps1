@@ -46,7 +46,7 @@ function Add-TdAssetAssignment {
             'Body'   = $Body
             'Method' = 'Put'
         }
-        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Updating asset.')) {
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'adding asset assignment.')) {
             return
         }
         Invoke-TdMethod @params
