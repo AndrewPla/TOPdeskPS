@@ -92,25 +92,4 @@
         #Invoke-TdMethod @params
     }
     end {}
-    <#
-    Write-PSFMessage "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param' -Level InternalComment
-    $uri = (Get-TdUrl) + "/tas/api/incidents/number/$Number/attachments"
-    if (-not $Script:__LoginToken) {
-        throw 'no connection to topdesk, try running Connect-TdService'
-    }
-    $headers = @{
-        'Authorization' = $Script:__LoginToken
-    }
-    $body = @{
-        File = $File
-    }
-    $params = @{
-        'uri'       = $uri
-        Method      = 'post'
-        Infile      = $File
-        ContentType = 'multipart/form-data'
-        Headers     = $headers
-    }
-    Invoke-restmethod @params
-    #>
 }
