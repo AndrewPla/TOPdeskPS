@@ -51,9 +51,11 @@
     process {
         $uri = (Get-TdUrl) + "/tas/api/incidents/number/$Number/attachments"
         Write-PSFMessage "Uri - $uri" -Level debug
+        #TODO throw this into an internal function and clean this up a bit.
         $fileName = Split-Path $File -leaf
         $boundary = [guid]::NewGuid().ToString()
         $fileBin = [System.IO.File]::ReadAllBytes($File)
+        $LF = "`r`n"
         $enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
         $fileEnc = $enc.GetString($fileBin)
 
@@ -78,18 +80,14 @@
             "--$boundary--$LF"
 
         ) -join $LF
-        $Headers = @{
-            'Authorization' = $Script:LoginToken
-        }
+        Write-PSFMessage $bodyLines -Level debug
         $params = @{
             Uri         = $Uri
             Body        = $bodyLines
             Method      = 'Post'
-            Headers     = $headers
             ContentType = "multipart/form-data; boundary=$boundary"
         }
-        Invoke-restmethod @params
-        #Invoke-TdMethod @params
+        Invoke-TdMethod @params
     }
     end {}
 }
