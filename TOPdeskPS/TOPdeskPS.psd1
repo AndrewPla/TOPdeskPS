@@ -65,6 +65,7 @@
 
     # Functions to export from this module
     FunctionsToExport = @(
+        'Add-TdAssetAssignment'
         'Connect-TdService'
         'Disconnect-TdService'
         'Get-TdAsset'

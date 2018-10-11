@@ -17,6 +17,7 @@
 * Get-TdAssetLinkPossibleRelation
 * Remove-TdAssetLink
 * Get-TdAssetAssignment
+* Add-TdAssetAssignment
 
 ### Fixed
 
