@@ -76,7 +76,7 @@ function Set-TdAsset {
         Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
             'Uri'    = $uri
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Updating asset.')) {

@@ -46,7 +46,7 @@ function Remove-TdAsset {
         }
         $params = @{
             'Uri'    = $uri
-            'Body'   = $body
+            'Body'   = $body | ConvertTo-Json
             'Method' = 'Post'
         }
         Write-PSFMessage -Message "Body - $body" -Level InternalComment

@@ -28,8 +28,7 @@ function Add-TdAssetAssignment {
         [system.string]
         $AssetId,
 
-        [Parameter(Mandatory)]
-        [ParameterSetName('Body')]
+        [Parameter(Mandatory, ParameterSetName = 'Body')]
         [pscustomobject]$Body
     )
 
@@ -43,7 +42,7 @@ function Add-TdAssetAssignment {
         Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
             'Uri'    = $uri
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Put'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'adding asset assignment.')) {

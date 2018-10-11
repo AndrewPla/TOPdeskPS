@@ -69,7 +69,7 @@ function Set-TdAssetLink {
 
         $params = @{
             'Uri'    = $uri
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $AssetId -Action 'Updating asset link.')) {

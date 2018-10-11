@@ -270,7 +270,7 @@
 
        	$Params = @{
             'Uri'    = $uri
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("The Request" , "Creating new change request")) {

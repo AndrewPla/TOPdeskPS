@@ -66,7 +66,7 @@
             }
         }
         $Params = @{
-            'Body'        = ($Body | ConvertTo-Json)
+            'Body'        = $Body
             'Method'      = $Method
             'Uri'         = $Uri
             'Headers'     = $Headers

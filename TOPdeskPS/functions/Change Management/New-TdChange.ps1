@@ -156,7 +156,7 @@
         Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
             'Uri'    = $uri
-            'Body'   = $body
+            'Body'   = $body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("Request" , "Sending change request $BriefDescription")) {

@@ -62,7 +62,7 @@ function New-TdAsset {
         Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
             'Uri'    = $uri
-            'Body'   = $body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("Create" , "Creating New Asset with TemplateId $TemplateId")) {
