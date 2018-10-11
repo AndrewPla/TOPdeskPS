@@ -72,6 +72,7 @@
         'Get-TdApiVersion'
         'Get-TdArchiveReason'
         'Get-TdAssetAssignment'
+        'Get-TdAssetFile'
         'Get-TdAssetLink'
         'Get-TdAssetLinkPossibleRelation'
         'Get-TdAssetTemplate'

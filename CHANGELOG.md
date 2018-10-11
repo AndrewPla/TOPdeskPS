@@ -20,6 +20,7 @@
 * Add-TdAssetAssignment
 * Remove-TdAssetAssignment
 * Send-TdAssetFile
+* Get-TdAssetFile
 
 ### Fixed
 
