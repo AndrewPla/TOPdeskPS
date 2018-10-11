@@ -12,6 +12,7 @@
 * Get-TdAssetTemplate
 * Remove-TdAsset
 * Set-TdAsset
+* Get-TdAssetLink
 
 ### Fixed
 

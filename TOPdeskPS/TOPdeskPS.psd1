@@ -70,6 +70,7 @@
         'Get-TdAsset'
         'Get-TdApiVersion'
         'Get-TdArchiveReason'
+        'Get-TdAssetLink'
         'Get-TdAssetTemplate'
         'Get-TdAssetTemplateBlank'
         'Get-TdBranch'
