@@ -109,6 +109,7 @@
         'New-TdIncident'
         'New-TdPerson'
         'Remove-TdAsset'
+        'Remove-TdAssetAssignment'
         'Remove-TdAssetLink'
         'Send-TdIncidentfile'
         'Send-TdTaskNotification'

@@ -18,6 +18,7 @@
 * Remove-TdAssetLink
 * Get-TdAssetAssignment
 * Add-TdAssetAssignment
+* Remove-TdAssetAssignment
 
 ### Fixed
 
