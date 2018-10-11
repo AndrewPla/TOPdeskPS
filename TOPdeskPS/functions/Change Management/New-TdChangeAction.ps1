@@ -46,7 +46,7 @@ function New-TdChangeAction {
         $body
         $Params = @{
             'Uri'    = $url
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         Invoke-TdMethod @Params
