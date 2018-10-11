@@ -1,13 +1,13 @@
 function Get-TdAssetFile {
     <#
     .SYNOPSIS
-        Short description
+        Lists files from an asset
     .DESCRIPTION
-        Long description
+        Lists files from an asset
     .EXAMPLE
-        PS C:\> <example usage>
-        Explanation of what the example does
-    #>
+        PS C:\> Get-TdAssetFile -AssetId $AssetId
+        Returns files from asset $AssetId
+        #>
     param(
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]
@@ -15,6 +15,6 @@ function Get-TdAssetFile {
         [system.string]
         $AssetId
     )
-    $uri = (get-tdurl) + "/tas/api/assetmgmt/uploads/?assetId=$AssetId"
+    $uri = (Get-TdUrl) + "/tas/api/assetmgmt/uploads/?assetId=$AssetId"
     Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty DataSet
 }
