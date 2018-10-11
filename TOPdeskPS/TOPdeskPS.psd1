@@ -111,6 +111,7 @@
         'Remove-TdAsset'
         'Remove-TdAssetAssignment'
         'Remove-TdAssetLink'
+        'Send-TdAssetFile'
         'Send-TdIncidentfile'
         'Send-TdTaskNotification'
         'Send-TdWebDAVFile'
