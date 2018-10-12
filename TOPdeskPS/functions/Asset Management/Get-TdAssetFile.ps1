@@ -8,6 +8,7 @@ function Get-TdAssetFile {
         PS C:\> Get-TdAssetFile -AssetId $AssetId
         Returns files from asset $AssetId
         #>
+    [cmdletbinding()]
     param(
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]

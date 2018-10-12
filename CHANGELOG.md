@@ -22,6 +22,7 @@
 * Send-TdAssetFile
 * Get-TdAssetFile
 * Remove-TdAssetFile
+* Get-TdAssetField
 
 ### Fixed
 
