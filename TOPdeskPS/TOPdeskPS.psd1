@@ -69,6 +69,7 @@
         'Connect-TdService'
         'Disconnect-TdService'
         'Get-TdAsset'
+        'Get-TdAssetCapability'
         'Get-TdAssetField'
         'Get-TdAssetFieldValue'
         'Get-TdApiVersion'

@@ -24,6 +24,7 @@
 * Remove-TdAssetFile
 * Get-TdAssetField
 * Get-TdAssetFieldValue
+* Get-TdAssetCapability
 
 ### Fixed
 
