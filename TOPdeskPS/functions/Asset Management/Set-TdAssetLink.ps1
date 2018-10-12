@@ -38,6 +38,7 @@ function Set-TdAssetLink {
         $TargetAssetId,
 
         [ValidateSet('parent', 'child')]
+        [system.string]
         $Type,
 
         [system.string]
