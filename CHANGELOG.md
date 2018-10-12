@@ -23,6 +23,7 @@
 * Get-TdAssetFile
 * Remove-TdAssetFile
 * Get-TdAssetField
+* Get-TdAssetFieldValue
 
 ### Fixed
 

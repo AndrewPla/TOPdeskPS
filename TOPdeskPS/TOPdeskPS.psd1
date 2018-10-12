@@ -70,6 +70,7 @@
         'Disconnect-TdService'
         'Get-TdAsset'
         'Get-TdAssetField'
+        'Get-TdAssetFieldValue'
         'Get-TdApiVersion'
         'Get-TdArchiveReason'
         'Get-TdAssetAssignment'
