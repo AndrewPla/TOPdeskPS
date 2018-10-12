@@ -17,8 +17,8 @@ function Get-TdAssetCapabilityDetail {
         [system.string]
         $CapabilityId
     )
-    process{
-    $uri = (Get-TdUrl) + "/tas/api/assetmgmt/capabilities/$CapabilityId"
-    Invoke-TdMethod -Uri $uri
+    process {
+        $uri = (Get-TdUrl) + "/tas/api/assetmgmt/capabilities/$CapabilityId"
+        Invoke-TdMethod -Uri $uri
     }
 }
