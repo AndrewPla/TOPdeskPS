@@ -124,6 +124,7 @@
         'Send-TdTaskNotification'
         'Send-TdWebDAVFile'
         'Set-TdAsset'
+        'Set-TdAssetCapability'
         'Set-TdAssetLink'
         'Set-TdPerson'
         'Update-TdIncident'

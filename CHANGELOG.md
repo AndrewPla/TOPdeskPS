@@ -28,6 +28,7 @@
 * Get-TdAssetDetail
 * Get-TdAssetCapabilityDetail
 * New-TdAssetCapability
+* Set-TdAssetCapability
 
 ### Fixed
 
