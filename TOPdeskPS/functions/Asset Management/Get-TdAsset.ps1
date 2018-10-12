@@ -55,14 +55,13 @@ function Get-TdAsset {
         if ($uri[-1] -match '&') {
             Write-PSFMessage 'Trimming &' -Level debug
             $RemoveCount = $uri.length - 1
-            $uri.remove($removeCount)
+            $uri.remove($removeCount) | Out-Null
         }
         $Params = @{
             'uri' = $uri
         }
         $res = Invoke-TdMethod @Params
         $res | Select-Object -ExpandProperty dataset
-
     }
     end {
     }
