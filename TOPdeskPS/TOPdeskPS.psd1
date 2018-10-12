@@ -70,6 +70,7 @@
         'Disconnect-TdService'
         'Get-TdAsset'
         'Get-TdAssetCapability'
+        'Get-TdAssetCapabilityDetail'
         'Get-TdAssetDetail'
         'Get-TdAssetField'
         'Get-TdAssetFieldValue'
