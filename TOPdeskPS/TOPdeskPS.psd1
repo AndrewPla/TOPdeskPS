@@ -110,6 +110,7 @@
         'Get-TdUrgency'
         'Invoke-TdMethod'
         'New-TdAsset'
+        'New-TdAssetCapability'
         'New-TdChange'
         'New-TdChangeAction'
         'New-TdIncident'
