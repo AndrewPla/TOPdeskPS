@@ -25,6 +25,7 @@
 * Get-TdAssetField
 * Get-TdAssetFieldValue
 * Get-TdAssetCapability
+* Get-TdAssetDetail
 
 ### Fixed
 

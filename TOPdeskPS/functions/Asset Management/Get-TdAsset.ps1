@@ -61,7 +61,7 @@ function Get-TdAsset {
             'uri' = $uri
         }
         $res = Invoke-TdMethod @Params
-        $res
+        $res | Select-Object -ExpandProperty dataset
 
     }
     end {
