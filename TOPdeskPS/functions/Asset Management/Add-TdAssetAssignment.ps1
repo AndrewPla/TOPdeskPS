@@ -6,6 +6,12 @@ function Add-TdAssetAssignment {
 		Updates the given asset.It may be possible that one or more assets couldn’t be deleted because they have existing links from other components. In this case those assets’ ids will be listed in the ‘failed’ list of the response, but it doesn’t affect deletion of other assets.
     .PARAMETER AssetId
         ID of asset which is the subject of the assignment
+    .PARAMETER LinkType
+        Some of the other ID parameters must be also provided based on the current linkType. Available values: branch, location, person, personGroup
+    .PARAMETER LinkToId
+        ID of the assigned entity. If it's a location, parent branch ID must be also provided.
+    .PARAMETER BranchId
+        Id of the branch you want to assign. If location is linked, this ID must be also provided as the parent branch ID of the location. Run Get-TdBranch for more
     .PARAMETER Body
         This is the body of the request. Use this to create your own bodies if the parameters aren't providing you with what you need.
 	.PARAMETER Confirm
@@ -28,7 +34,18 @@ function Add-TdAssetAssignment {
         [system.string]
         $AssetId,
 
-        [Parameter(Mandatory, ParameterSetName = 'Body')]
+        [Parameter(Mandatory)]
+        [ValidateSet('branch', 'location', 'person', 'personGroup')]
+        [system.string]
+        $LinkType,
+
+        [system.string]
+        $LinkToId,
+
+        [system.string]
+        $BranchId,
+
+        [Parameter(ParameterSetName = 'Body')]
         [pscustomobject]$Body
     )
 
@@ -40,9 +57,23 @@ function Add-TdAssetAssignment {
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId/assignments"
 
         Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
+
+        $body = [pscustomobject]@{}
+
+        switch ($PSBoundParameters.Keys) {
+            LinkType {
+                $body | Add-Member -MemberType NoteProperty -Name linkType -Value $LinkType
+            }
+            LinkToId {
+                $body | Add-Member -MemberType NoteProperty -Name linkToId -Value $LinkToId
+            }
+            BranchId {
+                $body | Add-Member -MemberType NoteProperty -Name branchId -Value $BranchId
+            }
+        }
         $params = @{
             'Uri'    = $uri
-            'Body'   = $Body | ConvertTo-Json
+            'Body'   = $body | ConvertTo-Json
             'Method' = 'Put'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'adding asset assignment.')) {
