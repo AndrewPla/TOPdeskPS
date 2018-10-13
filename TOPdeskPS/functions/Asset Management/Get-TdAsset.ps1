@@ -5,6 +5,7 @@ function Get-TdAsset {
 	.DESCRIPTION
         This API returns a list of assets. By default the following fields are included: id, name (text), etag and state (archived).
          You can use various parameters to filter this list or to retrieve other fields from the assets. In Asset Management, paging is missing deliberately.
+         To return all assets for a given template see Get-TdAssetTemplateAssetId
     .PARAMETER NameFragment
         To filter assets by their name-fragment use this parameter. It’s case-insensitive.
     .PARAMETER Archived
