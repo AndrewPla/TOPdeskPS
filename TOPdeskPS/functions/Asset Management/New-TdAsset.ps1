@@ -68,10 +68,6 @@ function New-TdAsset {
         if ($PSCmdlet.ShouldProcess("Create" , "Creating New Asset with TemplateId $TemplateId")) {
             Invoke-TdMethod @params
         }
-
-    }
-
-    end {
     }
 }
 
