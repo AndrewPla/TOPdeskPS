@@ -23,7 +23,7 @@ function Set-TdAssetLink {
         Links $assetId to $targetId using
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Set-TdAsset',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Set-TdAssetLink',
         SupportsShouldProcess = $true)]
     param
     (
@@ -39,7 +39,7 @@ function Set-TdAssetLink {
 
         [ValidateSet('parent', 'child')]
         [system.string]
-        $Type,
+        $Type = 'child',
 
         [system.string]
         $CapabilityId
