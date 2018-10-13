@@ -25,13 +25,12 @@ function Remove-TdAssetAssignment {
     (
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]
-        [Alias('relationId')]
-        [system.string]
+        # locations alias to accept the parent property of the linkid
+        [Alias('locations')]
         $LinkId,
 
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]
-        [Alias('Id')]
         [system.string]
         $AssetId
     )
@@ -39,9 +38,8 @@ function Remove-TdAssetAssignment {
     process {
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
-
-        $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId/assignments/$LinkId"
-        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $AssetId -Action "Removing asset assignment $LinkId.")) {
+        $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId/assignments/$($LinkId.linkId)"
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $AssetId -Action "Removing asset assignment $($LinkId.linkId).")) {
             return
         }
         Invoke-TdMethod -Method 'Delete' -Uri $uri
