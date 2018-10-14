@@ -1,4 +1,4 @@
-function Get-TdAssetLink {
+﻿function Get-TdAssetLink {
     <#
 	.SYNOPSIS
 		Returns linked assets

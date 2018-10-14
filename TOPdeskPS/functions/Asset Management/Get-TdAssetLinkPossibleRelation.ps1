@@ -1,4 +1,4 @@
-function Get-TdAssetLinkPossibleRelation {
+﻿function Get-TdAssetLinkPossibleRelation {
     <#
 	.SYNOPSIS
 		Returns possible relations between source and target asset.

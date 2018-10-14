@@ -1,4 +1,4 @@
-function Set-TdAsset {
+﻿function Set-TdAsset {
     <#
 	.SYNOPSIS
 		Updates an asset

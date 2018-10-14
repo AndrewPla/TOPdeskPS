@@ -1,4 +1,4 @@
-function Get-TdAssetTemplateBlank {
+﻿function Get-TdAssetTemplateBlank {
     <#
 	.SYNOPSIS
 		Returns blank asset cards

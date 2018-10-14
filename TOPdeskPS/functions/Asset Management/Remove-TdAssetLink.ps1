@@ -1,4 +1,4 @@
-function Remove-TdAssetLink {
+﻿function Remove-TdAssetLink {
     <#
 	.SYNOPSIS
 		Remove link between 2 assets.

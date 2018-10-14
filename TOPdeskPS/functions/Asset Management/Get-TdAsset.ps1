@@ -1,4 +1,4 @@
-function Get-TdAsset {
+﻿function Get-TdAsset {
     <#
 	.SYNOPSIS
 		Returns TOPdesk assets

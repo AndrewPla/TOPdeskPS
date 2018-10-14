@@ -1,4 +1,4 @@
-function Get-TdAssetFile {
+﻿function Get-TdAssetFile {
     <#
     .SYNOPSIS
         Lists files from an asset

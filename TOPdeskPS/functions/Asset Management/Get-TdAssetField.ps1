@@ -1,4 +1,4 @@
-function Get-TdAssetField {
+﻿function Get-TdAssetField {
     <#
     .SYNOPSIS
         Lists asset fields

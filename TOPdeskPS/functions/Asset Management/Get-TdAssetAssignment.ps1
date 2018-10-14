@@ -1,4 +1,4 @@
-function Get-TdAssetAssignment {
+﻿function Get-TdAssetAssignment {
     <#
     .SYNOPSIS
         Gets assignments for an asset

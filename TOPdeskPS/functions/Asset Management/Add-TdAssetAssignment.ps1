@@ -1,4 +1,4 @@
-function Add-TdAssetAssignment {
+﻿function Add-TdAssetAssignment {
     <#
 	.SYNOPSIS
 		Adds an assignment to an asset

@@ -1,4 +1,4 @@
-function New-TdChangeAction {
+﻿function New-TdChangeAction {
     <#
     .SYNOPSIS
         Creates a new action for a change

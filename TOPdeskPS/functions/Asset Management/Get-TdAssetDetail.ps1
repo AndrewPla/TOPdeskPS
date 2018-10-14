@@ -1,4 +1,4 @@
-function Get-TdAssetDetail {
+﻿function Get-TdAssetDetail {
     <#
     .SYNOPSIS
         Returns additional information about assets

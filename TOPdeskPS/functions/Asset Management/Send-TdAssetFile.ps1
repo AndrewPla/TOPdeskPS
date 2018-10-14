@@ -1,4 +1,4 @@
-function Send-TdAssetFile {
+﻿function Send-TdAssetFile {
     <#
     .SYNOPSIS
         Upload a file to an incident identified

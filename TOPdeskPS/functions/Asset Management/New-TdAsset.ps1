@@ -1,4 +1,4 @@
-function New-TdAsset {
+﻿function New-TdAsset {
     <#
     .SYNOPSIS
         Create a new asset

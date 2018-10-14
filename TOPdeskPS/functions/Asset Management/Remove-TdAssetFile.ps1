@@ -1,4 +1,4 @@
-function Remove-TdAssetFile {
+﻿function Remove-TdAssetFile {
     <#
     .SYNOPSIS
         Removes file from an asset

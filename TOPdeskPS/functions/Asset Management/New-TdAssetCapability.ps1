@@ -1,4 +1,4 @@
-function New-TdAssetCapability {
+﻿function New-TdAssetCapability {
     <#
     .SYNOPSIS
         Create a new Asset Capability

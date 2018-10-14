@@ -1,4 +1,4 @@
-function Remove-TdAssetAssignment {
+﻿function Remove-TdAssetAssignment {
     <#
 	.SYNOPSIS
 		Remove an assignment from an asset.

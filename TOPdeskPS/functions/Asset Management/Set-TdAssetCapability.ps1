@@ -1,4 +1,4 @@
-function Set-TdAssetCapability {
+﻿function Set-TdAssetCapability {
     <#
     .SYNOPSIS
         Returns list of capabilities.

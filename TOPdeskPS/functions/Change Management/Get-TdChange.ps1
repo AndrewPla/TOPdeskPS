@@ -1,4 +1,4 @@
-function Get-TdChange {
+﻿function Get-TdChange {
     <#
 	.SYNOPSIS
 		Gets changes

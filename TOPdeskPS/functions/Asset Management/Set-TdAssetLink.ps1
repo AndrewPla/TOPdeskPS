@@ -1,4 +1,4 @@
-function Set-TdAssetLink {
+﻿function Set-TdAssetLink {
     <#
 	.SYNOPSIS
 		Links asset to target asset

@@ -1,4 +1,4 @@
-function Remove-TdAsset {
+﻿function Remove-TdAsset {
     <#
 	.SYNOPSIS
 		Deletes the given asset

@@ -1,4 +1,4 @@
-function Get-TdAssetTemplate {
+﻿function Get-TdAssetTemplate {
     <#
     .SYNOPSIS
         Gets Asset Templates
