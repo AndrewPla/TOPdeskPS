@@ -5,52 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdAssetLink
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Returns linked assets
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdAssetLink [-AssetId] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+This API returns a list of assets that are linked to a specificed asset provided as a parameter (sourceId).
+The list will include the following information about the linked assets: the name, id, type and properties of the icon of the asset; the type and id of the link; id and name of the used capability.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdAssetLink -AssetId $assetId
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Returns all linked assets for the $assetId.
 
 ## PARAMETERS
 
-### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
-Default value is '*'
+### -AssetId
+Id of the asset to return asset links for.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id, SourceId
 
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

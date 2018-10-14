@@ -5,40 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdTimeSpentReason
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets all time spent reasons
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdTimeSpentReason [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Gets all time spent reasons
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdTimeSpent
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Gets all time spent reasons
 
 ## PARAMETERS
 
 ### -Name
-Name of the subcategory that you want returned.
+Name of the time spent reason that you want returned.
 Wildcards are supported.
 Default value is '*'
 

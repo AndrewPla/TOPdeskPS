@@ -5,40 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdProcessingStatus
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets processing statuses
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdProcessingStatus [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Gets processing statuses
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdProcessingStatus
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Gets list of all processing statuses
 
 ## PARAMETERS
 
 ### -Name
-Name of the subcategory that you want returned.
+Name of the processing status that you want returned.
 Wildcards are supported.
 Default value is '*'
 

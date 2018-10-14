@@ -5,40 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdPermissionGroup
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Get permission groups
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdPermissionGroup [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Get permission groups
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdPermissionGroup
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Get permission groups
 
 ## PARAMETERS
 
 ### -Name
-Name of the subcategory that you want returned.
+Name of the permission group that you want returned.
 Wildcards are supported.
 Default value is '*'
 

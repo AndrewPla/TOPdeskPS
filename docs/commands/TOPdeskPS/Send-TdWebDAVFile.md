@@ -5,15 +5,16 @@ online version:
 schema: 2.0.0
 ---
 
-# Send-TdImportFile
+# Send-TdWebDAVFile
 
 ## SYNOPSIS
-Sends a file to your TOPdesk webdav import file
+Sends a file to your TOPdesk webdav share
 
 ## SYNTAX
 
 ```
-Send-TdImportFile [[-File] <FileInfo>] [-Credential] <PSCredential> [-EnableException] [<CommonParameters>]
+Send-TdWebDAVFile [[-File] <FileInfo>] [-Credential] <PSCredential> [-Folder] <FileInfo> [[-Url] <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,7 +26,7 @@ Common uses could be to regularly upload your users from a csv, or you could upl
 
 ### EXAMPLE 1
 ```
-Send-TdImportFile -Credential (Get-Credential) -File 'C:\Users.csv'
+Send-TdWebDAVFile -Credential (Get-Credential) -File 'C:\Users.csv' -Folder upload
 ```
 
 Uploads the C:\Users.csv file to TOPdesk using the credential specified in -Credential.
@@ -63,17 +64,43 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -EnableException
-Specify whether you want this command to throw an exception if it encounters an error.
+### -Folder
+Name of the TOPdesk webDAV folder that you want to upload a file into
+Valid Values:
+accesslogs
+csvexport
+database_backup
+import
+photos
+topsis
+upload
+web
 
 ```yaml
-Type: SwitchParameter
+Type: FileInfo
 Parameter Sets: (All)
 Aliases:
 
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Url
+This is the url to your TOPdesk instance.
+If you used Connect-TdService -Register then you don't need to specify one.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: TOPdeskUrl
+
 Required: False
-Position: Named
-Default value: False
+Position: 4
+Default value: (
+            Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -87,6 +114,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-See About_TOPdesk_files for more
+See Help About_TOPdesk_files for more
 
 ## RELATED LINKS

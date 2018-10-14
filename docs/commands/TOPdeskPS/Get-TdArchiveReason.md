@@ -5,41 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdArchiveReason
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets archive reasons
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdArchiveReason [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Can get all archive reasons, or specify which one you want by a Name lookup.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TDArchiveReason -Name 'No longer employed'
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Gets the archive reason with the name 'no longer employed'
 
 ## PARAMETERS
 
 ### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
+Name of the branch that you want returned.Wildcards are supported.
 Default value is '*'
 
 ```yaml

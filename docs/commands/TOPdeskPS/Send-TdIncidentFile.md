@@ -5,52 +5,58 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Send-TdIncidentFile
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Upload a file to an incident identified
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Send-TdIncidentFile [-Number] <String> [-File] <FileInfo> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Upload a file to an incident identified
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+<example usage>
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Explanation of what the example does
 
 ## PARAMETERS
 
-### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
-Default value is '*'
+### -Number
+The number of the incident that you want to upload a file to.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: IncidentNumber
 
-Required: False
+Required: True
 Position: 1
-Default value: *
+Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -File
+Path and name to the file that you want to upload to the incident.
+
+```yaml
+Type: FileInfo
+Parameter Sets: (All)
+Aliases: InFile
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

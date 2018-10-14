@@ -5,52 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdAssetDetail
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Returns additional information about assets
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdAssetDetail [-AssetId] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Get more information about Assets retrieved with Get-TdAsset
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdAsset | Get-TdAssetDetail
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Returns details for assets returned with Get-TdAsset
 
 ## PARAMETERS
 
-### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
-Default value is '*'
+### -AssetId
+Id of the asset that you want more details about
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: id
 
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -63,5 +54,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
+See https://developers.topdesk.com/explorer/?page=assets#/Assets/getAssets for more information.
 
 ## RELATED LINKS

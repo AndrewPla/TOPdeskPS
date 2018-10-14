@@ -5,52 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdAssetFieldValue
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Returns Asset field values
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdAssetFieldValue [-FieldId] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Lists asset fields
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdAssetField | Get-TdAssetFieldValue
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Returns asset fieldvalues for all Asset fields.
 
 ## PARAMETERS
 
-### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
-Default value is '*'
+### -FieldId
+Id of the field that you want the value for.
+See Get-TdAssetField
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: id
 
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

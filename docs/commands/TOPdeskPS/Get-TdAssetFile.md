@@ -5,52 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdAssetFile
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Lists files from an asset
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdAssetFile [-AssetId] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Lists files from an asset
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdAssetFile -AssetId $AssetId
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Returns files from asset $AssetId
 
 ## PARAMETERS
 
-### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
-Default value is '*'
+### -AssetId
+Id of the asset that you want files for
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

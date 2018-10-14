@@ -5,42 +5,34 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdChange
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets changes
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdChange [[-Change] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Returns a list of changes.
+Specify your change using the Change parameter
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdChange -Change 'C1810-1234'
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Get the change information
 
 ## PARAMETERS
 
-### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
-Default value is '*'
+### -Change
+Id or number of the change to modify
 
 ```yaml
 Type: String
@@ -49,7 +41,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: *
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

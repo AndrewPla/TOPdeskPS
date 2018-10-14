@@ -5,41 +5,48 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdBranch
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets Branches
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdBranch [-Archived] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Gets Branches
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdBranch
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Gets Branch
 
 ## PARAMETERS
 
+### -Archived
+Whether to retrieve archived incidents
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Name
-Name of the subcategory that you want returned.
-Wildcards are supported.
+Name of the branch that you want returned.Wildcards are supported.
 Default value is '*'
 
 ```yaml

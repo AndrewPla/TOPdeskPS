@@ -5,40 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdClosureCode
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets closure codes
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdClosureCode [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Gets closurec codes
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdClosureCode
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Gets list of all closurecodes
 
 ## PARAMETERS
 
 ### -Name
-Name of the subcategory that you want returned.
+Name of the closure code that you want returned.
 Wildcards are supported.
 Default value is '*'
 

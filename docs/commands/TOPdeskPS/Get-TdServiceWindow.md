@@ -5,40 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSubcategory
+# Get-TdServiceWindow
 
 ## SYNOPSIS
-Get subcategories from TOPdesk
+Gets all service windows
 
 ## SYNTAX
 
 ```
-Get-TdSubcategory [[-Name] <String>] [<CommonParameters>]
+Get-TdServiceWindow [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets either one subcategory or a list of subcategories from TOPdesk.
+Gets all service windows
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSubcategory
+Get-TdServiceWindow
 ```
 
-Gets a list of all subcategories
-
-### EXAMPLE 2
-```
-Get-TdSubcategory -Name 'Applications'
-```
-
-Gets the Subcategory with the name 'Applications'
+Gets list of all service windows
 
 ## PARAMETERS
 
 ### -Name
-Name of the subcategory that you want returned.
+Name of the service window that you want returned.
 Wildcards are supported.
 Default value is '*'
 
