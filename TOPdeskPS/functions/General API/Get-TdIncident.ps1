@@ -84,7 +84,7 @@
 
                 if ($PSBoundParameters.keys -contains 'Completed') {
                     Write-PSFMessage -Level InternalComment -Message "Completed = $Completed"
-                    $uri = "$uri&closed=$Closed"
+                    $uri = "$uri&completed=$Completed"
                 }
 
                 if ($PSBoundParameters.keys -contains 'Closed') {

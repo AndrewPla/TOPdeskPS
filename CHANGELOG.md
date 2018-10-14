@@ -6,6 +6,29 @@
 
 * New-TdChangeAction
 * Get-TdChangeActivity
+* Get-TdAsset
+* Get-TdAssetTemplateBlank
+* New-TdAsset
+* Get-TdAssetTemplate
+* Remove-TdAsset
+* Set-TdAsset
+* Get-TdAssetLink
+* Set-TdAssetLink
+* Get-TdAssetLinkPossibleRelation
+* Remove-TdAssetLink
+* Get-TdAssetAssignment
+* Add-TdAssetAssignment
+* Remove-TdAssetAssignment
+* Send-TdAssetFile
+* Get-TdAssetFile
+* Remove-TdAssetFile
+* Get-TdAssetField
+* Get-TdAssetFieldValue
+* Get-TdAssetCapability
+* Get-TdAssetDetail
+* Get-TdAssetCapabilityDetail
+* New-TdAssetCapability
+* Set-TdAssetCapability
 
 ### Fixed
 

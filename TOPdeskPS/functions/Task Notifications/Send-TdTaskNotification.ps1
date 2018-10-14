@@ -58,7 +58,7 @@
     if ($OperatorGroupId) {$internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupId -MemberType noteproperty}
     $Params = @{
         'Uri'    = $Uri
-        'Body'   = $internalBody
+        'Body'   = $internalBody | ConvertTo-Json
         'Method' = 'Post'
     }
     Invoke-TdMethod @Params

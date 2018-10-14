@@ -1,4 +1,4 @@
-function New-TdChangeAction {
+﻿function New-TdChangeAction {
     <#
     .SYNOPSIS
         Creates a new action for a change
@@ -8,6 +8,12 @@ function New-TdChangeAction {
         The UNID of the change.
     .PARAMETER MemoText
     The text of this progress trail entry, if it is of type 'memo’. May not contain only whitespace characters (Spaces, New Lines, Tabs) and may not be empty. Rich text is not supported when using this object to create a new progress trail entry.
+    	.PARAMETER Confirm
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+	.PARAMETER WhatIf
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
     .EXAMPLE
         PS C:\> <example usage>
         Explanation of what the example does
@@ -40,7 +46,7 @@ function New-TdChangeAction {
         $body
         $Params = @{
             'Uri'    = $url
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         Invoke-TdMethod @Params

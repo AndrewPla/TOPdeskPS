@@ -30,6 +30,12 @@
         UUID or name of the impact. example: Branch
     .PARAMETER Priority
         UUID or name of the priority. example: Low
+    .PARAMETER Confirm
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+	.PARAMETER WhatIf
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
     .EXAMPLE
         PS C:\> <example usage>
         Explanation of what the example does
@@ -150,7 +156,7 @@
         Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
             'Uri'    = $uri
-            'Body'   = $body
+            'Body'   = $body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("Request" , "Sending change request $BriefDescription")) {
