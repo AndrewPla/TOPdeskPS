@@ -8,7 +8,7 @@
         Id or number of the change to modify
 	.EXAMPLE
 		PS C:\> Get-TdChange -Change 'C1810-1234'
-		Get the change information
+		Get the change information for C1810-1234'
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
