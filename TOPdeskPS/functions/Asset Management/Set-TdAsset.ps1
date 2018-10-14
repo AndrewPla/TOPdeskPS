@@ -45,7 +45,6 @@
 	.EXAMPLE
 		PS C:\> Set-TdAsset -AssetId $AssetId
         Removes all assets with id's inside $assetId.
-    .NOTES see for more: https://developers.topdesk.com/explorer/?page=assets&version=1.5.1#/Assets/update
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Set-TdAsset',

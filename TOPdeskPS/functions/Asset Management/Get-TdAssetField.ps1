@@ -3,12 +3,12 @@
     .SYNOPSIS
         Lists asset fields
     .DESCRIPTION
-        Lists asset fields
+        Returns all asset fields contained inside TOPdesk.
     .EXAMPLE
         PS C:\> Get-TdAssetField
-        Returns asset fields
+        Returns all asset fields
         #>
-        [cmdletbinding()]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAssetField')]
     param(
     )
     $uri = (Get-TdUrl) + "/tas/api/assetmgmt/fields"

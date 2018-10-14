@@ -10,7 +10,8 @@
         PS C:\> New-TdAssetCapability -Name 'testCapability'
         Creates a new capability named 'testCapability'
 #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAssetCapabilityDetail')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdAssetCapability',
+        SupportsShouldProcess = $true)]
     param (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('id')]
@@ -21,6 +22,9 @@
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/capabilities"
         $body = [PSCustomObject]@{
             name = $name
+        }
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Creating asset capability.')) {
+            return
         }
         Invoke-TdMethod -Uri $uri -Body ($body | ConvertTo-Json) -Method POST
     }

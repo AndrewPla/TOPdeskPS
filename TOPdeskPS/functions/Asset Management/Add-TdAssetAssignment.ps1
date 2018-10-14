@@ -1,8 +1,8 @@
 ﻿function Add-TdAssetAssignment {
     <#
-	.SYNOPSIS
-		Adds an assignment to an asset
-	.DESCRIPTION
+    .SYNOPSIS
+    		Adds an assignment to an asset
+    .DESCRIPTION
 		Updates the given asset.It may be possible that one or more assets couldn’t be deleted because they have existing links from other components. In this case those assets’ ids will be listed in the ‘failed’ list of the response, but it doesn’t affect deletion of other assets.
     .PARAMETER AssetId
         ID of asset which is the subject of the assignment
@@ -19,10 +19,9 @@
 	.PARAMETER WhatIf
 		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 	.EXAMPLE
-		PS C:\> Set-TdAsset -AssetId $AssetId
+		PS C:\> Add-TdAssetAssignment -AssetId $AssetId
         Removes all assets with id's inside $assetId.
-    .NOTES see for more: https://developers.topdesk.com/explorer/?page=assets&version=1.5.1#/Assets/update
-#>
+    #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Add-TdAssetAssignment',
         SupportsShouldProcess = $true)]
@@ -72,8 +71,8 @@
             }
         }
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $body | ConvertTo-Json
             'Method' = 'Put'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'adding asset assignment.')) {

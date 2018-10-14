@@ -8,6 +8,8 @@
         The number of the incident that you want to upload a file to.
     .PARAMETER File
         Path and name to the file that you want to upload to the incident.
+    .PARAMETER AssetID
+        Id of the asset that you want to send a file to. See Get-TdAsset
     .EXAMPLE
         PS C:\> <example usage>
         Explanation of what the example does
@@ -87,9 +89,9 @@
         ) -join $LF
         Write-PSFMessage $bodyLines -Level debug
         $params = @{
-            Uri         = $Uri
-            Body        = $bodyLines
-            Method      = 'Post'
+            Uri = $Uri
+            Body = $bodyLines
+            Method = 'Post'
             ContentType = "multipart/form-data; boundary=$boundary"
         }
         Invoke-TdMethod @params

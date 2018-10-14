@@ -4,11 +4,13 @@
         Returns Asset field values
     .DESCRIPTION
         Lists asset fields
+    .PARAMETER FieldId
+        Id of the field that you want the value for. See Get-TdAssetField
     .EXAMPLE
-        PS C:\> Get-TdAssetField
-        Returns asset fields
+        PS C:\> Get-TdAssetField | Get-TdAssetFieldValue
+        Returns asset fieldvalues for all Asset fields.
         #>
-    [cmdletbinding()]
+    [cmdletbinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAssetFieldValue')]
     param(
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('id')]

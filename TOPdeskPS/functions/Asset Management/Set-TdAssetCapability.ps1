@@ -12,7 +12,8 @@
         PS C:\> Get-TdAssetCapability | where name -like 'test' | Set-TdAssetCapability -name 'newtest'
         Updates the name of capability 'test' to 'newtest'
 #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdAssetCapability')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdAssetCapability',
+        SupportsShouldProcess = $true)]
     param (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('id')]
@@ -32,6 +33,9 @@
             uri = $uri
             body = $body | ConvertTo-Json
             method = 'POST'
+        }
+           if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'setting asset capability.')) {
+            return
         }
         Invoke-TdMethod @params
     }

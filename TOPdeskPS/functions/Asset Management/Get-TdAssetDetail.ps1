@@ -4,6 +4,8 @@
         Returns additional information about assets
     .DESCRIPTION
         Get more information about Assets retrieved with Get-TdAsset
+    .PARAMETER AssetId
+        Id of the asset that you want more details about
     .EXAMPLE
         PS C:\> Get-TdAsset | Get-TdAssetDetail
         Returns details for assets returned with Get-TdAsset
