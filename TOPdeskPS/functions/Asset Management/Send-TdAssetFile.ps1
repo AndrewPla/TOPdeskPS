@@ -1,4 +1,4 @@
-﻿function Send-TdIncidentFile {
+﻿function Send-TdAssetFile {
     <#
     .SYNOPSIS
         Upload a file to an incident identified
@@ -8,17 +8,20 @@
         The number of the incident that you want to upload a file to.
     .PARAMETER File
         Path and name to the file that you want to upload to the incident.
+    .PARAMETER AssetID
+        Id of the asset that you want to send a file to. See Get-TdAsset
     .EXAMPLE
         PS C:\> <example usage>
         Explanation of what the example does
     #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdIncidentFile')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdAssetFile')]
     param (
 
-        [Alias('IncidentNumber')]
-        [Parameter(Mandatory)]
-        [string]
-        $Number,
+        [Parameter(Mandatory = $true,
+            ValueFromPipelineByPropertyName = $true)]
+        [Alias('Id')]
+        [system.string]
+        $AssetId,
 
         [Alias('InFile')]
         [Parameter(Mandatory, ValueFromPipeline, ValuefromPipelineByPropertyName)]
@@ -49,8 +52,12 @@
 
     }
     process {
-        $uri = (Get-TdUrl) + "/tas/api/incidents/number/$Number/attachments"
+        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
+        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
+
+        $uri = (Get-TdUrl) + "/tas/api/assetmgmt/uploads/?assetId=$AssetId"
         Write-PSFMessage "Uri - $uri" -Level debug
+
         #TODO throw this into an internal function and clean this up a bit.
         $fileName = Split-Path $File -leaf
         $boundary = [guid]::NewGuid().ToString()
@@ -82,9 +89,9 @@
         ) -join $LF
         Write-PSFMessage $bodyLines -Level debug
         $params = @{
-            Uri         = $Uri
-            Body        = $bodyLines
-            Method      = 'Post'
+            Uri = $Uri
+            Body = $bodyLines
+            Method = 'Post'
             ContentType = "multipart/form-data; boundary=$boundary"
         }
         Invoke-TdMethod @params

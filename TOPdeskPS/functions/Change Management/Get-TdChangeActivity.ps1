@@ -10,11 +10,11 @@
     .PARAMETER Archived
 		Whether to only retrieve archived changes or not.
 	.EXAMPLE
-		PS C:\> Get-TdChangeactivities
-		Grabs change activitites
+		PS C:\> Get-TdChangeActivity -Change 'C1801-123'
+		Grabs change activitites for C1801-123
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeActivity')]
     param
     (
         [Parameter(ParameterSetName = 'query')]
@@ -35,21 +35,17 @@
         Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
 
 
-        if ($PSCmdlet.ParameterSetName -match 'Query'){
-                #TODO make this look nicer
-                $uri = $uri + '/?'
-                foreach ($chan in $change) {
-                    $uri = $uri + "change=$chan&"
-                }
-                if ($PSBoundParameters.keys -contains 'Archive') {
-                    $uri = $uri + "archive=$Archive"
-                }
-                if ($Uri[-1] -match '&'){
-                    Write-PSFMessage 'Trimming &' -Level debug
-                    $RemoveCount = $uri.length - 1
-                    $uri.remove($removeCount)
-                }
+        if ($PSCmdlet.ParameterSetName -match 'Query') {
+            #TODO make this look nicer
+            $uri = $uri + '/?'
+            foreach ($chan in $change) {
+                $uri = $uri + "change=$chan&"
             }
+            if ($PSBoundParameters.keys -contains 'Archive') {
+                $uri = $uri + "archive=$Archive&"
+            }
+
+        }
 
 
         $params = @{

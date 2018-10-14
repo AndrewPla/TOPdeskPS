@@ -66,6 +66,10 @@
         Id of the person's manager.
     .PARAMETER BudgetHolderId
         The Id of the poerson's budgetholder
+    .PARAMETER Confirm
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+	.PARAMETER WhatIf
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
     .EXAMPLE
         PS C:\> New-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This is the minimum required to create a person: BranchId and a lastname.
@@ -269,8 +273,8 @@
         }
 
        	$Params = @{
-            'Uri'    = $uri
-            'Body'   = $Body
+            'Uri' = $uri
+            'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("The Request" , "Creating new change request")) {
