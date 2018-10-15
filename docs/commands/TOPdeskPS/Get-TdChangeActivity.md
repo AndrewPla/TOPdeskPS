@@ -5,43 +5,59 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdChange
+# Get-TdChangeActivity
 
 ## SYNOPSIS
-Gets changes
+Gets change activities
 
 ## SYNTAX
 
 ```
-Get-TdChange [[-Change] <String>] [<CommonParameters>]
+Get-TdChangeActivity [-Change <String[]>] [-Archived] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Returns a list of changes.
-Specify your change using the Change parameter
+This command returns change activitites.
+This returns changes available to the account used with Connect-TdService.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdChange -Change 'C1810-1234'
+Get-TdChangeActivity -Change 'C1801-123'
 ```
 
-Get the change information for C1810-1234'
+Grabs change activitites for C1801-123
 
 ## PARAMETERS
 
 ### -Change
-Id or number of the change to modify
+Id or number of the parent change
+This is a repeatable filter parameter
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Archived
+Whether to only retrieve archived changes or not.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
