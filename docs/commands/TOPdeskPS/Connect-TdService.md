@@ -8,18 +8,17 @@ schema: 2.0.0
 # Connect-TdService
 
 ## SYNOPSIS
-Connects to the TOPdesk
+Prepares your session for TOPdeskPS
 
 ## SYNTAX
 
 ```
 Connect-TdService [-Credential] <PSCredential> [[-UserType] <Object>] [-PassThru] [[-Url] <String>] [-Register]
- [-EnableException] [<CommonParameters>]
+ [-ApplicationPassword] [-EnableException] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Sends a login request and saves the login token.
-This command can also be used to generate new
+This command either generates a login token if you provide TOPdesk credentials or this will generate the headers if you are using an application password (use -ApplicationPassword)
 
 ## EXAMPLES
 
@@ -32,10 +31,12 @@ Prompts you for your TOPdesk credentials and then connects to TOPdesk.
 
 ### EXAMPLE 2
 ```
-Connect-TdService -Credential $Cred -Url 'https://company.topdesk.net' -Register
+Connect-TdService -Credential $Cred -Url 'https://company.topdesk.net:90' -Register -ApplicationPassword
 ```
 
-Connects to TOPdesk and save the Url so you don't need to enter it the next time you run connect-tdservice
+Generates a header that is specific to Application Passowrds.
+The Url will be registered so you don't need to enter it the next time you run connect-tdservice.
+We will be using port 90.
 
 ## PARAMETERS
 
@@ -106,6 +107,22 @@ Accept wildcard characters: False
 ### -Register
 Saves your TOPdesk url so you don't need to manually specify it each time.
 For more information see about_TOPdeskPS_Registration
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ApplicationPassword
+Specify whether you are supplying an application password credential rather than a TOPdesk credential.
+The credential still needs to be provided to the Credential parameter.
 
 ```yaml
 Type: SwitchParameter

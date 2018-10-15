@@ -22,6 +22,7 @@
  - [Get-TdCallType](TOPdeskPS/Get-TdCallType.html)
  - [Get-TdCategory](TOPdeskPS/Get-TdCategory.html)
  - [Get-TdChange](TOPdeskPS/Get-TdChange.html)
+ - [Get-TdChangeActivity](TOPdeskPS/Get-TdChangeActivity.html)
  - [Get-TdClosureCode](TOPdeskPS/Get-TdClosureCode.html)
  - [Get-TdCountry](TOPdeskPS/Get-TdCountry.html)
  - [Get-TdDeescalationReason](TOPdeskPS/Get-TdDeescalationReason.html)
