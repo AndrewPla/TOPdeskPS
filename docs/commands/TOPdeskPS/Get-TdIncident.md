@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-TdIncident
 
 ## SYNOPSIS
-Grabs Incidents from TOPdesk
+Gets incidents
 
 ## SYNTAX
 
@@ -39,7 +39,7 @@ Grabs a list of 10 incidents
 ## PARAMETERS
 
 ### -PageSize
-The Amount of incidents to be returned per request.
+The amount of incidents to be returned per request.
 The default value is 10 and the maximum value is 100.
 
 ```yaml
@@ -55,9 +55,8 @@ Accept wildcard characters: False
 ```
 
 ### -Start
-This is the offset at which you want to start listing incidents at.
+This is the offset at which you want to start listing incidents.
 This is useful if you want to grab more than 100 incidents.
-
 The default value is 0.
 
 ```yaml

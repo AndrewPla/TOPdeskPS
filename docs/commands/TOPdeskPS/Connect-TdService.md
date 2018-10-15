@@ -8,7 +8,7 @@ schema: 2.0.0
 # Connect-TdService
 
 ## SYNOPSIS
-Connects to the TOPdesk Service
+Connects to the TOPdesk
 
 ## SYNTAX
 
@@ -18,28 +18,29 @@ Connect-TdService [-Credential] <PSCredential> [[-UserType] <Object>] [-PassThru
 ```
 
 ## DESCRIPTION
-Establishes a connection to TOPdesk.
+Sends a login request and saves the login token.
+This command can also be used to generate new
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Connect-TdService
+Connect-TdService -Url 'https://company.topdesk.net' -Credential (Get-Credential)
 ```
 
 Prompts you for your TOPdesk credentials and then connects to TOPdesk.
 
 ### EXAMPLE 2
 ```
-Connect-TdService -Credential $Cred
+Connect-TdService -Credential $Cred -Url 'https://company.topdesk.net' -Register
 ```
 
-Connects to TOPdesk using the credential stored in the variable Cred
+Connects to TOPdesk and save the Url so you don't need to enter it the next time you run connect-tdservice
 
 ## PARAMETERS
 
 ### -Credential
-A description of the Credential parameter.
+Credentials used to access TOPdesk.
 
 ```yaml
 Type: PSCredential
@@ -54,7 +55,8 @@ Accept wildcard characters: False
 ```
 
 ### -UserType
-A description of the UserType parameter.
+Specify whether you want to login as a person or an operator.
+Default value: operator
 
 ```yaml
 Type: Object
@@ -70,7 +72,7 @@ Accept wildcard characters: False
 
 ### -PassThru
 Passes the login token through to the console.
-Can be useful for troubleshooting or if you want to generate a login token to be consumed by a different applicaiton.
+Can be useful for troubleshooting or if you want to generate a login token to be consumed by a different application.
 
 ```yaml
 Type: SwitchParameter
@@ -85,8 +87,8 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-This is the Url of your topdesk instance.
-Example: 'Company.TOPdesk.net'
+This is the Url of your TOPdesk instance.
+You must add https:// Example: 'https://Company.TOPdesk.net'
 
 ```yaml
 Type: String
@@ -96,14 +98,14 @@ Aliases:
 Required: False
 Position: 3
 Default value: (
-			Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull)
+            Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Register
 Saves your TOPdesk url so you don't need to manually specify it each time.
-For more information
+For more information see about_TOPdeskPS_Registration
 
 ```yaml
 Type: SwitchParameter

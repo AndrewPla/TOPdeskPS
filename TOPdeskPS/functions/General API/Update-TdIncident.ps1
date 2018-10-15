@@ -148,7 +148,7 @@
 
         $Params = @{
             'Uri'    = $IncidentURL
-            'Body'   = $Body
+            'Body'   = $Body | ConvertTo-Json
             'Method' = 'Put'
         }
 

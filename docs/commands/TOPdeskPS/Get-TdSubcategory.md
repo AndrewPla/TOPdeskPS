@@ -38,8 +38,9 @@ Gets the Subcategory with the name 'Applications'
 ## PARAMETERS
 
 ### -Name
-This is the name of the subcategory that you want.
-This can be useful if you want to pass a subcategory id to a different command.
+Name of the subcategory that you want returned.
+Wildcards are supported.
+Default value is '*'
 
 ```yaml
 Type: String
@@ -48,7 +49,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

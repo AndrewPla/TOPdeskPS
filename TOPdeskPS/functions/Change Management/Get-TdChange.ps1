@@ -3,34 +3,35 @@
 	.SYNOPSIS
 		Gets changes
 	.DESCRIPTION
-		This command returns changes. This returns changes available to the account used with Connect-TdService.
+        Returns a list of changes. Specify your change using the Change parameter
+    .PARAMETER Change
+        Id or number of the change to modify
 	.EXAMPLE
-		PS C:\> Get-TdChange
-		Grabs changes
+		PS C:\> Get-TdChange -Change 'C1810-1234'
+		Get the change information for C1810-1234'
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
     param
     (
+        [system.string]$Change
     )
 
     begin {
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-        $Uri = (Get-TdUrl) + '/tas/api/operatorChangeActivities'
+        $Uri = (Get-TdUrl) + '/tas/api/operatorChanges'
         Write-PSFMessage -Level InternalComment -Message "Uri - $Uri"
     }
     process {
         Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
         Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
+        $uri = $uri + "/$Change"
         $params = @{
             'uri' = $uri
+            Method = 'Get'
         }
         $res = Invoke-TdMethod @params
-
-        foreach ($incident in $res.results) {
-            $incident
-        }
-        #TODO add some filtering so we only return relevant results. May
+        $res
     }
     end {
     }

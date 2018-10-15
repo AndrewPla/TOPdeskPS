@@ -1,6 +1,41 @@
 # TOPdeskPS Release History
 
-## 0.0.5 - ?/?/2018
+## 0.0.6 - 10/14/2018
+
+### Added
+
+* New-TdChangeAction
+* Get-TdChangeActivity
+* Get-TdAsset
+* Get-TdAssetTemplateBlank
+* New-TdAsset
+* Get-TdAssetTemplate
+* Remove-TdAsset
+* Set-TdAsset
+* Get-TdAssetLink
+* Set-TdAssetLink
+* Get-TdAssetLinkPossibleRelation
+* Remove-TdAssetLink
+* Get-TdAssetAssignment
+* Add-TdAssetAssignment
+* Remove-TdAssetAssignment
+* Send-TdAssetFile
+* Get-TdAssetFile
+* Remove-TdAssetFile
+* Get-TdAssetField
+* Get-TdAssetFieldValue
+* Get-TdAssetCapability
+* Get-TdAssetDetail
+* Get-TdAssetCapabilityDetail
+* New-TdAssetCapability
+* Set-TdAssetCapability
+
+### Fixed
+
+* Get-TdChange now returns the proper changes
+* #30 Connect-TdService now supports using application passwords using the ApplicationPassword parameter.
+
+## 0.0.5 - 9/30/2018
 
 ### Added
 

@@ -12,6 +12,7 @@ These quick start guides are designed to get you up and running with TOPdeskPS.
 
 
 ### Assign Proper API Permissions
+
 If you haven't used the TOPdesk API before you will need to get an account with permissions to access the API.
 
 Create a separate permission group that only allows the use of the API. Enable permissions for "Use Application passwords" and "REST API"
@@ -19,7 +20,12 @@ Create a separate permission group that only allows the use of the API. Enable p
 Link the newly created permission group to users that should be able to use the API. The permissions/rights for the other modules can come from other permission groups.
 
 ### Installing TOPdeskPS
+
 TOPdeskPS is hosted on the PowerShell Gallery and can be installed by running Install-Module.
+
 ```powershell
 Install-Module TOPdeskPS -Repository PSGallery -Scope CurrentUser
 ```
+
+### Contributing to TOPdeskPS
+

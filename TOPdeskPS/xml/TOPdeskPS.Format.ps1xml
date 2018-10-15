@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<ViewDefinitions>
 		<View>
@@ -40,19 +40,19 @@
 			</ViewSelectedBy>
 			<TableControl>
 			<TableHeaders>
-				  
+
 				  <TableColumnHeader>
 					<Width>25</Width>
 				  </TableColumnHeader>
-				  
+
 				  <TableColumnHeader>
 					<Width>25</Width>
 				  </TableColumnHeader>
-				  
+
 				  <TableColumnHeader>
 					<Width>45</Width>
 				  </TableColumnHeader>
-				 
+
 				</TableHeaders>
 			<TableRowEntries>
 			  <TableRowEntry>
