@@ -153,7 +153,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('TOPdesk', 'API', 'ITSM', 'ITIL', 'Incident', 'Ticket', 'Tickets')
+            Tags = @('TOPdesk', 'API', 'ITSM', 'ITIL', 'Incident', 'Ticket')
 
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/AndrewPla/TOPdeskPS/blob/master/LICENSE.md'

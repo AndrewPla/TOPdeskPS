@@ -18,7 +18,11 @@
         [system.string]
         $AssetId
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId/assignments"
-    Invoke-TdMethod -Uri $uri
+    process {
+        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
+        $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId/assignments"
+        $res = Invoke-TdMethod -Uri $uri
+        $res | Add-Member -MemberType NoteProperty -Name AssetId -Value $AssetId
+        $res
+    }
 }
