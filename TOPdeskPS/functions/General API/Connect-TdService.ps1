@@ -85,8 +85,7 @@
             Method = "GET"
             Headers = $headers
         }
-        try { $result = Invoke-RestMethod @params -ErrorAction Stop }
-        catch { Write-Warning 'Unable to get a login token. If you provided an application password please use the ApplicationPassword parameter.' }
+     $result = Invoke-RestMethod @params -ErrorAction Stop
         if ($result.item.name -like 'item') {
             Stop-PSFFunction -Message 'invalid url given.' -EnableException $EnableException -Cmdlet $PSCmdlet
             return
