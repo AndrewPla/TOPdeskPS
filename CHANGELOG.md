@@ -1,6 +1,6 @@
 # TOPdeskPS Release History
 
-## 0.0.6 - ??????
+## 0.0.6 - 10/14/2018
 
 ### Added
 
@@ -33,6 +33,7 @@
 ### Fixed
 
 * Get-TdChange now returns the proper changes
+* #30 Connect-TdService now supports using application passwords using the ApplicationPassword parameter.
 
 ## 0.0.5 - 9/30/2018
 
