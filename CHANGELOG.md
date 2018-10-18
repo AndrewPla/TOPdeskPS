@@ -1,5 +1,19 @@
 # TOPdeskPS Release History
 
+## 0.0.7 - ????
+
+### Added
+
+* Get-TdBranchFilter- Thanks Michael!
+* Get-TdCategoryFilter
+* Get-TdOperatorFilter
+* Get-TdOperatorOperatorGroup
+
+### Fixed
+
+*
+
+
 ## 0.0.6 - 10/14/2018
 
 ### Added
