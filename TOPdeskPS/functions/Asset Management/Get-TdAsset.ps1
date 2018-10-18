@@ -85,8 +85,6 @@
                 Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty results
             }
         }
-
-
     }
     end {
     }
