@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest schemaVersion="1.1" templateType="Item" 
+  xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>NewFunction</name>
+    <id>73d35565-c006-4d56-b532-d12e1c49cfec</id>
+    <version>1.0.0</version>
+    <title>Get-function</title>
+    <description></description>
+    <author></author>
+    <tags></tags>
+  </metadata>
+  <parameters>
+    <parameter name='FunctionName' type='text' prompt='Enter the name of the function'/>
+    <parameter name='Synopsis' type='text' prompt='Synposis to be put into help'/>
+    <parameter name='Description' type='text' prompt='Enter descript to be put into help'/>
+    <parameter name='ExampleCode' type='text' prompt='Enter code to be put into example'/>
+    <parameter name='ExampleText' type='text' prompt='describe the example'/>
+    <parameter name='ApiEndpoint' type='text' prompt='Enter the api endpoint (what comes after /tas/api/) eg: operators/&#36;id/branch'/>
+    <parameter name ='Method' type='choice' prompt='enter the Method for the request'>
+      <choice label = '&amp;GET' help='method of the request' value="GET" />
+      <choice label = '&amp;Not Get' help='You will be sending a non-Get req.' value="notGET" />
+    </parameter>
+    <parameter name='FunctionScope' type='choice' prompt='Select the scope of the function:' default='0' store='text'>
+      <choice label='&amp;Public' help="Public exported module function" value="Public"/>
+      <choice label='&amp;internal' help="Private internal module function" value="internal"/>
+    </parameter>
+    <parameter name='ApiName' type='choice' prompt='Select the api that this command use:' default='0' store='text'>
+      <choice label='&amp;General API' value="General API"/>
+      <choice label='&amp;Asset Management' value="Asset Management"/>
+      <choice label='&amp;Supporting Files' value="Supporting Files"/>
+      <choice label='&amp;Task Notifications' value="Task Notifications"/>
+    </parameter>
+  </parameters>
+  <content>
+    <templateFile condition="$PLASTER_PARAM_Method -eq 'GET'" source='GETfunction.txt' destination='TOPdeskPS\functions\${PLASTER_PARAM_ApiName}\${PLASTER_PARAM_FunctionName}.ps1'/>
+    <templateFile condition="$PLASTER_PARAM_Method -eq 'notGET'" source='POSTfunction.txt' destination='TOPdeskPS\functions\${PLASTER_PARAM_ApiName}\${PLASTER_PARAM_FunctionName}.ps1'/>
+  </content>
+</plasterManifest>

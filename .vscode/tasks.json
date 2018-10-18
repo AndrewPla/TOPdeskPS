@@ -64,6 +64,11 @@
             "type": "shell",
             "command": "${cwd}/build.ps1 -Pester -Verbose",
             "problemMatcher": "$pester"
+        },
+        {
+            "label": "Plaster New Function",
+            "type": "shell",
+            "command": "Invoke-Plaster -templatepath ./templates/NewFunction -destinationpath ./"
         }
     ]
 }
