@@ -277,10 +277,11 @@
             'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
-        if ($PSCmdlet.ShouldProcess("The Request" , "Creating new change request")) {
-            Invoke-TdMethod @Params
-        }
 
+        if (-not (Test-PSFShouldProcess -PSCmdlet PSCmdlet -Target $uri -Action 'creating new person')) {
+            return
+        }
+        Invoke-TdMethod @params
     }
 
     end {
