@@ -26,10 +26,11 @@ function <%=$PLASTER_PARAM_FunctionName%> {
         $body = [PSCustomObject]@{}
 
 
-        if (-not (Test-PSFShouldProcess -PSCmdlet PSCmdlet -Target $uri -Action 'Sending Request')) {
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Sending Request')) {
         return
         }
-        Invoke-TdMethod -Uri $uri -Body $body -Method '<%=$PLASTER_PARAM_Method%>'
+        $res =Invoke-TdMethod -Uri $uri -Body ($body | Convertto-json) -Method MethodName
+        $res
     }
     end {
         Write-PSFMessage "Function Complete" -level verbose

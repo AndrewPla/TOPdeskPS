@@ -23,7 +23,8 @@ function <%=$PLASTER_PARAM_FunctionName%> {
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level internalcomment
 
         $uri = (Get-TdUrl) + "/tas/api/<%=$PLASTER_PARAM_ApiEndpoint%>"
-        Invoke-TdMethod -Uri $uri
+        $res = Invoke-TdMethod -Uri $uri
+        $res
     }
     end {
         Write-PSFMessage "Function Complete" -level verbose
