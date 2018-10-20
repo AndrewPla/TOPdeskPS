@@ -1,4 +1,5 @@
-﻿function New-TdDepartment {
+﻿#TODO Update help
+function New-TdDepartment {
     <#
 .SYNOPSIS
     Creates a new Department
@@ -8,7 +9,7 @@
     PS C:\> New-TdDepartment -Name 'TestDepartment'
     Creates a new Department named 'TestDepartment'
 #>
-[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdDepartment',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdDepartment',
         SupportsShouldProcess = $true)]
     param
     (
@@ -19,7 +20,7 @@
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-        }
+    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
@@ -38,7 +39,7 @@
         }
 
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Sending Request')) {
-        return
+            return
         }
         Invoke-TdMethod -Uri $uri -Body ($body | Convertto-json) -Method POST
     }

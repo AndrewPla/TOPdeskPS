@@ -1,17 +1,20 @@
 ﻿function New-TdBudgetHolder {
     <#
-.SYNOPSIS
-    Creates new BudgetHolder
-.DESCRIPTION
-    creates new budgetholder
-.PARAMETER Name
-    The name of the budget holder.
-.PARAMETER ExternalLinkID
-    Id of the entity in the external system
-
+    .SYNOPSIS
+        Creates new BudgetHolder
+    .DESCRIPTION
+        creates new budgetholder
+    .PARAMETER Name
+        The name of the budget holder.
+    .PARAMETER ExternalLinkID
+        Id of the entity in the external system
+    .PARAMETER Confirm
+        If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+    .PARAMETER WhatIf
+        If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
     .PARAMETER ExternalLinkType
-    The Type of the link.
-.EXAMPLE
+        The Type of the link.
+    .EXAMPLE
     PS C:\> New-TdBudgetHolder -Name 'Management'
     Creates a new budget holdernamed 'management'
 #>

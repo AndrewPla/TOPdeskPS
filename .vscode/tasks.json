@@ -69,6 +69,11 @@
             "label": "Plaster New Function",
             "type": "shell",
             "command": "Invoke-Plaster -templatepath ./templates/NewFunction -destinationpath ./"
+        },
+        {
+            "label": "Import-Module to Console",
+            "type": "shell",
+            "command": "Import-Module ./TOPdeskPS -Verbose;if(-not $cred){$cred = Get-credential};connect-tdService $cred"
         }
     ]
 }

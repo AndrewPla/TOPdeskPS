@@ -8,6 +8,12 @@
 * Get-TdCategoryFilter
 * Get-TdOperatorFilter
 * Get-TdOperatorOperatorGroup
+* Get-TdOperatorAvatar
+* Get-TdPersonAvatar
+* Get-TdDepartment
+* New-TdBranch
+* Set-TdBranch
+* New-TdBudgetHolder
 
 ### Fixed
 

@@ -18,15 +18,15 @@
 	"IfShouldProcess": {
 		"prefix": "IfShouldProcess",
 		"body": [
-			"if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target ${1:$uri} -Action ${0:Sending Request})) {",
+			"if (-not (Test-PSFShouldProcess -PSCmdlet $$PSCmdlet -Target ${1:$uri} -Action ${0:Sending Request})) {",
 			"return",
 			"}"
 		],
 		"description": "an example of using Shouldprocess. This is required for any Set- or Remove- command and should be inserted before the action takes place."
 	},
-	"ParameterConfirm/WhatifHelp": {
+	"HelpParameterConfirm/Whatif": {
 		"scope": "powershell",
-		"prefix": "Parameter Confirm/Whatif Help",
+		"prefix": "HelpParameter Confirm/Whatif",
 		"body": [
 			".PARAMETER Confirm",
 			"/tIf this switch is enabled, you will be prompted for confirmation before executing any operations that change state.",
@@ -35,17 +35,68 @@
 		],
 		"description": "Contains parameter help for both parameters that are added when you use SupportShouldProcess"
 	},
-	"Param PropertyId": {
-		"prefix": "propertyId - param",
+	"ParamObjectId": {
+		"prefix": "Parameter - ObjectId ",
 		"body": [
 			"[Parameter(",
 			"mandatory = $$true,",
-			"ParameterSetName = 'PersonId',",
+			"ParameterSetName = '${1:Object}',",
 			"ValueFromPipelineByPropertyName",
 			")]",
 			"[Alias('Id')]",
-			"$$PersonId]",
+			"$${1:Object}",
 		],
-		"description": "code inside param block for a property id"
+		"description": "code inside param block for a branch id"
+	},
+	"Help ObjectId Param": {
+		"prefix": "Help param - objectid",
+		"body": [
+			".PARAMETER ${1:object}Id",
+			"ID of the ${1:object}. See Get-Td${1:object}"
+		],
+		"description": "ObjectId parameter for comment based help"
+	},
+	"Help Param": {
+		"prefix": "help param",
+		"body": [
+			".PARAMETER ${1}",
+			"/t",
+		],
+		"description": "Name for comment based help"
+	},
+	"Standard body argument": {
+		"prefix": "Switch Body builder argument",
+		"body": [
+			"$${1:Param}, {",
+			"$$Body | Add-Member -MemberType NoteProperty -Name '${2:name of Value }' -Value $${1:label}",
+			"}",
+		],
+		"description": "a standard body member addition"
+	},
+	"Switch body Construction": {
+		"prefix": "Switch body Construction",
+		"body": [
+			"switch ($$PSBoundParameters.Keys) {",
+			"${1:ParameterName} {",
+			"$$body | Add-Member -MemberType NoteProperty -Name '${2:Property Name}' -Value ${1:ParameterName}",
+			"}",
+			"${2:Parameter with object} {",
+			"$$obj = @{",
+			"${3:key} = ${4:value}",
+			"}",
+			"$body | Add-Member -MemberType NoteProperty -Name '${5:valueName}' -Value $$obj",
+			"}",
+			"}",
+		],
+		"description": "switch statement used to put together the body of requests."
+	},
+	"Uri Constructor Switch statement": {
+		"prefix": "Uri Constructor Switch Statement",
+		"body": [
+			"$uri = \"$IncidentURL/?start=$Start&page_size=$PageSize\"",
+			"if ($PSBoundParameters.keys -contains '${1:parameter}') {",
+			"$$uri = \"$uri&${1:parameter}=$${1:parameter}",
+		],
+		"description": "use parameters to construct a uri"
 	}
 }

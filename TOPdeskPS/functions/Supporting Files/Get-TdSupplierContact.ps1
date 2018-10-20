@@ -17,7 +17,6 @@
         The default value is 0.
     .PARAMETER SupplierId
     ID of the Supplier. See Get-TdSupplier
-
     .EXAMPLE
     PS C:\> Get-TdSuppliercontact
     Returns list of supplier contacts
