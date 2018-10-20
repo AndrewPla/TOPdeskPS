@@ -5,28 +5,28 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdCountry
+# Get-TdDepartment
 
 ## SYNOPSIS
-gets list of countries
+returns list of departments
 
 ## SYNTAX
 
 ```
-Get-TdCountry [<CommonParameters>]
+Get-TdDepartment [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-gets list of countries
+returns list of departments
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdCountry
+Get-TdDepartment
 ```
 
-gets list of countries
+returns list of departments
 
 ## PARAMETERS
 

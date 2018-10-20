@@ -5,59 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdBranch
+# Get-TdLocationDetail
 
 ## SYNOPSIS
-Gets Branches
+Gets location details
 
 ## SYNTAX
 
 ```
-Get-TdBranch [-Archived] [[-Name] <String>] [<CommonParameters>]
+Get-TdLocationDetail [-LocationId] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets Branches
+Returns details of location by id
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdBranch
+Get-TdLocation | Get-TdLocationDetail
 ```
 
-Gets Branches
+returns details for all locations
 
 ## PARAMETERS
 
-### -Archived
-Whether to retrieve archived incidents
+### -LocationId
+Id of the location that you want returned.
+See Get-TdLocation
 
 ```yaml
-Type: SwitchParameter
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-Name of the branch that you want returned.Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

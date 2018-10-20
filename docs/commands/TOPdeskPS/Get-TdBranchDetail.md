@@ -5,59 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdBranch
+# Get-TdBranchDetail
 
 ## SYNOPSIS
-Gets Branches
+Gets details of a branch
 
 ## SYNTAX
 
 ```
-Get-TdBranch [-Archived] [[-Name] <String>] [<CommonParameters>]
+Get-TdBranchDetail -BranchId <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets Branches
+Gets details of a branch by branchId
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdBranch
+Get-TdBranchDetails -BranchId (Get-TdBranch -name 'examplebranch').id
 ```
 
-Gets Branches
+Returns details about 'examplebranch'
 
 ## PARAMETERS
 
-### -Archived
-Whether to retrieve archived incidents
+### -BranchId
+ID of the branch.
+See Get-TdBranch
 
 ```yaml
-Type: SwitchParameter
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-Name of the branch that you want returned.Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

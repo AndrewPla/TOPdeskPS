@@ -1,9 +1,11 @@
-function Get-TdCategoryFilter {
+﻿function Get-TdCategoryFilter {
     <#
     .SYNOPSIS
         Get list of category filters
     .DESCRIPTION
         Get list of category filters or return the category filters for a provided user
+    .PARAMETER OperatorId
+        ID of the Operator. See Get-TdOperator
     .EXAMPLE
         PS C:\> Get-TdCategoryFilter
         Gets list of category filters
@@ -24,12 +26,13 @@ function Get-TdCategoryFilter {
 
         switch ($PSCmdlet.ParameterSetName) {
             'OperatorId' {
-                $uri = (Get-TdUrl) + "/tas/api/operators/id/$OperatorId/filters/category"
+                $uri = "$(Get-TdUrl)/tas/api/operators/id/$OperatorId/filters/category"
             }
             '__AllParameterSets' {
-                $uri = (Get-TdUrl) + '/tas/api/operators/filters/category'
+                $uri = "$(Get-TdUrl)/tas/api/operators/filters/category"
             }
         }
-        Invoke-TdMethod -uri $uri
+        $res = Invoke-TdMethod -Uri $uri
+        $res
     }
 }

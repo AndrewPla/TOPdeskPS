@@ -12,5 +12,6 @@
     param ()
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/operators/filters/branch'
-    Invoke-TdMethod -uri $uri
+        $res = Invoke-TdMethod -Uri $uri
+        $res
 }

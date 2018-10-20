@@ -5,28 +5,28 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdCountry
+# Get-TdSupplier
 
 ## SYNOPSIS
-gets list of countries
+returns list of suppliers
 
 ## SYNTAX
 
 ```
-Get-TdCountry [<CommonParameters>]
+Get-TdSupplier [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-gets list of countries
+returns list of suppliers
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdCountry
+Get-TdSuppliers
 ```
 
-gets list of countries
+returns list of suppliers
 
 ## PARAMETERS
 

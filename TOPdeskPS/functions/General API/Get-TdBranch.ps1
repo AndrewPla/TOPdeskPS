@@ -10,7 +10,7 @@
         Name of the branch that you want returned.Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdBranch
-        Gets Branch
+        Gets Branches
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdBranch')]

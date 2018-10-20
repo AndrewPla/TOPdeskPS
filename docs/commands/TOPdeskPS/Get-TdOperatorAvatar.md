@@ -5,59 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdBranch
+# Get-TdOperatorAvatar
 
 ## SYNOPSIS
-Gets Branches
+Returns avatar of operator
 
 ## SYNTAX
 
 ```
-Get-TdBranch [-Archived] [[-Name] <String>] [<CommonParameters>]
+Get-TdOperatorAvatar [-OperatorId] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets Branches
+Returns avatar of operator based on the operatorid
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdBranch
+Get-TdOperatorAvatar -OperatorId (Get-TdOperator -TOPdeskLoginName 'User@company.com').id
 ```
 
-Gets Branches
+Returns the Avatar for 'User@company.com'
 
 ## PARAMETERS
 
-### -Archived
-Whether to retrieve archived incidents
+### -OperatorId
+ID of the operator.
+See Get-TdOperator
 
 ```yaml
-Type: SwitchParameter
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-Name of the branch that you want returned.Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

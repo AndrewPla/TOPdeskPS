@@ -1,0 +1,126 @@
+---
+external help file: TOPdeskPS-help.xml
+Module Name: TOPdeskPS
+online version:
+schema: 2.0.0
+---
+
+# New-TdBudgetHolder
+
+## SYNOPSIS
+Creates new BudgetHolder
+
+## SYNTAX
+
+### Name
+```
+New-TdBudgetHolder -Name <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### ExternalLink
+```
+New-TdBudgetHolder -externalLinkId <String> -ExternalLinkType <String> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+## DESCRIPTION
+creates new budgetholder
+
+## EXAMPLES
+
+### EXAMPLE 1
+```
+New-TdBudgetHolder -Name 'Management'
+```
+
+Creates a new budget holdernamed 'management'
+
+## PARAMETERS
+
+### -Name
+The name of the budget holder.
+
+```yaml
+Type: String
+Parameter Sets: Name
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -externalLinkId
+Id of the entity in the external system
+
+```yaml
+Type: String
+Parameter Sets: ExternalLink
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExternalLinkType
+The Type of the link.
+
+```yaml
+Type: String
+Parameter Sets: ExternalLink
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS

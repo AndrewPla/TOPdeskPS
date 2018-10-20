@@ -5,59 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdBranch
+# Get-TdPersonAvatar
 
 ## SYNOPSIS
-Gets Branches
+Returns the avatar of a person
 
 ## SYNTAX
 
 ```
-Get-TdBranch [-Archived] [[-Name] <String>] [<CommonParameters>]
+Get-TdPersonAvatar -PersonId <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets Branches
+Gets the image used as an avatar by person id
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdBranch
+Get-TdPerson | Get-TdPersonAvatar
 ```
 
-Gets Branches
+returns all avatars
 
 ## PARAMETERS
 
-### -Archived
-Whether to retrieve archived incidents
+### -PersonId
+{{Fill PersonId Description}}
 
 ```yaml
-Type: SwitchParameter
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Name
-Name of the branch that you want returned.Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

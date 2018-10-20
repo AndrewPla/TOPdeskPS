@@ -8,16 +8,16 @@ schema: 2.0.0
 # Get-TdPermissionGroup
 
 ## SYNOPSIS
-Get permission groups
+returns list of permission groups
 
 ## SYNTAX
 
 ```
-Get-TdPermissionGroup [[-Name] <String>] [<CommonParameters>]
+Get-TdPermissionGroup [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get permission groups
+returns list of permission groups
 
 ## EXAMPLES
 
@@ -26,26 +26,9 @@ Get permission groups
 Get-TdPermissionGroup
 ```
 
-Get permission groups
+returns list of permission groups
 
 ## PARAMETERS
-
-### -Name
-Name of the permission group that you want returned.
-Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.

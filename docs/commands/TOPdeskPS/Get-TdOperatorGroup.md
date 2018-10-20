@@ -8,16 +8,16 @@ schema: 2.0.0
 # Get-TdOperatorGroup
 
 ## SYNOPSIS
-Get Operator groups
+returns list of operator groups
 
 ## SYNTAX
 
 ```
-Get-TdOperatorGroup [[-Name] <String>] [<CommonParameters>]
+Get-TdOperatorGroup [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get Operator groups
+returns list of operator groups
 
 ## EXAMPLES
 
@@ -26,26 +26,9 @@ Get Operator groups
 Get-TdOperatorGroup
 ```
 
-Get all Operator groups
+returns list of operator groups
 
 ## PARAMETERS
-
-### -Name
-Name of the operator group that you want returned.
-Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: GroupName
-
-Required: False
-Position: 1
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
