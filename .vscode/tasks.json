@@ -58,7 +58,7 @@
             "label": "Analyze",
             "type": "shell",
             "command": "${cwd}/build.ps1 -Task Analyze -Verbose"
-        },
+        },+
         {
             "label": "Pester",
             "type": "shell",
@@ -71,9 +71,9 @@
             "command": "Invoke-Plaster -templatepath ./templates/NewFunction -destinationpath ./"
         },
         {
-            "label": "Import-Module to Console",
+            "label": "Update Module Files",
             "type": "shell",
-            "command": "Import-Module ./TOPdeskPS -Verbose;if(-not $cred){$cred = Get-credential};connect-tdService $cred"
+            "command": "$funkynames = Get-Childitem ./topdeskps/functions -recurse -filter '*.ps1' | select-object -expandproperty basename;Update-MetaData -path ./topdeskps/topdeskps.psd1 -propertyname functionstoexport -value @($funkynames);Copy-item ./topdeskps -destination ($env:psmodulepath -split ';')[0] -container -recurse -verbose -force"
         }
     ]
 }

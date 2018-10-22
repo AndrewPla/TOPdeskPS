@@ -5,9 +5,9 @@ function <%=$PLASTER_PARAM_FunctionName%> {
 .DESCRIPTION
     <%=$PLASTER_PARAM_Description%>
 .PARAMETER Confirm
-/tIf this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf
-/tIf this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
     PS C:\> <%=$PLASTER_PARAM_ExampleCode%>
     <%=$PLASTER_PARAM_ExampleText%>

@@ -30,6 +30,7 @@
       <choice label='&amp;Asset Management' value="Asset Management"/>
       <choice label='&amp;Supporting Files' value="Supporting Files"/>
       <choice label='&amp;Task Notifications' value="Task Notifications"/>
+      <choice label='&amp;Change Management' value="Change Management"/>
     </parameter>
   </parameters>
   <content>

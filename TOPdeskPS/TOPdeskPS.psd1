@@ -64,86 +64,7 @@
     # NestedModules = @()
 
     # Functions to export from this module
-    FunctionsToExport = @(
-        'Add-TdAssetAssignment'
-        'Connect-TdService'
-        'Disconnect-TdService'
-        'Get-TdAsset'
-        'Get-TdAssetCapability'
-        'Get-TdAssetCapabilityDetail'
-        'Get-TdAssetDetail'
-        'Get-TdAssetField'
-        'Get-TdAssetFieldValue'
-        'Get-TdApiVersion'
-        'Get-TdArchiveReason'
-        'Get-TdAssetAssignment'
-        'Get-TdAssetFile'
-        'Get-TdAssetLink'
-        'Get-TdAssetLinkPossibleRelation'
-        'Get-TdAssetTemplate'
-        'Get-TdAssetTemplateBlank'
-        'Get-TdPersonAvatar'
-        'Get-TdBranch'
-        'Get-TdBranchDetail'
-        'Get-TdBranchFilter'
-        'Get-TdBudgetHolder'
-        'Get-TdCallType'
-        'Get-TdCategory'
-        'Get-TdCategoryFilter'
-        'Get-TdChange'
-        'Get-TdChangeActivity'
-        'Get-TdClosureCode'
-        'Get-TdCountry'
-        'Get-TdDepartment'
-        'Get-TdEscalationReason'
-        'Get-TdDeescalationReason'
-        'Get-TdDuration'
-        'Get-TdEntryType'
-        'Get-TdImpact'
-        'Get-TdIncident'
-        'Get-TdIncidentAction'
-        #'Get-TdKnowledgeItem'
-        'Get-TdLocation'
-        'Get-TdLocationDetail'
-        'Get-TdOperator'
-        'Get-TdOperatorAvatar'
-        'Get-TdOperatorGroup'
-        'Get-TdPerson'
-        'Get-TdPersonGroup'
-        'Get-TdPermissionGroup'
-        'Get-TdPriority'
-        'Get-TdProcessingStatus'
-        'Get-TdServiceWindow'
-        'Get-TdSupplier'
-        'Get-TdSupplierContact'
-        'Get-TdSubcategory'
-        'Get-TdTimeSpentReason'
-        'Get-TdUrgency'
-        'Invoke-TdMethod'
-        'New-TdAsset'
-        'New-TdAssetCapability'
-        'New-TdBranch'
-        'New-TdBudgetHolder'
-        'New-TdChange'
-        'New-TdChangeAction'
-        'New-TdDepartment'
-        'New-TdIncident'
-        'New-TdPerson'
-        'Remove-TdAsset'
-        'Remove-TdAssetAssignment'
-        'Remove-TdAssetFile'
-        'Remove-TdAssetLink'
-        'Send-TdAssetFile'
-        'Send-TdIncidentfile'
-        'Send-TdTaskNotification'
-        'Send-TdWebDAVFile'
-        'Set-TdAsset'
-        'Set-TdAssetCapability'
-        'Set-TdAssetLink'
-        'Set-TdBranch'
-        'Set-TdPerson'
-        'Update-TdIncident'
-    )
+    FunctionsToExport = @('Send-TdWebDAVFile','Add-TdAssetAssignment','Get-TdAsset','Get-TdAssetAssignment','Get-TdAssetCapability','Get-TdAssetCapabilityDetail','Get-TdAssetDetail','Get-TdAssetField','Get-TdAssetFieldValue','Get-TdAssetFile','Get-TdAssetLink','Get-TdAssetLinkPossibleRelation','Get-TdAssetTemplate','Get-TdAssetTemplateBlank','New-TdAsset','New-TdAssetCapability','Remove-TdAsset','Remove-TdAssetAssignment','Remove-TdAssetFile','Remove-TdAssetLink','Send-TdAssetFile','Set-TdAsset','Set-TdAssetCapability','Set-TdAssetLink','Get-TdChange','Get-TdChangeActivity','New-TdChange','New-TdChangeAction','Set-TdChange','Connect-TdService','Disconnect-TdService','Get-TdApiVersion','Get-TdArchiveReason','Get-TdBranch','Get-TdCallType','Get-TdCategory','Get-TdClosureCode','Get-TdDeescalationReason','Get-TdDuration','Get-TdEntryType','Get-TdEscalationReason','Get-TdImpact','Get-TdIncident','Get-TdIncidentAction','Get-TdOperatorGroup','Get-TdPermissionGroup','Get-TdPerson','Get-TdPersonGroup','Get-TdPriority','Get-TdProcessingStatus','Get-TdServiceWindow','Get-TdSubcategory','Get-TdTimeSpentReason','Get-TdUrgency','Invoke-TdMethod','New-TdIncident','New-TdPerson','Send-TdIncidentFile','Set-TdPerson','Update-TdIncident','Get-TdBranchDetail','Get-TdBranchFilter','Get-TdBudgetHolder','Get-TdCategoryFilter','Get-TdCountry','Get-TdDepartment','Get-TdLocation','Get-TdLocationDetail','Get-TdOperator','Get-TdOperatorAvatar','Get-TdOperatorGroup','Get-TdPermissionGroup','Get-TdPersonAvatar','Get-TdPersonGroup','Get-TdSupplier','Get-TdSupplierContact','New-TdBranch','New-TdBudgetHolder','New-TdDepartment','Set-TdBranch','Send-TdTaskNotification')
 
     # Cmdlets to export from this module
     CmdletsToExport = ''
@@ -185,3 +106,11 @@
 
     } # End of PrivateData hashtable
 }
+
+
+
+
+
+
+
+

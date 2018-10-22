@@ -6,7 +6,7 @@
         Create new change request. Can also use a change template to help fill out the change.
         Also triggers Events and Actions. Note! Actions that require user interaction like “Confirm before sending” or “Editable before sending” will not be executed.
     .PARAMETER RequesterId
-        Id of the requester of the change.
+        Id of the requester of the change. This is a person id. See Get-TdPerson
     .PARAMETER BriefDescription
         Brief description of a created change. example: Smartphone broken
     .PARAMETER ChangeType
@@ -83,7 +83,7 @@
         [system.string]
         $Priority
         #TODO add optional activities
-
+        #TODO add template
         #TODO add phases
 
     )
@@ -155,8 +155,8 @@
         }
         Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("Request" , "Sending change request $BriefDescription")) {
