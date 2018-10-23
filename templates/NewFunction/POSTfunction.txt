@@ -32,12 +32,12 @@ function <%=$PLASTER_PARAM_FunctionName%> {
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Sending Request')) {
         return
         }
-        $methodParams @{
+        $methodParams = @{
             Uri = $uri
             Body = ($body | ConvertTo-Json)
             Method = $MethodName
         }
-        $res =Invoke-TdMethod @methodParams
+        $res = Invoke-TdMethod @methodParams
         $res
     }
     end {
