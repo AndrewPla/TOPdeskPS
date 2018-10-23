@@ -17,7 +17,13 @@ function Get-TdChangeProgress {
             ValueFromPipelineByPropertyName
         )]
         [Alias('Id')]
-        $ChangeId
+        $ChangeId,
+
+        [switch]
+        $InlineImages = $false,
+
+        [switch]
+        $BrowserFriendlyUrls = $false
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
@@ -28,6 +34,14 @@ function Get-TdChangeProgress {
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
 
         $uri = "$(Get-TdUrl)/tas/api/operatorChanges/$ChangeId/progresstrail"
+
+        #TODO fix this logic these are both 'query' and not 'path' for the param type
+        if ($InlineImages) {
+            $uri = "$uri&inlineimages=true"
+        }
+        if ($BrowserFriendlyUrls) {
+            $uri = "$uri&browserFriendlyUrls=true"
+        }
         $res = Invoke-TdMethod -Uri $uri
         $res
     }
