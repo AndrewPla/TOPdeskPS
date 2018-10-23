@@ -1,4 +1,5 @@
 function Get-TdChangeDetail {
+    #TODO add support for change ID
     <#
 .SYNOPSIS
     returns details of a specified change
@@ -8,20 +9,20 @@ function Get-TdChangeDetail {
     PS C:\> Get-TdChange | Get-TdChangeDetail
     returns details of all changes
 #>
-[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail')]
 
     param
     (
-    [Parameter(
-        mandatory = $true,
-        ValueFromPipelineByPropertyName
-    )]
-    [Alias('number')]
-    $ChangeNumber
+        [Parameter(
+            mandatory = $true,
+            ValueFromPipelineByPropertyName
+        )]
+        [Alias('number')]
+        $ChangeNumber
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-        }
+    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
