@@ -1,12 +1,12 @@
 function Get-TdChange {
     <#
 .SYNOPSIS
-    Gets a list of all change activities
+    Returns changes
 .DESCRIPTION
-    Gets a list of all change activities
+    Returns changes. TOPdesk doesn't provide this functionality so this command will query all Activities, grab all Change Ids and then lookup the change details for them. The output of the last call is what you get
 .EXAMPLE
     PS C:\> Get-TdChange
-    gets a list of all change activities
+    Returns all changes
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
 
@@ -22,9 +22,13 @@ function Get-TdChange {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
 
-        $uri = "$(Get-TdUrl)/tas/api/operatorChangeActivities"
-        $res = Invoke-TdMethod -Uri $uri
-        $res
+        $activityuri = "$(Get-TdUrl)/tas/api/operatorChangeActivities"
+        $activities = (Invoke-TdMethod -Uri $activityuri).results
+        $changeIds = $activities.change.id | Sort-Object -unique
+        foreach ($id in $changeIds) {
+            Write-PSFMessage ""
+            Invoke-TdMethod "$(Get-TdUrl)/tas/api/operatorChanges/$id"
+        }
     }
     end {
         Write-PSFMessage "Function Complete" -level Verbose

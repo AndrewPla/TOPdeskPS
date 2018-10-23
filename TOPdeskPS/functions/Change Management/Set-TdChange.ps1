@@ -7,7 +7,7 @@ function Set-TdChange {
 .PARAMETER ChangeId
     Id of the Change Request to be altered
 .PARAMETER BodyInput
-    formatted input to match the example value linked to in the .NOTES
+    formatted input to match the example value linked to in the NOTES
 .EXAMPLE
     PS C:\> Set-TdChange
     see the docs
