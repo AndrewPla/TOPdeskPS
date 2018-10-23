@@ -40,7 +40,6 @@
 		"body": [
 			"[Parameter(",
 			"mandatory = $$true,",
-			"ParameterSetName = '${1:Object}',",
 			"ValueFromPipelineByPropertyName",
 			")]",
 			"[Alias('Id')]",
