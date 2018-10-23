@@ -24,10 +24,12 @@ function Get-TdChange {
 
         $activityuri = "$(Get-TdUrl)/tas/api/operatorChangeActivities"
         $activities = (Invoke-TdMethod -Uri $activityuri).results
+        Write-PSFMessage "$($activities.count) Activites found. Grabbing changes.." -Level Verbose
         $changeIds = $activities.change.id | Sort-Object -unique
+        Write-PSFMessage "$($changeIds.count) unique Changes found" -Level Verbose
         foreach ($id in $changeIds) {
-            Write-PSFMessage ""
-            Invoke-TdMethod "$(Get-TdUrl)/tas/api/operatorChanges/$id"
+            $changeuri = "$(Get-TdUrl)/tas/api/operatorChanges/$id"
+            Invoke-TdMethod -uri $changeuri
         }
     }
     end {
