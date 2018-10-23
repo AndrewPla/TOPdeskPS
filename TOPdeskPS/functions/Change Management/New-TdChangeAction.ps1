@@ -40,13 +40,14 @@
 
         $Body = [PSCustomObject]@{
             memoText = $MemoText
-            # API currently only supports memos os this is hardcoded.
-            type     = 'memo'
+            # API currently only supports memos so this is hardcoded.
+            type = 'memo'
         }
-        $body
+        Write-PSFMessage "Body: `n $($body | ConvertTo-Json)" -level Verbose
+
         $Params = @{
-            'Uri'    = $url
-            'Body'   = $Body | ConvertTo-Json
+            'Uri' = $url
+            'Body' = ($Body | ConvertTo-Json)
             'Method' = 'Post'
         }
         Invoke-TdMethod @Params
