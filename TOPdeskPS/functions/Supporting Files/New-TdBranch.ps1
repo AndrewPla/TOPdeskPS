@@ -5,28 +5,28 @@ function New-TdBranch {
     Creates a new branch
 .DESCRIPTION
     creates a new branch
-    .PARAMETER Name
-Name of the branch
-        Specification
-Branch specification
+.PARAMETER Name
+    Name of the branch
+.PARAMETER Specification
+    Branch specification
 .PARAMETER ClientReferenceNumber
     Client Reference Number
-    .PARAMETER Phone
+.PARAMETER Phone
     Phone Number
-    .PARAMETER Fax
+.PARAMETER Fax
     Fax Number
-    .PARAMETER Email
+.PARAMETER Email
     email address
-    .PARAMETER Website
+.PARAMETER Website
     Website URL
-    .PARAMETER BranchType
+.PARAMETER BranchType
     Define the type of branch. Optional values: 'independentBranch', 'headBranch', 'hasAHeadBranch'
-    .PARAMETER HeadBranchId
-    ID of head branchj
+.PARAMETER HeadBranchId
+    ID of head branch
 .EXAMPLE
     PS C:\> New-TdBranch
     creates a new branch
-    .NOTES
+.NOTES
         See https://developers.topdesk.com/explorer/?page=supporting-files?/
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdBranch',
