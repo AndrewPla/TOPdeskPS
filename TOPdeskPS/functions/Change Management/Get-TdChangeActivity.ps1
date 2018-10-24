@@ -18,6 +18,8 @@
     param
     (
         [Parameter(ParameterSetName = 'query')]
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [Alias('id')]
         [system.string[]]$Change,
 
         [Parameter(ParameterSetName = 'query')]
@@ -34,7 +36,7 @@
 
         if ($PSCmdlet.ParameterSetName -match 'Query') {
             $methodParams = @{
-                uri = ("$(Get-TdUrl)/tas/api/operatorChangeActivities/?")
+                uri = ("$(Get-TdUrl)/tas/api/operatorChangeActivities?")
             }
             foreach ($chan in $change) {
                 $methodParams['uri'] = "$($methodParams.uri)&change=$chan"
@@ -43,8 +45,13 @@
                 $methodParams['uri'] = "$($methodParams.uri)&archive=$($Archive.tostring().tolower())"
             }
         }
+        else {
+            $methodParams = @{
+                uri = ("$(Get-TdUrl)/tas/api/operatorChangeActivities")
+            }
+        }
         $res = Invoke-TdMethod @methodParams
-        $res
+        $res.results
     }
     end {
     }
