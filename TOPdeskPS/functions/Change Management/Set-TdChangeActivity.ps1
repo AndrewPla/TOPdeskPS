@@ -1,5 +1,6 @@
 function Set-TdChangeActivity {
     #TODO add activity template support
+    #TODO Help params
     <#
 .SYNOPSIS
     creates a new change activity
@@ -17,6 +18,9 @@ function Set-TdChangeActivity {
         SupportsShouldProcess = $true)]
     param
     (
+        [parameter(ParameterSetName = 'template')]
+        $ActivityTemplate,
+
         [Parameter(
             mandatory = $true,
             ValueFromPipelineByPropertyName
@@ -24,18 +28,53 @@ function Set-TdChangeActivity {
         [Alias('Id')]
         $ChangeId,
 
-        [Parameter(mandatory = $true)]
+        [string]
         $BriefDescription,
 
-        [Parameter(Mandatory)]
+        [string]
         [ValidateSet('rfc', 'progress', 'evaluation')]
-        $changePhase,
+        $ChangePhase,
 
         [string]
-        $status,
+        [ValidateSet('normal', 'authorization')]
+        $ActivityType,
 
         [string]
-        $activityType
+        $PlannedStartDate,
+
+        [string]
+        $PlannedFinalDate,
+
+        [string]
+        $AssigneeId,
+
+        [parameter(ValueFromPipelineByPropertyName)]
+        $AssigneeGroupId,
+
+        [string]
+        [ValidateSet('manager', 'operator')]
+        $AssigneeType,
+
+        [string]
+        $Status,
+
+        [string]
+        $Category,
+
+        [string]
+        $Subcategory,
+
+        [string]
+        $Request,
+
+        [string]
+        $Action,
+
+        [hashtable]
+        $OptionalFields1,
+
+        [hashtable]
+        $OptionalFields2
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -Level Verbose
@@ -49,18 +88,64 @@ function Set-TdChangeActivity {
         $body = [PSCustomObject]@{
             changeId = $changeId
         }
+        if ($PsCmdlet.ParameterSetName -like 'template') {
+            $body | Add-Member -MemberType NoteProperty -Name activityTemplate -Value $ActivityTemplate
+        }
+
         switch ($PSBoundParameters.Keys) {
-            briefDescription {
+            BriefDescription {
                 $body | Add-Member -MemberType NoteProperty -Name briefDescription -Value $BriefDescription
             }
-            changePhase {
+            ChangePhase {
                 $body | Add-Member -MemberType NoteProperty -Name changePhase -Value $changePhase
+            }
+            ActivityType {
+                $body | Add-Member -MemberType NoteProperty -Name activityType -Value $activityType
+            }
+            PlannedStartDate {
+                $body | Add-Member -MemberType NoteProperty -Name plannedStartDate -Value $plannedStartDate
+            }
+            plannedFinalDate {
+                $body | Add-Member -MemberType NoteProperty -Name plannedFinalDate -Value $plannedFinalDate
+            }
+            #       AssigneeGroupId {
+            #          $assignee | Add-Member -MemberType NoteProperty -Name groupId -Value $AssigneeGroupId
+            #     }
+            #    AssigneeType {
+            #       $assignee | Add-Member -MemberType NoteProperty -Name type -Value $assigneeType
+            #  }
+            assigneeId {
+                $assignee = @{
+                    id = $AssigneeId # parameters are CaPiTaLiZeD
+                }
+                if ($AssigneeGroupId) {
+                    $assignee['groupId'] = $AssigneeGroupId
+                }
+                if ($AssigneeType) {
+                    $assignee['type'] = $AssigneeType
+                }
+                $body | Add-Member -MemberType NoteProperty -Name assignee -Value $assignee #TODO look at how this is being passed. NOTE
             }
             status {
                 $body | Add-Member -MemberType NoteProperty -Name status -Value $status
             }
-            activityType {
-                $body | Add-Member -MemberType NoteProperty -Name activityType -Value $activityType
+            category {
+                $body | Add-Member -MemberType NoteProperty -Name category -Value $category
+            }
+            subcategory {
+                $body | Add-Member -MemberType NoteProperty -Name subcategory -Value $subcategory
+            }
+            request {
+                $body | Add-Member -MemberType NoteProperty -Name request -Value $request
+            }
+            action {
+                $body | Add-Member -MemberType NoteProperty -Name action -Value $activityaction
+            }
+            optionalFields1 {
+                $body | Add-Member -MemberType NoteProperty -Name optionalFields1 -Value $OptionalFields1
+            }
+            optionalFields2 {
+                $body | Add-Member -MemberType NoteProperty -Name optionalFields2 -Value $OptionalFields2
             }
         }
 
