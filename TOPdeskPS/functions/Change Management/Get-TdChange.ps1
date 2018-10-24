@@ -32,7 +32,7 @@ function Get-TdChange {
         Write-PSFMessage "$($changeIds.count) unique Changes found" -Level Verbose
         foreach ($id in $changeIds) {
             $changeuri = "$(Get-TdUrl)/tas/api/operatorChanges/$id"
-            $r = Invoke-TdMethod -uri $changeuri -ErrorAction Continue
+            $r = Invoke-TdMethod -uri $changeuri
             $r | where-object briefdescription -like $Name
 
         }
