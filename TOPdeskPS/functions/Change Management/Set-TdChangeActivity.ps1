@@ -6,10 +6,40 @@ function Set-TdChangeActivity {
     creates a new change activity
 .DESCRIPTION
     creates a new change activity
-.PARAMETER Confirm
-    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
-.PARAMETER WhatIf
-    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+.PARAMETER  ActivityTemplate
+    ID or AT-XXXX number for activity template
+.PARAMETER ChangeId
+    Id of the change see Get-TdChange
+.PARAMETER BriefDescription
+    a brief description
+.PARAMETER ChangePhase
+    accepted values 'rfc' 'progress' 'evaluation'
+.PARAMETER ActivityType
+    accepted values 'normal' 'authorization'
+.PARAMETER PlannedStartDate
+    Format: 2018-04-23T10:09:00+0000
+.PARAMETER PlannedFinalDate
+    Format: 2018-04-23T10:09:00+0000
+.PARAMETER AssigneeId
+    ID of the operator to be assigned to the change
+.PARAMETER AssigneeGroupId
+    ID of the group to be assigned to the change
+.PARAMETER AssigneeType
+    accepted values 'manager' 'operator'
+.PARAMETER Status
+    user defined status of activity. accepts name or id
+.PARAMETER Category
+    user defined category of activity. accepts name or id
+.PARAMETER Subcategory
+    user defined subcategory of activity. accepts name or id
+.PARAMETER Request
+    description of activity
+.PARAMETER Action
+    action to be added to the activity
+.PARAMETER OptionalFields1
+.PARAMETER OptionalFields2
+.NOTES
+https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as%20an%20operator/post_operatorChangeActivities
 .EXAMPLE
     PS C:\> Set-TdChangeActivity -changeId $changeId -briefDescription 'My Description' -changePhase 'progress' -status 'planned'
     creates a new change with specified fields
@@ -116,7 +146,7 @@ function Set-TdChangeActivity {
             #  }
             assigneeId {
                 $assignee = @{
-                    id = $AssigneeId # parameters are CaPiTaLiZeD
+                    id = $AssigneeId # parameters are CaPiTaLiZeD 0_0
                 }
                 if ($AssigneeGroupId) {
                     $assignee['groupId'] = $AssigneeGroupId
