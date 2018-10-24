@@ -4,6 +4,8 @@ function Get-TdChangeTemplate {
     returns list of all templates used to create new requests for changes
 .DESCRIPTION
     returns list of all templates used to create new requests for changes
+.PARAMETER Name
+    Basic Name/BriefDescription filter. This will filter the results. Wildcards accepted. Default value = '*'
 .EXAMPLE
     PS C:\> Get-TdChangeTemplate
     returns list of all templates used to create new requests for change
@@ -12,7 +14,8 @@ function Get-TdChangeTemplate {
 
     param
     (
-
+        [string]
+        $Name = '*'
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
@@ -24,10 +27,9 @@ function Get-TdChangeTemplate {
 
         $uri = "$(Get-TdUrl)/tas/api/applicableChangeTemplates"
         $res = Invoke-TdMethod -Uri $uri
-        $res
+        $res.results | Where-Object BriefDescription -Like $Name
     }
     end {
         Write-PSFMessage "Function Complete" -level Verbose
     }
 }
-

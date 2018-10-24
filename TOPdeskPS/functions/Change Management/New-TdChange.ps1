@@ -51,7 +51,6 @@
         [system.string]
         $BriefDescription,
 
-        [Parameter(Mandatory)]
         [ValidateSet('Simple', 'Extensive')]
         [system.string]
         $ChangeType,

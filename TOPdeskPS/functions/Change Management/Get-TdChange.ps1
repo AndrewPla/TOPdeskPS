@@ -1,4 +1,5 @@
 function Get-TdChange {
+    #TODO add error handeling and filter for -name/briefdescrip
     <#
 .SYNOPSIS
     Returns changes
@@ -12,7 +13,9 @@ function Get-TdChange {
 
     param
     (
-
+        [string]
+        [alias('BriefDescription')]
+        $Name = '*'
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
@@ -29,11 +32,12 @@ function Get-TdChange {
         Write-PSFMessage "$($changeIds.count) unique Changes found" -Level Verbose
         foreach ($id in $changeIds) {
             $changeuri = "$(Get-TdUrl)/tas/api/operatorChanges/$id"
-            Invoke-TdMethod -uri $changeuri
+            $r = Invoke-TdMethod -uri $changeuri -ErrorAction Continue
+            $r | where-object briefdescription -like $Name
+
         }
     }
     end {
         Write-PSFMessage "Function Complete" -level Verbose
     }
 }
-
