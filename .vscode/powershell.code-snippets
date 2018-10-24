@@ -97,5 +97,12 @@
 			"$$uri = \"$uri&${1:parameter}=$${1:parameter}",
 		],
 		"description": "use parameters to construct a uri"
+	},
+	"Add Property to body Hashtable": {
+		"prefix": "Add property to hashtable",
+		"body": [
+			"$$body['${1:propertyName}'] = $${1:propertyName}",
+		],
+		"description": "adds a property to a hashtable"
 	}
 }
