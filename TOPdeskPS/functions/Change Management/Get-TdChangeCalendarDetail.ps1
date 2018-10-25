@@ -1,4 +1,4 @@
-function Get-TdChangeCalendarDetail {
+﻿function Get-TdChangeCalendarDetail {
     <#
 .SYNOPSIS
     returns detailed information about the change

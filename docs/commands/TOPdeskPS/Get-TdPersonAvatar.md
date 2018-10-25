@@ -17,7 +17,7 @@ Get-TdPersonAvatar -PersonId <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets the image used as an avatar by person id
+Returns the avatar of a person by the persons id.
 
 ## EXAMPLES
 
@@ -31,7 +31,7 @@ returns all avatars
 ## PARAMETERS
 
 ### -PersonId
-{{Fill PersonId Description}}
+Gets the image used as an avatar by person id
 
 ```yaml
 Type: Object

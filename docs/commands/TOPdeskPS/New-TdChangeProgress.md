@@ -1,94 +1,58 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version:
+online version: https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress
 schema: 2.0.0
 ---
 
-# New-TdBudgetHolder
+# New-TdChangeProgress
 
 ## SYNOPSIS
-Creates new BudgetHolder
+{{Fill in the Synopsis}}
 
 ## SYNTAX
 
-### Name
 ```
-New-TdBudgetHolder -Name <String> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### ExternalLink
-```
-New-TdBudgetHolder -externalLinkId <String> -ExternalLinkType <String> [-WhatIf] [-Confirm]
+New-TdChangeProgress [-ChangeId] <Object> [-MemoText] <String> [[-Type] <String>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-creates new budgetholder
+{{Fill in the Description}}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-New-TdBudgetHolder -Name 'Management'
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-Creates a new budget holdernamed 'management'
+{{ Add example description here }}
 
 ## PARAMETERS
 
-### -Name
-The name of the budget holder.
+### -ChangeId
+{{Fill ChangeId Description}}
 
 ```yaml
-Type: String
-Parameter Sets: Name
-Aliases:
+Type: Object
+Parameter Sets: (All)
+Aliases: Id
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -externalLinkId
-Id of the entity in the external system
-
-```yaml
-Type: String
-Parameter Sets: ExternalLink
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ExternalLinkType
-The Type of the link.
-
-```yaml
-Type: String
-Parameter Sets: ExternalLink
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: wi
+Aliases: cf
 
 Required: False
 Position: Named
@@ -97,13 +61,45 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+### -MemoText
+{{Fill MemoText Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Type
+{{Fill Type Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Accepted values: memo, attachment, link
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: cf
+Aliases: wi
 
 Required: False
 Position: Named
@@ -118,8 +114,14 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
+### System.Object
+
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS
+
+[https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress](https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress)
+

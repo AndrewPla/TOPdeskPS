@@ -5,44 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdOperator
+# Get-TdChangeCalendarProgress
 
 ## SYNOPSIS
-returns list of operators
+returns the progress trail of the specified calendar id
 
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Get-TdChangeCalendarProgress [-calendarId] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of operators
+returns the progress trail of the specified calendar id
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdOperator
+Get-TdChangeCalendar | Get-TdChangeCalendarProgress
 ```
 
-returns list of operators
+returns the progress trail of all calendar events
 
 ## PARAMETERS
 
-### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+### -calendarId
+ID of the Calendar Event.
+See Get-TdChangeCalendar
 
 ```yaml
-Type: String
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

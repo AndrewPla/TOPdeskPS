@@ -1,4 +1,4 @@
-function Get-TdChangeTemplate {
+﻿function Get-TdChangeTemplate {
     <#
 .SYNOPSIS
     returns list of all templates used to create new requests for changes

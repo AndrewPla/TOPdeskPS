@@ -5,44 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdOperator
+# Get-TdChangeCalendarDetail
 
 ## SYNOPSIS
-returns list of operators
+returns detailed information about the change
 
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Get-TdChangeCalendarDetail [-CalendarId] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of operators
+returns detailed infromation about the change
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdOperator
+Get-TdChangeCalendarDetail -ChangeId $changeId
 ```
 
-returns list of operators
+returns detailed information about the change
 
 ## PARAMETERS
 
-### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+### -CalendarId
+Id of the calendar event
 
 ```yaml
-Type: String
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

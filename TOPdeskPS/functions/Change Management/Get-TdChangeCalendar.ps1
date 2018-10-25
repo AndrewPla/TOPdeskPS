@@ -1,4 +1,4 @@
-function Get-TdChangeCalendar {
+﻿function Get-TdChangeCalendar {
     <#
 .SYNOPSIS
     returns list of changes and activities in specified date range

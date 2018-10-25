@@ -5,78 +5,103 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TdBudgetHolder
+# Set-TdChangeProcessingStatus
 
 ## SYNOPSIS
-Creates new BudgetHolder
+process a change through a phase
 
 ## SYNTAX
 
-### Name
 ```
-New-TdBudgetHolder -Name <String> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### ExternalLink
-```
-New-TdBudgetHolder -externalLinkId <String> -ExternalLinkType <String> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-TdChangeProcessingStatus [-ChangeId] <Object> [-From] <Object> [-Action] <Object> [[-Reason] <String>]
+ [[-Comment] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-creates new budgetholder
+process a change through a phase
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-TdBudgetHolder -Name 'Management'
+Get-TdChangeDetail -ChangeNumber 'C1810-005' | Get-TdChangeProcessingStatus -action 'no_go'
 ```
 
-Creates a new budget holdernamed 'management'
+changes the status of specified change to specfied action
 
 ## PARAMETERS
 
-### -Name
-The name of the budget holder.
+### -ChangeId
+ID of the Change.
+See Get-TdChange
 
 ```yaml
-Type: String
-Parameter Sets: Name
+Type: Object
+Parameter Sets: (All)
+Aliases: Id
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -From
+{{Fill From Description}}
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases: processingStatus
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Action
+{{Fill Action Description}}
+
+```yaml
+Type: Object
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -externalLinkId
-Id of the entity in the external system
+### -Reason
+{{Fill Reason Description}}
 
 ```yaml
 Type: String
-Parameter Sets: ExternalLink
+Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: Named
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ExternalLinkType
-The Type of the link.
+### -Comment
+{{Fill Comment Description}}
 
 ```yaml
 Type: String
-Parameter Sets: ExternalLink
+Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: Named
+Required: False
+Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -98,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
-If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
 Type: SwitchParameter

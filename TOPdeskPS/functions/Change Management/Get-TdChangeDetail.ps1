@@ -1,4 +1,4 @@
-function Get-TdChangeDetail {
+﻿function Get-TdChangeDetail {
     #TODO add support for change ID
     <#
 .SYNOPSIS

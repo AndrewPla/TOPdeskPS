@@ -1,4 +1,4 @@
-function New-TdChangeProgress {
+﻿function New-TdChangeProgress {
     #TODO this is a duplicate of New-TdChangeAction ... neither of these work
     <#
 .SYNOPSIS

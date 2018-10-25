@@ -1,4 +1,4 @@
-function Set-TdChangeProcessingStatus {
+﻿function Set-TdChangeProcessingStatus {
     <#
 .SYNOPSIS
     process a change through a phase

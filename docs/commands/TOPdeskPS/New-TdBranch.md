@@ -35,8 +35,6 @@ creates a new branch
 
 ### -Name
 Name of the branch
-        Specification
-Branch specification
 
 ```yaml
 Type: String
@@ -51,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -Specification
-{{Fill Specification Description}}
+Branch specification
 
 ```yaml
 Type: String
@@ -157,7 +155,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeadBranchId
-ID of head branchj
+ID of head branch
 
 ```yaml
 Type: Object

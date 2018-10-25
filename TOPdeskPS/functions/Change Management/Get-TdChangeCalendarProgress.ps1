@@ -1,4 +1,4 @@
-function Get-TdChangeCalendarProgress {
+﻿function Get-TdChangeCalendarProgress {
     <#
 .SYNOPSIS
     returns the progress trail of the specified calendar id

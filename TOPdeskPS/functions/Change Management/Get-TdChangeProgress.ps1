@@ -1,4 +1,4 @@
-function Get-TdChangeProgress {
+﻿function Get-TdChangeProgress {
     <#
 .SYNOPSIS
     Returns progress trail of specified change

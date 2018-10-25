@@ -1,13 +1,15 @@
-function Get-TdChange {
+﻿function Get-TdChange {
     #TODO add error handeling and filter for -name/briefdescrip
     <#
 .SYNOPSIS
     Returns changes
 .DESCRIPTION
     Returns changes. TOPdesk doesn't provide this functionality so this command will query all Activities, grab all Change Ids and then lookup the change details for them. The output of the last call is what you get
+.PARAMETER Name
+    Human readable name to filter results by, this cooresponds with the brief description field in TOPdesk
 .EXAMPLE
     PS C:\> Get-TdChange
-    Returns all changes
+    Returns all changes (or tries to, it will once a proper endpoint is made by TOPdesk)
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
 

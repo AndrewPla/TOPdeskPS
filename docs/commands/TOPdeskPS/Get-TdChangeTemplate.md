@@ -5,34 +5,36 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdOperator
+# Get-TdChangeTemplate
 
 ## SYNOPSIS
-returns list of operators
+returns list of all templates used to create new requests for changes
 
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Get-TdChangeTemplate [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of operators
+returns list of all templates used to create new requests for changes
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdOperator
+Get-TdChangeTemplate
 ```
 
-returns list of operators
+returns list of all templates used to create new requests for change
 
 ## PARAMETERS
 
 ### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+Basic Name/BriefDescription filter.
+This will filter the results.
+Wildcards accepted.
+Default value = '*'
 
 ```yaml
 Type: String
@@ -41,7 +43,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

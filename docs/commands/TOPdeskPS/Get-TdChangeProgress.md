@@ -5,89 +5,63 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSupplierContact
+# Get-TdChangeProgress
 
 ## SYNOPSIS
-Gets list of supplier  contacts
+Returns progress trail of specified change
 
 ## SYNTAX
 
 ```
-Get-TdSupplierContact [[-SupplierId] <Object>] [[-PageSize] <Int32>] [[-Start] <Int32>] [-Archived]
- [<CommonParameters>]
+Get-TdChangeProgress [-ChangeId] <Object> [-InlineImages] [-BrowserFriendlyUrls] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Returns list of supplier contacts
+returns progress trail of specified change
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSuppliercontact
+Get-TdChangeProgress -ChangeId $changeId
 ```
 
-Returns list of supplier contacts
-
-### EXAMPLE 2
-```
-Get-TdSupplier | Get-TdSupplierContact
-```
-
-Returns list of
+returns progress trail of specified change
 
 ## PARAMETERS
 
-### -SupplierId
-ID of the Supplier.
-See Get-TdSupplier
+### -ChangeId
+{{Fill ChangeId Description}}
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
 Aliases: Id
 
-Required: False
+Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -PageSize
-The amount of suppliers to be returned per request.
-Must be between 1 and 10000, default is 1000.
+### -InlineImages
+{{Fill InlineImages Description}}
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
-Default value: 10
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Start
-This is the offset at which you want to start listing suppliers at.
-      The default value is 0.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Archived
-Whether to retrieve archived incidents.
+### -BrowserFriendlyUrls
+{{Fill BrowserFriendlyUrls Description}}
 
 ```yaml
 Type: SwitchParameter

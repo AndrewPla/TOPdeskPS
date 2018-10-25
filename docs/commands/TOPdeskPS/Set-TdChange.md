@@ -5,98 +5,88 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdSupplierContact
+# Set-TdChange
 
 ## SYNOPSIS
-Gets list of supplier  contacts
+see the docs
 
 ## SYNTAX
 
 ```
-Get-TdSupplierContact [[-SupplierId] <Object>] [[-PageSize] <Int32>] [[-Start] <Int32>] [-Archived]
- [<CommonParameters>]
+Set-TdChange [-ChangeId] <String> [-BodyInput] <Object> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Returns list of supplier contacts
+see the docs
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdSuppliercontact
+Set-TdChange
 ```
 
-Returns list of supplier contacts
-
-### EXAMPLE 2
-```
-Get-TdSupplier | Get-TdSupplierContact
-```
-
-Returns list of
+see the docs
 
 ## PARAMETERS
 
-### -SupplierId
-ID of the Supplier.
-See Get-TdSupplier
+### -ChangeId
+Id of the Change Request to be altered
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BodyInput
+formatted input to match the example value linked to in the NOTES
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: Id
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -PageSize
-The amount of suppliers to be returned per request.
-Must be between 1 and 10000, default is 1000.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 2
-Default value: 10
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Start
-This is the offset at which you want to start listing suppliers at.
-      The default value is 0.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Archived
-Whether to retrieve archived incidents.
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: wi
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -110,5 +100,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
+https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChanges__identifier_
 
 ## RELATED LINKS

@@ -1,48 +1,47 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version:
+online version: https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail
 schema: 2.0.0
 ---
 
-# Get-TdOperator
+# Get-TdChangeDetail
 
 ## SYNOPSIS
-returns list of operators
+{{Fill in the Synopsis}}
 
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Get-TdChangeDetail [-ChangeNumber] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of operators
+{{Fill in the Description}}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-TdOperator
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-returns list of operators
+{{ Add example description here }}
 
 ## PARAMETERS
 
-### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+### -ChangeNumber
+{{Fill ChangeNumber Description}}
 
 ```yaml
-Type: String
+Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: number
 
-Required: False
-Position: 1
+Required: True
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -52,8 +51,14 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
+### System.Object
+
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS
+
+[https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail](https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail)
+

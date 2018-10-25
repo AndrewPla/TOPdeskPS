@@ -1,4 +1,4 @@
-function Set-TdChangeActivity {
+﻿function Set-TdChangeActivity {
     #TODO add activity template support
     #TODO Help params
     <#
