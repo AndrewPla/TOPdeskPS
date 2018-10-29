@@ -4,19 +4,18 @@
     Creates a new Department
 .DESCRIPTION
     Creates a new department
-.EXAMPLE
-    PS C:\> New-TdDepartment -Name 'TestDepartment'
-    Creates a new Department named 'TestDepartment'
 .PARAMETER Name
-    Name to filter departments by
+    Name of new department
 .PARAMETER ExternalLinkId
     external link ID
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+.EXAMPLE
+    PS C:\> New-TdDepartment -Name 'TestDepartment'
+    Creates a new Department named 'TestDepartment'
 #>
-    #TODO Update help
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdDepartment',
         SupportsShouldProcess = $true)]
     param
@@ -40,7 +39,7 @@
         $body | Add-Member -MemberType NoteProperty -Name 'name' -Value $name
         if ($pscmdlet.ParameterSetName -eq 'ExternalLink') {
             $externalLink = [PSCustomObject]@{
-                id = $ExternalLinkId
+                id   = $ExternalLinkId
                 type = $ExternalLinkType
             }
             $body | Add-Member -MemberType NoteProperty -Name 'externalLink' -Value $externalLink

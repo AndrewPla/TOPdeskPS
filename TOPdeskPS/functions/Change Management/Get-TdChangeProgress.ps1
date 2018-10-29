@@ -11,8 +11,12 @@
 .PARAMETER BrowserFriendlyUrls
     if enabled Browser Friendly Urls will be in output
 .EXAMPLE
-    PS C:\> Get-TdChangeProgress -ChangeId $changeId
+    PS C:\> Get-TdChangeProgress -ChangeId (Get-TdChange -Name 'example).id
     returns progress trail of specified change
+.EXAMPLE
+    PS C:\> Get-TdChange -Name 'My Sample Change' | Get-TdChangeProgress
+    Returns progress trail of 'My Sample Change'
+
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeProgress')]
 

@@ -12,8 +12,8 @@
     .PARAMETER ChangeType
         Specify the type of change. Options: Simple, Extensive
     .PARAMETER Request
-            The request of the change
-            example: Dean reported that his smartphone is broken. We need to order new ones.
+        The request of the change
+        example: Dean reported that his smartphone is broken. We need to order new ones.
     .PARAMETER Action
         The action of the change. example: I ordered 5 new smartphones.
     .PARAMETER TemplateId
@@ -32,13 +32,11 @@
         UUID or name of the priority. example: Low
     .PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
-
 	.PARAMETER WhatIf
 		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
-
     .EXAMPLE
-        PS C:\> <example usage>
-        Explanation of what the example does
+        PS C:\> New-TdChange -RequesterId (Get-TdPerson -name 'Jane User').id -BriefDescription 'an example change' -ChangeType 'extensive'
+        creates new extensive change with description 'an example change' with requester Jane User
     #>
     [CmdletBinding( SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChange')]

@@ -3,11 +3,11 @@
 .SYNOPSIS
     Sort of sets a change, this is poorly supported by TOPdesk :/
 .DESCRIPTION
-    does most of the change setting, poorly supported by TOPdesk, read the .NOTES
+    does most of the change setting, poorly supported by TOPdesk, read the .LINK
 .PARAMETER ChangeId
     Id of the Change Request to be altered
 .PARAMETER BodyInput
-    formatted input to match the example value linked to in the .NOTES
+    formatted input to match the example value linked to in the .LINK
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf
@@ -15,8 +15,7 @@
 .EXAMPLE
     PS C:\> Set-TdChange -ChangeId 'C1807-627' -BodyInput 'body text'
     sets the body of specified change. this api is poorly supported by TOPdesk
-
-.NOTES
+.LINK
     https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChanges__identifier_
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdChange',

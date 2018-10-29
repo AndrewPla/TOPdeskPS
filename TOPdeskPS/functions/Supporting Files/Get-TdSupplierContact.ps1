@@ -4,26 +4,27 @@
     Gets list of supplier  contacts
 .DESCRIPTION
     Returns list of supplier contacts
-    .PARAMETER Name
-    retrieve only suppliers with names starting with this string
-    .PARAMETER PageSize
-    The amount of suppliers to be returned per request. Must be between 1 and 10000, default is 1000.
-    .PARAMETER Archived
-        Whether to retrieve archived incidents.
-    .PARAMETER PageSize
-		The amount of incidents to be returned per request. The default value is 10 and the maximum value is 100.
-	.PARAMETER Start
-		This is the offset at which you want to start listing suppliers at.
-        The default value is 0.
-    .PARAMETER SupplierId
+.PARAMETER Name
+retrieve only suppliers with names starting with this string
+.PARAMETER PageSize
+The amount of suppliers to be returned per request. Must be between 1 and 10000, default is 1000.
+.PARAMETER Archived
+    Whether to retrieve archived incidents.
+.PARAMETER PageSize
+    The amount of incidents to be returned per request. The default value is 10 and the maximum value is 100.
+.PARAMETER Start
+    This is the offset at which you want to start listing suppliers at.
+    The default value is 0.
+.PARAMETER SupplierId
     ID of the Supplier. See Get-TdSupplier
-    .EXAMPLE
+.EXAMPLE
     PS C:\> Get-TdSuppliercontact
     Returns list of supplier contacts
-      .EXAMPLE
-    PS C:\> Get-TdSupplier | Get-TdSupplierContact
-    Returns list of
+.EXAMPLE
+    PS C:\> Get-TdSupplier -Name 'Sample Supplier' | Get-TdSupplierContact
+    Returns list of Supplier contracts from supplier 'Sample Supplier'
 #>
+#TODO figure out what's going on here
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdSupplierContact')]
 
     param
@@ -42,7 +43,10 @@
         $Start = 0,
 
         [switch]
-        $Archived
+        $Archived,
+
+        [system.string]
+        $Name
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose

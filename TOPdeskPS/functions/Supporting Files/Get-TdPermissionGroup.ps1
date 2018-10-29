@@ -4,19 +4,21 @@
     returns list of permission groups
 .DESCRIPTION
     returns list of permission groups
+.PARAMETER Name
+    Name of the operator group that you want returned. Wildcards are supported. Default value is '*'
 .EXAMPLE
     PS C:\> Get-TdPermissionGroup
     returns list of permission groups
 #>
-[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPermissionGroup')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPermissionGroup')]
 
-    param
-    (
-
+    param (
+        [Alias('GroupName')]
+        [system.string]$Name = '*'
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-        }
+    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
@@ -24,7 +26,7 @@
 
         $uri = (Get-TdUrl) + "/tas/api/permissiongroups"
         $res = Invoke-TdMethod -Uri $uri
-        $res
+        $res  | Where-Object groupname -like $Name
     }
     end {
         Write-PSFMessage "Function Complete" -level verbose

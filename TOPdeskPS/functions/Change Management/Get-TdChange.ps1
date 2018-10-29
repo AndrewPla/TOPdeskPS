@@ -10,8 +10,6 @@
     PS C:\> Get-TdChange
     Returns all changes (or tries to, it will once a proper endpoint is made by TOPdesk)
 #>
-    #TODO add error handeling and filter for -name/briefdescrip
-
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
 
     param

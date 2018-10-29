@@ -30,7 +30,13 @@
 
 	.EXAMPLE
 		PS C:\> Get-TdIncident
-		Grabs a list of 10 incidents
+        Grabs a list of 10 incidents
+    .EXAMPLE
+        PS C:\> Get-TdIncident -Closed
+        Gets list of last 10 colsed incidents
+    .EXAMPLE
+        PS C:\> Get-TdIncident -PageSize 100
+        Gets a list of 100 most recent incidents
 #>
 
     [CmdletBinding(DefaultParameterSetName = 'List',

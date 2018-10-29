@@ -9,6 +9,9 @@
 .EXAMPLE
     PS C:\> Get-TdOperator
     returns list of operators
+.EXAMPLE
+    PS C:\> Get-TdOperator -Name 'John Support'
+    returns operator with name John Support (uses the dynamicName field)
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperator')]
 

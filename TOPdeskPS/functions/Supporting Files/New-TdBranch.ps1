@@ -35,10 +35,12 @@
 .PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
-    PS C:\> New-TdBranch
-    creates a new branch
-.NOTES
-        See https://developers.topdesk.com/explorer/?page=supporting-files?/
+    PS C:\> New-TdBranch -Name 'New Branch' -Branch Type 'independentBranch' -Phone '555-555-5555'
+    creates a new branch with defined charactaristics
+.EXAMPLE
+    PS C:\> New-TdBranch -Name 'Subsidiary of AlphaBranch' -BranchType 'hasAHeadBranch' -HeadBranchId (Get-TdBranch -name 'AlphaBranch').id
+.LINK
+    https://developers.topdesk.com/explorer/?page=supporting-files?/
 #>
     #TODO Update help
 

@@ -9,7 +9,7 @@
 .PARAMETER End
     end of range to return changes. Default value = 90 days
 .PARAMETER CardType
-    Type of card to filter results by
+    Type of card to filter results by. Accepted options 'change_simple', 'change_extensive', 'undefined', 'activity_authorization', 'activity_normal'
 .PARAMETER Branch
     Branch to filter results by
 .PARAMETER Category
@@ -23,6 +23,12 @@
 .EXAMPLE
     PS C:\> Get-TdChangeCalendar
     Returns results with default date values (90 days back and 90 days forward)
+.EXAMPLE
+    PS C:\> Get-TdChangeCalendar -Branch 'Side Branch'
+    Returns all results for 'Side Branch' branch
+.EXAMPLE
+    PS C:\> Get-TdChangeCalendar -CurrentState 'done'
+    Returns all 'done' change cards
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeCalendar')]
 

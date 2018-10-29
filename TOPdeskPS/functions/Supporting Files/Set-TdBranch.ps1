@@ -4,33 +4,33 @@
     update a branch by id
 .DESCRIPTION
     update branch
-    .PARAMETER BranchId
+.PARAMETER BranchId
     ID of the branch. See Get-TdBranch
-    .PARAMETER Name
+.PARAMETER Name
     Name of the branch
-    .PARAMETER Specification
+.PARAMETER Specification
     Branch specification
-    .PARAMETER ClientReferenceNumber
+.PARAMETER ClientReferenceNumber
     Client Reference Number
-    .PARAMETER Phone
+.PARAMETER Phone
     Phone Number
-    .PARAMETER Fax
+.PARAMETER Fax
     Fax Number
-    .PARAMETER Email
+.PARAMETER Email
     email address
-    .PARAMETER Website
+.PARAMETER Website
     Website URL
-    .PARAMETER BranchType
+.PARAMETER BranchType
     Define the type of branch. Optional values: 'independentBranch', 'headBranch', 'hasAHeadBranch'
-    .PARAMETER HeadBranchId
+.PARAMETER HeadBranchId
     ID of head branch
-    .PARAMETER Address
+.PARAMETER Address
     Hashtable containing address values
-    .PARAMETER PostalAddress
+.PARAMETER PostalAddress
     Hashtable containing postal address values
-    .PARAMETER OptionalFields1
+.PARAMETER OptionalFields1
     optional see docs
-    .PARAMETER OptionalFields2
+.PARAMETER OptionalFields2
     optional see docs
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.

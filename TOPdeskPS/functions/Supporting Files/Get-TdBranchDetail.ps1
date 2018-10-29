@@ -5,7 +5,7 @@
 .DESCRIPTION
     Gets details of a branch by branchId
 .PARAMETER BranchId
-ID of the branch. See Get-TdBranch
+    ID of the branch. See Get-TdBranch
 .EXAMPLE
     PS C:\> Get-TdBranchDetails -BranchId (Get-TdBranch -name 'examplebranch').id
     Returns details about 'examplebranch'
