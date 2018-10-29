@@ -30,5 +30,3 @@
         Write-PSFMessage "Function Complete" -level verbose
     }
 }
-}
-
