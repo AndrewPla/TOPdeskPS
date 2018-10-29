@@ -8,6 +8,18 @@
     start of range to return changes. Default value = 90 days
 .PARAMETER End
     end of range to return changes. Default value = 90 days
+.PARAMETER CardType
+    Type of card to filter results by
+.PARAMETER Branch
+    Branch to filter results by
+.PARAMETER Category
+    Category of cards to obtain
+.PARAMETER Status
+    Status of cards to obtain
+.PARAMETER Type
+    Type of cards to obtain
+.PARAMETER CurrentState
+    CurrentState that cards to be obtained are in
 .EXAMPLE
     PS C:\> Get-TdChangeCalendar
     Returns results with default date values (90 days back and 90 days forward)

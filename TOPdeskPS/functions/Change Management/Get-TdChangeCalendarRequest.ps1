@@ -6,9 +6,9 @@
     lists the requests for specified calendar event
 .EXAMPLE
     PS C:\> Get-TdChangeCalendar | Get-TdChangeCalendarRequest
-    lists all change requests 
+    lists all change requests
 #>
-[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeCalendarRequest')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeCalendarRequest')]
 
     param
     (
@@ -16,7 +16,7 @@
     )
     begin {
         Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-        }
+    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment

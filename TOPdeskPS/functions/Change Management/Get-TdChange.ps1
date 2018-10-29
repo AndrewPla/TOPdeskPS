@@ -1,5 +1,4 @@
 ﻿function Get-TdChange {
-    #TODO add error handeling and filter for -name/briefdescrip
     <#
 .SYNOPSIS
     Returns changes
@@ -11,6 +10,8 @@
     PS C:\> Get-TdChange
     Returns all changes (or tries to, it will once a proper endpoint is made by TOPdesk)
 #>
+    #TODO add error handeling and filter for -name/briefdescrip
+
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
 
     param
@@ -36,7 +37,6 @@
             $changeuri = "$(Get-TdUrl)/tas/api/operatorChanges/$id"
             $r = Invoke-TdMethod -uri $changeuri
             $r | where-object briefdescription -like $Name
-
         }
     }
     end {

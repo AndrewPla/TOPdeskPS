@@ -1,16 +1,21 @@
 ﻿function Set-TdChange {
     <#
 .SYNOPSIS
-    see the docs
+    Sort of sets a change, this is poorly supported by TOPdesk :/
 .DESCRIPTION
-    see the docs
+    does most of the change setting, poorly supported by TOPdesk, read the .NOTES
 .PARAMETER ChangeId
     Id of the Change Request to be altered
 .PARAMETER BodyInput
-    formatted input to match the example value linked to in the NOTES
+    formatted input to match the example value linked to in the .NOTES
+.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+.PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
-    PS C:\> Set-TdChange
-    see the docs
+    PS C:\> Set-TdChange -ChangeId 'C1807-627' -BodyInput 'body text'
+    sets the body of specified change. this api is poorly supported by TOPdesk
+
 .NOTES
     https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChanges__identifier_
 #>

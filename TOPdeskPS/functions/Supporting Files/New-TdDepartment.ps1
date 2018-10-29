@@ -1,5 +1,4 @@
-﻿#TODO Update help
-function New-TdDepartment {
+﻿function New-TdDepartment {
     <#
 .SYNOPSIS
     Creates a new Department
@@ -8,7 +7,16 @@ function New-TdDepartment {
 .EXAMPLE
     PS C:\> New-TdDepartment -Name 'TestDepartment'
     Creates a new Department named 'TestDepartment'
+.PARAMETER Name
+    Name to filter departments by
+.PARAMETER ExternalLinkId
+    external link ID
+.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+.PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 #>
+    #TODO Update help
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdDepartment',
         SupportsShouldProcess = $true)]
     param

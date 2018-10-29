@@ -1,5 +1,4 @@
 ﻿function New-TdChangeProgress {
-    #TODO this is a duplicate of New-TdChangeAction ... neither of these work
     <#
 .SYNOPSIS
     creates a new action for specified change
@@ -9,12 +8,18 @@
     ID of the Change
 .PARAMETER MemoText
     text to be added to memo field
-    .PARAMETER Type
+.PARAMETER Type
     The type of this progress trail entry.
+.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+.PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
     PS C:\> New-TdChangeProgress -ChangeId $ChangeId -MemoText 'this is a memo'
     addes a new memo to the specified change
 #>
+    #TODO this is a duplicate of New-TdChangeAction ... neither of these work
+
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress',
         SupportsShouldProcess = $true)]
     param

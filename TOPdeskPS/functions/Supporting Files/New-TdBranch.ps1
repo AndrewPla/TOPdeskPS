@@ -1,5 +1,4 @@
-﻿#TODO Update help
-function New-TdBranch {
+﻿function New-TdBranch {
     <#
 .SYNOPSIS
     Creates a new branch
@@ -23,12 +22,26 @@ function New-TdBranch {
     Define the type of branch. Optional values: 'independentBranch', 'headBranch', 'hasAHeadBranch'
 .PARAMETER HeadBranchId
     ID of head branch
+.PARAMETER Address
+    Address
+.PARAMETER OptionalFields1
+    optional
+.PARAMETER OptionalFields2
+    optional
+.PARAMETER PostalAddress
+    Postal Address
+.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+.PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
     PS C:\> New-TdBranch
     creates a new branch
 .NOTES
         See https://developers.topdesk.com/explorer/?page=supporting-files?/
 #>
+    #TODO Update help
+
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdBranch',
         SupportsShouldProcess = $true)]
     param
@@ -99,7 +112,7 @@ function New-TdBranch {
                 $HeadBranch = @{
                     id = $HeadBranchId
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'headBranch' -Value $HeadBranchId
+                $Body | Add-Member -MemberType NoteProperty -Name 'headBranch' -Value $HeadBranch
             }
             Address {
                 $Body | Add-Member -MemberType NoteProperty -Name 'address' -Value $Address

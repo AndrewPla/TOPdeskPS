@@ -4,6 +4,12 @@
     Returns progress trail of specified change
 .DESCRIPTION
     returns progress trail of specified change
+.PARAMETER ChangeId
+    ID of the Change See Get-TdChange
+.PARAMETER InlineImages
+    if enabled InlineImages will be in the output
+.PARAMETER BrowserFriendlyUrls
+    if enabled Browser Friendly Urls will be in output
 .EXAMPLE
     PS C:\> Get-TdChangeProgress -ChangeId $changeId
     returns progress trail of specified change

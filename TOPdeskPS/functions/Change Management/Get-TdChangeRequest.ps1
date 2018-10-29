@@ -4,6 +4,12 @@
     returns list of change requests
 .DESCRIPTION
     returns list of change requests
+.PARAMETER ChangeId
+    ID of the Change. See Get-TdChange
+.PARAMETER InlineImages
+    if enabled InlineImages will be in the output
+.PARAMETER BrowserFriendlyUrls
+    if enabled Browser Friendly Urls will be in output
 .EXAMPLE
     PS C:\> Get-TdChangeRequest -ChangeId $ChangeId
     returns list of change requests associated with specified change

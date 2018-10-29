@@ -1,14 +1,16 @@
 ﻿function Get-TdChangeDetail {
-    #TODO add support for change ID
     <#
 .SYNOPSIS
     returns details of a specified change
 .DESCRIPTION
     returns details of a specified change
+.PARAMETER ChangeNumber
+    Change Number in format CYYMM-XXXX
 .EXAMPLE
     PS C:\> Get-TdChange | Get-TdChangeDetail
     returns details of all changes
 #>
+    #TODO add support for change ID
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail')]
 
     param

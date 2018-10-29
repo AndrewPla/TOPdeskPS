@@ -1,6 +1,4 @@
 ﻿function Set-TdChangeActivity {
-    #TODO add activity template support
-    #TODO Help params
     <#
 .SYNOPSIS
     creates a new change activity
@@ -37,13 +35,21 @@
 .PARAMETER Action
     action to be added to the activity
 .PARAMETER OptionalFields1
+    optional see .NOTES
 .PARAMETER OptionalFields2
+    optional see .NOTES
+.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+.PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .NOTES
 https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as%20an%20operator/post_operatorChangeActivities
 .EXAMPLE
     PS C:\> Set-TdChangeActivity -changeId $changeId -briefDescription 'My Description' -changePhase 'progress' -status 'planned'
     creates a new change with specified fields
 #>
+    #TODO add activity template support
+    #TODO Help params
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdChangeActivity',
         SupportsShouldProcess = $true)]
     param

@@ -1,10 +1,11 @@
-﻿#TODO Update help
-function Set-TdBranch {
+﻿function Set-TdBranch {
     <#
 .SYNOPSIS
     update a branch by id
 .DESCRIPTION
     update branch
+    .PARAMETER BranchId
+    ID of the branch. See Get-TdBranch
     .PARAMETER Name
     Name of the branch
     .PARAMETER Specification
@@ -27,10 +28,19 @@ function Set-TdBranch {
     Hashtable containing address values
     .PARAMETER PostalAddress
     Hashtable containing postal address values
+    .PARAMETER OptionalFields1
+    optional see docs
+    .PARAMETER OptionalFields2
+    optional see docs
+.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+.PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
     PS C:\> Set-TdBranch -BranchId (Get-TdBranch -Name 'Test Branch').id -Phone '555-555-5555'
     Updates the Test Branch phone number.
 #>
+    #TODO Update help
 
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdBranch',
