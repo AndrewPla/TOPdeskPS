@@ -38,7 +38,7 @@ This is a repeatable filter parameter
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: id
 
 Required: False
 Position: Named

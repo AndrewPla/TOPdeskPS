@@ -30,7 +30,13 @@
 
 	.EXAMPLE
 		PS C:\> Get-TdIncident
-		Grabs a list of 10 incidents
+        Grabs a list of 10 incidents
+    .EXAMPLE
+        PS C:\> Get-TdIncident -Closed
+        Gets list of last 10 colsed incidents
+    .EXAMPLE
+        PS C:\> Get-TdIncident -PageSize 100
+        Gets a list of 100 most recent incidents
 #>
 
     [CmdletBinding(DefaultParameterSetName = 'List',
@@ -69,10 +75,11 @@
 
     begin {
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-        $IncidentURL = (Get-TdUrl) + '/tas/api/incidents'
         Write-PSFMessage -Level InternalComment -Message "IncidentURL: $IncidentUrl"
     }
     process {
+        $IncidentURL = (Get-TdUrl) + '/tas/api/incidents'
+
         Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
         Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
 
@@ -97,9 +104,8 @@
                     $uri = "$uri&resolved=$Resolved"
                 }
 
-                if ($PSBoundParameters.keys -contains 'Archive') {
-                    Write-PSFMessage -Level InternalComment -Message "Archive = $Archive"
-                    $uri = "$uri&archive=$Archive"
+                if ($PSBoundParameters.keys -contains 'Archived') {
+                    $uri = "$uri&archive=$($Archived.tostring().tolower())"
                 }
 
                 Write-PSFMessage -Level InternalComment -Message "URI: $uri"

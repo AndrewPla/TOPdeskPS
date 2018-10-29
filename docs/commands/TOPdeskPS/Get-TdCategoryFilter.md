@@ -36,7 +36,8 @@ Get-TdOperator
 ## PARAMETERS
 
 ### -OperatorId
-{{Fill OperatorId Description}}
+ID of the Operator.
+See Get-TdOperator
 
 ```yaml
 Type: Object

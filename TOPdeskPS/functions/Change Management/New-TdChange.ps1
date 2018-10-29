@@ -6,14 +6,14 @@
         Create new change request. Can also use a change template to help fill out the change.
         Also triggers Events and Actions. Note! Actions that require user interaction like “Confirm before sending” or “Editable before sending” will not be executed.
     .PARAMETER RequesterId
-        Id of the requester of the change.
+        Id of the requester of the change. This is a person id. See Get-TdPerson
     .PARAMETER BriefDescription
         Brief description of a created change. example: Smartphone broken
     .PARAMETER ChangeType
         Specify the type of change. Options: Simple, Extensive
     .PARAMETER Request
-            The request of the change
-            example: Dean reported that his smartphone is broken. We need to order new ones.
+        The request of the change
+        example: Dean reported that his smartphone is broken. We need to order new ones.
     .PARAMETER Action
         The action of the change. example: I ordered 5 new smartphones.
     .PARAMETER TemplateId
@@ -32,13 +32,11 @@
         UUID or name of the priority. example: Low
     .PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
-
 	.PARAMETER WhatIf
 		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
-
     .EXAMPLE
-        PS C:\> <example usage>
-        Explanation of what the example does
+        PS C:\> New-TdChange -RequesterId (Get-TdPerson -name 'Jane User').id -BriefDescription 'an example change' -ChangeType 'extensive'
+        creates new extensive change with description 'an example change' with requester Jane User
     #>
     [CmdletBinding( SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChange')]
@@ -51,7 +49,6 @@
         [system.string]
         $BriefDescription,
 
-        [Parameter(Mandatory)]
         [ValidateSet('Simple', 'Extensive')]
         [system.string]
         $ChangeType,
@@ -83,7 +80,7 @@
         [system.string]
         $Priority
         #TODO add optional activities
-
+        #TODO add template
         #TODO add phases
 
     )
@@ -155,8 +152,8 @@
         }
         Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("Request" , "Sending change request $BriefDescription")) {

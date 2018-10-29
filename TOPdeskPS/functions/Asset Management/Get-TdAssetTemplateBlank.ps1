@@ -24,19 +24,8 @@
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     }
     process {
-        $uri = (get-tdurl) + "/tas/api/assetmgmt/assets/blank/?templateName=$TemplateName"
-
-        #TODO replace this with an internal function
-        if ($uri[-1] -match '&') {
-            Write-PSFMessage 'Trimming &' -Level debug
-            $RemoveCount = $uri.length - 1
-            $uri.remove($removeCount)
-        }
-
-        $Params = @{
-            'uri' = $uri
-        }
-        Invoke-TdMethod @Params
+        $uri = "$(get-tdurl)/tas/api/assetmgmt/assets/blank/?templateName=$TemplateName"
+        Invoke-TdMethod $uri
     }
     end {
     }

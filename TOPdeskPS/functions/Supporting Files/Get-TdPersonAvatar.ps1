@@ -1,14 +1,16 @@
-function Get-TdAvatar {
+﻿function Get-TdPersonAvatar {
     <#
 .SYNOPSIS
-    Obtains the image used as an avatar
+    Returns the avatar of a person
 .DESCRIPTION
+Returns the avatar of a person by the persons id.
+.PARAMETER PersonId
     Gets the image used as an avatar by person id
 .EXAMPLE
-    PS C:\> Get-TdPerson | Get-TdAvatar
+    PS C:\> Get-TdPerson | Get-TdPersonAvatar
     returns all avatars
 #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAvatar')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPersonAvatar')]
 
     param
     (
@@ -28,8 +30,9 @@ function Get-TdAvatar {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level internalcomment
 
-        $uri = (Get-TdUrl) + "/tas/api/persons/id/$PersonId/avatar"
-        Invoke-TdMethod -Uri $uri
+        $uri = "$(Get-TdUrl)/tas/api/persons/id/$PersonId/avatar"
+        $res = Invoke-TdMethod -Uri $uri
+        $res
     }
     end {
         Write-PSFMessage "Function Complete" -level verbose

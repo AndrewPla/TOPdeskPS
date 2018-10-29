@@ -64,75 +64,7 @@
     # NestedModules = @()
 
     # Functions to export from this module
-    FunctionsToExport = @(
-        'Add-TdAssetAssignment'
-        'Connect-TdService'
-        'Disconnect-TdService'
-        'Get-TdAsset'
-        'Get-TdAssetCapability'
-        'Get-TdAssetCapabilityDetail'
-        'Get-TdAssetDetail'
-        'Get-TdAssetField'
-        'Get-TdAssetFieldValue'
-        'Get-TdApiVersion'
-        'Get-TdArchiveReason'
-        'Get-TdAssetAssignment'
-        'Get-TdAssetFile'
-        'Get-TdAssetLink'
-        'Get-TdAssetLinkPossibleRelation'
-        'Get-TdAssetTemplate'
-        'Get-TdAssetTemplateBlank'
-        'Get-TdAvatar'
-        'Get-TdBranch'
-        'Get-TdBranchFilter'
-        'Get-TdBudgetHolder'
-        'Get-TdCallType'
-        'Get-TdCategory'
-        'Get-TdCategoryFilter'
-        'Get-TdChange'
-        'Get-TdChangeActivity'
-        'Get-TdClosureCode'
-        'Get-TdCountry'
-        'Get-TdEscalationReason'
-        'Get-TdDeescalationReason'
-        'Get-TdDuration'
-        'Get-TdEntryType'
-        'Get-TdImpact'
-        'Get-TdIncident'
-        'Get-TdIncidentAction'
-        #'Get-TdKnowledgeItem'
-        'Get-TdOperator'
-        'Get-TdOperatorGroup'
-        'Get-TdPerson'
-        'Get-TdPersonGroup'
-        'Get-TdPermissionGroup'
-        'Get-TdPriority'
-        'Get-TdProcessingStatus'
-        'Get-TdServiceWindow'
-        'Get-TdSubcategory'
-        'Get-TdTimeSpentReason'
-        'Get-TdUrgency'
-        'Invoke-TdMethod'
-        'New-TdAsset'
-        'New-TdAssetCapability'
-        'New-TdChange'
-        'New-TdChangeAction'
-        'New-TdIncident'
-        'New-TdPerson'
-        'Remove-TdAsset'
-        'Remove-TdAssetAssignment'
-        'Remove-TdAssetFile'
-        'Remove-TdAssetLink'
-        'Send-TdAssetFile'
-        'Send-TdIncidentfile'
-        'Send-TdTaskNotification'
-        'Send-TdWebDAVFile'
-        'Set-TdAsset'
-        'Set-TdAssetCapability'
-        'Set-TdAssetLink'
-        'Set-TdPerson'
-        'Update-TdIncident'
-    )
+    FunctionsToExport = @('Send-TdWebDAVFile','Add-TdAssetAssignment','Get-TdAsset','Get-TdAssetAssignment','Get-TdAssetCapability','Get-TdAssetCapabilityDetail','Get-TdAssetDetail','Get-TdAssetField','Get-TdAssetFieldValue','Get-TdAssetFile','Get-TdAssetLink','Get-TdAssetLinkPossibleRelation','Get-TdAssetTemplate','Get-TdAssetTemplateBlank','New-TdAsset','New-TdAssetCapability','Remove-TdAsset','Remove-TdAssetAssignment','Remove-TdAssetFile','Remove-TdAssetLink','Send-TdAssetFile','Set-TdAsset','Set-TdAssetCapability','Set-TdAssetLink','Get-TdChange','Get-TdChangeActivity','Get-TdChangeCalendar','Get-TdChangeCalendarDetail','Get-TdChangeCalendarProgress','Get-TdChangeCalendarRequest','Get-TdChangeDetail','Get-TdChangeProgress','Get-TdChangeRequest','Get-TdChangeTemplate','New-TdChange','New-TdChangeAction','New-TdChangeProgress','Set-TdChange','Set-TdChangeActivity','Set-TdChangeProcessingStatus','Connect-TdService','Disconnect-TdService','Get-TdApiVersion','Get-TdArchiveReason','Get-TdCallType','Get-TdCategory','Get-TdClosureCode','Get-TdDeescalationReason','Get-TdDuration','Get-TdEntryType','Get-TdEscalationReason','Get-TdImpact','Get-TdIncident','Get-TdIncidentAction','Get-TdPriority','Get-TdProcessingStatus','Get-TdServiceWindow','Get-TdSubcategory','Get-TdTimeSpentReason','Get-TdUrgency','Invoke-TdMethod','New-TdIncident','Send-TdIncidentFile','Update-TdIncident','Get-TdBranch','Get-TdBranchDetail','Get-TdBranchFilter','Get-TdBudgetHolder','Get-TdCategoryFilter','Get-TdCountry','Get-TdDepartment','Get-TdLocation','Get-TdLocationDetail','Get-TdOperator','Get-TdOperatorAvatar','Get-TdOperatorGroup','Get-TdPermissionGroup','Get-TdPerson','Get-TdPersonAvatar','Get-TdPersonGroup','Get-TdSupplier','Get-TdSupplierContact','New-TdBranch','New-TdBudgetHolder','New-TdDepartment','New-TdPerson','Set-TdBranch','Set-TdPerson','Send-TdTaskNotification')
 
     # Cmdlets to export from this module
     CmdletsToExport = ''
@@ -174,3 +106,44 @@
 
     } # End of PrivateData hashtable
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

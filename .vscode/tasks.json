@@ -58,7 +58,7 @@
             "label": "Analyze",
             "type": "shell",
             "command": "${cwd}/build.ps1 -Task Analyze -Verbose"
-        },
+        },+
         {
             "label": "Pester",
             "type": "shell",
@@ -69,6 +69,11 @@
             "label": "Plaster New Function",
             "type": "shell",
             "command": "Invoke-Plaster -templatepath ./templates/NewFunction -destinationpath ./"
+        },
+        {
+            "label": "Update Module Files",
+            "type": "shell",
+            "command": "$funkynames = Get-Childitem ./topdeskps/functions -recurse -filter '*.ps1' | select-object -expandproperty basename;Update-MetaData -path ./topdeskps/topdeskps.psd1 -propertyname functionstoexport -value @($funkynames);Copy-item ./topdeskps -destination ($env:psmodulepath -split ';')[0] -container -recurse -verbose -force"
         }
     ]
 }

@@ -26,7 +26,7 @@ Gets Branches
 Get-TdBranch
 ```
 
-Gets Branch
+Gets Branches
 
 ## PARAMETERS
 
