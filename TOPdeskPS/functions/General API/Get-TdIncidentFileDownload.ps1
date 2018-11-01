@@ -11,10 +11,10 @@ function Get-TdIncidentFileDownload {
     .PARAMETER OutFile
         file location to save outputted file to
     .EXAMPLE
-        PS C:\> Get-TdIncidentFile -IncidentId $IncidentId -FileId $FileId
+        PS C:\> Get-TdIncidentFileDownload -IncidentId $IncidentId -FileId $FileId
         Returns files from incident $IncidentId
         #>
-    [cmdletbinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdIncidentFile')]
+    [cmdletbinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdIncidentFileDownload')]
     param(
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]
