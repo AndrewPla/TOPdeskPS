@@ -5,51 +5,59 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdOperator
+# Send-TdChangeFile
 
 ## SYNOPSIS
-returns list of operators
+Upload a file to an change identified
 
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Send-TdChangeFile [-ChangeId] <String> [-File] <FileInfo> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of operators
+Upload a file to an change identified
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdOperator
+<example usage>
 ```
 
-returns list of operators
-
-### EXAMPLE 2
-```
-Get-TdOperator -Name 'John Support'
-```
-
-returns operator with name John Support (uses the dynamicName field)
+Explanation of what the example does
 
 ## PARAMETERS
 
-### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+### -ChangeId
+Id of the change that you want to send a file to.
+See Get-TdChange
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -File
+Path and name to the file that you want to upload to the change.
+
+```yaml
+Type: FileInfo
+Parameter Sets: (All)
+Aliases: InFile
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

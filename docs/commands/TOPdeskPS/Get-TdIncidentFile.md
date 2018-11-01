@@ -5,51 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdOperator
+# Get-TdIncidentFile
 
 ## SYNOPSIS
-returns list of operators
+obtains a list of files in an incident
 
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Get-TdIncidentFile [-IncidentId] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of operators
+obtains a list of files in an incident
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdOperator
+Get-TdIncidentFile -IncidentId (Get-TdIncident -Number 'I1810-NNN).id
 ```
 
-returns list of operators
-
-### EXAMPLE 2
-```
-Get-TdOperator -Name 'John Support'
-```
-
-returns operator with name John Support (uses the dynamicName field)
+gets list of files in specified incident
 
 ## PARAMETERS
 
-### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+### -IncidentId
+ID of the Incident.
+See Get-TdIncident
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

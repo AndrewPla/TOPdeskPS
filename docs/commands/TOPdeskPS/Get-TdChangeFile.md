@@ -5,43 +5,36 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdChangeProgress
+# Get-TdChangeFile
 
 ## SYNOPSIS
-Returns progress trail of specified change
+Lists files from an asset
 
 ## SYNTAX
 
 ```
-Get-TdChangeProgress [-ChangeId] <Object> [-InlineImages] [-BrowserFriendlyUrls] [<CommonParameters>]
+Get-TdChangeFile [-ChangeId] <String> [-FileId] <String> [[-OutFile] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns progress trail of specified change
+Lists files from an asset
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdChangeProgress -ChangeId (Get-TdChange -Name 'example).id
+Get-TdChangeFile -ChangeId $ChangeId -FileId $FileId -OutFile .\output.txt
 ```
 
-returns progress trail of specified change
-
-### EXAMPLE 2
-```
-Get-TdChange -Name 'My Sample Change' | Get-TdChangeProgress
-```
-
-Returns progress trail of 'My Sample Change'
+Returns files from change $ChangeId
 
 ## PARAMETERS
 
 ### -ChangeId
-ID of the Change See Get-TdChange
+Id of the change that you want files for
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases: Id
 
@@ -52,32 +45,32 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -InlineImages
-if enabled InlineImages will be in the output
+### -FileId
+Id of the file you wish to downloads
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
-Position: Named
-Default value: False
+Required: True
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BrowserFriendlyUrls
-if enabled Browser Friendly Urls will be in output
+### -OutFile
+file location to save outputted file to
 
 ```yaml
-Type: SwitchParameter
+Type: Object
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
-Default value: False
+Position: 3
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

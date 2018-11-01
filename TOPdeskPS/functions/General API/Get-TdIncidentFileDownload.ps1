@@ -1,4 +1,4 @@
-function Get-TdIncidentFileDownload {
+﻿function Get-TdIncidentFileDownload {
     <#
     .SYNOPSIS
         downloads files from an incident

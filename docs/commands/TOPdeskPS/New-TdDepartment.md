@@ -37,7 +37,7 @@ Creates a new Department named 'TestDepartment'
 ## PARAMETERS
 
 ### -Name
-{{Fill Name Description}}
+Name of new department
 
 ```yaml
 Type: String
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -externalLinkId
-{{Fill externalLinkId Description}}
+external link ID
 
 ```yaml
 Type: String
@@ -67,8 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
 ```yaml
 Type: SwitchParameter
@@ -83,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
-Prompts you for confirmation before running the cmdlet.
+If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
 ```yaml
 Type: SwitchParameter

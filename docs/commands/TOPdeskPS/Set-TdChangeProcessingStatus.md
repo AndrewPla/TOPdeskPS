@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -From
-{{Fill From Description}}
+original status of change
 
 ```yaml
 Type: Object
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Action
-{{Fill Action Description}}
+Action to implement on the change
 
 ```yaml
 Type: Object
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -Reason
-{{Fill Reason Description}}
+reason for the change
 
 ```yaml
 Type: String
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -Comment
-{{Fill Comment Description}}
+additional comment
 
 ```yaml
 Type: String
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
-Prompts you for confirmation before running the cmdlet.
+If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
 ```yaml
 Type: SwitchParameter

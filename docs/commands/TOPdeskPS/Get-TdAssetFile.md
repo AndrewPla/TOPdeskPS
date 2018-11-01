@@ -13,7 +13,7 @@ Lists files from an asset
 ## SYNTAX
 
 ```
-Get-TdAssetFile [-AssetId] <String> [<CommonParameters>]
+Get-TdAssetFile [-AssetId] <String> [[-OutFile] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,6 +42,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -OutFile
+file location to save the outputted file to
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -1,14 +1,14 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version: https://andrewpla.github.io/TOPdeskPS/commands/Set-TdChangeActivity
+online version:
 schema: 2.0.0
 ---
 
 # Set-TdChangeActivity
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+creates a new change activity
 
 ## SYNTAX
 
@@ -21,131 +21,27 @@ Set-TdChangeActivity [-ActivityTemplate <Object>] -ChangeId <Object> [-BriefDesc
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+creates a new change activity
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Set-TdChangeActivity -changeId $changeId -briefDescription 'My Description' -changePhase 'progress' -status 'planned'
 ```
 
-{{ Add example description here }}
+creates a new change with specified fields
+
+TODO add activity template support
+TODO Help params
 
 ## PARAMETERS
 
-### -Action
-{{Fill Action Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ActivityTemplate
-{{Fill ActivityTemplate Description}}
+ID or AT-XXXX number for activity template
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ActivityType
-{{Fill ActivityType Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Accepted values: normal, authorization
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AssigneeGroupId
-{{Fill AssigneeGroupId Description}}
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -AssigneeId
-{{Fill AssigneeId Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AssigneeType
-{{Fill AssigneeType Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Accepted values: manager, operator
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -BriefDescription
-{{Fill BriefDescription Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Category
-{{Fill Category Description}}
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -157,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -ChangeId
-{{Fill ChangeId Description}}
+Id of the change see Get-TdChange
 
 ```yaml
 Type: Object
@@ -171,14 +67,13 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ChangePhase
-{{Fill ChangePhase Description}}
+### -BriefDescription
+a brief description
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
-Accepted values: rfc, progress, evaluation
 
 Required: False
 Position: Named
@@ -187,26 +82,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -ChangePhase
+accepted values 'rfc' 'progress' 'evaluation'
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OptionalFields1
-{{Fill OptionalFields1 Description}}
-
-```yaml
-Type: Hashtable
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -217,23 +97,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OptionalFields2
-{{Fill OptionalFields2 Description}}
-
-```yaml
-Type: Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PlannedFinalDate
-{{Fill PlannedFinalDate Description}}
+### -ActivityType
+accepted values 'normal' 'authorization'
 
 ```yaml
 Type: String
@@ -248,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -PlannedStartDate
-{{Fill PlannedStartDate Description}}
+Format: 2018-04-23T10:09:00+0000
 
 ```yaml
 Type: String
@@ -262,8 +127,53 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Request
-{{Fill Request Description}}
+### -PlannedFinalDate
+Format: 2018-04-23T10:09:00+0000
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AssigneeId
+ID of the operator to be assigned to the change
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AssigneeGroupId
+ID of the group to be assigned to the change
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -AssigneeType
+accepted values 'manager' 'operator'
 
 ```yaml
 Type: String
@@ -278,7 +188,24 @@ Accept wildcard characters: False
 ```
 
 ### -Status
-{{Fill Status Description}}
+user defined status of activity.
+accepts name or id
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Category
+user defined category of activity.
+accepts name or id
 
 ```yaml
 Type: String
@@ -293,7 +220,8 @@ Accept wildcard characters: False
 ```
 
 ### -Subcategory
-{{Fill Subcategory Description}}
+user defined subcategory of activity.
+accepts name or id
 
 ```yaml
 Type: String
@@ -307,14 +235,88 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Request
+description of activity
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Action
+action to be added to the activity
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OptionalFields1
+optional see .NOTES
+
+```yaml
+Type: Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OptionalFields2
+optional see .NOTES
+
+```yaml
+Type: Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named
@@ -329,14 +331,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### System.Object
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
+https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as%20an%20operator/post_operatorChangeActivities
 
 ## RELATED LINKS
-
-[https://andrewpla.github.io/TOPdeskPS/commands/Set-TdChangeActivity](https://andrewpla.github.io/TOPdeskPS/commands/Set-TdChangeActivity)
-

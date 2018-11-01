@@ -14,7 +14,7 @@ internal wrapper for Invoke-RestMethod
 
 ```
 Invoke-TdMethod [[-ContentType] <String>] [[-Uri] <Uri>] [[-Body] <PSObject>] [[-Method] <String>]
- [[-Token] <String>] [<CommonParameters>]
+ [[-Token] <String>] [[-OutFile] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -102,6 +102,21 @@ Aliases:
 
 Required: False
 Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OutFile
+Path that you want the downloaded file to go to.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

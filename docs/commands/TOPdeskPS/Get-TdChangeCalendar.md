@@ -32,6 +32,20 @@ Get-TdChangeCalendar
 
 Returns results with default date values (90 days back and 90 days forward)
 
+### EXAMPLE 2
+```
+Get-TdChangeCalendar -Branch 'Side Branch'
+```
+
+Returns all results for 'Side Branch' branch
+
+### EXAMPLE 3
+```
+Get-TdChangeCalendar -CurrentState 'done'
+```
+
+Returns all 'done' change cards
+
 ## PARAMETERS
 
 ### -Start
@@ -67,7 +81,8 @@ Accept wildcard characters: False
 ```
 
 ### -CardType
-{{Fill CardType Description}}
+Type of card to filter results by.
+Accepted options 'change_simple', 'change_extensive', 'undefined', 'activity_authorization', 'activity_normal'
 
 ```yaml
 Type: String[]
@@ -82,7 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -Branch
-{{Fill Branch Description}}
+Branch to filter results by
 
 ```yaml
 Type: String[]
@@ -97,7 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -Category
-{{Fill Category Description}}
+Category of cards to obtain
 
 ```yaml
 Type: String[]
@@ -112,7 +127,7 @@ Accept wildcard characters: False
 ```
 
 ### -Status
-{{Fill Status Description}}
+Status of cards to obtain
 
 ```yaml
 Type: String[]
@@ -127,7 +142,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{Fill Type Description}}
+Type of cards to obtain
 
 ```yaml
 Type: String[]
@@ -142,7 +157,7 @@ Accept wildcard characters: False
 ```
 
 ### -CurrentState
-{{Fill CurrentState Description}}
+CurrentState that cards to be obtained are in
 
 ```yaml
 Type: String[]

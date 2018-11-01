@@ -1,4 +1,4 @@
-function Get-TdIncidentFile {
+﻿function Get-TdIncidentFile {
     <#
 .SYNOPSIS
     obtains a list of files in an incident

@@ -36,6 +36,20 @@ Get-TdIncident
 
 Grabs a list of 10 incidents
 
+### EXAMPLE 2
+```
+Get-TdIncident -Closed
+```
+
+Gets list of last 10 colsed incidents
+
+### EXAMPLE 3
+```
+Get-TdIncident -PageSize 100
+```
+
+Gets a list of 100 most recent incidents
+
 ## PARAMETERS
 
 ### -PageSize

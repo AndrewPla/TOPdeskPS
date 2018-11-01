@@ -31,10 +31,13 @@ Set-TdBranch -BranchId (Get-TdBranch -Name 'Test Branch').id -Phone '555-555-555
 
 Updates the Test Branch phone number.
 
+TODO Update help
+
 ## PARAMETERS
 
 ### -BranchId
-{{Fill BranchId Description}}
+ID of the branch.
+See Get-TdBranch
 
 ```yaml
 Type: Object
@@ -215,7 +218,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalFields1
-{{Fill OptionalFields1 Description}}
+optional see docs
 
 ```yaml
 Type: Hashtable
@@ -230,7 +233,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalFields2
-{{Fill OptionalFields2 Description}}
+optional see docs
 
 ```yaml
 Type: Hashtable
@@ -245,8 +248,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
 ```yaml
 Type: SwitchParameter
@@ -261,7 +263,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
-Prompts you for confirmation before running the cmdlet.
+If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
 ```yaml
 Type: SwitchParameter
