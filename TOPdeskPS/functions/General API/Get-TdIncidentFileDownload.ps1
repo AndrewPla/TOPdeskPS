@@ -1,26 +1,26 @@
-﻿function Get-TdChangeFile {
+function Get-TdIncidentFileDownload {
     <#
     .SYNOPSIS
-        Lists files from an asset
+        downloads files from an incident
     .DESCRIPTION
-        Lists files from an asset
-     .PARAMETER ChangeID
-        Id of the change that you want files for
+        downloads files from an incident
+     .PARAMETER IncidentID
+        Id of the incident that you want files for
     .PARAMETER FileId
         Id of the file you wish to downloads
     .PARAMETER OutFile
         file location to save outputted file to
     .EXAMPLE
-        PS C:\> Get-TdChangeFile -ChangeId $ChangeId -FileId $FileId -OutFile .\output.txt
-        Returns files from change $ChangeId
+        PS C:\> Get-TdIncidentFile -IncidentId $IncidentId -FileId $FileId
+        Returns files from incident $IncidentId
         #>
-    [cmdletbinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeFile')]
+    [cmdletbinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdIncidentFile')]
     param(
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]
         [Alias('Id')]
         [system.string]
-        $ChangeId,
+        $IncidentId,
 
         [Parameter(Mandatory = $true)]
         [system.string]
@@ -30,7 +30,7 @@
 
     )
     $params = @{
-        uri = "$(Get-TdUrl)/tas/api/operatorChanges/$ChangeId/attachments/$FileId"
+        uri = "$(Get-TdUrl)/tas/api/incidents/id/$IncidentId/attachments/$FileId/download"
     }
     if ( $OutFile ) { $params['OutFile'] = $OutFile }
     Invoke-TdMethod @params

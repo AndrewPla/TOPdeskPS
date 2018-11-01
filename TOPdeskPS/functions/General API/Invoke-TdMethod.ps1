@@ -19,7 +19,10 @@
 		The method that you want to pass
 
 	.PARAMETER Token
-		Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
+        Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
+
+    .PARAMETER OutFile
+        Path that you want the downloaded file to go to.
 
 	.EXAMPLE
 		PS C:\> Invoke-TdMethod -Token $Token -Body $Body
@@ -44,7 +47,10 @@
         $Method = 'Get',
 
         [string]
-        $Token
+        $Token,
+
+        [string]
+        $OutFile
     )
 
     begin {
@@ -61,17 +67,18 @@
             if (-not $Script:__LoginToken) {
                 throw 'no connection to topdesk, try running Connect-TdService'
             }
-            $Headers = @{
+            $headers = @{
                 'Authorization' = $Script:__LoginToken
             }
         }
-        $Params = @{
+        $params = @{
             'Body'        = $Body
             'Method'      = $Method
             'Uri'         = $Uri
-            'Headers'     = $Headers
+            'Headers'     = $headers
             'ContentType' = $ContentType
         }
+        if ($OutFile) { $params['OutFile'] = $OutFile }
         Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
         Invoke-RestMethod @Params
 
