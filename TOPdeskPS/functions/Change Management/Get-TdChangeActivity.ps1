@@ -11,7 +11,10 @@
 		Whether to only retrieve archived changes or not.
 	.EXAMPLE
 		PS C:\> Get-TdChangeActivity -Change 'C1801-123'
-		Grabs change activitites for C1801-123
+        Grabs change activitites for C1801-123
+    .EXAMPLE
+		PS C:\> Get-TdChangeActivity -Change (Get-TdChange -Name *laptop*).id
+		Returns Change Activities for all Changes with laptop anywhere in their name.
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeActivity')]
@@ -20,11 +23,12 @@
         [Parameter(ParameterSetName = 'query')]
         [Parameter(ValueFromPipelineByPropertyName)]
         [Alias('id')]
-        [system.string[]]$Change,
+        [string[]]$Change,
 
         [Parameter(ParameterSetName = 'query')]
         [switch]
         $Archived
+
     )
 
     begin {

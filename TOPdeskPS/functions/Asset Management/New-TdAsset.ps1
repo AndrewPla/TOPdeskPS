@@ -44,17 +44,17 @@
     )
 
     begin {
-        $uri = (get-tdurl) + '/tas/api/assetmgmt/assets'
-    }
+        $uri = (get-tdurl) + "/tas/api/assetmgmt/assets/templateId/$templateId"
+	}
 
     process {
         if (-not $body) {
             $body = [PSCustomObject]@{}
         }
         switch ($PSBoundParameters.Keys) {
-            TemplateId {
-                $body | Add-Member -MemberType NoteProperty -Name 'type_id' -Value $TemplateId
-            }
+            # TemplateId {
+            #     $body | Add-Member -MemberType NoteProperty -Name 'type_id' -Value $TemplateId
+            # }
             Name {
                 $body | Add-Member -MemberType NoteProperty -Name 'name' -Value $Name
             }
