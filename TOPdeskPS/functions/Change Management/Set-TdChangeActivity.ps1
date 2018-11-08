@@ -25,7 +25,7 @@ When status determines processing status is enabled the /processingStatus field 
     InputObject must be an array, each action to be taken on the Activity is an object inside the InputObject
 
     .LINK
-    https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChangeActivities__identifier_
+        https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChangeActivities__identifier_
 #>
 
 
