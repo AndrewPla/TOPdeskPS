@@ -23,7 +23,7 @@ downloads files from an incident
 
 ### EXAMPLE 1
 ```
-Get-TdIncidentFile -IncidentId $IncidentId -FileId $FileId
+Get-TdIncidentFileDownload -IncidentId $IncidentId -FileId $FileId
 ```
 
 Returns files from incident $IncidentId

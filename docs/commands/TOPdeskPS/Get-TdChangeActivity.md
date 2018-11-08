@@ -29,6 +29,13 @@ Get-TdChangeActivity -Change 'C1801-123'
 
 Grabs change activitites for C1801-123
 
+### EXAMPLE 2
+```
+Get-TdChangeActivity -Change (Get-TdChange -Name *laptop*).id
+```
+
+Returns Change Activities for all Changes with laptop anywhere in their name.
+
 ## PARAMETERS
 
 ### -Change

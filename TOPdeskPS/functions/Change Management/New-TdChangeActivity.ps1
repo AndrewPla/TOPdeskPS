@@ -50,7 +50,7 @@ https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as
 #>
     #TODO add activity template support
     #TODO Help params
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdChangeActivity',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeActivity',
         SupportsShouldProcess = $true)]
     param
     (

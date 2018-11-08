@@ -12,6 +12,8 @@ When status determines processing status is enabled the /processingStatus field 
 
 .PARAMETER InputObject
     This is an object containing the Path, op, and value.
+.PARAMETER ActivityId
+    ID of Activity. See Get-TdActivity
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf

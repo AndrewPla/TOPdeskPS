@@ -41,9 +41,9 @@
         If not provided to partial incidents, the category will be automatically copied from the main incident.
 
     .PARAMETER EntryType
-
+        ID of EntryType see Get-TdEntryType
     .PARAMETER CallType
-
+        ID of CallType see Get-TdCallType
 	.PARAMETER CallerLookup
         This is the ID of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
 
@@ -88,6 +88,9 @@
 
     .PARAMETER UrgencyId
     ID of Urgency. See Get-TdUrgency
+
+    .PARAMETER ProcessingStatusId
+    ID of ProcessingStatus see Get-TdProcessingStatus
 
     .PARAMETER PriorityId
     ID of Priority. See Get-TdPriority
@@ -137,6 +140,9 @@
     .PARAMETER Costs
     Float value of Costs
 
+    .PARAMETER ExternalNumber
+    External Number
+
 	.PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -151,7 +157,7 @@
     https://developers.topdesk.com/documentation/index.html#api-Incident-UpdateIncidentByNumber
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Update-TdIncident',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Set-TdIncident',
         SupportsShouldProcess = $true)]
     param
     (
@@ -311,7 +317,7 @@
             }
             ActionInvisibleForCaller {
                 Write-PSFMessage -Level InternalComment -Message "Adding ActionInvisibleForCaller to Body"
-                $Body | Add-Member -MemberType NoteProperty -Name 'ActionInvisibleForCaller' -Value $Action
+                $Body | Add-Member -MemberType NoteProperty -Name 'ActionInvisibleForCaller' -Value $ActionInvisibleForCaller
             }
             BriefDescription {
                 Write-PSFMessage -Level InternalComment -Message "Adding BriefDescription to Body"
@@ -325,13 +331,14 @@
                 Write-PSFMessage -Level InternalComment -Message "Adding Request to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'request' -Value $Request
             }
+
             CallerLookup {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerId to Body"
 
-                $CallerLookup = @{
+                $ThisCallerLookup = @{
                     'id' = $CallerLookup
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'callerLookup' -Value $CallerLookup
+                $Body | Add-Member -MemberType NoteProperty -Name 'callerLookup' -Value $ThisCallerLookup
             }
             Subcategory {
                 Write-PSFMessage -Level InternalComment -Message "Adding Subcategory to Body"
@@ -346,6 +353,20 @@
                     name = $Category
                 }
                 $Body | Add-Member -MemberType NoteProperty -Name 'category' -Value $CategoryValue
+            }
+            EntryType {
+                Write-PSFMessage -Level InternalComment -Message "Adding EntryType to Body"
+                $ThisEntryType = @{
+                    id = $EntryType
+                }
+                $Body | Add-Member -MemberType NoteProperty -Name 'entryType' -Value $EntryType
+            }
+            CallType {
+                Write-PSFMessage -Level InternalComment -Message "Adding callType to Body"
+                $ThisCallType = @{
+                    id = $CallType
+                }
+                $Body | Add-Member -MemberType NoteProperty -Name 'callType' -Value $CallType
             }
             CallerBranchId {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerBranch to Caller"

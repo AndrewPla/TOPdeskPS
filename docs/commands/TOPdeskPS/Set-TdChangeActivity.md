@@ -1,59 +1,47 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version:
+online version: https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChangeActivities__identifier_
 schema: 2.0.0
 ---
 
 # Set-TdChangeActivity
 
 ## SYNOPSIS
-creates a new change activity
+modifies an existing activity within a change
 
 ## SYNTAX
 
 ```
-Set-TdChangeActivity [-ActivityTemplate <Object>] -ChangeId <Object> [-BriefDescription <String>]
- [-ChangePhase <String>] [-ActivityType <String>] [-PlannedStartDate <String>] [-PlannedFinalDate <String>]
- [-AssigneeId <String>] [-AssigneeGroupId <Object>] [-AssigneeType <String>] [-Status <String>]
- [-Category <String>] [-Subcategory <String>] [-Request <String>] [-Action <String>]
- [-OptionalFields1 <Hashtable>] [-OptionalFields2 <Hashtable>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TdChangeActivity [-ActivityId] <Object> [-InputObject] <Object> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-creates a new change activity
+Updates a change activity with the provided op, path, and value.
+Also triggers Events and Actions.
+Note!
+Actions that require user interaction like "Confirm before sending"
+or "Editable before sending" will not be executed.
+
+When status determines processing status is enabled the /processingStatus field is ignored.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Set-TdChangeActivity -changeId $changeId -briefDescription 'My Description' -changePhase 'progress' -status 'planned'
+$object = [pscustomobject]@()
 ```
 
-creates a new change with specified fields
+PS\> $object += @{ op = 'add'; path = '/progressTrail'; value = 'a message from PS!'}
+PS\> $object += @{ op = 'replace'; path = '/briefDescription'; value = 'A New Description'}
+PS\> Set-TdChangeActivity -ActivityId $activityid -InputObject $object
 
-TODO add activity template support
-TODO Help params
+InputObject must be an array, each action to be taken on the Activity is an object inside the InputObject
 
 ## PARAMETERS
 
-### -ActivityTemplate
-ID or AT-XXXX number for activity template
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ChangeId
-Id of the change see Get-TdChange
+### -ActivityId
+{{Fill ActivityId Description}}
 
 ```yaml
 Type: Object
@@ -61,237 +49,24 @@ Parameter Sets: (All)
 Aliases: Id
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -BriefDescription
-a brief description
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ChangePhase
-accepted values 'rfc' 'progress' 'evaluation'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ActivityType
-accepted values 'normal' 'authorization'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PlannedStartDate
-Format: 2018-04-23T10:09:00+0000
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PlannedFinalDate
-Format: 2018-04-23T10:09:00+0000
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AssigneeId
-ID of the operator to be assigned to the change
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AssigneeGroupId
-ID of the group to be assigned to the change
+### -InputObject
+This is an object containing the Path, op, and value.
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
 Aliases:
 
-Required: False
-Position: Named
+Required: True
+Position: 2
 Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -AssigneeType
-accepted values 'manager' 'operator'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Status
-user defined status of activity.
-accepts name or id
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Category
-user defined category of activity.
-accepts name or id
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Subcategory
-user defined subcategory of activity.
-accepts name or id
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Request
-description of activity
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Action
-action to be added to the activity
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OptionalFields1
-optional see .NOTES
-
-```yaml
-Type: Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OptionalFields2
-optional see .NOTES
-
-```yaml
-Type: Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -334,6 +109,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as%20an%20operator/post_operatorChangeActivities
 
 ## RELATED LINKS
+
+[https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChangeActivities__identifier_](https://developers.topdesk.com/explorer/?page=change#/Working%20as%20an%20operator/patch_operatorChangeActivities__identifier_)
+
