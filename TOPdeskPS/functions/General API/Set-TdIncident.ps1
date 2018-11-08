@@ -38,10 +38,104 @@
 	.PARAMETER Subcategory
 		The name of the category for the incident. Can be set by operators.
 		If a subcategory is provided without a category, the corresponding category will be filledi n automatically, unless there are multiple matching categories, in which case the request will fail.
-		If not provided to partial incidents, the category will be automatically copied from the main incident.
+        If not provided to partial incidents, the category will be automatically copied from the main incident.
 
-	.PARAMETER CallerEmail
-		This is the email of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
+    .PARAMETER EntryType
+
+    .PARAMETER CallType
+
+	.PARAMETER CallerLookup
+        This is the ID of the incident's caller. TOPdesk will fill the caller's details into the incident automatically.
+
+    .PARAMETER ActionInvisibleForCaller
+        will make posted action invisible to caller
+
+    .PARAMETER BranchId
+    ID of the Branch. See Get-TdBranch | this is used for links
+
+    .PARAMETER LocationId
+    ID of the Location. See Get-TdLocation | this is used for links
+
+    .PARAMETER ObjectId
+    ID of the object
+
+    .PARAMETER CallerBranchId
+    ID of the Caller's Branch. See Get-TdBranch
+
+    .PARAMETER CallerDynamicName
+    Caller's name
+
+    .PARAMETER CallerPhoneNumber
+    Caller's Phone Number
+
+    .PARAMETER CallerMobileNumber
+    Caller's Mobile Number
+
+    .PARAMETER CallerEmail
+    Caller's Email
+
+    .PARAMETER CallerDepartmentId
+    ID of caller's department. See Get-TdDepartment
+
+    .PARAMETER CallerLocationId
+    ID of caller's location. See Get-TdLocation
+
+    .PARAMETER CallerBudgetHolderId
+    ID of Caller's BudgetHolder See Get-TdBudgetHolder
+
+    .PARAMETER ImpactID
+    ID of Impact. See Get-TdImpact
+
+    .PARAMETER UrgencyId
+    ID of Urgency. See Get-TdUrgency
+
+    .PARAMETER PriorityId
+    ID of Priority. See Get-TdPriority
+
+    .PARAMETER DurationId
+    ID of Duration. See Get-TdDuration
+
+    .PARAMETER TargetDate
+    Target Date in format 2015-11-15T14:00:00.000+0200
+
+    .PARAMETER OnHold
+    OnHold true/false
+
+    .PARAMETER OperatorID
+    ID of Operator. See Get-TdOperator
+
+    .PARAMETER OperatorGroupID
+    ID of OperatorGroup. See Get-TdOperatorGroup
+
+    .PARAMETER SupplierID
+    ID of Supplier. See Get-TdSupplier
+
+    .PARAMETER ProcessingStatus
+    ID of ProcessingStatus. See Get-TdProcessingStatus
+
+    .PARAMETER Responded
+    Responded true/false
+
+    .PARAMETER ResponseDate
+    Response Date in format 2015-11-15T14:00:00.000+0200
+
+    .PARAMETER Completed
+    Completed true/fause
+
+    .PARAMETER CompletedDate
+    Completed Date in format 2015-11-15T14:00:00.000+0200
+
+    .PARAMETER Closed
+    Closed true/false
+
+    .PARAMETER ClosedDate
+    Closed Date in format 2015-11-15T14:00:00.000+0200
+
+    .PARAMETER ClosureCodeId
+    ID of ClosureCode see Get-TdClosureCode
+
+    .PARAMETER Costs
+    Float value of Costs
 
 	.PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
@@ -51,10 +145,11 @@
 
 	.EXAMPLE
 		PS C:\> Set-TdIncident -IncidentNumber 'I1805-221' -Action 'Example Action'
-		Updates incident I1805-221 with the action 'Example Action'
-#>
+        Updates incident I1805-221 with the action 'Example Action'
 
-    #! CallerDepartment, CallerBranch, CallerLocation, and CallerBudgetHolder require an ID
+    .LINK
+    https://developers.topdesk.com/documentation/index.html#api-Incident-UpdateIncidentByNumber
+#>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Update-TdIncident',
         SupportsShouldProcess = $true)]
@@ -213,6 +308,10 @@
             Action {
                 Write-PSFMessage -Level InternalComment -Message "Adding action to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'action' -Value $Action
+            }
+            ActionInvisibleForCaller {
+                Write-PSFMessage -Level InternalComment -Message "Adding ActionInvisibleForCaller to Body"
+                $Body | Add-Member -MemberType NoteProperty -Name 'ActionInvisibleForCaller' -Value $Action
             }
             BriefDescription {
                 Write-PSFMessage -Level InternalComment -Message "Adding BriefDescription to Body"
