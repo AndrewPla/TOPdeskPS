@@ -331,6 +331,10 @@
                 Write-PSFMessage -Level InternalComment -Message "Adding Request to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'request' -Value $Request
             }
+            ExternalNumber {
+                Write-PSFMessage -Level InternalComment -Message "Adding externalNumber to Body"
+                $Body | Add-Member -MemberType NoteProperty -Name 'externalNumber' -Value $ExternalNumber
+            }
 
             CallerLookup {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerId to Body"
@@ -342,38 +346,38 @@
             }
             Subcategory {
                 Write-PSFMessage -Level InternalComment -Message "Adding Subcategory to Body"
-                $SubcategoryValue = @{
+                $ThisSubcategory = @{
                     name = $Subcategory
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'subcategory' -Value $SubcategoryValue
+                $Body | Add-Member -MemberType NoteProperty -Name 'subcategory' -Value $ThisSubcategory
             }
             Category {
                 Write-PSFMessage -Level InternalComment -Message "Adding category to Body"
-                $CategoryValue = @{
+                $ThisCategory = @{
                     name = $Category
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'category' -Value $CategoryValue
+                $Body | Add-Member -MemberType NoteProperty -Name 'category' -Value $ThisCategory
             }
             EntryType {
                 Write-PSFMessage -Level InternalComment -Message "Adding EntryType to Body"
                 $ThisEntryType = @{
                     id = $EntryType
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'entryType' -Value $EntryType
+                $Body | Add-Member -MemberType NoteProperty -Name 'entryType' -Value $ThisEntryType
             }
             CallType {
                 Write-PSFMessage -Level InternalComment -Message "Adding callType to Body"
                 $ThisCallType = @{
                     id = $CallType
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'callType' -Value $CallType
+                $Body | Add-Member -MemberType NoteProperty -Name 'callType' -Value $ThisCallType
             }
             CallerBranchId {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerBranch to Caller"
-                $ThisBranch = @{
+                $ThisCallerBranch = @{
                     id = $CallerBranch
                 }
-                $Caller | Add-Member -MemberType NoteProperty -Name 'branch' -Value $ThisBranch
+                $Caller | Add-Member -MemberType NoteProperty -Name 'branch' -Value $ThisCallerBranch
             }
             CallerDynamicName {
                 Write-PSFMessage -Level InternalComment -Message "Adding $CallerDynamicName to Caller"
@@ -385,17 +389,17 @@
             }
             CallerDepartmentId {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerDepartment to Caller"
-                $ThisDepartment = @{
+                $ThisCallerDepartment = @{
                     id = $CallerDepartment
                 }
-                $Caller | Add-Member -MemberType NoteProperty -Name 'department' -Value $ThisDepartment
+                $Caller | Add-Member -MemberType NoteProperty -Name 'department' -Value $ThisCallerDepartment
             }
             CallerLocationId {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerLocation to Caller"
-                $ThisLocation = @{
+                $ThisCallerLocation = @{
                     id = $CallerLocation
                 }
-                $Caller | Add-Member -MemberType NoteProperty -Name 'location' -Value $ThisLocation
+                $Caller | Add-Member -MemberType NoteProperty -Name 'location' -Value $ThisCallerLocation
             }
             CallerBudgetHolderId {
                 Write-PSFMessage -Level InternalComment -Message "Adding CallerBudgetHolder to Caller"
@@ -443,7 +447,7 @@
             UrgencyId {
                 Write-PSFMessage -Level InternalComment -Message "Adding Urgency to Body"
                 $ThisUrgency = @{
-                    id = $ImpactId
+                    id = $UrgencyId
                 }
                 $Body | Add-Member -MemberType NoteProperty -Name 'urgency' -Value $ThisUrgency
             }
@@ -523,10 +527,10 @@
             }
             ClosureCodeId {
                 Write-PSFMessage -Level InternalComment -Message "Adding CloseureCode to Body"
-                $ThisCloseureCode = @{
+                $ThisClosureCode = @{
                     id = $ClosureCodeId
                 }
-                $Body | Add-Member -MemberType NoteProperty -Name 'closurecode' -Value $ClosureCodeId
+                $Body | Add-Member -MemberType NoteProperty -Name 'closurecode' -Value $ThisClosureCode
             }
             Costs {
                 Write-PSFMessage -Level InternalComment -Message "Adding Costs to Body"
