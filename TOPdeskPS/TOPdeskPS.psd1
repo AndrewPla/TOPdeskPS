@@ -154,7 +154,7 @@
         'Set-TdChangeProcessingStatus',
         'Set-TdPerson',
         'Update-TdIncident'
-        )
+    )
 
     # Cmdlets to export from this module
     CmdletsToExport = ''
@@ -195,4 +195,5 @@
         } # End of PSData hashtable
 
     } # End of PrivateData hashtable
+}
 
