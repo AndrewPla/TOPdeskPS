@@ -14,7 +14,7 @@
     #>
     [CmdletBinding(Helpuri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdDuration')]
     param (
-        [system.string]$Name
+        [system.string]$Name = '*'
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/durations'
