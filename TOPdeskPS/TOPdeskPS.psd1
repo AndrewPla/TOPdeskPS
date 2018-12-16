@@ -136,6 +136,7 @@
         'New-TdChangeProgress',
         'New-TdDepartment',
         'New-TdIncident',
+        'New-TdOperator',
         'New-TdPerson',
         'Remove-TdAsset',
         'Remove-TdAssetAssignment',
