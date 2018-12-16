@@ -83,28 +83,28 @@
     param (
         [Alias('LastName')]
         [Parameter(Mandatory)]
-        [system.string]$Surname,
+        [string]$Surname,
 
-        [system.string]$BranchId,
-        [system.string]$FirstName,
-        [system.string]$FirstInitials,
-        [System.string]$Prefixes,
-        [system.string]$Gender = 'UNDEFINED',
-        [system.string]$EmployeeNumber,
-        [system.string]$NetworkLoginName,
-        [system.string]$LocationId,
-        [system.string]$DepartmentId,
-        [system.string]$DepartmentFree,
-        [system.string]$TasLoginName,
+        [string]$BranchId,
+        [string]$FirstName,
+        [string]$FirstInitials,
+        [string]$Prefixes,
+        [string]$Gender = 'UNDEFINED',
+        [string]$EmployeeNumber,
+        [string]$NetworkLoginName,
+        [string]$LocationId,
+        [string]$DepartmentId,
+        [string]$DepartmentFree,
+        [string]$TasLoginName,
         [securestring]$Password,
-        [system.string]$PhoneNumber,
-        [system.string]$MobileNumber,
-        [system.string]$Fax,
+        [string]$PhoneNumber,
+        [string]$MobileNumber,
+        [string]$Fax,
 
         [alias('EmailAddress')]
-        [system.string]$Email,
+        [string]$Email,
 
-        [system.string]$JobTitle,
+        [string]$JobTitle,
         [switch]$ShowBudgetholder,
         [switch]$ShowDepartment,
         [switch]$ShowBranch,
@@ -115,8 +115,8 @@
         [switch]$AuthorizeBranch,
         [switch]$AuthorizeSubsidiaryBranches,
         [switch]$IsManager,
-        [System.String]$ManagerId,
-        [system.string]$BudgetholderID
+        [string]$ManagerId,
+        [string]$BudgetholderID
 
     )
 
@@ -170,7 +170,8 @@
             }
             Password {
                 Write-PSFMessage -Level InternalComment -Message "Adding Password to Body"
-                $Body | Add-Member -MemberType NoteProperty -Name 'password' -Value $Password
+                $cred = New-Object pscredential ('user', $Password)
+                $Body | Add-Member -MemberType NoteProperty -Name 'password' -Value $cred.getnetworkcredential().password
             }
             PhoneNumber {
                 Write-PSFMessage -Level InternalComment -Message "Adding PhoneNumber to Body"

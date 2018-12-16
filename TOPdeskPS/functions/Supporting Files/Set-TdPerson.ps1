@@ -179,7 +179,8 @@
             }
             Password {
                 Write-PSFMessage -Level InternalComment -Message "Adding Password to Body"
-                $Body | Add-Member -MemberType NoteProperty -Name 'password' -Value $Password
+                $cred = New-Object pscredential ('user', $Password)
+                $Body | Add-Member -MemberType NoteProperty -Name 'password' -Value $cred.getnetworkcredential().password
             }
             PhoneNumber {
                 Write-PSFMessage -Level InternalComment -Message "Adding PhoneNumber to Body"
