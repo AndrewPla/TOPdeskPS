@@ -104,6 +104,69 @@
         Can only be set by operators.
         For partial incidents, this field is determined by the main incident and will give an error if provided in the request.
 
+    .PARAMETER Operator
+
+Operator by id.
+Can only be set by operators.
+
+.PARAMETER OperatorGroup
+    Operator group by id.
+Can only be set by operators.
+
+.PARAMETER Supplier
+    Supplier by id.
+Can only be set by operators.
+Cannot be filled in if the incident has a supplier service linked.
+
+.PARAMETER ProcessingStatus
+Processing status by id.
+Can only be set by operators.
+
+.PARAMETER Responded
+
+Whether the incident is responded.
+SLM-licence is needed.
+Can only be set by operators. When the setting "Status determines responded" is on, this will be filled automatically (manual setting is prohibited).
+
+.PARAMETER Completed
+Whether the incident is completed.
+Can only be set by operators.
+
+.PARAMETER Closed
+Whether the incident is closed.
+Can only be set by operators and persons.
+
+.PARAMETER Costs
+Costs
+Can only be set by operators.
+
+.PARAMETER Duration
+
+Duration by id.
+Can only be set by operators.
+Cannot be filled in if the incident has a supplier service linked.
+
+    .PARAMETER TargetDate
+    Target date. This includes the timezone information from the provided object.
+Can only be set by operators.
+Cannot be filled in if the incident has a supplier service linked.
+
+    .PARAMETER OnHold
+    sets the ticket to onhold.
+    Can only be set by operators.
+
+    .PARAMETER MajorCall
+        Whether the incident is a major call.
+        Can only be set by operators.
+
+    .PARAMETER MajorCallObject
+        Major call by id.
+        Can only be set by operators.
+
+    .PARAMETER PublishToSsd
+        Whether the incident should be published in the Self Service Desk, only major incidents can be published.
+        Can only be set by operators.
+
 	.PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -120,7 +183,8 @@
     param
     (
         [Parameter(Mandatory = $true,
-            ValueFromPipelineByPropertyName = $true)]
+            ValueFromPipelineByPropertyName = $true,
+            position = 0)]
         [string]
         $Number,
 
@@ -169,41 +233,78 @@
         $ObjectId,
 
         [string]
-        $LocationId
+        $LocationId,
+
+        [string]
+        $CallType,
+
+        [string]
+        $Operator,
+
+        [string]
+        $OperatorGroup,
+
+        [string]
+        $Supplier,
+
+        [alias('Status')]
+        [string]
+        $ProcessingStatus,
+
+        [Switch]
+        $Responded,
+
+        [switch]
+        $Completed,
+
+        [switch]
+        $Closed,
+
+        [string]
+        $ClosureCode,
+
+        [single]
+        $Costs,
+
+        [string]
+        $Duration,
+
+        [datetime]
+        $TargetDate,
+
+        [switch]
+        $OnHold,
+
+        [switch]
+        $MajorCall,
+
+        [string]
+        $MajorCallObject,
+
+        [switch]
+        $PublishToSsd
+
     )
     <#TODO
-        duration
-        targetDate
-        onHold
 
-        Operator
-        OperatorGroup
-        Supplier
-        processingStatus
-        Responded
+
         Responsedate
-        completed
         completeddate
-        closed
+
         closedDate
-        closurecode
-        costs
 
         feedbackRating
         feedbackMessage
 
-        majroCall
-        majorCallObject
-        publishtoSsd
 
         lots of free fields
         #>
 
     process {
-        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
-        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
+        Write-PSFMessage -Level InternalComment -Message "ParameterSetName: $($PsCmdlet.ParameterSetName)"
+        Write-PSFMessage -Level InternalComment -Message "PSBoundParameters: $($PSBoundParameters | Out-String)"
 
-        $IncidentURL = (Get-TdUrl) + "/tas/api/incidents/number/$($IncidentNumber.ToLower())"
+        $IncidentURL = (Get-TdUrl) + "/tas/api/incidents/number/$($Number.ToLower())"
 
 
 
@@ -280,19 +381,81 @@
                 $body | Add-Member -MemberType NoteProperty -name object -Value $val
             }
 
+            Operator {
+                $val = @{id = $Operator}
+                $body | Add-Member -MemberType NoteProperty -name operator -Value $val
+            }
+
+            OperatorGroup {
+                $val = @{id = $OperatorGroup}
+                $body | Add-Member -MemberType NoteProperty -name operatorGroup -Value $val
+            }
+
+            Supplier {
+                $val = @{id = $Supplier}
+                $body | Add-Member -MemberType NoteProperty -name supplier -Value $val
+            }
+
+            ProcessingStatus {
+                $val = @{id = $ProcessingStatus}
+                $body | Add-Member -MemberType NoteProperty -name processingStatus -Value $val
+            }
+            Responded {
+                $body | Add-Member -MemberType NoteProperty -name responded -Value ($Responded.tostring().tolower())
+            }
+            Completed {
+                $body | Add-Member -MemberType NoteProperty -name completed -Value ($Completed.tostring().tolower())
+            }
+
+            Closed {
+                $body | Add-Member -MemberType NoteProperty -name closed -Value ($closed.tostring().tolower())
+            }
+
+            Costs {
+                $body | Add-Member -MemberType NoteProperty -name costs -Value $Costs
+            }
+
+            Duration {
+                $val = @{id = $Duration}
+                $body | Add-Member -MemberType NoteProperty -name duration -Value $val
+            }
+            TargetDate {
+                $d = Get-Date $TargetDate -UFormat "%Y-%m-%dT%H:%M:%S.000%Z00"
+                $Body | Add-Member -MemberType NoteProperty -Name targetDate -Value $d
+            }
+
+            OnHold {
+                $body | Add-Member -MemberType NoteProperty -name onHold -Value ($OnHold.tostring().tolower())
+            }
+
+            MajorCall {
+                $Body | Add-Member -MemberType NoteProperty -name majorCall -value ($MajorCall.tostring().tolower())
+            }
+
+            MajorCallObject {
+                $val = @{id = $MajorCallObject}
+                $Body | Add-Member -MemberType NoteProperty -Name majorCallObject -Value $val
+            }
+
+            PublishToSsd {
+                $Body | Add-Member -MemberType NoteProperty -Name publishToSsd -Value ($PublishToSsd.tostring().tolower())
+            }
+
             #region Caller Parameters
             CallerBranch {
+                $caller = $true
                 $val = @{id = $CallerBranch}
-                $callerBody | Add-Member -MemberType NoteProperty -Name 'branch' -Value $val
+                $callerBody | Add-Member -MemberType NoteProperty -Name branch -Value $val
             }
             CallerEmail {
+                $caller = $true
                 $callerBody | Add-Member -MemberType NoteProperty -Name email -Value $CallerEmail
             }
             #endregion caller Parameters
 
 
         }
-        if ($callerBody) { $Body | Add-Member -MemberType NoteProperty -Name caller -Value $callerBody }
+        if ($caller) { $Body | Add-Member -MemberType NoteProperty -Name caller -Value $callerBody }
 
         $Params = @{
             'Uri' = $IncidentURL
