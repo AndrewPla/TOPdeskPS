@@ -167,14 +167,13 @@ Cannot be filled in if the incident has a supplier service linked.
         Whether the incident should be published in the Self Service Desk, only major incidents can be published.
         Can only be set by operators.
 
-        .PARAMETER ClosureCode
-            Closure code by id.
-Can only be set by operators.
+    .PARAMETER ClosureCode
+        Closure code by id.
+        Can only be set by operators.
 
-.PARAMETER ExternalNumber
-
-External number.
-Can only be set by operators.
+    .PARAMETER ExternalNumber
+        External number.
+        Can only be set by operators.
 
 	.PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
