@@ -152,8 +152,8 @@
         'Set-TdChange',
         'Set-TdChangeActivity',
         'Set-TdChangeProcessingStatus',
-        'Set-TdPerson',
-        'Update-TdIncident'
+        'Set-TdIncident',
+        'Set-TdPerson'
     )
 
     # Cmdlets to export from this module

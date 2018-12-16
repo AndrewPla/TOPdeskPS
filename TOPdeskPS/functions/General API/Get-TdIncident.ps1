@@ -42,6 +42,13 @@
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdIncident')]
     param
     (
+        [Parameter(ParameterSetName = 'Number',
+            ValueFromPipeline = $true,
+            position = 0)]
+        [Alias('IncidentNumber')]
+        [string[]]
+        $Number,
+
         [ValidateRange(1, 100000)]
         [int]
         $ResultSize = 10,
@@ -59,13 +66,8 @@
         $Resolved,
 
         [switch]
-        $Archived,
+        $Archived
 
-        [Parameter(ParameterSetName = 'Number',
-            ValueFromPipeline = $true)]
-        [Alias('IncidentNumber')]
-        [string[]]
-        $Number
     )
 
 
