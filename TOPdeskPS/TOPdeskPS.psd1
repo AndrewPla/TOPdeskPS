@@ -113,6 +113,7 @@
         'Get-TdLocationDetail',
         'Get-TdOperator',
         'Get-TdOperatorAvatar',
+        'Get-TdOperatorBranchFilter',
         'Get-TdOperatorGroup',
         'Get-TdPermissionGroup',
         'Get-TdPerson',
@@ -154,6 +155,8 @@
         'Set-TdChangeActivity',
         'Set-TdChangeProcessingStatus',
         'Set-TdIncident',
+        'Set-TdOperator',
+        'Set-TdOperatorBranchFilter',
         'Set-TdPerson'
     )
 
