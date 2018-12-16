@@ -104,5 +104,16 @@
 			"$$body['${1:propertyName}'] = $${1:propertyName}",
 		],
 		"description": "adds a property to a hashtable"
+	},
+	"AddMember Params/Splat": {
+		"prefix": "construct add member params using a hashtable",
+		"body": [
+			"${1:propertyName}{",
+			"$$memberParams['Name'] = '${1:propertyName}'",
+			"$$memberParams['Value'] = $${1:propertyName}",
+			"Add-Member @memberParams",
+			"}",
+		],
+		"description": "adds a property to a hashtable"
 	}
 }
