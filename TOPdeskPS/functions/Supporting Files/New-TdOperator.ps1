@@ -1,4 +1,4 @@
-function New-TdOperator {
+﻿function New-TdOperator {
     <#
 .SYNOPSIS
     Create an operator

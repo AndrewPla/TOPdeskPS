@@ -1,4 +1,4 @@
-function Set-TdOperatorBranchFilter {
+﻿function Set-TdOperatorBranchFilter {
     <#
 .SYNOPSIS
     Link and unlink branch filters from an operator

@@ -1,4 +1,4 @@
-function Get-TdOperatorBranchFilter {
+﻿function Get-TdOperatorBranchFilter {
     <#
 .SYNOPSIS
     Returns branch filters linked to an operator

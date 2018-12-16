@@ -1,4 +1,4 @@
-function Get-TdOperatorCategoryFilter {
+﻿function Get-TdOperatorCategoryFilter {
     <#
 .SYNOPSIS
     Returns category filters linked to an operator

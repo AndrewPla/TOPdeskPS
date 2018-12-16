@@ -1,4 +1,4 @@
-function Get-TdOperatorFilter {
+﻿function Get-TdOperatorFilter {
     <#
     .SYNOPSIS
         Get list of Operator filters

@@ -1,4 +1,4 @@
-function Set-TdOperator {
+﻿function Set-TdOperator {
     <#
 .SYNOPSIS
     Update operator
@@ -57,7 +57,8 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
     PS C:\> Set-TdOperator -id $operator.id -password (read-host -assecurestring)
     Update the password for the operator stored in the $operator variable
 #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperator')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperator',
+        SupportsShouldProcess = $true)]
 
     param
     (

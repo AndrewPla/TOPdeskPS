@@ -1,4 +1,4 @@
-function Set-TdOperatorCategoryFilter {
+﻿function Set-TdOperatorCategoryFilter {
     <#
 .SYNOPSIS
     Link and unlink Category filters from an operator
