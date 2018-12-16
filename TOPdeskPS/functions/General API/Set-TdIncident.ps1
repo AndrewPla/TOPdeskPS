@@ -115,7 +115,7 @@
 		Updates incident I1805-221 with the action 'Example Action'
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Update-TdIncident',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Set-TdIncident',
         SupportsShouldProcess = $true)]
     param
     (
@@ -156,7 +156,6 @@
         [string]
         $CallerBranch,
 
-
         [string]
         $Impact,
 
@@ -171,9 +170,6 @@
 
         [string]
         $LocationId
-
-
-
     )
     <#TODO
         duration
