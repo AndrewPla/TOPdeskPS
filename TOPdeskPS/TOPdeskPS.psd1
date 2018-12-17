@@ -113,7 +113,11 @@
         'Get-TdLocationDetail',
         'Get-TdOperator',
         'Get-TdOperatorAvatar',
+        'Get-TdOperatorBranchFilter',
+        'Get-TdOperatorCategoryFilter',
+        'Get-TdOperatorFilter',
         'Get-TdOperatorGroup',
+        'Get-TdOperatorOperatorFilter',
         'Get-TdPermissionGroup',
         'Get-TdPerson',
         'Get-TdPersonAvatar',
@@ -154,6 +158,10 @@
         'Set-TdChangeActivity',
         'Set-TdChangeProcessingStatus',
         'Set-TdIncident',
+        'Set-TdOperator',
+        'Set-TdOperatorBranchFilter',
+        'Set-TdOperatorCategoryFilter',
+        'Set-TdOperatorOperatorFilter',
         'Set-TdPerson'
     )
 
@@ -179,7 +187,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('TOPdesk', 'API', 'ITSM', 'ITIL', 'Incident', 'Ticket')
+            Tags = @('TOPdesk', 'API')
 
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/AndrewPla/TOPdeskPS/blob/master/LICENSE.md'

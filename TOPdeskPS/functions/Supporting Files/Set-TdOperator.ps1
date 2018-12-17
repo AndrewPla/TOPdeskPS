@@ -1,11 +1,13 @@
-﻿function New-TdOperator {
+﻿function Set-TdOperator {
     <#
 .SYNOPSIS
-    Create an operator
+    Update operator
 .DESCRIPTION
-    Create new operators. Operator must have create permission on operators
+    Update an operator by id
+    .PARAMETER Operator
+    Id of the operator that you want to edit
 
-.PARAMETER SurName
+    .PARAMETER SurName
 Surname of the operator
 
 .PARAMETER FirstName
@@ -47,20 +49,35 @@ Is mandatory when loginPermission is set to true.
 .PARAMETER Password
     Password, operator requires permission "Settings > Login Settings".
 Is mandatory when “Functional Settings > Login Settings > Operator’s Section > Password mandatory on Operator card” is set.
-    .PARAMETER Tasks
-        Specify the tasks that you want the operator to have.
-.PARAMETER Confirm
+
+.PARAMETER TasksToAdd
+    All of the tasks that you want to grant the operator
+
+    .PARAMETER TasksToRemove
+    All of the tasks that you wish to revoke from the operator
+
+    .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
-.PARAMETER WhatIf
+
+    .PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
 .EXAMPLE
-    PS C:\> New-TdOperator -Surname 'Smith' -firstname 'John' -branch (Get-TdBranch -Name HQ).id
-    Creates a new operator name John Smith in the HQ branch
+    PS C:\> Set-TdOperator -id $operator.id -password (read-host -assecurestring)
+    Update the password for the operator stored in the $operator variable
 #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdOperator',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperator',
         SupportsShouldProcess = $true)]
+
     param
     (
+        [Parameter(
+            Mandatory,
+            ValueFromPipelineByPropertyName
+        )]
+        [Alias('id')]
+        $Operator,
+
         [Parameter(Mandatory)]
         [ValidateLength(0, 50)]
         $SurName,
@@ -93,7 +110,6 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
         [string]
         $Email,
 
-        [Parameter(Mandatory)]
         [string]
         $Branch,
 
@@ -142,18 +158,46 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
             'accountManager'
         )]
         [string[]]
-        $Tasks
+        $TasksToAdd,
 
+        [ValidateSet(
+            'installer',
+            'firstLineCallOperator',
+            'secondLineCallOperator',
+            'problemManager',
+            'problemOperator',
+            'changeCoordinator',
+            'changeActivitiesOperator',
+            'requestForChangeOperator',
+            'extensiveChangeOperator',
+            'simpleChangeOperator',
+            'scenarioManager',
+            'planningActivityManager',
+            'projectCoordinator',
+            'projectActiviesOperator',
+            'stockManager',
+            'reservationsOperator',
+            'serviceOperator',
+            'externalHelpDeskParty',
+            'contractManager',
+            'operationsOperator',
+            'operationsManager',
+            'knowledgeBaseManager',
+            'accountManager'
+        )]
+        [string[]]
+        $TasksToRemove
     )
 
-
     process {
-        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
-        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level InternalComment
+        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
+        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
 
-        $uri = "$(Get-TdUrl)/tas/api/operators"
+        $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator"
         $body = [PSCustomObject]@{}
         $memberParams = @{ Membertype = 'Noteproperty'; InputObject = $body}
+
+
         Switch ($PSBoundParameters.Keys) {
             SurName {
                 $memberParams['Name'] = 'surName'
@@ -232,17 +276,17 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
                 $memberParams['Value'] = $cred.GetNetworkCredential().password
                 Add-Member @memberParams
             }
-            Tasks {
-                foreach ($t in $Tasks) {
+            TaskstoAdd {
+                foreach ($t in $TaskstoAdd) {
                     $body | Add-Member -MemberType NoteProperty -Name $t -Value 'true'
                 }
             }
+            TaskstoRemove {
+                foreach ($t in $TaskstoRemove) {
+                    $body | Add-Member -MemberType NoteProperty -Name $t -Value 'false'
+                }
+            }
         }
-        #region tasks
-
-        #endregion tasks
-
-
 
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body: $($Body | Out-String)")) {
             return
@@ -250,11 +294,12 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
         $methodParams = @{
             Uri = $uri
             Body = ($body | ConvertTo-Json)
-            Method = 'POST'
+            Method = 'PATCH'
         }
         $res = Invoke-TdMethod @methodParams
         $res
+
+
     }
 
 }
-
