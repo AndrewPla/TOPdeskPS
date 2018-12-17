@@ -16,9 +16,6 @@
         [Alias('GroupName')]
         [system.string]$Name = '*'
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
@@ -28,8 +25,6 @@
         $res = Invoke-TdMethod -Uri $uri
         $res  | Where-Object groupname -like $Name
     }
-    end {
-        Write-PSFMessage "Function Complete" -level verbose
-    }
+
 }
 
