@@ -47,7 +47,7 @@ Is mandatory when loginPermission is set to true.
 .PARAMETER Password
     Password, operator requires permission "Settings > Login Settings".
 Is mandatory when “Functional Settings > Login Settings > Operator’s Section > Password mandatory on Operator card” is set.
-    .PARAMETER Task
+    .PARAMETER Tasks
         Specify the tasks that you want the operator to have.
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.

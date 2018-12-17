@@ -59,6 +59,9 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
+    .PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
 .EXAMPLE
     PS C:\> Set-TdOperator -id $operator.id -password (read-host -assecurestring)
     Update the password for the operator stored in the $operator variable
