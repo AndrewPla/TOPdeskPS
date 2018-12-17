@@ -38,6 +38,6 @@
             }
         }
         $res = Invoke-TdMethod -Uri $uri
-        $res | Where name -like $name
+        $res | Where-object name -like $name
     }
 }

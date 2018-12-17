@@ -6,6 +6,8 @@
     returns the branch filters linked to an operator
     .PARAMETER Operator
         Id of the operator that you want branch filters for
+        .PARAMETER Name
+        Filter by name. wildcards accepted.
 .EXAMPLE
     PS C:\> Get-TdOperator -name 'Andrew Pla' | Get-TdOperatorBranchFilter
     Returns branch filters for the provided operator
@@ -16,7 +18,9 @@
     (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('id')]
-        $Operator
+        $Operator,
+
+        $Name = '*'
     )
 
     process {
@@ -25,7 +29,7 @@
 
         $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/filters/branch"
         $res = Invoke-TdMethod -Uri $uri
-        $res
+        $res | where-object name -like $Name
     }
 
 }
