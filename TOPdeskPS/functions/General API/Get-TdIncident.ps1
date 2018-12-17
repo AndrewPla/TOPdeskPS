@@ -99,7 +99,7 @@
                 }
 
                 if ($PSBoundParameters.keys -contains 'Archived') {
-                    $uri = "$uri&archive=$($Archived.tostring().tolower())"
+                    $uri = "$uri&archived=$($Archived.tostring().tolower())"
                 }
 
                 if ($ResultSize -gt 100) {
@@ -109,6 +109,7 @@
                     $pageSize = $ResultSize
                 }
 
+                $uri = $uri.Replace('?&', '?')
                 $count = 0
                 do {
                     $incidents = @()

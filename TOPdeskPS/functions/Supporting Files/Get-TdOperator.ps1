@@ -82,6 +82,7 @@
             $pageSize = $ResultSize
         }
 
+        $uri = $uri.replace('?&', '?')
         $count = 0
         do {
             $operators = @()
@@ -115,7 +116,7 @@
 
 
         $res = Invoke-TdMethod -Uri $uri
-
+        $res
     }
 }
 
