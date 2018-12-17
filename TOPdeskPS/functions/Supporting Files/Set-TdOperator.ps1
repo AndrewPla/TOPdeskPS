@@ -4,6 +4,9 @@
     Update operator
 .DESCRIPTION
     Update an operator by id
+    .PARAMETER Operator
+    Id of the operator that you want to edit
+
     .PARAMETER SurName
 Surname of the operator
 
@@ -52,6 +55,9 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
 
     .PARAMETER TasksToRemove
     All of the tasks that you wish to revoke from the operator
+
+    .PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
 .EXAMPLE
     PS C:\> Set-TdOperator -id $operator.id -password (read-host -assecurestring)
