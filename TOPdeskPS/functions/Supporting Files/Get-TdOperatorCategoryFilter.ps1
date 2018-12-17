@@ -30,7 +30,7 @@
 
         $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/filters/category"
         $res = Invoke-TdMethod -Uri $uri
-        $res | where name -like $name
+        $res | where-object name -like $name
     }
 
 }
