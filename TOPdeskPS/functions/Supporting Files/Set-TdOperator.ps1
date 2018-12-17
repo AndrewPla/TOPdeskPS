@@ -58,6 +58,8 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
 
     .PARAMETER ArchiveReason
         specify an archiving reason ID to archive the operator.
+    .PARAMETER Unarchive
+        Specify if you want to unarchive an operator.
 
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
