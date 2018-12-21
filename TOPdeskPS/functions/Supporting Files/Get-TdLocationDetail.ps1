@@ -4,11 +4,14 @@
     Gets location details
 .DESCRIPTION
     Returns details of location by id
-.PARAMETER LocationId
+.PARAMETER Location
     Id of the location that you want returned. See Get-TdLocation
 .EXAMPLE
     PS C:\> Get-TdLocation | Get-TdLocationDetail
     returns details for all locations
+.EXAMPLE
+    PS> Get-TdLocation 'Mars' | Get-TdLocationDetail
+    Returns details for the mars location
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdLocationDetail')]
 
@@ -19,22 +22,15 @@
             ValueFromPipelineByPropertyName
         )]
         [Alias('Id')]
-        $LocationId
+        $Location
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
-        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level internalcomment
 
-        $uri = (Get-TdUrl) + "/tas/api/locations/id/$LocationId"
+        $uri = (Get-TdUrl) + "/tas/api/locations/id/$Location"
         $res = Invoke-TdMethod -Uri $uri
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -level verbose
     }
 }
 

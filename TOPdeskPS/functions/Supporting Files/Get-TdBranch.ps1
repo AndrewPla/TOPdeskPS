@@ -32,7 +32,7 @@
     Write-PSFMessage -Level InternalComment -Message "Branch url: $uri"
 
     if ($Archived) {
-        $uri = "$uri/?archived=$($Archived.ToString().tolower()"
+        $uri = "$uri/?archived=$($Archived.ToString().tolower())"
     }
 
     $Params = @{
