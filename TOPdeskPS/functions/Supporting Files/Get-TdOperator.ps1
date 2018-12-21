@@ -101,23 +101,23 @@
                 'uri' = $loopingUri
             }
             $operators += Invoke-TdMethod @Params
-            if (($operators.count) -eq 1) {
-                Write-PSFMessage 'No incidents remaining.'
-                $status = 'finished'
+            foreach ($op in $operators) {
+                if ($op.id) {$op}
+                else {$status = 'finished'}
             }
 
 
+            if (($operators.count) -eq $remaining) {
+                Write-PSFMessage 'No operators remaining.'
+                $status = 'finished'
+            }
 
             $count += $operators.count
             $start += $PageSize
 
-
         }
         until ($status -like 'finished')
 
-
-        $res = Invoke-TdMethod -Uri $uri
-        $res
     }
 }
 
