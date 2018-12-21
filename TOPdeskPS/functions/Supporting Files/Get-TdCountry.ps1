@@ -17,9 +17,9 @@
 
     param
     (
-      [Parameter(Position = 0)]
+        [Parameter(Position = 0)]
         [string]
-        $Name = '*',
+        $Name = '*'
     )
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
