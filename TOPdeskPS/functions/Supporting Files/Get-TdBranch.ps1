@@ -18,12 +18,12 @@
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdBranch')]
     param (
-          [Parameter(Position = 0)]
+        [Parameter(Position = 0)]
         [String]
         $Name = '*',
 
-    [switch]
-        $Archived,
+        [switch]
+        $Archived
 
 
     )
@@ -32,8 +32,7 @@
     Write-PSFMessage -Level InternalComment -Message "Branch url: $uri"
 
     if ($Archived) {
-        Write-PSFMessage -Level InternalComment -Message "Archive = $Archive"
-        $uri = "$uri&archive=$Archive"
+        $uri = "$uri/?archived=$($Archived.ToString().tolower()"
     }
 
     $Params = @{
