@@ -32,6 +32,10 @@
 
     param
     (
+        [Parameter(Position = 0)]
+        [string]
+        $TOPdeskLoginName,
+
         [ValidateRange(1, 100000)]
         [int]
         $ResultSize = 10,
@@ -41,9 +45,6 @@
 
         [string]
         $Email,
-
-        [string]
-        $TOPdeskLoginName,
 
         [switch]$Archived,
 
