@@ -21,13 +21,10 @@
     param
     (
         [Parameter(Mandatory, ParameterSetName = 'Name')]
-        [System.string]$Name,
+        [string]$Name,
         [Parameter(Mandatory, ParameterSetName = 'ExternalLink')]
-        [System.string]$externalLinkId
+        [string]$externalLinkId
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
@@ -39,7 +36,7 @@
         $body | Add-Member -MemberType NoteProperty -Name 'name' -Value $name
         if ($pscmdlet.ParameterSetName -eq 'ExternalLink') {
             $externalLink = [PSCustomObject]@{
-                id   = $ExternalLinkId
+                id = $ExternalLinkId
                 type = $ExternalLinkType
             }
             $body | Add-Member -MemberType NoteProperty -Name 'externalLink' -Value $externalLink
@@ -50,8 +47,6 @@
         }
         Invoke-TdMethod -Uri $uri -Body ($body | Convertto-json) -Method POST
     }
-    end {
-        Write-PSFMessage "Function Complete" -level verbose
-    }
+
 }
 
