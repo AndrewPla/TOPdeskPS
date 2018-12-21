@@ -5,21 +5,27 @@
     .DESCRIPTION
         Gets Branches
     .PARAMETER Archived
-        Whether to retrieve archived incidents
+        Whether to retrieve archived incidents. Doesn't return archived branches by default.
     .PARAMETER Name
         Name of the branch that you want returned.Wildcards are supported. Default value is '*'
     .EXAMPLE
         PS C:\> Get-TdBranch
         Gets Branches
+    .EXAMPLE
+        PS C:\> Get-TdBranch 'Main Office'
+        Returns the 'Main Office' branch
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdBranch')]
     param (
-        [switch]
+          [Parameter(Position = 0)]
+        [String]
+        $Name = '*',
+
+    [switch]
         $Archived,
 
-        [System.String]
-        $Name = '*'
+
     )
     Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/branches'
