@@ -51,7 +51,7 @@
             Operator {
                 $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/operatorgroups"
                 $res = Invoke-TdMethod -Uri $uri
-                $res | Where-Object groupname -like $Name
+                $res
             }
 
             List {
