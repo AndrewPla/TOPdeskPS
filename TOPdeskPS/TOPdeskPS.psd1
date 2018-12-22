@@ -163,6 +163,7 @@
         'Set-TdOperatorGroup',
         'Set-TdOperatorOperatorGroup',
         'Set-TdOperatorOperatorFilter',
+        'Set-TdOperatorPermissionGroup',
         'Set-TdPerson'
     )
 
