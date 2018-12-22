@@ -18,9 +18,6 @@ function <%=$PLASTER_PARAM_FunctionName%> {
     (
 
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -Level Verbose
-        }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
@@ -28,6 +25,15 @@ function <%=$PLASTER_PARAM_FunctionName%> {
 
         $uri = "$(Get-TdUrl)/tas/api/<%=$PLASTER_PARAM_ApiEndpoint%>"
         $body = [PSCustomObject]@{}
+        $addMemberParams = @{ Membertype = 'Noteproperty'; InputObject = $body}
+
+        Switch ($PSBoundParameters.Keys){
+            Value {
+                $addMemberParams['Name'] = 'value'
+                $addMemberParams['Value'] = $value
+                Add-Member @addMemberParams
+            }
+        }
 
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Sending Request')) {
         return
@@ -39,8 +45,5 @@ function <%=$PLASTER_PARAM_FunctionName%> {
         }
         $res = Invoke-TdMethod @methodParams
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -Level Verbose
     }
 }
