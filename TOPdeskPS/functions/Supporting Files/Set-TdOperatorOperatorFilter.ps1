@@ -30,7 +30,7 @@
         [string[]]
         $Link,
 
-        [Parameter(ParameterSetName = 'unlink')]
+        [Parameter(ParameterSetName = 'Unlink')]
         [string[]]
         $Unlink
     )
