@@ -160,7 +160,8 @@
         'Set-TdOperator',
         'Set-TdOperatorBranchFilter',
         'Set-TdOperatorCategoryFilter',
-        'Set-TdOperatorGroup'
+        'Set-TdOperatorGroup',
+        'Set-TdOperatorOperatorGroup',
         'Set-TdOperatorOperatorFilter',
         'Set-TdPerson'
     )
