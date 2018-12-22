@@ -141,6 +141,7 @@
         'New-TdDepartment',
         'New-TdIncident',
         'New-TdOperator',
+        'New-TdOperatorGroup',
         'New-TdPerson',
         'Remove-TdAsset',
         'Remove-TdAssetAssignment',
