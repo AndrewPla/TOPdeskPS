@@ -6,7 +6,10 @@ function Set-TdOperatorOperatorGroup {
     link and unlink operator groups from an operator
     .PARAMETER Operator
     Id of the operator that you want to link/unlink operator groups from
-
+.PARAMETER Link
+ids of groups that you want to link
+.PARAMETER Unlink
+ids of groups that you want to unlink
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf
