@@ -18,9 +18,11 @@
     PS C:\> Get-TdOperatorGroup -resultsize 1000
     returns up to 1000 operator groups.
 #>
+
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperatorGroup',
         DefaultParameterSetName = 'List')]
-
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSPossibleIncorrectUsageOfAssignmentOperator
+", "", Justification = "I want to set the status to finished, dangit!")]
     param (
         [Parameter(Position = 0,
             ParameterSetName = 'List')]
