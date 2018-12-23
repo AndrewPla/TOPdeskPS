@@ -1,4 +1,4 @@
-function Set-TdOperatorOperatorGroup {
+﻿function Set-TdOperatorOperatorGroup {
     <#
 .SYNOPSIS
     Link and unlink operator groups from an operator

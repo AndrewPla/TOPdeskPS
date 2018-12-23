@@ -6,9 +6,14 @@
     returns list of permission groups
 .PARAMETER Name
     Name of the operator group that you want returned. Wildcards are supported. Default value is '*'
+.PARAMETER Operator
+    Id of the operator that you want to return the permission groups for
 .EXAMPLE
     PS C:\> Get-TdPermissionGroup
     returns list of permission groups
+.EXAMPLE
+    PS C:\>  Get-TdOperator -TOPdeskloginName 'Juanita Smith' | Get-TdPermissionGroup
+    returns permission groups for Juanita Smith
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPermissionGroup')]
 

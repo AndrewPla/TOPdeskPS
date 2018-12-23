@@ -1,4 +1,4 @@
-function Set-TdOperatorGroup {
+﻿function Set-TdOperatorGroup {
     <#
 .SYNOPSIS
     Updates operator groups

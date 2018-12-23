@@ -1,4 +1,4 @@
-function Set-TdOperatorPermissionGroup {
+﻿function Set-TdOperatorPermissionGroup {
     <#
 .SYNOPSIS
     Link and unlink operator groups from an operator

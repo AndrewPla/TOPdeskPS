@@ -1,4 +1,4 @@
-function New-TdOperatorGroup {
+﻿function New-TdOperatorGroup {
     <#
 .SYNOPSIS
     Create an operator group
