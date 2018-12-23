@@ -113,11 +113,9 @@
         'Get-TdLocationDetail',
         'Get-TdOperator',
         'Get-TdOperatorAvatar',
-        'Get-TdOperatorBranchFilter',
-        'Get-TdOperatorCategoryFilter',
         'Get-TdOperatorFilter',
         'Get-TdOperatorGroup',
-        'Get-TdOperatorOperatorFilter',
+        'Get-TdOperatorGroupMember',
         'Get-TdPermissionGroup',
         'Get-TdPerson',
         'Get-TdPersonAvatar',
@@ -141,6 +139,7 @@
         'New-TdDepartment',
         'New-TdIncident',
         'New-TdOperator',
+        'New-TdOperatorGroup',
         'New-TdPerson',
         'Remove-TdAsset',
         'Remove-TdAssetAssignment',
@@ -161,7 +160,10 @@
         'Set-TdOperator',
         'Set-TdOperatorBranchFilter',
         'Set-TdOperatorCategoryFilter',
+        'Set-TdOperatorGroup',
+        'Set-TdOperatorOperatorGroup',
         'Set-TdOperatorOperatorFilter',
+        'Set-TdOperatorPermissionGroup',
         'Set-TdPerson'
     )
 

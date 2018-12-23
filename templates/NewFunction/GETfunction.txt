@@ -14,9 +14,6 @@ function <%=$PLASTER_PARAM_FunctionName%> {
     (
 
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-        }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
@@ -26,7 +23,5 @@ function <%=$PLASTER_PARAM_FunctionName%> {
         $res = Invoke-TdMethod -Uri $uri
         $res
     }
-    end {
-        Write-PSFMessage "Function Complete" -level Verbose
-    }
+\
 }

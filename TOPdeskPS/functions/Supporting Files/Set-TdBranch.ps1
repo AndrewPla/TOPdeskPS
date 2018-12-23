@@ -40,8 +40,6 @@
     PS C:\> Set-TdBranch -BranchId (Get-TdBranch -Name 'Test Branch').id -Phone '555-555-5555'
     Updates the Test Branch phone number.
 #>
-    #TODO Update help
-
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdBranch',
         SupportsShouldProcess = $true)]

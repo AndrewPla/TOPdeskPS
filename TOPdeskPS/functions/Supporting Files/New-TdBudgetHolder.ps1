@@ -31,9 +31,6 @@
         [Parameter(Mandatory, ParameterSetName = 'ExternalLink')]
         [System.string]$ExternalLinkType
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
@@ -55,8 +52,6 @@
         }
         Invoke-TdMethod -Uri $uri -Body ($body | Convertto-json) -Method POST
     }
-    end {
-        Write-PSFMessage "Function Complete" -level verbose
-    }
+
 }
 

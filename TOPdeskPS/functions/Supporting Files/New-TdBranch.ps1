@@ -36,7 +36,7 @@
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
     PS C:\> New-TdBranch -Name 'New Branch' -Branch Type 'independentBranch' -Phone '555-555-5555'
-    creates a new branch with defined charactaristics
+    creates a new branch
 .EXAMPLE
     PS C:\> New-TdBranch -Name 'Subsidiary of AlphaBranch' -BranchType 'hasAHeadBranch' -HeadBranchId (Get-TdBranch -name 'AlphaBranch').id
 .LINK
@@ -49,23 +49,23 @@
     param
     (
         [Parameter(Mandatory)]
-        [System.String]$Name,
+        [string]$Name,
 
-        [system.string]$Specification,
+        [string]$Specification,
 
-        [System.String]$ClientReferenceNumber,
+        [string]$ClientReferenceNumber,
 
-        [System.String]$Phone,
+        [string]$Phone,
 
-        [System.String]$fax,
+        [string]$fax,
 
-        [System.String]$Email,
+        [string]$Email,
 
-        [System.String]$Website,
+        [string]$Website,
 
         [Parameter(Mandatory)]
         [ValidateSet('independentBranch', 'headBranch', 'hasAHeadBranch')]
-        [System.String]$BranchType,
+        [string]$BranchType,
 
         [Alias('HeadBranch')]
         $HeadBranchId,

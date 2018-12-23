@@ -35,9 +35,6 @@
         [switch]
         $BrowserFriendlyUrls = $false
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
@@ -55,8 +52,6 @@
         $res = Invoke-TdMethod -Uri $uri
         $res
     }
-    end {
-        Write-PSFMessage "Function Complete" -level Verbose
-    }
+
 }
 

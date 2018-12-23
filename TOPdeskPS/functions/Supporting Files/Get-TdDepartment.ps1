@@ -4,19 +4,24 @@
     returns list of departments
 .DESCRIPTION
     returns list of departments
+    .PARAMETER Name
+        Filter based on the name. Wildcards accepted.
+
 .EXAMPLE
     PS C:\> Get-TdDepartment
     returns list of departments
+.EXAMPLE
+    PS> Get-TdDepartment 'IT'
+    Returns the IT department
 #>
-[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdDepartment')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdDepartment')]
 
     param
     (
-
+        [Parameter(Position = 0)]
+        [string]
+        $Name = '*'
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-        }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
@@ -26,8 +31,6 @@
         $res = Invoke-TdMethod -Uri $uri
         $res
     }
-    end {
-        Write-PSFMessage "Function Complete" -level verbose
-    }
+
 }
 

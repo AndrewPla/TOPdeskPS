@@ -4,7 +4,7 @@
     Gets details of a branch
 .DESCRIPTION
     Gets details of a branch by branchId
-.PARAMETER BranchId
+.PARAMETER Branch
     ID of the branch. See Get-TdBranch
 .EXAMPLE
     PS C:\> Get-TdBranchDetails -BranchId (Get-TdBranch -name 'examplebranch').id
@@ -20,22 +20,14 @@
             ValueFromPipelineByPropertyName
         )]
         [Alias('Id')]
-        $BranchId
+        $Branch
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
-
     process {
-        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level internalcomment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level internalcomment
 
-        $uri = (Get-TdUrl) + "/tas/api/branches/id/$BranchId"
+        $uri = (Get-TdUrl) + "/tas/api/branches/id/$Branch"
         $res = Invoke-TdMethod -Uri $uri
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -level verbose
     }
 }
 

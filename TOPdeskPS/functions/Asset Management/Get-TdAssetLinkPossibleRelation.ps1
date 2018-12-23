@@ -24,15 +24,12 @@
         [system.string]
         $AssetId,
 
-         [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [Alias('targetId')]
         [system.string]
         $TargetAssetId
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    }
     process {
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assetLinks/possibleRelations/?sourceId=$AssetId&targetId=$TargetAssetId"
         Invoke-TdMethod -Uri $uri

@@ -18,9 +18,6 @@
         [alias('BriefDescription')]
         $Name = '*'
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
@@ -37,7 +34,5 @@
             $r | where-object briefdescription -like $Name
         }
     }
-    end {
-        Write-PSFMessage "Function Complete" -level Verbose
-    }
+
 }

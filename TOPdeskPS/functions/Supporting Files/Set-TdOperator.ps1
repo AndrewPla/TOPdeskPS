@@ -56,6 +56,11 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
     .PARAMETER TasksToRemove
     All of the tasks that you wish to revoke from the operator
 
+    .PARAMETER ArchiveReason
+        specify an archiving reason ID to archive the operator.
+    .PARAMETER Unarchive
+        Specify if you want to unarchive an operator.
+
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -78,60 +83,75 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
         [Alias('id')]
         $Operator,
 
-        [Parameter(Mandatory)]
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 50)]
         $SurName,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 30)]
         [string]
         $FirstName,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateSet('UNDEFINED', 'MALE', 'FEMALE')]
         [string]
         $Gender,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 20)]
         [string]
         $EmployeeNumber,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 25)]
         [string]
         $Telephone,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 25)]
         [string]
         $MobileNumber,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 100)]
         [string]
         $NetworkLoginName,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 100)]
         [string]
         $Email,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [string]
         $Branch,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [string]
         $Location,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [string]
         $Department,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [string]
         $BudgetHolder,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [switch]
         $LoginPermission,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateLength(0, 100)]
         [string]
         $LoginName,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [securestring]
         $Password,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateSet(
             'installer',
             'firstLineCallOperator',
@@ -160,6 +180,7 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
         [string[]]
         $TasksToAdd,
 
+        [Parameter(ParameterSetName = 'Modify')]
         [ValidateSet(
             'installer',
             'firstLineCallOperator',
@@ -186,120 +207,163 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
             'accountManager'
         )]
         [string[]]
-        $TasksToRemove
+        $TasksToRemove,
+
+        [Parameter(ParameterSetName = 'Archive')]
+        [string]
+        $ArchiveReason,
+
+        [Parameter(ParameterSetName = 'Unarchive')]
+        [switch]
+        $Unarchive
     )
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
 
-        $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator"
         $body = [PSCustomObject]@{}
         $memberParams = @{ Membertype = 'Noteproperty'; InputObject = $body}
 
+        Switch ($PsCmdlet.ParameterSetName) {
 
-        Switch ($PSBoundParameters.Keys) {
-            SurName {
-                $memberParams['Name'] = 'surName'
-                $memberParams['Value'] = $surName
+            Archive {
+                $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/archive"
+
+                $memberParams['name'] = 'id'
+                $memberParams['value'] = $ArchiveReason
                 Add-member @memberParams
-            }
-            firstName {
-                $memberParams['Name'] = 'firstName'
-                $memberParams['Value'] = $firstName
-                Add-Member @memberParams
-            }
-            gender {
-                $memberParams['Name'] = 'gender'
-                $memberParams['Value'] = $gender
-                Add-Member @memberParams
-            }
-            employeeNumber {
-                $memberParams['Name'] = 'employeeNumber'
-                $memberParams['Value'] = $employeeNumber
-                Add-Member @memberParams
-            }
-            telephone {
-                $memberParams['Name'] = 'telephone'
-                $memberParams['Value'] = $telephone
-                Add-Member @memberParams
-            }
-            mobileNumber {
-                $memberParams['Name'] = 'mobileNumber'
-                $memberParams['Value'] = $mobileNumber
-                Add-Member @memberParams
-            }
-            networkLoginName {
-                $memberParams['Name'] = 'networkLoginName'
-                $memberParams['Value'] = $networkLoginName
-                Add-Member @memberParams
-            }
-            email {
-                $memberParams['Name'] = 'email'
-                $memberParams['Value'] = $email
-                Add-Member @memberParams
-            }
-            branch {
-                $memberParams['Name'] = 'branch'
-                $memberParams['Value'] = @{id = $branch}
-                Add-Member @memberParams
-            }
-            location {
-                $memberParams['Name'] = 'location'
-                $memberParams['Value'] = @{id = $location}
-                Add-Member @memberParams
-            }
-            department {
-                $memberParams['Name'] = 'department'
-                $memberParams['Value'] = @{id = $department}
-                Add-Member @memberParams
-            }
-
-            budgetHolder {
-                $memberParams['Name'] = 'budgetHolder'
-                $memberParams['Value'] = @{id = $budgetHolder}
-                Add-Member @memberParams
-            }
-            loginPermission {
-                $memberParams['Name'] = 'loginPermission'
-                $memberParams['Value'] = $loginPermission.tostring().tolower()
-                Add-Member @memberParams
-            }
-            loginName {
-                $memberParams['Name'] = 'loginName'
-                $memberParams['Value'] = $loginName
-                Add-Member @memberParams
-            }
-            password {
-                $cred = New-Object pscredential ('user', $password)
-                $memberParams['Name'] = 'password'
-                $memberParams['Value'] = $cred.GetNetworkCredential().password
-                Add-Member @memberParams
-            }
-            TaskstoAdd {
-                foreach ($t in $TaskstoAdd) {
-                    $body | Add-Member -MemberType NoteProperty -Name $t -Value 'true'
+                $methodParams = @{
+                    Uri = $uri
+                    Body = ($body | ConvertTo-Json)
+                    Method = 'PATCH'
                 }
-            }
-            TaskstoRemove {
-                foreach ($t in $TaskstoRemove) {
-                    $body | Add-Member -MemberType NoteProperty -Name $t -Value 'false'
+                if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body: $($Body | Out-String)")) {
+                    return
                 }
+                $res = Invoke-TdMethod @methodParams
+                $res
+            }
+
+            Unarchive {
+                $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/unarchive"
+                $methodParams = @{
+                    Uri = $uri
+                    Body = ($body | ConvertTo-Json)
+                    Method = 'PATCH'
+                }
+                if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body: $($Body | Out-String)")) {
+                    return
+                }
+                $res = Invoke-TdMethod @methodParams
+                $res
+            }
+
+            Modify {
+                $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator"
+                Switch ($PSBoundParameters.Keys) {
+                    SurName {
+                        $memberParams['Name'] = 'surName'
+                        $memberParams['Value'] = $surName
+                        Add-member @memberParams
+                    }
+                    firstName {
+                        $memberParams['Name'] = 'firstName'
+                        $memberParams['Value'] = $firstName
+                        Add-Member @memberParams
+                    }
+                    gender {
+                        $memberParams['Name'] = 'gender'
+                        $memberParams['Value'] = $gender
+                        Add-Member @memberParams
+                    }
+                    employeeNumber {
+                        $memberParams['Name'] = 'employeeNumber'
+                        $memberParams['Value'] = $employeeNumber
+                        Add-Member @memberParams
+                    }
+                    telephone {
+                        $memberParams['Name'] = 'telephone'
+                        $memberParams['Value'] = $telephone
+                        Add-Member @memberParams
+                    }
+                    mobileNumber {
+                        $memberParams['Name'] = 'mobileNumber'
+                        $memberParams['Value'] = $mobileNumber
+                        Add-Member @memberParams
+                    }
+                    networkLoginName {
+                        $memberParams['Name'] = 'networkLoginName'
+                        $memberParams['Value'] = $networkLoginName
+                        Add-Member @memberParams
+                    }
+                    email {
+                        $memberParams['Name'] = 'email'
+                        $memberParams['Value'] = $email
+                        Add-Member @memberParams
+                    }
+                    branch {
+                        $memberParams['Name'] = 'branch'
+                        $memberParams['Value'] = @{id = $branch}
+                        Add-Member @memberParams
+                    }
+                    location {
+                        $memberParams['Name'] = 'location'
+                        $memberParams['Value'] = @{id = $location}
+                        Add-Member @memberParams
+                    }
+                    department {
+                        $memberParams['Name'] = 'department'
+                        $memberParams['Value'] = @{id = $department}
+                        Add-Member @memberParams
+                    }
+
+                    budgetHolder {
+                        $memberParams['Name'] = 'budgetHolder'
+                        $memberParams['Value'] = @{id = $budgetHolder}
+                        Add-Member @memberParams
+                    }
+                    loginPermission {
+                        $memberParams['Name'] = 'loginPermission'
+                        $memberParams['Value'] = $loginPermission.tostring().tolower()
+                        Add-Member @memberParams
+                    }
+                    loginName {
+                        $memberParams['Name'] = 'loginName'
+                        $memberParams['Value'] = $loginName
+                        Add-Member @memberParams
+                    }
+                    password {
+                        $cred = New-Object pscredential ('user', $password)
+                        $memberParams['Name'] = 'password'
+                        $memberParams['Value'] = $cred.GetNetworkCredential().password
+                        Add-Member @memberParams
+                    }
+                    TaskstoAdd {
+                        foreach ($t in $TaskstoAdd) {
+                            $body | Add-Member -MemberType NoteProperty -Name $t -Value 'true'
+                        }
+                    }
+                    TaskstoRemove {
+                        foreach ($t in $TaskstoRemove) {
+                            $body | Add-Member -MemberType NoteProperty -Name $t -Value 'false'
+                        }
+                    }
+                }
+
+                $methodParams = @{
+                    Uri = $uri
+                    Body = ($body | ConvertTo-Json)
+                    Method = 'PATCH'
+                }
+                if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body: $($Body | Out-String)")) {
+                    return
+                }
+                $res = Invoke-TdMethod @methodParams
+                $res
+
             }
         }
-
-        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body: $($Body | Out-String)")) {
-            return
-        }
-        $methodParams = @{
-            Uri = $uri
-            Body = ($body | ConvertTo-Json)
-            Method = 'PATCH'
-        }
-        $res = Invoke-TdMethod @methodParams
-        $res
-
-
     }
 
 }

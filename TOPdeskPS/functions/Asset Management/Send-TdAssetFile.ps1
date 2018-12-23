@@ -96,5 +96,5 @@
         }
         Invoke-TdMethod @params
     }
-    end {}
+
 }

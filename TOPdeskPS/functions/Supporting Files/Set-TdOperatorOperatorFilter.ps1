@@ -26,9 +26,11 @@
         [Alias('id')]
         $Operator,
 
+        [Parameter(ParameterSetName = 'Link')]
         [string[]]
         $Link,
 
+        [Parameter(ParameterSetName = 'Unlink')]
         [string[]]
         $Unlink
     )

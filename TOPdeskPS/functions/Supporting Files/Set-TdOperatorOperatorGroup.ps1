@@ -1,24 +1,24 @@
-﻿function Set-TdOperatorCategoryFilter {
+﻿function Set-TdOperatorOperatorGroup {
     <#
 .SYNOPSIS
-    Link and unlink Category filters from an operator
+    Link and unlink operator groups from an operator
 .DESCRIPTION
-    Link and unlink Category filters from an operator
-.PARAMETER Operator
-    Id of the operator that you want to link/unlink filters from
+    link and unlink operator groups from an operator
+    .PARAMETER Operator
+    Id of the operator that you want to link/unlink operator groups from
 .PARAMETER Link
-    Ids of the filters that you want to link to the operator
+ids of groups that you want to link
 .PARAMETER Unlink
-    Ids of the filters that you want to unlink from the operator
+ids of groups that you want to unlink
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
-    PS C:\> Get-TdOperator -name 'John Smith' | Set-TdOperatorCategoryFilter -link (Get-TdCategoryFilter -name 'CategoryFilter1').id
-    Links John Smith to the CategoryFilter1 Category filter
+    PS C:\> Get-TdOperator 'Test User' | Set-TdOperatorOperatorGroup -Link (Get-TdOperatorGroup 'Group1').id
+    Link the group1 operatorgroup to Test User
 #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperatorCategoryFilter',
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperatorOperatorGroup',
         SupportsShouldProcess = $true)]
     param
     (
@@ -39,9 +39,8 @@
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level InternalComment
 
-        $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/filters/category"
+        $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/operatorgroups"
         $body = [PSCustomObject]@{}
-
         switch ($PSBoundParameters.keys) {
             Link {
                 $body = [PSCustomObject]@{}
@@ -71,7 +70,6 @@
                 $body = [PSCustomObject]@{}
                 $memberParams = @{ Membertype = 'Noteproperty'; InputObject = $body}
                 foreach ($l in $UnLink) {
-                    #$memberParams['inputobject'] = $linkBody
                     $memberParams['Name'] = 'id'
                     $memberParams['Value'] = $l
                     Add-Member @memberParams
@@ -92,6 +90,5 @@
             }
         }
     }
-
 }
 
