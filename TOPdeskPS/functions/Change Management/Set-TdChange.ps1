@@ -28,10 +28,6 @@
         [Parameter(Mandatory)]
         $BodyInput
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -Level Verbose
-    }
-
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level InternalComment
@@ -49,8 +45,5 @@
         }
         $res = Invoke-TdMethod @methodParams
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -Level Verbose
     }
 }

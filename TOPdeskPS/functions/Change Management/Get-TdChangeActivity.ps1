@@ -27,9 +27,6 @@
         $Archived
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    }
     process {
         Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
         Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
@@ -53,6 +50,5 @@
         $res = Invoke-TdMethod @methodParams
         $res.results
     }
-    end {
-    }
+
 }

@@ -21,9 +21,6 @@
         [Alias('Id')]
         $calendarId
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -level verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
@@ -32,9 +29,6 @@
         $uri = "$(Get-TdUrl)/tas/api/changeCalendar/$calendarId/progresstrail"
         $res = Invoke-TdMethod -Uri $uri
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -level Verbose
     }
 }
 

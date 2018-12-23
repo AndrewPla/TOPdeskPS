@@ -112,9 +112,6 @@ https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as
         [hashtable]
         $OptionalFields2
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -Level Verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
@@ -197,9 +194,6 @@ https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as
         }
         $res = Invoke-TdMethod @methodParams
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -Level Verbose
     }
 }
 

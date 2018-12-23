@@ -40,9 +40,6 @@
         $Type = 'memo'
 
     )
-    begin {
-        Write-PsfMessage "[$($MyInvocation.MyCommand.Name)] Function started" -Level Verbose
-    }
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
@@ -67,9 +64,6 @@
         }
         $res = Invoke-TdMethod @methodParams
         $res
-    }
-    end {
-        Write-PSFMessage "Function Complete" -Level Verbose
     }
 }
 

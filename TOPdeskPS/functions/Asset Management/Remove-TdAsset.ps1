@@ -28,10 +28,6 @@
         [string[]]
         $AssetId
     )
-
-    begin {
-
-    }
     process {
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
@@ -45,14 +41,12 @@
             unids = $AssetId
         }
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $body | ConvertTo-Json
             'Method' = 'Post'
         }
         Write-PSFMessage -Message "Body - $body" -Level InternalComment
         Invoke-TdMethod @params
     }
-    end {
 
-    }
 }
