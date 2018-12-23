@@ -1,7 +1,9 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version:
+online version: https://developers.topdesk.com/explorer/?page=supporting-files?/
+
+TODO Update help
 schema: 2.0.0
 ---
 
@@ -26,10 +28,15 @@ creates a new branch
 
 ### EXAMPLE 1
 ```
-New-TdBranch
+New-TdBranch -Name 'New Branch' -Branch Type 'independentBranch' -Phone '555-555-5555'
 ```
 
 creates a new branch
+
+### EXAMPLE 2
+```
+New-TdBranch -Name 'Subsidiary of AlphaBranch' -BranchType 'hasAHeadBranch' -HeadBranchId (Get-TdBranch -name 'AlphaBranch').id
+```
 
 ## PARAMETERS
 
@@ -170,7 +177,7 @@ Accept wildcard characters: False
 ```
 
 ### -Address
-{{Fill Address Description}}
+Address
 
 ```yaml
 Type: Hashtable
@@ -185,7 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -PostalAddress
-{{Fill PostalAddress Description}}
+Postal Address
 
 ```yaml
 Type: Hashtable
@@ -200,7 +207,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalFields1
-{{Fill OptionalFields1 Description}}
+optional
 
 ```yaml
 Type: Hashtable
@@ -215,7 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalFields2
-{{Fill OptionalFields2 Description}}
+optional
 
 ```yaml
 Type: Hashtable
@@ -230,8 +237,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
 ```yaml
 Type: SwitchParameter
@@ -246,7 +252,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
-Prompts you for confirmation before running the cmdlet.
+If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
 ```yaml
 Type: SwitchParameter
@@ -269,6 +275,12 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-See https://developers.topdesk.com/explorer/?page=supporting-files?/
 
 ## RELATED LINKS
+
+[https://developers.topdesk.com/explorer/?page=supporting-files?/
+
+TODO Update help](https://developers.topdesk.com/explorer/?page=supporting-files?/
+
+TODO Update help)
+

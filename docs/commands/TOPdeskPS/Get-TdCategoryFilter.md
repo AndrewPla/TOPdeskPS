@@ -13,7 +13,7 @@ Get list of category filters
 ## SYNTAX
 
 ```
-Get-TdCategoryFilter [-OperatorId <Object>] [<CommonParameters>]
+Get-TdCategoryFilter [[-Name] <String>] [-Operator <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,12 +30,35 @@ Gets list of category filters
 
 ### EXAMPLE 2
 ```
-Get-TdOperator
+Get-TdOperator 'First.Last' | Get-TdCategoryFilter
+```
+
+Returns category filters for 'First.Last'
+
+### EXAMPLE 3
+```
+Get-TdCategoryFilter -name
 ```
 
 ## PARAMETERS
 
-### -OperatorId
+### -Name
+Filter based on the name.
+Wildcards accepted.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Operator
 ID of the Operator.
 See Get-TdOperator
 

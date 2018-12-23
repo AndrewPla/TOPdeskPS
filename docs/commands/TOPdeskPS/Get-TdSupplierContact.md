@@ -14,7 +14,7 @@ Gets list of supplier  contacts
 
 ```
 Get-TdSupplierContact [[-SupplierId] <Object>] [[-PageSize] <Int32>] [[-Start] <Int32>] [-Archived]
- [<CommonParameters>]
+ [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,10 +31,12 @@ Returns list of supplier contacts
 
 ### EXAMPLE 2
 ```
-Get-TdSupplier | Get-TdSupplierContact
+Get-TdSupplier -Name 'Sample Supplier' | Get-TdSupplierContact
 ```
 
-Returns list of
+Returns list of Supplier contracts from supplier 'Sample Supplier'
+
+TODO figure out what's going on here
 
 ## PARAMETERS
 
@@ -72,7 +74,7 @@ Accept wildcard characters: False
 
 ### -Start
 This is the offset at which you want to start listing suppliers at.
-      The default value is 0.
+The default value is 0.
 
 ```yaml
 Type: Int32
@@ -97,6 +99,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+retrieve only suppliers with names starting with this string
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

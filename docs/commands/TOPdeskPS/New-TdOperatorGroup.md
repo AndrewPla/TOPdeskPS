@@ -5,62 +5,73 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TdDepartment
+# New-TdOperatorGroup
 
 ## SYNOPSIS
-Creates a new Department
+Create an operator group
 
 ## SYNTAX
 
-### Name
 ```
-New-TdDepartment -Name <String> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### ExternalLink
-```
-New-TdDepartment -externalLinkId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TdOperatorGroup [-Branch] <String> [-GroupName] <String> [[-Contact] <Hashtable>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new department
+Create an operator group
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-TdDepartment -Name 'TestDepartment'
+New-TdOperatorGroup -Branch (Get-TdBranch 'Miami').id -GroupName 'Miami Group'
 ```
 
-Creates a new Department named 'TestDepartment'
+Creates a new operator group named 'Miami Group' that is attached ot the Miami branch
 
 ## PARAMETERS
 
-### -Name
-Name of new department
+### -Branch
+Id of the branch that is assigned to the operator group
 
 ```yaml
 Type: String
-Parameter Sets: Name
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -externalLinkId
-external link ID
+### -GroupName
+Operator Group Name
 
 ```yaml
 Type: String
-Parameter Sets: ExternalLink
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Contact
+Hashtable containing the values that you want to set.
+valid properties are telephone, faxNumber, and email.
+
+```yaml
+Type: Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

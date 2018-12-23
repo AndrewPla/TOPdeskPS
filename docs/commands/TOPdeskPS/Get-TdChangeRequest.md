@@ -31,7 +31,8 @@ returns list of change requests associated with specified change
 ## PARAMETERS
 
 ### -ChangeId
-{{Fill ChangeId Description}}
+ID of the Change.
+See Get-TdChange
 
 ```yaml
 Type: Object
@@ -46,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -InlineImages
-{{Fill InlineImages Description}}
+if enabled InlineImages will be in the output
 
 ```yaml
 Type: SwitchParameter
@@ -61,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -BrowserFriendlyUrls
-{{Fill BrowserFriendlyUrls Description}}
+if enabled Browser Friendly Urls will be in output
 
 ```yaml
 Type: SwitchParameter

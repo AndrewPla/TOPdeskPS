@@ -5,60 +5,53 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-TdChangeActivity
+# Set-TdOperator
 
 ## SYNOPSIS
-creates a new change activity
+Update operator
 
 ## SYNTAX
 
+### Modify
 ```
-Set-TdChangeActivity [-ActivityTemplate <Object>] -ChangeId <Object> [-BriefDescription <String>]
- [-ChangePhase <String>] [-ActivityType <String>] [-PlannedStartDate <String>] [-PlannedFinalDate <String>]
- [-AssigneeId <String>] [-AssigneeGroupId <Object>] [-AssigneeType <String>] [-Status <String>]
- [-Category <String>] [-Subcategory <String>] [-Request <String>] [-Action <String>]
- [-OptionalFields1 <Hashtable>] [-OptionalFields2 <Hashtable>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TdOperator -Operator <Object> [-SurName <Object>] [-FirstName <String>] [-Gender <String>]
+ [-EmployeeNumber <String>] [-Telephone <String>] [-MobileNumber <String>] [-NetworkLoginName <String>]
+ [-Email <String>] [-Branch <String>] [-Location <String>] [-Department <String>] [-BudgetHolder <String>]
+ [-LoginPermission] [-LoginName <String>] [-Password <SecureString>] [-TasksToAdd <String[]>]
+ [-TasksToRemove <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Archive
+```
+Set-TdOperator -Operator <Object> [-ArchiveReason <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Unarchive
+```
+Set-TdOperator -Operator <Object> [-Unarchive] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-creates a new change activity
+Update an operator by id
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Set-TdChangeActivity -changeId $changeId -briefDescription 'My Description' -changePhase 'progress' -status 'planned'
+Set-TdOperator -id $operator.id -password (read-host -assecurestring)
 ```
 
-creates a new change with specified fields
-
-TODO add activity template support
-TODO Help params
+Update the password for the operator stored in the $operator variable
 
 ## PARAMETERS
 
-### -ActivityTemplate
-ID or AT-XXXX number for activity template
+### -Operator
+Id of the operator that you want to edit
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ChangeId
-Id of the change see Get-TdChange
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases: Id
+Aliases: id
 
 Required: True
 Position: Named
@@ -67,117 +60,27 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -BriefDescription
-a brief description
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ChangePhase
-accepted values 'rfc' 'progress' 'evaluation'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ActivityType
-accepted values 'normal' 'authorization'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PlannedStartDate
-Format: 2018-04-23T10:09:00+0000
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PlannedFinalDate
-Format: 2018-04-23T10:09:00+0000
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AssigneeId
-ID of the operator to be assigned to the change
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AssigneeGroupId
-ID of the group to be assigned to the change
+### -SurName
+Surname of the operator
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AssigneeType
-accepted values 'manager' 'operator'
+### -FirstName
+Firstname of the operator
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -187,13 +90,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Status
-user defined status of activity.
-accepts name or id
+### -Gender
+The gender of the operator
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -203,13 +105,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Category
-user defined category of activity.
-accepts name or id
+### -EmployeeNumber
+The employee number of the operator
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -219,13 +120,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Subcategory
-user defined subcategory of activity.
-accepts name or id
+### -Telephone
+The telephone number for the operator
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -235,12 +135,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Request
-description of activity
+### -MobileNumber
+Mobile number for the operator
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -250,12 +150,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Action
-action to be added to the activity
+### -NetworkLoginName
+The network login name for the operator
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -265,12 +165,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OptionalFields1
-optional see .NOTES
+### -Email
+Email address of the operator
 
 ```yaml
-Type: Hashtable
-Parameter Sets: (All)
+Type: String
+Parameter Sets: Modify
 Aliases:
 
 Required: False
@@ -280,17 +180,169 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OptionalFields2
-optional see .NOTES
+### -Branch
+The id of the branch that you want to give the operator
 
 ```yaml
-Type: Hashtable
-Parameter Sets: (All)
+Type: String
+Parameter Sets: Modify
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Location id of the operator
+
+```yaml
+Type: String
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Department
+The department id of the operator
+
+```yaml
+Type: String
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BudgetHolder
+The budget holder id of the operator
+
+```yaml
+Type: String
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoginPermission
+specify whether the operator has the permission to log on
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoginName
+Login name, operator requires permission "Settings \> Login Settings"
+Is mandatory when loginPermission is set to true.
+
+```yaml
+Type: String
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Password
+Password, operator requires permission "Settings \> Login Settings".
+Is mandatory when "Functional Settings \> Login Settings \> Operator's Section \> Password mandatory on Operator card" is set.
+
+```yaml
+Type: SecureString
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TasksToAdd
+All of the tasks that you want to grant the operator
+
+```yaml
+Type: String[]
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TasksToRemove
+All of the tasks that you wish to revoke from the operator
+
+```yaml
+Type: String[]
+Parameter Sets: Modify
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ArchiveReason
+specify an archiving reason ID to archive the operator.
+
+```yaml
+Type: String
+Parameter Sets: Archive
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Unarchive
+Specify if you want to unarchive an operator.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Unarchive
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -334,6 +386,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as%20an%20operator/post_operatorChangeActivities
 
 ## RELATED LINKS

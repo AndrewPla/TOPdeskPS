@@ -13,7 +13,8 @@ returns list of operators
 ## SYNTAX
 
 ```
-Get-TdOperator [[-Name] <String>] [<CommonParameters>]
+Get-TdOperator [[-TOPdeskLoginName] <String>] [-ResultSize <Int32>] [-Start <Int32>] [-Email <String>]
+ [-Archived] [-LastName <String>] [-FirstName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,11 +29,17 @@ Get-TdOperator
 
 returns list of operators
 
+### EXAMPLE 2
+```
+Get-TdOperator -Name 'John Support'
+```
+
+returns operator with name John Support (uses the dynamicName field)
+
 ## PARAMETERS
 
-### -Name
-human readable name to filter for operator by.
-Uses the dynamcName field
+### -TOPdeskLoginName
+Retrieve only operators with TOPdesk login name starting with this.
 
 ```yaml
 Type: String
@@ -41,6 +48,96 @@ Aliases:
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ResultSize
+The amount of incidents to be returned.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 10
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Start
+This is the offset at which you want to start listing incidents.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Email
+Retrieve only operators with email starting with this.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Archived
+Whether to return archived operators
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LastName
+Retrieve only operators with last name starting with this.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FirstName
+Retrieve only operators with first name starting with this.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

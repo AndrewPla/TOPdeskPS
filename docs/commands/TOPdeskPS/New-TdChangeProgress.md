@@ -1,14 +1,14 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version: https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress
+online version:
 schema: 2.0.0
 ---
 
 # New-TdChangeProgress
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+creates a new action for specified change
 
 ## SYNTAX
 
@@ -18,21 +18,24 @@ New-TdChangeProgress [-ChangeId] <Object> [-MemoText] <String> [[-Type] <String>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+creates a new action for specified change
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+New-TdChangeProgress -ChangeId $ChangeId -MemoText 'this is a memo'
 ```
 
-{{ Add example description here }}
+addes a new memo to the specified change
+
+TODO this is a duplicate of New-TdChangeAction ...
+neither of these work
 
 ## PARAMETERS
 
 ### -ChangeId
-{{Fill ChangeId Description}}
+ID of the Change
 
 ```yaml
 Type: Object
@@ -40,19 +43,49 @@ Parameter Sets: (All)
 Aliases: Id
 
 Required: True
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -MemoText
+text to be added to memo field
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Type
+The type of this progress trail entry.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: Memo
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: cf
+Aliases: wi
 
 Required: False
 Position: Named
@@ -61,45 +94,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -MemoText
-{{Fill MemoText Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Type
-{{Fill Type Description}}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Accepted values: memo, attachment, link
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+### -Confirm
+If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: wi
+Aliases: cf
 
 Required: False
 Position: Named
@@ -114,14 +115,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### System.Object
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
-
-[https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress](https://andrewpla.github.io/TOPdeskPS/commands/New-TdChangeProgress)
-

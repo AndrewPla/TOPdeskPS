@@ -12,7 +12,7 @@ In order to connect to TOPdesk you will need to have an account with the require
 TOPdeskPS is published to the PowerShell gallery and can be installed by running:
 ```powershell
   Install-Module -Name TOPdeskPS -Repository PSGallery -Scope CurrentUser
-``` 
+```
 
 ## Connecting to TOPdesk
 ```powershell
@@ -23,7 +23,8 @@ Connects to your TOPdesk instance and registers the url. The next time you run C
 
 ## Get Incidents
 ```powershell
-  Get-TdIncident -PageSize 30
+  Get-TdIncident -ResultSize 50
+  Returns 50 incidents
 ```
 
 ## Create Incidents
@@ -31,13 +32,18 @@ Connects to your TOPdesk instance and registers the url. The next time you run C
   New-TdIncident -Action 'initial action here' -BriefDescription 'Brief description here' -CallerEmail 'user@company.com'
 ```
 
-## Create People
+## Modify Incidents
+```powershell
+  Get-TdIncident -Number 'I1811-123' | Set-TdIncident
+```
+
+## Create Person
 ```powershell
   New-TdPerson -Surname 'Doe' -BranchId (Get-TdBranch -Name test).id -FirstName 'John'
 ```
 
 ## Documentation
-For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS) 
+For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS)
 
 ## Release History
 

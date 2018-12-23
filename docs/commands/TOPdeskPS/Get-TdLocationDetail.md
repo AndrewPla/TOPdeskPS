@@ -13,7 +13,7 @@ Gets location details
 ## SYNTAX
 
 ```
-Get-TdLocationDetail [-LocationId] <Object> [<CommonParameters>]
+Get-TdLocationDetail [-Location] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,9 +28,16 @@ Get-TdLocation | Get-TdLocationDetail
 
 returns details for all locations
 
+### EXAMPLE 2
+```
+Get-TdLocation 'Mars' | Get-TdLocationDetail
+```
+
+Returns details for the mars location
+
 ## PARAMETERS
 
-### -LocationId
+### -Location
 Id of the location that you want returned.
 See Get-TdLocation
 

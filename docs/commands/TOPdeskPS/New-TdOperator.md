@@ -5,70 +5,53 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-TdChangeActivity
+# New-TdOperator
 
 ## SYNOPSIS
-creates a new change activity
+Create an operator
 
 ## SYNTAX
 
 ```
-Set-TdChangeActivity [-ActivityTemplate <Object>] -ChangeId <Object> [-BriefDescription <String>]
- [-ChangePhase <String>] [-ActivityType <String>] [-PlannedStartDate <String>] [-PlannedFinalDate <String>]
- [-AssigneeId <String>] [-AssigneeGroupId <Object>] [-AssigneeType <String>] [-Status <String>]
- [-Category <String>] [-Subcategory <String>] [-Request <String>] [-Action <String>]
- [-OptionalFields1 <Hashtable>] [-OptionalFields2 <Hashtable>] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TdOperator [-SurName] <Object> [[-FirstName] <String>] [[-Gender] <String>] [[-EmployeeNumber] <String>]
+ [[-Telephone] <String>] [[-MobileNumber] <String>] [[-NetworkLoginName] <String>] [[-Email] <String>]
+ [-Branch] <String> [[-Location] <String>] [[-Department] <String>] [[-BudgetHolder] <String>]
+ [-LoginPermission] [[-LoginName] <String>] [[-Password] <SecureString>] [[-Tasks] <String[]>] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-creates a new change activity
+Create new operators.
+Operator must have create permission on operators
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Set-TdChangeActivity -changeId $changeId -briefDescription 'My Description' -changePhase 'progress' -status 'planned'
+New-TdOperator -Surname 'Smith' -firstname 'John' -branch (Get-TdBranch -Name HQ).id
 ```
 
-creates a new change with specified fields
-
-TODO add activity template support
-TODO Help params
+Creates a new operator name John Smith in the HQ branch
 
 ## PARAMETERS
 
-### -ActivityTemplate
-ID or AT-XXXX number for activity template
+### -SurName
+Surname of the operator
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ChangeId
-Id of the change see Get-TdChange
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases: Id
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BriefDescription
-a brief description
+### -FirstName
+Firstname of the operator
 
 ```yaml
 Type: String
@@ -76,14 +59,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ChangePhase
-accepted values 'rfc' 'progress' 'evaluation'
+### -Gender
+The gender of the operator
 
 ```yaml
 Type: String
@@ -91,14 +74,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ActivityType
-accepted values 'normal' 'authorization'
+### -EmployeeNumber
+The employee number of the operator
 
 ```yaml
 Type: String
@@ -106,14 +89,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PlannedStartDate
-Format: 2018-04-23T10:09:00+0000
+### -Telephone
+The telephone number for the operator
 
 ```yaml
 Type: String
@@ -121,14 +104,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PlannedFinalDate
-Format: 2018-04-23T10:09:00+0000
+### -MobileNumber
+Mobile number for the operator
 
 ```yaml
 Type: String
@@ -136,14 +119,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AssigneeId
-ID of the operator to be assigned to the change
+### -NetworkLoginName
+The network login name for the operator
 
 ```yaml
 Type: String
@@ -151,29 +134,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 7
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AssigneeGroupId
-ID of the group to be assigned to the change
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -AssigneeType
-accepted values 'manager' 'operator'
+### -Email
+Email address of the operator
 
 ```yaml
 Type: String
@@ -181,15 +149,29 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 8
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Status
-user defined status of activity.
-accepts name or id
+### -Branch
+The id of the branch that you want to give the operator
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 9
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Location id of the operator
 
 ```yaml
 Type: String
@@ -197,15 +179,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 10
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Category
-user defined category of activity.
-accepts name or id
+### -Department
+The department id of the operator
 
 ```yaml
 Type: String
@@ -213,15 +194,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 11
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Subcategory
-user defined subcategory of activity.
-accepts name or id
+### -BudgetHolder
+The budget holder id of the operator
 
 ```yaml
 Type: String
@@ -229,14 +209,30 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 12
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Request
-description of activity
+### -LoginPermission
+specify whether the operator has the permission to log on
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoginName
+Login name, operator requires permission "Settings \> Login Settings"
+Is mandatory when loginPermission is set to true.
 
 ```yaml
 Type: String
@@ -244,52 +240,38 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 13
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Action
-action to be added to the activity
+### -Password
+Password, operator requires permission "Settings \> Login Settings".
+Is mandatory when "Functional Settings \> Login Settings \> Operator's Section \> Password mandatory on Operator card" is set.
 
 ```yaml
-Type: String
+Type: SecureString
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 14
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OptionalFields1
-optional see .NOTES
+### -Tasks
+Specify the tasks that you want the operator to have.
 
 ```yaml
-Type: Hashtable
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OptionalFields2
-optional see .NOTES
-
-```yaml
-Type: Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
+Position: 15
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -334,6 +316,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-https://developers.topdesk.com/explorer/?page=change&version=1.2.0#/Working%20as%20an%20operator/post_operatorChangeActivities
 
 ## RELATED LINKS
