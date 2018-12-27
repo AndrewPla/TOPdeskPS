@@ -22,14 +22,10 @@
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdSubcategory')]
     param
     (
-        [System.String]
+        [String]
         $Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $SubcategoryURL = (Get-TdUrl) + '/tas/api/incidents/subcategories'
-    $Params = @{
-        'uri' = $SubcategoryUrl
-    }
-    $Subcategories = Invoke-TdMethod @Params
+    $Subcategories = Invoke-TdMethod $SubcategoryURL
     $Subcategories | Where-Object name -like $name
 }

@@ -11,18 +11,17 @@
         PS C:\> Get-TdClosureCode
         Gets list of all closurecodes
 
+    .EXAMPLE
+        PS> Get-TdClosureCode -Name 'hardware failure'
+        Returns the hardware failure closure code
     #>
     [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdClosureCode')]
     param (
-        [system.string]
+        [Parameter(position = 0)]
+        [string]
         $Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/closure_codes'
-    Write-PSFMessage -Level InternalComment -Message "closurecodes url: $uri"
-    $Params = @{
-        'uri' = $uri
-    }
-    $res = Invoke-TdMethod @Params
+    $res = Invoke-TdMethod $uri
     $res | Where-Object name -like $Name
 }

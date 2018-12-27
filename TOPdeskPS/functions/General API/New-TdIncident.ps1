@@ -106,8 +106,6 @@
 
     begin {
         $IncidentURL = (Get-TdUrl) + '/tas/api/incidents'
-        Write-PSFMessage -Level internalcomment -Message "IncidentURL: $IncidentURL"
-        Write-PSFMessage -Level verbose -Message 'Generating Authorization Header'
     }
 
     process {
@@ -167,16 +165,12 @@
         }
 
         $Params = @{
-            'Uri'    = $IncidentURL
-            'Body'   = $Body | ConvertTo-Json
+            'Uri' = $IncidentURL
+            'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("The Request" , "Creating new incident")) {
             Invoke-TdMethod @Params
         }
-    }
-
-    end {
-
     }
 }

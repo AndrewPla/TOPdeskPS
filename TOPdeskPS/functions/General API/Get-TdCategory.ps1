@@ -7,10 +7,7 @@
 		Gets either one category or a list of categories from TOPdesk.
 
 	.PARAMETER Name
-		This is the name of the category that you want. This can be useful if you want to pass a category id to a different command.
-
-	.PARAMETER Token
-		REST login token. This isn't needed if you want to use the token generated with Connect-TdService
+		This is the name of the category that you want. Wildcards are supported.
 
 	.EXAMPLE
 		PS C:\> Get-TdCategory
@@ -24,34 +21,18 @@
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdCategory')]
     param
     (
-        [System.String]
-        $Name,
-
-        [string]
-        $Token
+        [String]
+        $Name = '*'
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
+    process {
         $CategoryURL = (Get-TdUrl) + '/tas/api/incidents/categories'
 
-    }
-    process {
         $Params = @{
             'uri' = $CategoryUrl
         }
-        if ($Token) {
-            $Params.add('Token', $Token)
-        }
         $Categories = Invoke-TdMethod @Params
-        if ($Name) {
-            $Categories -match $Name
-        }
-        else {
-            $Categories
-        }
+        $categories | Where-Object name -like $name
     }
-    end {
 
-    }
 }

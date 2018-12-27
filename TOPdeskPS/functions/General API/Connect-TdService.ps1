@@ -81,8 +81,8 @@
             'Authorization' = "Basic $(ConvertTo-Base64 "$($Credential.username):$($Credential.GetNetworkCredential().password)")"
         }
         $params = @{
-            URI     = $resourceURi
-            Method  = "GET"
+            URI = $resourceURi
+            Method = "GET"
             Headers = $headers
         }
         $result = Invoke-RestMethod @params -ErrorAction Stop
@@ -108,6 +108,4 @@
     if (Test-PSFFunctionInterrupt) {
         return
     }
-    Write-PSFMessage -Message 'Function Complete' -Level internalcomment
-
 }
