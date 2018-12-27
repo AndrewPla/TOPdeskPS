@@ -8,7 +8,7 @@ These quick start guides are designed to get you up and running with TOPdeskPS.
 
 ## Documentation
 - [Command Reference](https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS.html)
-- Prepare TOPdesk for TOPdeskPS
+
 
 
 ### Assign Proper API Permissions

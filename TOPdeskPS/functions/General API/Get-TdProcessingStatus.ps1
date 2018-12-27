@@ -13,11 +13,9 @@
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdProcessingStatus')]
     param (
-        [system.string]$Name = '*'
+        [string]$Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/processing_status'
-    Write-PSFMessage -Level InternalComment -Message "processing statuses url: $uri"
     $Params = @{
         'uri' = $uri
     }

@@ -1,5 +1,5 @@
 ﻿function Invoke-TdMethod {
-<#
+    <#
 	.SYNOPSIS
 		internal wrapper for Invoke-RestMethod
 
@@ -66,17 +66,14 @@
             }
         }
         $Params = @{
-            'Body'        = $Body
-            'Method'      = $Method
-            'Uri'         = $Uri
-            'Headers'     = $Headers
+            'Body' = $Body
+            'Method' = $Method
+            'Uri' = $Uri
+            'Headers' = $Headers
             'ContentType' = $ContentType
         }
         Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
         Invoke-RestMethod @Params
-
-    }
-    end {
 
     }
 }

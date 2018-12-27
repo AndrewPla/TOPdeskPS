@@ -5,24 +5,21 @@
     .DESCRIPTION
         Can get all archive reasons, or specify which one you want by a Name lookup.
     .PARAMETER Name
-        Name of the branch that you want returned.Wildcards are supported. Default value is '*'
+        Name of the branch that you want returned. Wildcards are supported.
     .EXAMPLE
         PS C:\> Get-TDArchiveReason -Name 'No longer employed'
         Gets the archive reason with the name 'no longer employed'
+    .EXAMPLE
+        PS> Get-TdArchiveReason -name 'Phased*'
+        Returns all archive reasons that begin with "phased"
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdArchiveReason')]
     param (
-        [system.string]
+        [parameter(position = 0)]
+        [string]
         $Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/archiving-reasons'
-    Write-PSFMessage -Level InternalComment -Message "ArchiveReason url: $uri"
-    $Params = @{
-        'uri' = $uri
-    }
-    Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-
-    $res = Invoke-TdMethod @Params
+    $res = Invoke-TdMethod $uri
     $res | Where-Object name -like $Name
 }

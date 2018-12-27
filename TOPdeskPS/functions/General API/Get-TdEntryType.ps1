@@ -16,9 +16,7 @@
     param (
         [string]$Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/entry_types'
-    Write-PSFMessage -Level InternalComment -Message "entry_types url: $uri"
     $Params = @{
         'uri' = $uri
     }

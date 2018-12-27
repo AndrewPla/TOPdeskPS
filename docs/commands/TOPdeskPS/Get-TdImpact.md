@@ -13,7 +13,7 @@ Gets list of impacts
 ## SYNTAX
 
 ```
-Get-TdImpact [<CommonParameters>]
+Get-TdImpact [[-Name] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,6 +29,23 @@ Get-TdImpact
 Gets list of impacts
 
 ## PARAMETERS
+
+### -Name
+Name of the impact that you want returned.
+Wildcards are supported.
+Default value is '*'
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.

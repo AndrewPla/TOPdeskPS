@@ -1,14 +1,14 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version: https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange
+online version:
 schema: 2.0.0
 ---
 
 # Get-TdChange
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns changes
 
 ## SYNTAX
 
@@ -17,21 +17,23 @@ Get-TdChange [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns changes.
+TOPdesk doesn't provide this functionality so this command will query all Activities, grab all Change Ids and then lookup the change details for them.
+The output of the last call is what you get
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Get-TdChange
 ```
 
-{{ Add example description here }}
+Returns all changes (or tries to, it will once a proper endpoint is made by TOPdesk)
 
 ## PARAMETERS
 
 ### -Name
-{{Fill Name Description}}
+Human readable name to filter results by, this cooresponds with the brief description field in TOPdesk
 
 ```yaml
 Type: String
@@ -39,8 +41,8 @@ Parameter Sets: (All)
 Aliases: BriefDescription
 
 Required: False
-Position: 0
-Default value: None
+Position: 1
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -51,14 +53,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
-
-[https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange](https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange)
-

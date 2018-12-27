@@ -15,12 +15,10 @@
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdIncidentFile')]
     param (
 
-        [Alias('IncidentNumber')]
         [Parameter(Mandatory)]
         [string]
         $Number,
 
-        [Alias('InFile')]
         [Parameter(Mandatory, ValueFromPipeline, ValuefromPipelineByPropertyName)]
         [ValidateScript( {
                 if (-Not ($_ | Test-Path)) {
@@ -46,10 +44,9 @@
                 $ContentType = "application/octet-stream"
             }
         }
-
     }
     process {
-        $uri = (Get-TdUrl) + "/tas/api/incidents/number/$Number/attachments"
+        $uri = (Get-TdUrl) + "/tas/api/incidents/number/$($Number.tolower())/attachments"
         Write-PSFMessage "Uri - $uri" -Level debug
         #TODO throw this into an internal function and clean this up a bit.
         $fileName = Split-Path $File -leaf
@@ -82,12 +79,11 @@
         ) -join $LF
         Write-PSFMessage $bodyLines -Level debug
         $params = @{
-            Uri         = $Uri
-            Body        = $bodyLines
-            Method      = 'Post'
+            Uri = $Uri
+            Body = $bodyLines
+            Method = 'Post'
             ContentType = "multipart/form-data; boundary=$boundary"
         }
         Invoke-TdMethod @params
     }
-    end {}
 }

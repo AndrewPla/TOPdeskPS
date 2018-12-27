@@ -5,61 +5,76 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TdDepartment
+# Set-TdOperatorOperatorGroup
 
 ## SYNOPSIS
-Creates a new Department
+Link and unlink operator groups from an operator
 
 ## SYNTAX
 
-### Name
+### Link
 ```
-New-TdDepartment -Name <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TdOperatorOperatorGroup -Operator <Object> [-Link <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### ExternalLink
+### Unlink
 ```
-New-TdDepartment -externalLinkId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TdOperatorOperatorGroup -Operator <Object> [-Unlink <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new department
+link and unlink operator groups from an operator
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-TdDepartment -Name 'TestDepartment'
+Get-TdOperator 'Test User' | Set-TdOperatorOperatorGroup -Link (Get-TdOperatorGroup 'Group1').id
 ```
 
-Creates a new Department named 'TestDepartment'
+Link the group1 operatorgroup to Test User
 
 ## PARAMETERS
 
-### -Name
-Name of new department
+### -Operator
+Id of the operator that you want to link/unlink operator groups from
 
 ```yaml
-Type: String
-Parameter Sets: Name
-Aliases:
+Type: Object
+Parameter Sets: (All)
+Aliases: id
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Link
+ids of groups that you want to link
+
+```yaml
+Type: String[]
+Parameter Sets: Link
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -externalLinkId
-external link ID
+### -Unlink
+ids of groups that you want to unlink
 
 ```yaml
-Type: String
-Parameter Sets: ExternalLink
+Type: String[]
+Parameter Sets: Unlink
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

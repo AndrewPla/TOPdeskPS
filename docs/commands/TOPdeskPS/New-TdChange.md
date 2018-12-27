@@ -30,10 +30,10 @@ Actions that require user interaction like "Confirm before sending" or "Editable
 
 ### EXAMPLE 1
 ```
-<example usage>
+New-TdChange -RequesterId (Get-TdPerson -name 'Jane User').id -BriefDescription 'an example change' -ChangeType 'extensive'
 ```
 
-Explanation of what the example does
+creates new extensive change with description 'an example change' with requester Jane User
 
 ## PARAMETERS
 

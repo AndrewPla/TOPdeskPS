@@ -33,7 +33,6 @@ Gets list of all entry types
 ### -Name
 Name of the entry type that you want returned.
 Wildcards are supported.
-Default value is '*'
 
 ```yaml
 Type: String
@@ -42,7 +41,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -13,7 +13,7 @@ returns list of departments
 ## SYNTAX
 
 ```
-Get-TdDepartment [<CommonParameters>]
+Get-TdDepartment [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,30 @@ Get-TdDepartment
 
 returns list of departments
 
+### EXAMPLE 2
+```
+Get-TdDepartment 'IT'
+```
+
+Returns the IT department
+
 ## PARAMETERS
+
+### -Name
+Filter based on the name.
+Wildcards accepted.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.

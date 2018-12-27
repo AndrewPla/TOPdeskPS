@@ -10,18 +10,18 @@
         PS C:\> Get-TdCallType
         Gets list of call types
 
+    .EXAMPLE
+        PS> Get-TdCalltype Alert
+        Returns the alert call type
+
     #>
     [CmdletBinding(Helpuri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdCallType')]
     param (
-        [system.string]
+        [Parameter(position = 0)]
+        [string]
         $Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/call_types'
-    Write-PSFMessage -Level InternalComment -Message "call types url: $uri"
-    $Params = @{
-        'uri' = $uri
-    }
-    $res = Invoke-TdMethod @Params
+    $res = Invoke-TdMethod $uri
     $res | Where-Object name -like $Name
 }

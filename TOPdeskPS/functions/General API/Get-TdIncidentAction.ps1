@@ -21,26 +21,19 @@
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdIncidentAction')]
     param (
         [Parameter(
-
+            Mandatory, ValueFromPipelineByPropertyName
         )]
         [string]
         $Number,
 
         [ValidateRange(1, 100)]
         [int]
-        $PageSize = 10,
+        $PageSize = 100,
 
         [int]
         $Start = 0
     )
-
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-
-    }
-
     process {
-        Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
         Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
         foreach ($num in $Number) {
             $incidentActionURL = (Get-TdUrl) + "/tas/api/incidents/number/$num/actions"
@@ -54,6 +47,4 @@
         }
     }
 
-    end {
-    }
 }

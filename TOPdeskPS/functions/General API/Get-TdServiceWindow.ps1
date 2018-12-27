@@ -10,18 +10,16 @@
     .EXAMPLE
         PS C:\> Get-TdServiceWindow
         Gets list of all service windows
+    .EXAMPLE
+        PS> Get-TdServiceWindow Window1
+        Returns the window1 service windows
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdServiceWindow')]
     param (
         [system.string]$Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/serviceWindow/lookup/'
-    Write-PSFMessage -Level InternalComment -Message "servicewindow lookup url: $uri"
-    $Params = @{
-        'uri' = $uri
-    }
-    $res = Invoke-TdMethod @Params
+    $res = Invoke-TdMethod $uri
     $res | Where-Object name -like $Name
 }

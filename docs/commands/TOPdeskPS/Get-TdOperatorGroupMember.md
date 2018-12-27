@@ -5,66 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdLocation
+# Get-TdOperatorGroupMember
 
 ## SYNOPSIS
-returns list of locations
+get the operators of an operator group
 
 ## SYNTAX
 
 ```
-Get-TdLocation [[-Name] <String>] [-Archived] [<CommonParameters>]
+Get-TdOperatorGroupMember [-OperatorGroup] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of locations
+returns the members of an operator group
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdLocation
+Get-TdOperatorGroup TechSupport | Get-TdOperatorGroupMember
 ```
 
-returns list of locations
-
-### EXAMPLE 2
-```
-Get-TdLocation location2
-```
-
-Returns location2
+Return members of the TechSupport operator group
 
 ## PARAMETERS
 
-### -Name
-only return locations matching the pattern.
-Wildcards accepts
+### -OperatorGroup
+Id of the operator group that you want members for
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: id
 
-Required: False
+Required: True
 Position: 1
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Archived
-Whether to return archived locations or not.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

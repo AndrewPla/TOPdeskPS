@@ -1,14 +1,14 @@
 ---
 external help file: TOPdeskPS-help.xml
 Module Name: TOPdeskPS
-online version: https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail
+online version:
 schema: 2.0.0
 ---
 
 # Get-TdChangeDetail
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+returns details of a specified change
 
 ## SYNTAX
 
@@ -17,21 +17,23 @@ Get-TdChangeDetail [-ChangeNumber] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+returns details of a specified change
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Get-TdChange | Get-TdChangeDetail
 ```
 
-{{ Add example description here }}
+returns details of all changes
+
+TODO add support for change ID
 
 ## PARAMETERS
 
 ### -ChangeNumber
-{{Fill ChangeNumber Description}}
+Change Number in format CYYMM-XXXX
 
 ```yaml
 Type: Object
@@ -39,7 +41,7 @@ Parameter Sets: (All)
 Aliases: number
 
 Required: True
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -51,14 +53,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### System.Object
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
-
-[https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail](https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChangeDetail)
-

@@ -5,61 +5,76 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TdDepartment
+# Set-TdOperatorBranchFilter
 
 ## SYNOPSIS
-Creates a new Department
+Link and unlink branch filters from an operator
 
 ## SYNTAX
 
-### Name
+### Link
 ```
-New-TdDepartment -Name <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TdOperatorBranchFilter -Operator <Object> [-Link <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### ExternalLink
+### Unlink
 ```
-New-TdDepartment -externalLinkId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TdOperatorBranchFilter -Operator <Object> [-Unlink <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new department
+Link and unlink branch filters from an operator
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-TdDepartment -Name 'TestDepartment'
+Get-TdOperator -name 'John Smith' | Set-TdOperatorBranchFilter -link (Get-TdBranchFilter -name 'BranchFilter1').id
 ```
 
-Creates a new Department named 'TestDepartment'
+Links John Smith to the BranchFilter1 branch filter
 
 ## PARAMETERS
 
-### -Name
-Name of new department
+### -Operator
+Id of the operator that you want to link/unlink filters from
 
 ```yaml
-Type: String
-Parameter Sets: Name
-Aliases:
+Type: Object
+Parameter Sets: (All)
+Aliases: id
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Link
+Ids of the filters that you want to link to the operator
+
+```yaml
+Type: String[]
+Parameter Sets: Link
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -externalLinkId
-external link ID
+### -Unlink
+Ids of the filters that you want to unlink from the operator
 
 ```yaml
-Type: String
-Parameter Sets: ExternalLink
+Type: String[]
+Parameter Sets: Unlink
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

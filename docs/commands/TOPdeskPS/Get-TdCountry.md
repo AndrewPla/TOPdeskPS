@@ -13,7 +13,7 @@ gets list of countries
 ## SYNTAX
 
 ```
-Get-TdCountry [<CommonParameters>]
+Get-TdCountry [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,30 @@ Get-TdCountry
 
 gets list of countries
 
+### EXAMPLE 2
+```
+Get-TdCountry 'USA'
+```
+
+Returns the USA country
+
 ## PARAMETERS
+
+### -Name
+Filter based on the name.
+Wildcards accepted.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
