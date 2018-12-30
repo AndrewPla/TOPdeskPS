@@ -1,23 +1,27 @@
 ﻿TOPIC
 	about_TOPdeskPS
-	
+
 SHORT DESCRIPTION
 	Explains how to use the TOPdeskPS powershell module
-	
+
 LONG DESCRIPTION
 	Connecting to TOPdesk
-		Before running any other commands you will need to connect to TOPdesk.
-		PS C:\> Connect-TdService -Credential (Get-Credential) -Url 'https://MyCompany.topdesk.net' -Register
-		
+		Connect using a TOPdesk username/password
+		PS > Connect-TdService -Credential (Get-Credential) -Url 'https://MyCompany.topdesk.net' -Register
+
+		Connect using an application password
+		The username of the credential should be the username that created the app password, not the name of the password.
+		PS > Connect-TdService -ApplicationPassword -Url 'https://company.topdesk.net'
+
 	Getting Incidents
 		Incidents are retrieved with the Get-TdIncident command.
 		PS C:\> Get-TdIncident
-		
+
 	Disconnecting from TOPdesk
 		Disconnect from TOPdesk by running Disconnect-TdService
 		This will invalidate your login token.
 		PS C:\> Disconnect-TdService
-		
+
 	Updating Incidents
 
 KEYWORDS

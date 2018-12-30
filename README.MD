@@ -15,31 +15,62 @@ TOPdeskPS is published to the PowerShell gallery and can be installed by running
 ```
 
 ## Connecting to TOPdesk
+
+### Using TOPdesk login Credentials (not MFA)
 ```powershell
   Connect-TdService -url 'https://Company.TOPdesk.net' -Register
 ```
 Prompts for your TOPdesk credentials.
 Connects to your TOPdesk instance and registers the url. The next time you run Connect-TdService it will remember your TOPdesk Url.
 
+### Using an application password
+
+Use an application password to connect rather than your TOPdesk login credentials. The username should be the topdesk login name of the user who created the application password.
+Ex: Username: 'User@company.com' Password:'ABCD-1234-5678-QWERT'
+
+```powershell
+  Connect-TdService -url 'https://company.topdesk.net' -ApplicationPassword
+```
+
 ## Get Incidents
+
+Return incidents
 ```powershell
   Get-TdIncident -ResultSize 50
-  Returns 50 incidents
 ```
 
 ## Create Incidents
 ```powershell
-  New-TdIncident -Action 'initial action here' -BriefDescription 'Brief description here' -CallerEmail 'user@company.com'
+$IncidentParams = @{
+  Action = 'Initial Action'
+  BriefDescription = 'brief description'
+  CallerEmail = 'Test@Test.com'
+}
+New-TdIncident @IncidentParams
 ```
 
-## Modify Incidents
+## Update Incidents
 ```powershell
-  Get-TdIncident -Number 'I1811-123' | Set-TdIncident
+$incidentParams = @{
+  Number = 'I1811-123'
+  Action = 'Updated Action'
+  Operator = (Get-TdOperator 'username@company.net').id
+  Category = 'TechSupport'
+  Subcategory = 'PowerShell'
+}
+Set-TdIncident @incidentParams
 ```
 
 ## Create Person
 ```powershell
-  New-TdPerson -Surname 'Doe' -BranchId (Get-TdBranch -Name test).id -FirstName 'John'
+$personParams = @{
+  Surname = 'Doe'
+  BranchId = (Get-TdBranch -Name HQ).id
+  NetworkLoginName = 'User@company.com'
+  Gender = 'FEMALE'
+  Email = 'User@company.com'
+}
+  New-TdPerson @personParams
 ```
 
 ## Documentation
