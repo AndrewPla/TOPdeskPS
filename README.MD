@@ -2,7 +2,7 @@
 
 ## Description
 
-PowerShell module to interact with TOPdesk through its REST API.
+PowerShell module to interact with TOPdesk through its REST API. This module can be used to ease daily administration of TOPdesk as well as provide awesome automation abilities.
 
 ## Preparing TOPdesk
 
