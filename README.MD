@@ -26,7 +26,6 @@ Connects to your TOPdesk instance and registers the url. The next time you run C
 ### Using an application password
 
 Use an application password to connect rather than your TOPdesk login credentials. The username should be the topdesk login name of the user who created the application password.
-Ex: Username: 'User@company.com' Password:'ABCD-1234-5678-QWERT'
 
 ```powershell
   Connect-TdService -url 'https://company.topdesk.net' -ApplicationPassword
