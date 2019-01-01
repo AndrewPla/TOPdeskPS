@@ -30,11 +30,13 @@
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod')]
     param
     (
-        [system.string]
-        $ContentType = 'application/json',
 
+        [Parameter(Mandatory, Position = 0)]
         [uri]
         $Uri,
+
+        [system.string]
+        $ContentType = 'application/json',
 
         [pscustomobject]
         $Body,
@@ -49,7 +51,6 @@
 
     begin {
         Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-
     }
     process {
         if ($Token) {

@@ -19,7 +19,7 @@
         [string]
         $Name = '*'
     )
-    $uri = (Get-TdUrl) + '/tas/api/archiving-reasons'
-    $res = Invoke-TdMethod $uri
+    $uri = "$(Get-TdUrl)/tas/api/archiving-reasons"
+    $res = Invoke-TdMethod -Uri $uri
     $res | Where-Object name -like $Name
 }
