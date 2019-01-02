@@ -1,7 +1,7 @@
 ﻿function Invoke-TdMethod {
     <#
 	.SYNOPSIS
-		internal wrapper for Invoke-RestMethod
+		internal wrapper for Invoke-RestMethod. This command is exposed in case you encounter api calls that aren't part of this module. All api commands call this command  to perform the web request.
 
 	.DESCRIPTION
 		A detailed description of the Invoke-TdMethod function.
@@ -19,7 +19,10 @@
 		The method that you want to pass
 
 	.PARAMETER Token
-		Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
+        Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken
+
+    .PARAMETER FileBody
+    A special body that is to be used with Multipart Form requests. this is needed because composing a multi form request in Windows PowerShell is challenging. PS Core doesn't need this.
 
 	.EXAMPLE
 		PS C:\> Invoke-TdMethod -Token $Token -Body $Body
@@ -38,7 +41,7 @@
         [system.string]
         $ContentType = 'application/json',
 
-        [pscustomobject]
+        [object]
         $Body,
 
         [ValidateSet('Get', 'Set', 'Put', 'Patch', 'Delete', 'Post', 'Head', 'Merge', 'Options')]
@@ -46,12 +49,17 @@
         $Method = 'Get',
 
         [string]
-        $Token
+        $Token,
+
+        [Parameter(ParameterSetName = 'FileUpload')]
+        [string]
+        $File,
+
+        [Parameter( ParameterSetName = 'FileUpload')]
+        [pscustomobject]
+        $FileBody
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    }
     process {
         if ($Token) {
             $Headers = @{
@@ -62,19 +70,74 @@
             if (-not $Script:__LoginToken) {
                 throw 'no connection to topdesk, try running Connect-TdService'
             }
-            $Headers = @{
-                'Authorization' = $Script:__LoginToken
+            else {
+                $Headers = @{
+                    'Authorization' = $Script:__LoginToken
+                }
             }
         }
-        $Params = @{
-            'Body' = $Body
-            'Method' = $Method
-            'Uri' = $Uri
-            'Headers' = $Headers
-            'ContentType' = $ContentType
+
+        Switch ($PSCmdlet.ParameterSetName) {
+            '__AllParameterSets' {
+                $Params = @{
+                    'Body' = $Body
+                    'Method' = $Method
+                    'Uri' = $Uri
+                    'Headers' = $Headers
+                    'ContentType' = $ContentType
+                }
+                Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
+                Invoke-RestMethod @Params
+
+            }
+
+
+            'FileUpload' {
+                switch ($PSVersionTable.PSVersion.Major) {
+                    '5' {
+                        $fileName = Split-Path $File -leaf
+
+                        $fileBin = [System.IO.File]::ReadAllBytes($File)
+                        $enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
+                        $fileEnc = $enc.GetString($fileBin)
+                        $boundary = [System.Guid]::NewGuid().ToString()
+                        $LF = "`r`n"
+
+
+                        $Body = (
+                            "--$boundary",
+                            "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`""
+                        )
+                        foreach ($prop in $filebody.psobject.properties) {
+                            $Body += "$($prop.name): $($prop.value)"
+                        }
+                        $Body += "Content-Type: application/octetstream$LF"
+
+                        $Body += (
+                            "--$boundary",
+                            "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`"",
+                            "Content-Type: application/octet-stream$LF",
+                            $fileEnc,
+                            "--$boundary--$LF"
+                        ) -join $LF
+
+                        $params = @{
+                            uri = $Uri
+                            Method = $Method
+                            ContentType = "multipart/form-data; boundary=`"$boundary`""
+                            Body = $body
+                            Headers = $Headers
+                        }
+                        Invoke-RestMethod @params
+                    }
+
+                    '6' {
+
+                    }
+
+                }
+            }
         }
-        Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
-        Invoke-RestMethod @Params
 
     }
 }
