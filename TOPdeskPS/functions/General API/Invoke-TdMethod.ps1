@@ -53,11 +53,7 @@
 
         [Parameter(ParameterSetName = 'FileUpload')]
         [string]
-        $File,
-
-        [Parameter( ParameterSetName = 'FileUpload')]
-        [pscustomobject]
-        $FileBody
+        $File
     )
 
     process {
@@ -93,6 +89,7 @@
 
 
             'FileUpload' {
+
                 switch ($PSVersionTable.PSVersion.Major) {
                     '5' {
                         $fileName = Split-Path $File -leaf
@@ -104,16 +101,18 @@
                         $LF = "`r`n"
 
 
-                        $Body = (
+                        $composedBody = (
                             "--$boundary",
                             "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`""
                         )
-                        foreach ($prop in $filebody.psobject.properties) {
-                            $Body += "$($prop.name): $($prop.value)"
+                        foreach ($prop in $Body.psobject.properties) {
+                            $composedBody += "$($prop.name): $($prop.value)"
                         }
-                        $Body += "Content-Type: application/octetstream$LF"
 
-                        $Body += (
+
+                        $composedBody += "Content-Type: application/octetstream$LF"
+
+                        $composedBody += (
                             "--$boundary",
                             "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`"",
                             "Content-Type: application/octet-stream$LF",
@@ -125,7 +124,7 @@
                             uri = $Uri
                             Method = $Method
                             ContentType = "multipart/form-data; boundary=`"$boundary`""
-                            Body = $body
+                            Body = $composedBody
                             Headers = $Headers
                         }
                         Invoke-RestMethod @params
