@@ -6,10 +6,8 @@
         Upload a file to an incident identified
     .PARAMETER Number
         The number of the incident that you want to upload a file to.
-    .PARAMETER File
-        Path and name to the file that you want to upload to the incident.
     .EXAMPLE
-        PS C:\> <example usage>
+        PS C:\> Send-TdIncidentFile -File 'C:\TestFile.txt' -Number 'I1911-123'
         Explanation of what the example does
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdIncidentFile')]
@@ -29,61 +27,36 @@
                 }
                 return $true
             })]
-        [System.IO.FileInfo]
-        $File
+        [System.IO.FileInfo[]]
+        $File,
+
+        [Switch]
+        $InvisibleForCaller,
+
+        [string]
+        $Description
     )
-    begin {
-        if (-not $ContentType) {
-            Add-Type -AssemblyName System.Web
 
-            $mimeType = [System.Web.MimeMapping]::GetMimeMapping($File)
-            if ($mimeType) {
-                $ContentType = $mimeType
-            }
-            else {
-                $ContentType = "application/octet-stream"
-            }
-        }
-    }
     process {
-        $uri = (Get-TdUrl) + "/tas/api/incidents/number/$($Number.tolower())/attachments"
-        Write-PSFMessage "Uri - $uri" -Level debug
-        #TODO throw this into an internal function and clean this up a bit.
-        $fileName = Split-Path $File -leaf
-        $boundary = [guid]::NewGuid().ToString()
-        $fileBin = [System.IO.File]::ReadAllBytes($File)
-        $LF = "`r`n"
-        $enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
-        $fileEnc = $enc.GetString($fileBin)
+        $Body = [PSCustomObject]@{}
 
-        $bodyLines = @(
+        foreach ($f in $File) {
+            $Body | Add-Member -Name 'invisibleForCaller' -Value ($InvisibleForCaller.tostring().tolower()) -MemberType NoteProperty
 
-            "--$boundary",
 
-            "Content-Disposition: form-data; name=`"file`"; filename=`"$filename`"",
+            if ($Description) {
+                $Body | Add-Member -Name 'description' -Value $Description -MemberType NoteProperty
+            }
 
-            "Content-Type: application/octet-stream$LF",
+            $uri = "$(Get-TdUrl)/tas/api/incidents/number/$($Number.tolower())/attachments"
 
-            $fileEnc,
-
-            "--$boundary",
-
-            "Content-Disposition: form-data; name=`"importConfig`"; filename=`"portatour.importcfg`"",
-
-            "Content-Type: application/octet-stream$LF",
-
-            $importConfigFileEnc,
-
-            "--$boundary--$LF"
-
-        ) -join $LF
-        Write-PSFMessage $bodyLines -Level debug
-        $params = @{
-            Uri = $Uri
-            Body = $bodyLines
-            Method = 'Post'
-            ContentType = "multipart/form-data; boundary=$boundary"
+            $params = @{
+                Body = $Body
+                Uri = $Uri
+                File = "$($f.fullname)"
+                Method = 'Post'
+            }
+            Invoke-TdMethod @params
         }
-        Invoke-TdMethod @params
     }
 }
