@@ -11,17 +11,18 @@
         PS C:\> Get-TdImpact
         Gets list of impacts
 
+        .EXAMPLE
+        PS> Get-TdImpact -name person
+        Returns the 'person' impact
     #>
     [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdImpact')]
     param (
-
+        $Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/impacts'
-    Write-PSFMessage -Level InternalComment -Message "Impacts url: $uri"
     $Params = @{
         'uri' = $uri
     }
     $res = Invoke-TdMethod @Params
-    $res | Where-Object name -like $Name
+    $res | Where-Object name -like $Name | Select-PSFObject -Typename 'TOPdeskPS.BasicObj' -KeepInputObject
 }

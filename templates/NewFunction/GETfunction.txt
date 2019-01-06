@@ -1,0 +1,27 @@
+function <%=$PLASTER_PARAM_FunctionName%> {
+    <#
+.SYNOPSIS
+    <%=$PLASTER_PARAM_Synopsis%>
+.DESCRIPTION
+    <%=$PLASTER_PARAM_Description%>
+.EXAMPLE
+    PS C:\> <%=$PLASTER_PARAM_ExampleCode%>
+    <%=$PLASTER_PARAM_ExampleText%>
+#>
+[CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/<%=$PLASTER_PARAM_FunctionName%>')]
+
+    param
+    (
+
+    )
+
+    process {
+        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
+        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
+
+        $uri = "$(Get-TdUrl)/tas/api/<%=$PLASTER_PARAM_ApiEndpoint%>"
+        $res = Invoke-TdMethod -Uri $uri
+        $res
+    }
+\
+}

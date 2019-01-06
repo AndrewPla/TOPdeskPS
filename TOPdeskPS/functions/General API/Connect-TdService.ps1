@@ -33,7 +33,7 @@
 
 	.EXAMPLE
 		PS C:\> Connect-TdService -Credential $Cred -Url 'https://company.topdesk.net:90' -Register -ApplicationPassword
-        Generates a header that is specific to Application Passowrds. The Url will be registered so you don't need to enter it the next time you run connect-tdservice. We will be using port 90.
+        Generates a header that is specific to Application Passwords. The Url will be registered so you don't need to enter it the next time you run connect-tdservice. We will be using port 90.
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Connect-TdService')]
@@ -85,7 +85,7 @@
             Method = "GET"
             Headers = $headers
         }
-     $result = Invoke-RestMethod @params -ErrorAction Stop
+        $result = Invoke-RestMethod @params -ErrorAction Stop
         if ($result.item.name -like 'item') {
             Stop-PSFFunction -Message 'invalid url given.' -EnableException $EnableException -Cmdlet $PSCmdlet
             return
@@ -108,6 +108,4 @@
     if (Test-PSFFunctionInterrupt) {
         return
     }
-    Write-PSFMessage -Message 'Function Complete' -Level internalcomment
-
 }

@@ -13,7 +13,7 @@ Gets Branches
 ## SYNTAX
 
 ```
-Get-TdBranch [-Archived] [[-Name] <String>] [<CommonParameters>]
+Get-TdBranch [[-Name] <String>] [-Archived] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,24 +26,16 @@ Gets Branches
 Get-TdBranch
 ```
 
-Gets Branch
+Gets Branches
+
+### EXAMPLE 2
+```
+Get-TdBranch 'Main Office'
+```
+
+Returns the 'Main Office' branch
 
 ## PARAMETERS
-
-### -Archived
-Whether to retrieve archived incidents
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Name
 Name of the branch that you want returned.Wildcards are supported.
@@ -57,6 +49,22 @@ Aliases:
 Required: False
 Position: 1
 Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Archived
+Whether to retrieve archived incidents.
+Doesn't return archived branches by default.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

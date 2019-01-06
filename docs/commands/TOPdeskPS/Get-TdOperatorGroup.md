@@ -8,41 +8,106 @@ schema: 2.0.0
 # Get-TdOperatorGroup
 
 ## SYNOPSIS
-Get Operator groups
+Returns operator groups
 
 ## SYNTAX
 
+### List (Default)
 ```
-Get-TdOperatorGroup [[-Name] <String>] [<CommonParameters>]
+Get-TdOperatorGroup [[-Name] <String>] [-ResultSize <Int32>] [-Archived] [-Start <Int32>] [<CommonParameters>]
+```
+
+### Operator
+```
+Get-TdOperatorGroup [-Operator <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get Operator groups
+returns list of operator groups or groups for a provided operator.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdOperatorGroup
+Get-TdOperatorGroup -resultsize 1000
 ```
 
-Get all Operator groups
+returns up to 1000 operator groups.
 
 ## PARAMETERS
 
 ### -Name
-Name of the operator group that you want returned.
-Wildcards are supported.
-Default value is '*'
+Retrieve only operator groups with name starting with this.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases: GroupName
+Parameter Sets: List
+Aliases:
 
 Required: False
 Position: 1
-Default value: *
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Operator
+Id of the operator that you want to return operator groups for.
+
+```yaml
+Type: Object
+Parameter Sets: Operator
+Aliases: id
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ResultSize
+The number of results that you want returned.
+
+```yaml
+Type: Int32
+Parameter Sets: List
+Aliases:
+
+Required: False
+Position: Named
+Default value: 10
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Archived
+Specify whether you want archived operator groups included
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: List
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Start
+The offset at which to start listing the operator groups at.
+Must be greater or equal to 0, default is 0
+
+```yaml
+Type: Int32
+Parameter Sets: List
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

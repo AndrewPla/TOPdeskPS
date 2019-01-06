@@ -6,12 +6,11 @@
 	.DESCRIPTION
 		This command returns incidents from TOPdesk. The most you can grab per request is 100.
 
-	.PARAMETER PageSize
-		The amount of incidents to be returned per request. The default value is 10 and the maximum value is 100.
+	.PARAMETER ResultSize
+		The amount of incidents to be returned. Due to API limitations we're only able to return 100 incidents per api call.
 
 	.PARAMETER Start
-		This is the offset at which you want to start listing incidents. This is useful if you want to grab more than 100 incidents.
-		The default value is 0.
+		This is the offset at which you want to start listing incidents.
 
 	.PARAMETER Completed
 		Retrieve only incidents that are completed / not completed. Set this parameter to $false to only retrieve not completed incidents, and set it to $true to only receive completed incidents.
@@ -30,57 +29,64 @@
 
 	.EXAMPLE
 		PS C:\> Get-TdIncident
-		Grabs a list of 10 incidents
+        returns incidents
+
+    .EXAMPLE
+        PC> Get-Tdincident | Format-List *
+        return incidents and all of their properties
+
+    .EXAMPLE
+        PS C:\> Get-TdIncident -Closed
+        Returns incidents and includes closed incidents.
+    .EXAMPLE
+        PS C:\> Get-TdIncident -ResultSize 2000
+        Returns 2000 incidents.
 #>
 
     [CmdletBinding(DefaultParameterSetName = 'List',
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdIncident')]
     param
     (
-        [ValidateRange(1, 100)]
+        [Parameter(ParameterSetName = 'Number',
+            ValueFromPipeline = $true,
+            position = 0)]
+        [Alias('IncidentNumber')]
+        [string[]]
+        $Number,
+
+        [ValidateRange(1, 100000)]
         [int]
-        $PageSize = 10,
+        $ResultSize = 10,
 
         [int]
         $Start = 0,
 
-        [Parameter(ParameterSetName = 'List')]
         [switch]
         $Completed,
 
-        [Parameter(ParameterSetName = 'List')]
         [switch]
         $Closed,
 
-        [Parameter(ParameterSetName = 'List')]
         [switch]
         $Resolved,
 
-        [Parameter(ParameterSetName = 'List')]
         [switch]
-        $Archived,
+        $Archived
 
-        [Parameter(ParameterSetName = 'Number',
-            ValueFromPipelineByPropertyName = $true)]
-        [Alias('IncidentNumber')]
-        [string[]]
-        $Number
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-        $IncidentURL = (Get-TdUrl) + '/tas/api/incidents'
-        Write-PSFMessage -Level InternalComment -Message "IncidentURL: $IncidentUrl"
-    }
+
     process {
+        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
         Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
-        Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
+
+
+        $uri = "$(Get-TdUrl)/tas/api/incidents"
 
         switch ($PSCmdlet.ParameterSetName) {
 
             List {
-                $uri = "$IncidentURL/?start=$Start&page_size=$PageSize"
-
+                $uri = "$uri/?"
 
                 if ($PSBoundParameters.keys -contains 'Completed') {
                     Write-PSFMessage -Level InternalComment -Message "Completed = $Completed"
@@ -97,37 +103,66 @@
                     $uri = "$uri&resolved=$Resolved"
                 }
 
-                if ($PSBoundParameters.keys -contains 'Archive') {
-                    Write-PSFMessage -Level InternalComment -Message "Archive = $Archive"
-                    $uri = "$uri&archive=$Archive"
+                if ($PSBoundParameters.keys -contains 'Archived') {
+                    $uri = "$uri&archived=$($Archived.tostring().tolower())"
                 }
 
-                Write-PSFMessage -Level InternalComment -Message "URI: $uri"
-                $Params = @{
-                    'uri' = $uri
+                if ($ResultSize -gt 100) {
+                    $pageSize = 100
                 }
-                $Incidents = Invoke-TdMethod @Params
+                else {
+                    $pageSize = $ResultSize
+                }
+
+                $uri = $uri.Replace('?&', '?')
+                $count = 0
+                do {
+                    $incidents = @()
+
+                    $remaining = $ResultSize - $count
+                    Write-PSFMessage "$remaining incidents remaining"
+
+                    if ($remaining -le 100) {
+                        $pageSize = $remaining
+                        $status = 'finished'
+                    }
+
+                    $loopingUri = "$uri&start=$Start&page_size=$pageSize"
+                    $Params = @{
+                        'uri' = $loopingUri
+                    }
+                    $Incidents += Invoke-TdMethod @Params
+                    if (($Incidents.count) -eq 1) {
+                        Write-PSFMessage 'No incidents remaining.'
+                        $status = 'finished'
+                    }
+
+                    foreach ($incident in $incidents) {
+                        if ($incident.Number -notlike '') {
+                            $Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
+                        }
+                    }
+                    $count += $incidents.count
+                    $start += $PageSize
+
+
+                }
+                until ($status -like 'finished')
             }
 
             Number {
-                $Incidents = @()
                 foreach ($num in $Number) {
-                    Write-PSFMessage -Level InternalComment -Message "Grabbing Incident # $num"
-                    $uri = "$IncidentURL/number/$($num.ToLower())"
+                    $Incidents = @()
+                    $uri = "$uri/number/$($num.ToLower())"
                     $Params = @{
                         'uri' = $uri
                     }
                     $Incidents += Invoke-TdMethod @Params
+                    foreach ($Incident in $Incidents) {
+                        $Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
+                    }
                 }
             }
-
         }
-
-        foreach ($Incident in $Incidents) {
-            Write-PSFMessage "Processing Incident : $($Incident.Number)" -Level Verbose
-            $Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
-        }
-    }
-    end {
     }
 }

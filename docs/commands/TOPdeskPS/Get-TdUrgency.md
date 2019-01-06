@@ -13,7 +13,7 @@ Gets list of all urgencies
 ## SYNTAX
 
 ```
-Get-TdUrgency [[-Name] <Object>] [<CommonParameters>]
+Get-TdUrgency [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,6 +28,13 @@ Get-TdUrgency
 
 Gets list of all urgencies
 
+### EXAMPLE 2
+```
+Get-TdUrgency -name 'Able to work'
+```
+
+Returns the requested urgency
+
 ## PARAMETERS
 
 ### -Name
@@ -36,7 +43,7 @@ Wildcards are supported.
 Default value is '*'
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 

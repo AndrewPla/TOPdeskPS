@@ -28,6 +28,13 @@ Get-TdServiceWindow
 
 Gets list of all service windows
 
+### EXAMPLE 2
+```
+Get-TdServiceWindow Window1
+```
+
+Returns the window1 service windows
+
 ## PARAMETERS
 
 ### -Name

@@ -2,7 +2,7 @@
 
 ## Description
 
-PowerShell module to interact with TOPdesk through its REST API.
+PowerShell module to interact with TOPdesk through its REST API. This module can be used to ease daily administration of TOPdesk as well as provide awesome automation abilities.
 
 ## Preparing TOPdesk
 
@@ -12,32 +12,77 @@ In order to connect to TOPdesk you will need to have an account with the require
 TOPdeskPS is published to the PowerShell gallery and can be installed by running:
 ```powershell
   Install-Module -Name TOPdeskPS -Repository PSGallery -Scope CurrentUser
-``` 
+```
 
 ## Connecting to TOPdesk
+
+### Using TOPdesk login Credentials (not MFA)
 ```powershell
   Connect-TdService -url 'https://Company.TOPdesk.net' -Register
 ```
 Prompts for your TOPdesk credentials.
 Connects to your TOPdesk instance and registers the url. The next time you run Connect-TdService it will remember your TOPdesk Url.
 
-## Get Incidents
+### Using an application password
+
+Use an application password to connect rather than your TOPdesk login credentials. The username should be the topdesk login name of the user who created the application password.
+
 ```powershell
-  Get-TdIncident -PageSize 30
+  Connect-TdService -url 'https://company.topdesk.net' -ApplicationPassword
+```
+
+## Get Incidents
+
+Return incidents
+```powershell
+  Get-TdIncident -ResultSize 50
 ```
 
 ## Create Incidents
 ```powershell
-  New-TdIncident -Action 'initial action here' -BriefDescription 'Brief description here' -CallerEmail 'user@company.com'
+$IncidentParams = @{
+  Action = 'Initial Action'
+  BriefDescription = 'brief description'
+  CallerEmail = 'Test@Test.com'
+}
+New-TdIncident @IncidentParams
 ```
 
-## Create People
+## Update Incidents
 ```powershell
-  New-TdPerson -Surname 'Doe' -BranchId (Get-TdBranch -Name test).id -FirstName 'John'
+$incidentParams = @{
+  Number = 'I1811-123'
+  Action = 'Updated Action'
+  Operator = (Get-TdOperator 'username@company.net').id
+  Category = 'TechSupport'
+  Subcategory = 'PowerShell'
+}
+Set-TdIncident @incidentParams
 ```
+
+## Create Persons
+```powershell
+$personParams = @{
+  Surname = 'Doe'
+  BranchId = (Get-TdBranch -Name HQ).id
+  NetworkLoginName = 'User@company.com'
+  Gender = 'FEMALE'
+  Email = 'User@company.com'
+}
+  New-TdPerson @personParams
+```
+
+## Send Notifications
+
+Use the task notifications api to send alerts to your operators.
+
+```powershell
+Send-TdTaskNotification -Title 'TOPdesk notification from PS!' -Body "You've got the power" -OperatorId (Get-TdOperator 'First.Last').id
+```
+![](./images/TOPdesk-Notif.png)
 
 ## Documentation
-For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS) 
+For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS)
 
 ## Release History
 

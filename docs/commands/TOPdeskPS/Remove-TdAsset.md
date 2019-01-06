@@ -24,15 +24,15 @@ In this case those assets' ids will be listed in the 'failed' list of the respon
 
 ### EXAMPLE 1
 ```
-Remove-TdAsset -IncidentNumber 'I1805-221' -Action 'Example Action'
+Remove-TdAsset -AssetId $AssetId
 ```
 
-Updates incident I1805-221 with the action 'Example Action'
+Removes all assets with id's inside $assetId.
 
 ## PARAMETERS
 
 ### -AssetId
-{{Fill AssetId Description}}
+Id of the asset to remove
 
 ```yaml
 Type: String[]

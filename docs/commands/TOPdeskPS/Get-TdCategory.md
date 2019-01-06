@@ -13,7 +13,7 @@ Get categories from TOPdesk
 ## SYNTAX
 
 ```
-Get-TdCategory [[-Name] <String>] [[-Token] <String>] [<CommonParameters>]
+Get-TdCategory [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +39,7 @@ Gets the category with the name 'End User Support'
 
 ### -Name
 This is the name of the category that you want.
-This can be useful if you want to pass a category id to a different command.
+Wildcards are supported.
 
 ```yaml
 Type: String
@@ -48,23 +48,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Token
-REST login token.
-This isn't needed if you want to use the token generated with Connect-TdService
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

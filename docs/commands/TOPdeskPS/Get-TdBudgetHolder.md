@@ -8,35 +8,36 @@ schema: 2.0.0
 # Get-TdBudgetHolder
 
 ## SYNOPSIS
-Gets Budgetholders
+Returns budget holders
 
 ## SYNTAX
 
 ```
-Get-TdBudgetHolder [[-Name] <String>] [<CommonParameters>]
+Get-TdBudgetHolder [[-Name] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets Budgetholders
+Gets a list of budgetholders.
+Use the Name parameter to  filter.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdBudgetHolders
+Get-TdBudgetHolder
 ```
 
-Gets list of all budgetholders
+returns a list of budget holders
 
 ## PARAMETERS
 
 ### -Name
-Name of the budget holder that you want returned.
-Wildcards are supported.
-Default value is '*'
+Filter based on Names.
+Wildcards accepted.
+Default Value = '*'
 
 ```yaml
-Type: String
+Type: Object
 Parameter Sets: (All)
 Aliases:
 

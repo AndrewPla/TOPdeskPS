@@ -26,7 +26,6 @@
         [system.string]
         $LinkId
     )
-    begin {}
     process {
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
@@ -37,5 +36,4 @@
         }
         Invoke-TdMethod -Method 'Delete' -Uri $uri
     }
-    end {}
 }

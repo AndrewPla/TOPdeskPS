@@ -1,6 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<ViewDefinitions>
+
+		<View>
+			<Name>TOPdeskPS.BasicObj</Name>
+			<ViewSelectedBy>
+				<TypeName>TOPdeskPS.BasicObj</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+
+					<TableColumnHeader>
+						<Width>35</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>15</Width>
+					</TableColumnHeader>
+
+				</TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>Name</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>id</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+
 		<View>
 			<Name>TOPdeskPS.Incident</Name>
 			<ViewSelectedBy>
@@ -27,7 +63,7 @@
 							</ListItem>
 							<ListItem>
 								<PropertyName>briefDescription</PropertyName>
-                            </ListItem>
+							</ListItem>
 						</ListItems>
 					</ListEntry>
 				</ListEntries>
@@ -39,37 +75,235 @@
 				<TypeName>TOPdeskPS.Person</TypeName>
 			</ViewSelectedBy>
 			<TableControl>
-			<TableHeaders>
+				<TableHeaders>
 
-				  <TableColumnHeader>
-					<Width>25</Width>
-				  </TableColumnHeader>
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
 
-				  <TableColumnHeader>
-					<Width>25</Width>
-				  </TableColumnHeader>
-
-				  <TableColumnHeader>
-					<Width>45</Width>
-				  </TableColumnHeader>
+					<TableColumnHeader>
+						<Width>45</Width>
+					</TableColumnHeader>
 
 				</TableHeaders>
-			<TableRowEntries>
-			  <TableRowEntry>
-			    <TableColumnItems>
-			      <TableColumnItem>
-			        <PropertyName>DynamicName</PropertyName>
-			      </TableColumnItem>
-			      <TableColumnItem>
-			        <PropertyName>Email</PropertyName>
-			      </TableColumnItem>
-			      <TableColumnItem>
-			        <PropertyName>Branch.name</PropertyName>
-			      </TableColumnItem>
-			    </TableColumnItems>
-			  </TableRowEntry>
-			</TableRowEntries>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>DynamicName</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>Email</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
 			</TableControl>
 		</View>
+
+		<View>
+			<Name>TOPdeskPS.Branch</Name>
+			<ViewSelectedBy>
+				<TypeName>TOPdeskPS.Branch</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>15</Width>
+					</TableColumnHeader>
+
+				</TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>Name</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>id</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+
+		<View>
+			<Name>TOPdeskPS.Branch</Name>
+			<ViewSelectedBy>
+				<TypeName>TOPdeskPS.Branch</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>15</Width>
+					</TableColumnHeader>
+
+				</TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>Name</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>id</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+
+
+		<View>
+			<Name>TOPdeskPS.ArchiveReason</Name>
+			<ViewSelectedBy>
+				<TypeName>TOPdeskPS.ArchiveReason</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>15</Width>
+					</TableColumnHeader>
+
+				</TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>Name</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>id</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+
+		<View>
+			<Name>TOPdeskPS.Asset</Name>
+			<ViewSelectedBy>
+				<TypeName>TOPdeskPS.Asset</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>15</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>15</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>5</Width>
+					</TableColumnHeader>
+
+				</TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>text</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>archived</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>@etag</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>id</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+
+
+		<View>
+			<Name>TOPdeskPS.Operator</Name>
+			<ViewSelectedBy>
+				<TypeName>TOPdeskPS.Operator</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+					<TableColumnHeader>
+						<Width>25</Width>
+					</TableColumnHeader>
+
+				</TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+
+							<TableColumnItem>
+								<PropertyName>DynamicName</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>LoginName</PropertyName>
+							</TableColumnItem>
+
+							<TableColumnItem>
+								<PropertyName>Branch</PropertyName>
+							</TableColumnItem>
+
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+
 	</ViewDefinitions>
 </Configuration>

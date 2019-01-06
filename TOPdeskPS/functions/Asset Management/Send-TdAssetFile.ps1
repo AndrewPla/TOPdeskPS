@@ -11,8 +11,8 @@
     .PARAMETER AssetID
         Id of the asset that you want to send a file to. See Get-TdAsset
     .EXAMPLE
-        PS C:\> <example usage>
-        Explanation of what the example does
+        PS C:\> Get-TdAsset -NameFragment 'test-computer' | Send-TdAssetFile -File "C:\log.txt"
+        Sends a File to the asset named test-computer.
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdAssetFile')]
     param (
@@ -24,7 +24,7 @@
         $AssetId,
 
         [Alias('InFile')]
-        [Parameter(Mandatory, ValueFromPipeline, ValuefromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [ValidateScript( {
                 if (-Not ($_ | Test-Path)) {
                     throw "File or folder does not exist"
@@ -38,18 +38,6 @@
         $File
     )
     begin {
-        if (-not $ContentType) {
-            Add-Type -AssemblyName System.Web
-
-            $mimeType = [System.Web.MimeMapping]::GetMimeMapping($File)
-            if ($mimeType) {
-                $ContentType = $mimeType
-            }
-            else {
-                $ContentType = "application/octet-stream"
-            }
-        }
-
     }
     process {
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
@@ -58,43 +46,13 @@
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/uploads/?assetId=$AssetId"
         Write-PSFMessage "Uri - $uri" -Level debug
 
-        #TODO throw this into an internal function and clean this up a bit.
-        $fileName = Split-Path $File -leaf
-        $boundary = [guid]::NewGuid().ToString()
-        $fileBin = [System.IO.File]::ReadAllBytes($File)
-        $LF = "`r`n"
-        $enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
-        $fileEnc = $enc.GetString($fileBin)
 
-        $bodyLines = @(
-
-            "--$boundary",
-
-            "Content-Disposition: form-data; name=`"file`"; filename=`"$filename`"",
-
-            "Content-Type: application/octet-stream$LF",
-
-            $fileEnc,
-
-            "--$boundary",
-
-            "Content-Disposition: form-data; name=`"importConfig`"; filename=`"portatour.importcfg`"",
-
-            "Content-Type: application/octet-stream$LF",
-
-            $importConfigFileEnc,
-
-            "--$boundary--$LF"
-
-        ) -join $LF
-        Write-PSFMessage $bodyLines -Level debug
         $params = @{
             Uri = $Uri
-            Body = $bodyLines
             Method = 'Post'
-            ContentType = "multipart/form-data; boundary=$boundary"
+            File = $File
         }
         Invoke-TdMethod @params
     }
-    end {}
+
 }

@@ -25,6 +25,7 @@
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAsset')]
+
     param
     (
         [Parameter(ParameterSetName = 'Standard Query')]
@@ -67,7 +68,7 @@
                         $uri = "$uri&templateName=$TemplateName"
                     }
                 }
-                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty dataset
+                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty dataset  | Select-PSFObject -Typename 'TOPdeskPS.Asset' -KeepInputObject
             }
 
             'Template Query' {
@@ -82,11 +83,9 @@
                 foreach ($f in $field) {
                     $uri = $uri + "&field=$F"
                 }
-                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty results
+                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty results | Select-PSFObject -Typename 'TOPdeskPS.Asset' -KeepInputObject
             }
         }
-
-
     }
     end {
     }

@@ -1,0 +1,119 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"IfShouldProcess": {
+		"prefix": "IfShouldProcess",
+		"body": [
+			"if (-not (Test-PSFShouldProcess -PSCmdlet $$PSCmdlet -Target ${1:$uri} -Action ${0:Sending Request})) {",
+			"return",
+			"}"
+		],
+		"description": "an example of using Shouldprocess. This is required for any Set- or Remove- command and should be inserted before the action takes place."
+	},
+	"HelpParameterConfirm/Whatif": {
+		"scope": "powershell",
+		"prefix": "HelpParameter Confirm/Whatif",
+		"body": [
+			".PARAMETER Confirm",
+			"/tIf this switch is enabled, you will be prompted for confirmation before executing any operations that change state.",
+			".PARAMETER WhatIf",
+			"/tIf this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run."
+		],
+		"description": "Contains parameter help for both parameters that are added when you use SupportShouldProcess"
+	},
+	"ParamObjectId": {
+		"prefix": "Parameter - ObjectId ",
+		"body": [
+			"[Parameter(",
+			"mandatory = $$true,",
+			"ValueFromPipelineByPropertyName",
+			")]",
+			"[Alias('Id')]",
+			"$${1:Object}",
+		],
+		"description": "code inside param block for a branch id"
+	},
+	"Help ObjectId Param": {
+		"prefix": "Help param - objectid",
+		"body": [
+			".PARAMETER ${1:object}Id",
+			"ID of the ${1:object}. See Get-Td${1:object}"
+		],
+		"description": "ObjectId parameter for comment based help"
+	},
+	"Help Param": {
+		"prefix": "help param",
+		"body": [
+			".PARAMETER ${1}",
+			"/t",
+		],
+		"description": "Name for comment based help"
+	},
+	"Standard body argument": {
+		"prefix": "Switch Body builder argument",
+		"body": [
+			"$${1:Param}, {",
+			"$$Body | Add-Member -MemberType NoteProperty -Name '${2:name of Value }' -Value $${1:label}",
+			"}",
+		],
+		"description": "a standard body member addition"
+	},
+	"Switch body Construction": {
+		"prefix": "Switch body Construction",
+		"body": [
+			"switch ($$PSBoundParameters.Keys) {",
+			"${1:ParameterName} {",
+			"$$body | Add-Member -MemberType NoteProperty -Name '${2:Property Name}' -Value ${1:ParameterName}",
+			"}",
+			"${2:Parameter with object} {",
+			"$$obj = @{",
+			"${3:key} = ${4:value}",
+			"}",
+			"$body | Add-Member -MemberType NoteProperty -Name '${5:valueName}' -Value $$obj",
+			"}",
+			"}",
+		],
+		"description": "switch statement used to put together the body of requests."
+	},
+	"Uri Constructor Switch statement": {
+		"prefix": "Uri Constructor Switch Statement",
+		"body": [
+			"$uri = \"$IncidentURL/?start=$Start&page_size=$PageSize\"",
+			"if ($PSBoundParameters.keys -contains '${1:parameter}') {",
+			"$$uri = \"$uri&${1:parameter}=$${1:parameter}",
+		],
+		"description": "use parameters to construct a uri"
+	},
+	"Add Property to body Hashtable": {
+		"prefix": "Add property to hashtable",
+		"body": [
+			"$$body['${1:propertyName}'] = $${1:propertyName}",
+		],
+		"description": "adds a property to a hashtable"
+	},
+	"AddMember Params/Splat": {
+		"prefix": "construct add member params using a hashtable",
+		"body": [
+			"${1:propertyName}{",
+			"$$memberParams['Name'] = '${1:propertyName}'",
+			"$$memberParams['Value'] = $${1:propertyName}",
+			"Add-Member @memberParams",
+			"}",
+		],
+		"description": "adds a property to a hashtable"
+	}
+}

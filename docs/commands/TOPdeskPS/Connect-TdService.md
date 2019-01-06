@@ -34,7 +34,7 @@ Prompts you for your TOPdesk credentials and then connects to TOPdesk.
 Connect-TdService -Credential $Cred -Url 'https://company.topdesk.net:90' -Register -ApplicationPassword
 ```
 
-Generates a header that is specific to Application Passowrds.
+Generates a header that is specific to Application Passwords.
 The Url will be registered so you don't need to enter it the next time you run connect-tdservice.
 We will be using port 90.
 
@@ -89,7 +89,8 @@ Accept wildcard characters: False
 
 ### -Url
 This is the Url of your TOPdesk instance.
-You must add https:// Example: 'https://Company.TOPdesk.net'
+You can specify a custom port.
+Example: 'https://Company.TOPdesk.net' , 'http://10.1.2.3:90'
 
 ```yaml
 Type: String

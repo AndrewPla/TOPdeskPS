@@ -13,10 +13,10 @@ Create a new Request for Change
 ## SYNTAX
 
 ```
-New-TdChange [-RequesterId] <String> [-BriefDescription] <String> [-ChangeType] <String> [[-Request] <String>]
- [[-Action] <String>] [[-TemplateId] <String>] [[-ExternalNumber] <String>] [[-Category] <String>]
- [[-SubCategory] <String>] [[-Benefit] <String>] [[-Impact] <String>] [[-Priority] <String>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+New-TdChange [-RequesterId] <String> [-BriefDescription] <String> [[-ChangeType] <String>]
+ [[-Request] <String>] [[-Action] <String>] [[-TemplateId] <String>] [[-ExternalNumber] <String>]
+ [[-Category] <String>] [[-SubCategory] <String>] [[-Benefit] <String>] [[-Impact] <String>]
+ [[-Priority] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,15 +30,17 @@ Actions that require user interaction like "Confirm before sending" or "Editable
 
 ### EXAMPLE 1
 ```
-<example usage>
+New-TdChange -RequesterId (Get-TdPerson -name 'Jane User').id -BriefDescription 'an example change' -ChangeType 'extensive'
 ```
 
-Explanation of what the example does
+creates new extensive change with description 'an example change' with requester Jane User
 
 ## PARAMETERS
 
 ### -RequesterId
 Id of the requester of the change.
+This is a person id.
+See Get-TdPerson
 
 ```yaml
 Type: String
@@ -77,7 +79,7 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 3
 Default value: None
 Accept pipeline input: False

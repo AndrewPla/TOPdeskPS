@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-TdCountry
 
 ## SYNOPSIS
-Gets Country
+gets list of countries
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-TdCountry [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets Countries
+gets list of countries
 
 ## EXAMPLES
 
@@ -26,14 +26,20 @@ Gets Countries
 Get-TdCountry
 ```
 
-Gets list of all Countries
+gets list of countries
+
+### EXAMPLE 2
+```
+Get-TdCountry 'USA'
+```
+
+Returns the USA country
 
 ## PARAMETERS
 
 ### -Name
-Name of the Country that you want returned.
-Wildcards are supported.
-Default value is '*'
+Filter based on the name.
+Wildcards accepted.
 
 ```yaml
 Type: String
@@ -42,7 +48,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

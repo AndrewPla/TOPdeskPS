@@ -14,13 +14,14 @@ Gets incidents
 
 ### List (Default)
 ```
-Get-TdIncident [-PageSize <Int32>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved] [-Archived]
+Get-TdIncident [-ResultSize <Int32>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved] [-Archived]
  [<CommonParameters>]
 ```
 
 ### Number
 ```
-Get-TdIncident [-PageSize <Int32>] [-Start <Int32>] [-Number <String[]>] [<CommonParameters>]
+Get-TdIncident [[-Number] <String[]>] [-ResultSize <Int32>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved]
+ [-Archived] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,11 +37,40 @@ Get-TdIncident
 
 Grabs a list of 10 incidents
 
+### EXAMPLE 2
+```
+Get-TdIncident -Closed
+```
+
+Gets list of last 10 colsed incidents
+
+### EXAMPLE 3
+```
+Get-TdIncident -ResultSize 2000
+```
+
+Returns 2000 incidents.
+
 ## PARAMETERS
 
-### -PageSize
-The amount of incidents to be returned per request.
-The default value is 10 and the maximum value is 100.
+### -Number
+This is the incident number of the incident that you would like to retrieve.
+
+```yaml
+Type: String[]
+Parameter Sets: Number
+Aliases: IncidentNumber
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -ResultSize
+The amount of incidents to be returned.
+Due to API limitations we're only able to return 100 incidents per api call.
 
 ```yaml
 Type: Int32
@@ -56,8 +86,6 @@ Accept wildcard characters: False
 
 ### -Start
 This is the offset at which you want to start listing incidents.
-This is useful if you want to grab more than 100 incidents.
-The default value is 0.
 
 ```yaml
 Type: Int32
@@ -77,7 +105,7 @@ Set this parameter to $false to only retrieve not completed incidents, and set i
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: List
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -92,7 +120,7 @@ Retrieve only incidents that are closed /not closed.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: List
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -107,7 +135,7 @@ Retrieve only incidents that are resolved depending on the setting "Call is reso
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: List
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -122,28 +150,13 @@ Whether to retrieve archived incidents.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: List
+Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Number
-This is the incident number of the incident that you would like to retrieve.
-
-```yaml
-Type: String[]
-Parameter Sets: Number
-Aliases: IncidentNumber
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

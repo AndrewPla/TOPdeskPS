@@ -8,40 +8,41 @@ schema: 2.0.0
 # Get-TdChange
 
 ## SYNOPSIS
-Gets changes
+Returns changes
 
 ## SYNTAX
 
 ```
-Get-TdChange [[-Change] <String>] [<CommonParameters>]
+Get-TdChange [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Returns a list of changes.
-Specify your change using the Change parameter
+Returns changes.
+TOPdesk doesn't provide this functionality so this command will query all Activities, grab all Change Ids and then lookup the change details for them.
+The output of the last call is what you get
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdChange -Change 'C1810-1234'
+Get-TdChange
 ```
 
-Get the change information for C1810-1234'
+Returns all changes (or tries to, it will once a proper endpoint is made by TOPdesk)
 
 ## PARAMETERS
 
-### -Change
-Id or number of the change to modify
+### -Name
+Human readable name to filter results by, this cooresponds with the brief description field in TOPdesk
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: BriefDescription
 
 Required: False
 Position: 1
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

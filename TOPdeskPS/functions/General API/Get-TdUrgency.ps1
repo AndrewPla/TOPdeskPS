@@ -11,17 +11,18 @@
         PS C:\> Get-TdUrgency
         Gets list of all urgencies
 
+    .EXAMPLE
+        PS> Get-TdUrgency -name 'Able to work'
+        Returns the requested urgency
+
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdUrgency')]
     param (
+        [parameter (position = 0)]
+        [string]
         $Name = '*'
     )
-    Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/incidents/urgencies'
-    Write-PSFMessage -Level InternalComment -Message "urgencies url: $uri"
-    $Params = @{
-        'uri' = $uri
-    }
-    $res = Invoke-TdMethod @Params
-    $res | Where-Object name -like $Name
+    $res = Invoke-TdMethod $uri
+    $res | Where-Object name -like $Name | Select-PSFObject -Typename 'TOPdeskPS.BasicObj' -KeepInputObject
 }

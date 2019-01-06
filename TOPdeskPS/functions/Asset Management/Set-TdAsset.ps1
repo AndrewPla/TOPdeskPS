@@ -63,19 +63,15 @@
         #TODO add parameters for status, statuslocked, and etag as shortcuts to quickly spin up a body for the request.
     )
 
-    begin {
-
-    }
     process {
-        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
 
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId"
 
         Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $Body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Updating asset.')) {
@@ -83,7 +79,5 @@
         }
         Invoke-TdMethod @params
     }
-    end {
 
-    }
 }

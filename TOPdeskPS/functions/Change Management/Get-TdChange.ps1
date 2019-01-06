@@ -1,38 +1,38 @@
 ﻿function Get-TdChange {
     <#
-	.SYNOPSIS
-		Gets changes
-	.DESCRIPTION
-        Returns a list of changes. Specify your change using the Change parameter
-    .PARAMETER Change
-        Id or number of the change to modify
-	.EXAMPLE
-		PS C:\> Get-TdChange -Change 'C1810-1234'
-		Get the change information for C1810-1234'
+.SYNOPSIS
+    Returns changes
+.DESCRIPTION
+    Returns changes. TOPdesk doesn't provide this functionality so this command will query all Activities, grab all Change Ids and then lookup the change details for them. The output of the last call is what you get
+.PARAMETER Name
+    Human readable name to filter results by, this cooresponds with the brief description field in TOPdesk
+.EXAMPLE
+    PS C:\> Get-TdChange
+    Returns all changes (or tries to, it will once a proper endpoint is made by TOPdesk)
 #>
-
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdChange')]
+
     param
     (
-        [system.string]$Change
+        [string]
+        [alias('BriefDescription')]
+        $Name = '*'
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-        $Uri = (Get-TdUrl) + '/tas/api/operatorChanges'
-        Write-PSFMessage -Level InternalComment -Message "Uri - $Uri"
-    }
     process {
-        Write-PSFMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level Debug
-        Write-PSFMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level Debug
-        $uri = $uri + "/$Change"
-        $params = @{
-            'uri' = $uri
-            Method = 'Get'
+        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
+        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
+
+        $activityuri = "$(Get-TdUrl)/tas/api/operatorChangeActivities"
+        $activities = (Invoke-TdMethod -Uri $activityuri).results
+        Write-PSFMessage "$($activities.count) Activites found. Grabbing changes.." -Level Verbose
+        $changeIds = $activities.change.id | Sort-Object -unique
+        Write-PSFMessage "$($changeIds.count) unique Changes found" -Level Verbose
+        foreach ($id in $changeIds) {
+            $changeuri = "$(Get-TdUrl)/tas/api/operatorChanges/$id"
+            $r = Invoke-TdMethod -uri $changeuri
+            $r | where-object briefdescription -like $Name
         }
-        $res = Invoke-TdMethod @params
-        $res
     }
-    end {
-    }
+
 }

@@ -8,13 +8,15 @@ schema: 2.0.0
 # Invoke-TdMethod
 
 ## SYNOPSIS
-internal wrapper for Invoke-RestMethod
+internal wrapper for Invoke-RestMethod.
+This command is exposed in case you encounter api calls that aren't part of this module.
+All api commands call this command  to perform the web request.
 
 ## SYNTAX
 
 ```
-Invoke-TdMethod [[-ContentType] <String>] [[-Uri] <Uri>] [[-Body] <PSObject>] [[-Method] <String>]
- [[-Token] <String>] [<CommonParameters>]
+Invoke-TdMethod [-Uri] <Uri> [-ContentType <String>] [-Body <PSObject>] [-Method <String>] [-Token <String>]
+ [-File <FileInfo>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,6 +33,21 @@ Sends a Get request to your TOPdesk instance.
 
 ## PARAMETERS
 
+### -Uri
+A description of the Uri parameter.
+
+```yaml
+Type: Uri
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ContentType
 A description of the ContentType parameter.
 
@@ -40,23 +57,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: Named
 Default value: Application/json
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Uri
-A description of the Uri parameter.
-
-```yaml
-Type: Uri
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -71,7 +73,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -86,14 +88,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: Named
 Default value: Get
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Token
-Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken'
+Custom Api token if you want to avoid using Connect-TdService ex:'TOKEN id="Token id="Base64encodedToken
 
 ```yaml
 Type: String
@@ -101,7 +103,22 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -File
+path to the file that you want to upload.
+
+```yaml
+Type: FileInfo
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

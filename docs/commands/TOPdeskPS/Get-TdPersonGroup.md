@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-TdPersonGroup
 
 ## SYNOPSIS
-Gets person groups
+returns list of person groups
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-TdPersonGroup [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets person groups
+returns list of person groups
 
 ## EXAMPLES
 
@@ -26,14 +26,14 @@ Gets person groups
 Get-TdPersonGroup
 ```
 
-Gets person groups
+returns list of person groups
 
 ## PARAMETERS
 
 ### -Name
 Name of the person group that you want returned.
 Wildcards are supported.
-Default value is '*'
+default '*'
 
 ```yaml
 Type: String

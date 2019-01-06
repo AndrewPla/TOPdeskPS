@@ -1,4 +1,4 @@
-[cmdletbinding()]
+﻿[cmdletbinding()]
 <#
 .DESCRIPTION
     Contains various build tasks. This script is intended to be consumed through VS code tasks. See the .vscode folder of this project for more.
@@ -52,12 +52,10 @@ process {
             }
             Write-PSFMessage -Level Verbose -Message "Finished processing $moduleName"
         }
-        Compile {Write-PSFMessage -Level Verbose 'Not written yet.'}
-        Analyze {Write-PSFMessage -Level Verbose 'Not written yet.'}
         Pester {
             .\TOPdeskPS\tests\pester.ps1 -Show 'Header', 'fails'
         }
-        Publish { Write-PSFMessage -Level Verbose 'Not written yet.'}
+
 
     }
 }
@@ -66,6 +64,3 @@ end {
     #Invoke-ScriptAnalyzer -Path $DestinationModule
 
 }
-
-
-

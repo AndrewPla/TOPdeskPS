@@ -28,6 +28,13 @@ Get-TdClosureCode
 
 Gets list of all closurecodes
 
+### EXAMPLE 2
+```
+Get-TdClosureCode -Name 'hardware failure'
+```
+
+Returns the hardware failure closure code
+
 ## PARAMETERS
 
 ### -Name

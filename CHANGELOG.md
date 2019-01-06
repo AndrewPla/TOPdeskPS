@@ -1,5 +1,28 @@
 # TOPdeskPS Release History
 
+## 0.0.7 - ????
+
+### Added
+
+* Get-TdBranchFilter- Thanks Michael!
+* Get-TdCategoryFilter
+* Get-TdOperatorFilter
+* Get-TdOperatorOperatorGroup
+* Get-TdOperatorAvatar
+* Get-TdPersonAvatar
+* Get-TdDepartment
+* New-TdBranch
+* Set-TdBranch
+* New-TdBudgetHolder
+* Tons of other commands
+
+### Fixed
+
+* Added support for PS Core.
+* Fixed several small typos/bugs
+* Fixed bad help/docs
+
+
 ## 0.0.6 - 10/14/2018
 
 ### Added

@@ -28,6 +28,13 @@ Get-TdCallType
 
 Gets list of call types
 
+### EXAMPLE 2
+```
+Get-TdCalltype Alert
+```
+
+Returns the alert call type
+
 ## PARAMETERS
 
 ### -Name
@@ -42,7 +49,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

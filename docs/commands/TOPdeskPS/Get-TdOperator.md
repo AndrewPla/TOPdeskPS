@@ -8,17 +8,17 @@ schema: 2.0.0
 # Get-TdOperator
 
 ## SYNOPSIS
-Get TOPdesk operators
+returns list of operators
 
 ## SYNTAX
 
 ```
-Get-TdOperator [-TOPdeskLoginName <String>] [-PageSize <Int32>] [-Start <Int32>] [<CommonParameters>]
+Get-TdOperator [[-TOPdeskLoginName] <String>] [-ResultSize <Int32>] [-Start <Int32>] [-Email <String>]
+ [-Archived] [-LastName <String>] [-FirstName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets operators from TOPdesk.
-You can specify filters to only return one.
+returns list of operators
 
 ## EXAMPLES
 
@@ -27,36 +27,35 @@ You can specify filters to only return one.
 Get-TdOperator
 ```
 
-Returns a list of TOPdesk operators, up to 100.
+returns list of operators
 
 ### EXAMPLE 2
 ```
-Get-TdOperator -TOPdeskLoginName 'user@company.net'
+Get-TdOperator -Name 'John Support'
 ```
 
-Returns the operator information for the operator with a login name of 'user@company.net' This field may not necessarily be an email address.
-This depends on how your TOPdesk instance is setup.
+returns operator with name John Support (uses the dynamicName field)
 
 ## PARAMETERS
 
 ### -TOPdeskLoginName
-The TOPdesk login name of the operator that you want.
+Retrieve only operators with TOPdesk login name starting with this.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: LoginName
+Aliases:
 
 Required: False
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PageSize
-The amount of operators to be returned per request.
-Default is 100.
+### -ResultSize
+The amount of incidents to be returned.
+Requests greater than 100 require multiple api calls
 
 ```yaml
 Type: Int32
@@ -71,8 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -Start
-The offset at which to start listing the operators at.
-Useful if you have more than 100 operators.
+This is the offset at which you want to start listing incidents.
 
 ```yaml
 Type: Int32
@@ -82,6 +80,66 @@ Aliases:
 Required: False
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Email
+Retrieve only operators with email starting with this.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Archived
+Whether to return archived operators
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LastName
+Retrieve only operators with last name starting with this.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FirstName
+Retrieve only operators with first name starting with this.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
