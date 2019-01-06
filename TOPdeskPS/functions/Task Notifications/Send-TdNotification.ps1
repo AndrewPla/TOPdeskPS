@@ -1,4 +1,4 @@
-﻿function Send-TdTaskNotification {
+﻿function Send-TdNotification {
     <#
     .SYNOPSIS
         Create custom task notifications
@@ -15,10 +15,10 @@
     .PARAMETER OperatorGroupId
         List of operator group UUIDs to specify which operators this task notification will be sent to. Both ‘operatorGroupIds’ and ‘operatorIds’ can’t be empty at the same time. Non-existing operator groups will be silently ignored.
     .EXAMPLE
-        PS C:\> Send-TdTaskNotification -Title 'Example notification' -Body 'Your assistance is needed' -OperatorIds $Operator
-        Sends a notificiation to $Operator
+        PS C:\> Send-TdNotification -Title 'Example notification' -Body 'Your assistance is needed' -OperatorId (Get-TdOperator 'FirstLast@company.com').id
+        Sends a notificiation
     #>
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdTaskNotification')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdNotification')]
     param (
         [system.string]
         [Parameter(Mandatory)]
@@ -47,15 +47,17 @@
     [array]$OperatorId = $OperatorId
     [array]$OperatorGroupId = $OperatorGroupId
 
-    $uri = (Get-TdUrl) + '/tas/api/tasknotifications/custom'
-    Write-PSFMessage "TaskNotification URL - $uri"
+    $uri = "$(Get-TdUrl)/tas/api/tasknotifications/custom"
+
     $internalBody = [PSCustomObject]@{
         title = $Title
     }
     if ($Body) {$internalBody |Add-Member -Name 'body' -Value $Body -MemberType noteproperty}
     if ($url) {$internalBody | Add-Member -Name 'url' -Value $url -MemberType noteproperty}
-    if ($OperatorId) {$internalBody | Add-Member -Name 'operatorIds' -Value $operatorId -MemberType noteproperty}
-    if ($OperatorGroupId) {$internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupId -MemberType noteproperty}
+
+
+    if ($OperatorId) { $internalBody | Add-Member -Name 'operatorIds' -Value $operatorId -MemberType noteproperty }
+    if ($OperatorGroupId) { $internalBody | Add-Member -Name 'operatorGroupIds' -Value $operatorGroupId -MemberType noteproperty }
     $Params = @{
         'Uri' = $Uri
         'Body' = $internalBody | ConvertTo-Json
