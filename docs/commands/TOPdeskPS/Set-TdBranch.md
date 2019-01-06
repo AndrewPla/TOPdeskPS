@@ -31,8 +31,6 @@ Set-TdBranch -BranchId (Get-TdBranch -Name 'Test Branch').id -Phone '555-555-555
 
 Updates the Test Branch phone number.
 
-TODO Update help
-
 ## PARAMETERS
 
 ### -BranchId

@@ -28,6 +28,13 @@ Get-TdImpact
 
 Gets list of impacts
 
+### EXAMPLE 2
+```
+Get-TdImpact -name person
+```
+
+Returns the 'person' impact
+
 ## PARAMETERS
 
 ### -Name

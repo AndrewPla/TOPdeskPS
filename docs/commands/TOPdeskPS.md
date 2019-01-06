@@ -81,6 +81,8 @@
  - [Remove-TdAssetFile](TOPdeskPS/Remove-TdAssetFile.html)
  - [Remove-TdAssetLink](TOPdeskPS/Remove-TdAssetLink.html)
  - [Send-TdAssetFile](TOPdeskPS/Send-TdAssetFile.html)
+ - [Send-TdChangeActivityFile](TOPdeskPS/Send-TdChangeActivityFile.html)
+ - [Send-TdChangeFile](TOPdeskPS/Send-TdChangeFile.html)
  - [Send-TdIncidentFile](TOPdeskPS/Send-TdIncidentFile.html)
  - [Send-TdTaskNotification](TOPdeskPS/Send-TdTaskNotification.html)
  - [Send-TdWebDAVFile](TOPdeskPS/Send-TdWebDAVFile.html)
