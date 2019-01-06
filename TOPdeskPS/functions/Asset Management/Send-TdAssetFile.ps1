@@ -11,8 +11,8 @@
     .PARAMETER AssetID
         Id of the asset that you want to send a file to. See Get-TdAsset
     .EXAMPLE
-        PS C:\> <example usage>
-        Explanation of what the example does
+        PS C:\> Get-TdAsset -NameFragment 'test-computer' | Send-TdAssetFile -File "C:\log.txt"
+        Sends a File to the asset named test-computer.
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdAssetFile')]
     param (

@@ -77,8 +77,8 @@
 		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
     .EXAMPLE
-        PS C:\> New-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
-        This is the minimum required to create a person: BranchId and a lastname.
+        PS C:\> Set-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
+        Updates the Lastname and Branch
     .EXAMPLE
         PS C:\> New-TdPerson -LastName 'Doe' -FirstName 'John' -NetworkLoginName 'john.doe@company.com' -BranchId (Get-TdBranch -Name 'Los Angeles').id
         This creates a user with serveral properties and uses Get-TdBranch to get the branch id.
@@ -87,33 +87,33 @@
         SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdPerson')]
     param (
-        [Parameter(Mandatory)]
-        [Alias('PersonId')]
-        [system.string]$Id,
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('Id')]
+        [string]$PersonId,
 
         [Alias('LastName')]
-        [system.string]$Surname,
+        [string]$Surname,
 
-        [system.string]$BranchId,
-        [system.string]$FirstName,
-        [system.string]$FirstInitials,
-        [System.string]$Prefixes,
-        [system.string]$Gender = 'UNDEFINED',
-        [system.string]$EmployeeNumber,
-        [system.string]$NetworkLoginName,
-        [system.string]$LocationId,
-        [system.string]$DepartmentId,
-        [system.string]$DepartmentFree,
-        [system.string]$TasLoginName,
+        [string]$BranchId,
+        [string]$FirstName,
+        [string]$FirstInitials,
+        [string]$Prefixes,
+        [string]$Gender = 'UNDEFINED',
+        [string]$EmployeeNumber,
+        [string]$NetworkLoginName,
+        [string]$LocationId,
+        [string]$DepartmentId,
+        [string]$DepartmentFree,
+        [string]$TasLoginName,
         [securestring]$Password,
-        [system.string]$PhoneNumber,
-        [system.string]$MobileNumber,
-        [system.string]$Fax,
+        [string]$PhoneNumber,
+        [string]$MobileNumber,
+        [string]$Fax,
 
         [alias('EmailAddress')]
-        [system.string]$Email,
+        [string]$Email,
 
-        [system.string]$JobTitle,
+        [string]$JobTitle,
         [switch]$ShowBudgetholder,
         [switch]$ShowDepartment,
         [switch]$ShowBranch,
@@ -124,118 +124,90 @@
         [switch]$AuthorizeBranch,
         [switch]$AuthorizeSubsidiaryBranches,
         [switch]$IsManager,
-        [System.String]$ManagerId,
-        [system.string]$BudgetholderID
+        [string]$ManagerId,
+        [string]$BudgetholderID
 
     )
 
-    begin {
-    }
     process {
-        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
-        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
 
         $uri = (Get-TdUrl) + "/tas/api/persons/id/$Id"
         Write-PSFMessage "uri -$uri" -Level InternalComment
 
-        Write-PSFMessage "Going through all parameters and generating body" -Level debug
+
         $body = [PSCustomObject]@{}
         switch ($PSBoundParameters.Keys) {
             Surname {
-                Write-PSFMessage -Level InternalComment -Message "Adding Surname to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'surName' -Value $Surname
             }
             FirstName {
-                Write-PSFMessage -Level InternalComment -Message "Adding FirstName to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'firstName' -Value $FirstName
             }
             FirstInitials {
-                Write-PSFMessage -Level InternalComment -Message "Adding FirstInitials to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'firstInitials' -Value $FirstInitials
             }
             Prefixes {
-                Write-PSFMessage -Level InternalComment -Message "Adding Prefixes to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name prefixes -Value $Prefixes
             }
             Gender {
-                Write-PSFMessage -Level InternalComment -Message "Adding Gender to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'gender' -Value $Gender
             }
             EmployeeNumber {
-                Write-PSFMessage -Level InternalComment -Message "Adding EmployeeNumber to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'employeeNumber' -Value $EmployeeNumber
             }
             NetworkLoginName {
-                Write-PSFMessage -Level InternalComment -Message "Adding NetworkLoginName to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'networkLoginName' -Value $NetworkLoginName
             }
             DepartmentFree {
-                Write-PSFMessage -Level InternalComment -Message "Adding DepartmentFree to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'departmentFree' -Value $DepartmentFree
             }
             TasLoginName {
-                Write-PSFMessage -Level InternalComment -Message "Adding TasLoginName to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'tasLoginName' -Value $TasLoginName
             }
             Password {
-                Write-PSFMessage -Level InternalComment -Message "Adding Password to Body"
                 $cred = New-Object pscredential ('user', $Password)
                 $Body | Add-Member -MemberType NoteProperty -Name 'password' -Value $cred.getnetworkcredential().password
             }
             PhoneNumber {
-                Write-PSFMessage -Level InternalComment -Message "Adding PhoneNumber to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'phoneNumber' -Value $PhoneNumber
             }
             MobileNumber {
-                Write-PSFMessage -Level InternalComment -Message "Adding MobileNumber to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'mobileNumber' -Value $MobileNumber
             }
             Fax {
-                Write-PSFMessage -Level InternalComment -Message "Adding Fax to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'fax' -Value $Fax
             }
             Email {
-                Write-PSFMessage -Level InternalComment -Message "Adding Email to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'email' -Value $Email
             }
             JobTitle {
-                Write-PSFMessage -Level InternalComment -Message "Adding JobTitle to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'jobTitle' -Value $JobTitle
             }
             showBudgetholder {
-                Write-PSFMessage -Level InternalComment -Message "Adding showBudgetholder to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'showBudgetholder' -Value $showBudgetholder.ToString().ToLower()
             }
             showDepartment {
-                Write-PSFMessage -Level InternalComment -Message "Adding showDepartment to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'showDepartment' -Value $showDepartment.ToString().ToLower()
             }
             showSubsidiaries {
-                Write-PSFMessage -Level InternalComment -Message "Adding showSubsidiaries to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'showSubsidiaries' -Value $showSubsidiaries.ToString().ToLower()
             }
             authorizeAll {
-                Write-PSFMessage -Level InternalComment -Message "Adding authorizeAll to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'authorizeAll' -Value $authorizeAll.ToString().ToLower()
             }
             authorizeDepartment {
-                Write-PSFMessage -Level InternalComment -Message "Adding authorizeDepartment to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'authorizeDepartment' -Value $authorizeDepartment.ToString().ToLower()
             }
             authorizeBudgetholder {
-                Write-PSFMessage -Level InternalComment -Message "Adding authorizeBudgetholder to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'authorizeBudgetholder' -Value $authorizeBudgetholder.ToString().ToLower()
             }
             authorizeBranch {
-                Write-PSFMessage -Level InternalComment -Message "Adding authorizeBranch to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'authorizeBranch' -Value $authorizeBranch.ToString().ToLower()
             }
             authorizeSubsidiaryBranches {
-                Write-PSFMessage -Level InternalComment -Message "Adding authorizeSubsidiaryBranches to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'authorizeSubsidiaryBranches' -Value $authorizeSubsidiaryBranches.ToString().ToLower()
             }
             isManager {
-                Write-PSFMessage -Level InternalComment -Message "Adding isManager to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'isManager' -Value $isManager.ToString().ToLower()
             }
 
@@ -243,7 +215,6 @@
                 $branchIdObject = @{
                     id = $BranchId
                 }
-                Write-PSFMessage -Level InternalComment -Message "Adding branchId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'branch' -Value $branchIdObject
             }
 
@@ -251,14 +222,12 @@
                 $managerIdObject = @{
                     id = $managerId
                 }
-                Write-PSFMessage -Level InternalComment -Message "Adding budgetHolderId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'manager' -Value $managerIdObject
             }
             budgetHolderId {
                 $budgetHolderIdObject = @{
                     id = $budgetHolderId
                 }
-                Write-PSFMessage -Level InternalComment -Message "Adding budgetHolderId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'budgetHolder' -Value $budgetHolderIdObject
             }
 
@@ -266,7 +235,6 @@
                 $locationIdObject = @{
                     id = $locationId
                 }
-                Write-PSFMessage -Level InternalComment -Message "Adding locationId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'locationId' -Value $locationIdObject
             }
 
@@ -274,7 +242,6 @@
                 $departmentIdObject = @{
                     id = $departmentId
                 }
-                Write-PSFMessage -Level InternalComment -Message "Adding departmentId to Body"
                 $Body | Add-Member -MemberType NoteProperty -Name 'departmentId' -Value $departmentIdObject
             }
         }
@@ -290,6 +257,5 @@
 
     }
 
-    end {
-    }
+
 }
