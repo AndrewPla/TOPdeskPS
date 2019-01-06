@@ -19,6 +19,7 @@
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdCategory')]
+    [OutputType([TOPdeskPS.BasicObj])]
     param
     (
         [String]

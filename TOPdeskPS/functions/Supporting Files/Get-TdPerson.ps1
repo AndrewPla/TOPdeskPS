@@ -32,6 +32,7 @@
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPerson')]
+    [OutputType([TOPdeskPS.Person])]
     param (
         [system.string]$FirstName,
 

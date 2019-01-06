@@ -25,6 +25,7 @@
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAsset')]
+    [OutputType([TOPdeskPS.Asset])]
     param
     (
         [Parameter(ParameterSetName = 'Standard Query')]

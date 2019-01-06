@@ -45,6 +45,7 @@
 
     [CmdletBinding(DefaultParameterSetName = 'List',
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdIncident')]
+        [OutputType([TOPdeskPS.Incident])]
     param
     (
         [Parameter(ParameterSetName = 'Number',

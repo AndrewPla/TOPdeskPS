@@ -16,6 +16,7 @@
         Returns the hardware failure closure code
     #>
     [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdClosureCode')]
+    [OutputType([TOPdeskPS.BasicObj])]
     param (
         [Parameter(position = 0)]
         [string]

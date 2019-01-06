@@ -17,6 +17,7 @@
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdUrgency')]
+    [OutputType([TOPdeskPS.BasicObj])]
     param (
         [parameter (position = 0)]
         [string]

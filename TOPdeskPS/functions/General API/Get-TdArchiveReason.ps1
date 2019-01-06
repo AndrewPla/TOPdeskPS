@@ -14,6 +14,7 @@
         Returns all archive reasons that begin with "phased"
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdArchiveReason')]
+    [OutputType([TOPdeskPS.ArchiveReason])]
     param (
         [parameter(position = 0)]
         [string]

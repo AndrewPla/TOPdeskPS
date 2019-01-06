@@ -16,6 +16,7 @@
 
     #>
     [CmdletBinding(Helpuri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdCallType')]
+    [OutputType([TOPdeskPS.BasicObj])]
     param (
         [Parameter(position = 0)]
         [string]

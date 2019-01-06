@@ -13,6 +13,7 @@
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdEscalationReason')]
+    [OutputType([TOPdeskPS.BasicObj])]
     param (
         [Parameter(position = 0)]
         [string]

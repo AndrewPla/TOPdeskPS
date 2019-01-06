@@ -17,6 +17,7 @@
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdBranch')]
+    [OutputType([TOPdeskPS.Branch])]
     param (
         [Parameter(Position = 0)]
         [String]

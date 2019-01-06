@@ -14,6 +14,7 @@
     Returns the USA country
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdCountry')]
+    [OutputType([TOPdeskPS.BasicObj])]
 
     param
     (
