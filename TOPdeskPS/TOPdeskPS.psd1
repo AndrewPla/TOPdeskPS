@@ -18,7 +18,7 @@
     Copyright = 'Copyright (c) 2018 Andrew Pla'
 
     # Description of the functionality provided by this module
-    Description = 'Module to interact with the TOPdesk API.'
+    Description = 'Module to interact with the TOPdesk API. Interact with changes, incidents, assets, supporting files, notifications and more.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
