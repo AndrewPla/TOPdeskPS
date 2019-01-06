@@ -17,14 +17,13 @@ function Convertto-Base64 {
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Convertto-Base64')]
+    [OutputType([System.String])]
     param
     (
         $InputObject
     )
 
-    begin {
-        Write-PSFMessage -Level InternalComment -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    }
+
     process {
         $bytes = [System.Text.Encoding]::ASCII.GetBytes($InputObject)
         [System.Convert]::ToBase64String($bytes)
