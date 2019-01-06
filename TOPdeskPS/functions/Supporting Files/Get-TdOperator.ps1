@@ -29,7 +29,6 @@
     returns operator with name John Support (uses the dynamicName field)
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperator')]
-    [OutputType([TOPdeskPS.Operator])]
 
     param
     (

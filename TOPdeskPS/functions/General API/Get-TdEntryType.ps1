@@ -13,7 +13,6 @@
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdEntryType')]
-    [OutputType([TOPdeskPS.BasicObj])]
     param (
         [string]$Name = '*'
     )

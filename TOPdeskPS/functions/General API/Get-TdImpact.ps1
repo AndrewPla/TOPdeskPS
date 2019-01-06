@@ -16,7 +16,6 @@
         Returns the 'person' impact
     #>
     [CmdletBinding( HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdImpact')]
-    [OutputType([TOPdeskPS.BasicObj])]
     param (
         $Name = '*'
     )
