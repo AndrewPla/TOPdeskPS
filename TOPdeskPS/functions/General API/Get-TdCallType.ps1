@@ -23,5 +23,5 @@
     )
     $uri = (Get-TdUrl) + '/tas/api/incidents/call_types'
     $res = Invoke-TdMethod $uri
-    $res | Where-Object name -like $Name
+    $res | Where-Object name -like $Name | Select-PSFObject -Typename 'TOPdeskPS.BasicObj' -KeepInputObject
 }

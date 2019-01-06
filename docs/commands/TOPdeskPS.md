@@ -84,7 +84,7 @@
  - [Send-TdChangeActivityFile](TOPdeskPS/Send-TdChangeActivityFile.html)
  - [Send-TdChangeFile](TOPdeskPS/Send-TdChangeFile.html)
  - [Send-TdIncidentFile](TOPdeskPS/Send-TdIncidentFile.html)
- - [Send-TdTaskNotification](TOPdeskPS/Send-TdTaskNotification.html)
+ - [Send-TdNotification](TOPdeskPS/Send-TdNotification.html)
  - [Send-TdWebDAVFile](TOPdeskPS/Send-TdWebDAVFile.html)
  - [Set-TdAsset](TOPdeskPS/Set-TdAsset.html)
  - [Set-TdAssetCapability](TOPdeskPS/Set-TdAssetCapability.html)

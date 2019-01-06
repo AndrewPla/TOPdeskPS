@@ -21,5 +21,5 @@
     )
     $uri = "$(Get-TdUrl)/tas/api/archiving-reasons"
     $res = Invoke-TdMethod -Uri $uri
-    $res | Where-Object name -like $Name
+    $res | Where-Object name -like $Name | Select-PSFObject -Typename 'TOPdeskPS.ArchiveReason' -KeepInputObject
 }

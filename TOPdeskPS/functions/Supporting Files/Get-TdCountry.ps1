@@ -27,7 +27,7 @@
 
         $uri = (Get-TdUrl) + "/tas/api/countries"
         $res = Invoke-TdMethod -Uri $uri
-        $res | Where-Object name -like $name
+        $res | Where-Object name -like $name | Select-PSFObject -Typename 'TOPdeskPS.BasicObj' -KeepInputObject
     }
 }
 

@@ -89,7 +89,6 @@
             $operators = @()
 
             $remaining = $ResultSize - $count
-            Write-PSFMessage "$remaining operators remaining"
 
             if ($remaining -le 100) {
                 $pageSize = $remaining
@@ -100,9 +99,10 @@
             $Params = @{
                 'uri' = $loopingUri
             }
+
             $operators += Invoke-TdMethod @Params
             foreach ($op in $operators) {
-                if ($op.id) {$op}
+                if ($op.id) { $op | Select-PSFObject -Typename 'TOPdeskPS.Operator' -KeepInputObject }
                 else {$status = 'finished'}
             }
 

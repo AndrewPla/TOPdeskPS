@@ -6,7 +6,7 @@
         Creates new persons in TOPdesk. Logged in operator must have:
         Write permissions on persons; Branch filters apply
         Login data write permissions to set login name and password
-    .PARAMETER Id
+    .PARAMETER PersonId
         The Id of the person you are interacting with.
     .PARAMETER Surname
         Surname of the person

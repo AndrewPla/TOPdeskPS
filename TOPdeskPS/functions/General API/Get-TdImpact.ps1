@@ -24,5 +24,5 @@
         'uri' = $uri
     }
     $res = Invoke-TdMethod @Params
-    $res | Where-Object name -like $Name
+    $res | Where-Object name -like $Name | Select-PSFObject -Typename 'TOPdeskPS.BasicObj' -KeepInputObject
 }

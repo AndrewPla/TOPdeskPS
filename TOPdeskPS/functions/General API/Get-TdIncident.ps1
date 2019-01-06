@@ -29,10 +29,15 @@
 
 	.EXAMPLE
 		PS C:\> Get-TdIncident
-        Grabs a list of 10 incidents
+        returns incidents
+
+    .EXAMPLE
+        PC> Get-Tdincident | Format-List *
+        return incidents and all of their properties
+
     .EXAMPLE
         PS C:\> Get-TdIncident -Closed
-        Gets list of last 10 colsed incidents
+        Returns incidents and includes closed incidents.
     .EXAMPLE
         PS C:\> Get-TdIncident -ResultSize 2000
         Returns 2000 incidents.

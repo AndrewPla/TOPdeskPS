@@ -13,7 +13,7 @@ Modify properties on a person
 ## SYNTAX
 
 ```
-Set-TdPerson [-Id] <String> [[-Surname] <String>] [[-BranchId] <String>] [[-FirstName] <String>]
+Set-TdPerson [-PersonId] <String> [[-Surname] <String>] [[-BranchId] <String>] [[-FirstName] <String>]
  [[-FirstInitials] <String>] [[-Prefixes] <String>] [[-Gender] <String>] [[-EmployeeNumber] <String>]
  [[-NetworkLoginName] <String>] [[-LocationId] <String>] [[-DepartmentId] <String>]
  [[-DepartmentFree] <String>] [[-TasLoginName] <String>] [[-Password] <SecureString>] [[-PhoneNumber] <String>]
@@ -33,10 +33,10 @@ Login data write permissions to set login name and password
 
 ### EXAMPLE 1
 ```
-New-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
+Set-TdPerson -LastName 'Doe' -BranchId (Get-TdBranch -Name 'Los Angeles').id
 ```
 
-This is the minimum required to create a person: BranchId and a lastname.
+Updates the Lastname and Branch
 
 ### EXAMPLE 2
 ```
@@ -47,18 +47,18 @@ This creates a user with serveral properties and uses Get-TdBranch to get the br
 
 ## PARAMETERS
 
-### -Id
+### -PersonId
 The Id of the person you are interacting with.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: PersonId
+Aliases: Id
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

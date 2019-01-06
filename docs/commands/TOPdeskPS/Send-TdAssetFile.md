@@ -23,10 +23,10 @@ Upload a file to an incident identified
 
 ### EXAMPLE 1
 ```
-<example usage>
+Get-TdAsset -NameFragment 'test-computer' | Send-TdAssetFile -File "C:\log.txt"
 ```
 
-Explanation of what the example does
+Sends a File to the asset named test-computer.
 
 ## PARAMETERS
 

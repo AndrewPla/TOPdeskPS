@@ -39,5 +39,5 @@
         'uri' = $uri
     }
     $res = Invoke-TdMethod @Params
-    $res | Where-Object Name -like $Name
+    $res | Where-Object Name -like $Name | Select-PSFObject -Typename 'TOPdeskPS.Branch' -KeepInputObject
 }

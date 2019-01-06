@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Send-TdTaskNotification
+# Send-TdNotification
 
 ## SYNOPSIS
 Create custom task notifications
@@ -14,13 +14,13 @@ Create custom task notifications
 
 ### Operator
 ```
-Send-TdTaskNotification -Title <String> [-Body <String>] [-Url <String>] -OperatorId <String[]>
+Send-TdNotification -Title <String> [-Body <String>] [-Url <String>] -OperatorId <String[]>
  [<CommonParameters>]
 ```
 
 ### OperatorGroup
 ```
-Send-TdTaskNotification -Title <String> [-Body <String>] [-Url <String>] -OperatorGroupId <String[]>
+Send-TdNotification -Title <String> [-Body <String>] [-Url <String>] -OperatorGroupId <String[]>
  [<CommonParameters>]
 ```
 
@@ -32,10 +32,10 @@ This can display toast notifications through both Chrome and Firefox.
 
 ### EXAMPLE 1
 ```
-Send-TdTaskNotification -Title 'Example notification' -Body 'Your assistance is needed' -OperatorIds $Operator
+Send-TdNotification -Title 'Example notification' -Body 'Your assistance is needed' -OperatorId (Get-TdOperator 'FirstLast@company.com').id
 ```
 
-Sends a notificiation to $Operator
+Sends a notificiation
 
 ## PARAMETERS
 

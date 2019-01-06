@@ -32,7 +32,7 @@
             'uri' = $CategoryUrl
         }
         $Categories = Invoke-TdMethod @Params
-        $categories | Where-Object name -like $name
+        $categories | Where-Object name -like $name | Select-PSFObject -Typename 'TOPdeskPS.BasicObj' -KeepInputObject
     }
 
 }

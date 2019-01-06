@@ -27,8 +27,8 @@
         PS C:\> Get-TdPerson -FirstName 'Bob' -Archived
             Returns all persons with the firstname starting with Bob. This will also search archived files.
     .EXAMPLE
-        PS C:\> Get-TdPerson -Email 'User@company.com'
-            Returns the person whose email is 'user@company.com'
+        PS C:\> Get-TdPerson -Email 'User@company.com' | Format-List *
+            Returns the person whose email is 'user@company.com' and displays all details of the result.
 
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdPerson')]
@@ -56,27 +56,22 @@
     Write-PSFMessage -Level debug -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
     $uri = (Get-TdUrl) + '/tas/api/persons'
     $uri = "$Uri/?start=$Start&page_size=$PageSize"
-    Write-PSFMessage -Message "persongroups url: $uri" -Level debug
 
-    Write-PSFMessage "Creating Uri based on parameters" -Level debug
+
     if ($PSBoundParameters.keys -contains 'FirstName') {
         $uri = "$uri&firstname=$FirstName"
-        Write-PSFMessage "FirstName added - $uri" -Level debug
     }
 
     if ($PSBoundParameters.keys -contains 'lastname') {
         $uri = "$uri&lastname=$LastName"
-        Write-PSFMessage "LastName added - $uri" -Level debug
     }
 
     if ($PSBoundParameters.keys -contains 'NetworkLoginName') {
         $uri = "$uri&network_login_name=$NetworkLoginName"
-        Write-PSFMessage "NetworkLoginName added - $uri" -Level debug
     }
 
     if ($PSBoundParameters.keys -contains 'SspLoginName') {
         $uri = "$uri&ssp_login_name=$SspLoginName"
-        Write-PSFMessage "SspLoginName added - $uri" -Level debug
     }
 
     if ($PSBoundParameters.keys -contains 'email') {
@@ -86,17 +81,15 @@
 
     if ($PSBoundParameters.keys -contains 'MobileNumber') {
         $uri = "$uri&mobile_number=$MobileNumber"
-        Write-PSFMessage "MobileNumber added - $uri" -Level debug
     }
 
     if ($PSBoundParameters.keys -contains 'Archive') {
         $uri = "$uri&archive=$Archive"
-        Write-PSFMessage "Archive added - $uri" -Level debug
     }
 
     $Params = @{
         'uri' = $uri
     }
     $res = Invoke-TdMethod @Params
-    $res
+    $res | Select-PSFObject -Typename 'TOPdeskPS.Person' -KeepInputObject
 }
