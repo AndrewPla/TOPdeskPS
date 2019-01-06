@@ -149,7 +149,7 @@
         'Send-TdChangeFile'
         'Send-TdChangeActivityFile'
         'Send-TdIncidentFile'
-        'Send-TdTaskNotification'
+        'Send-TdNotification'
         'Send-TdWebDAVFile'
         'Set-TdAsset'
         'Set-TdAssetCapability'

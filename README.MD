@@ -60,7 +60,7 @@ $incidentParams = @{
 Set-TdIncident @incidentParams
 ```
 
-## Create Person
+## Create Persons
 ```powershell
 $personParams = @{
   Surname = 'Doe'
@@ -71,6 +71,15 @@ $personParams = @{
 }
   New-TdPerson @personParams
 ```
+
+## Send Notifications
+
+Use the task notifications api to send alerts to your operators.
+
+```powershell
+Send-TdTaskNotification -Title 'TOPdesk notification from PS!' -Body "You've got the power" -OperatorId (Get-TdOperator 'First.Last').id
+```
+![](./images/TOPdesk-Notif.png)
 
 ## Documentation
 For the full web based documentation visit the [TOPdeskPS site](https://andrewpla.github.io/TOPdeskPS)
