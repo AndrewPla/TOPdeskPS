@@ -3,12 +3,21 @@
     .SYNOPSIS
         Upload a file to an incident identified
     .DESCRIPTION
-        Upload a file to an incident identified
+        Upload a file to an incident. You can make the file invisible to the caller and you can also add a description.
     .PARAMETER Number
         The number of the incident that you want to upload a file to.
+    .PARAMETER File
+        File that you want to upload.
+    .PARAMETER InvisibleForCaller
+        Whether you want to make this invisible to caller or not. The default is no.
+    .PARAMETER Description
+        Provide a description for the file.
     .EXAMPLE
-        PS C:\> Send-TdIncidentFile -File 'C:\TestFile.txt' -Number 'I1911-123'
-        Explanation of what the example does
+        PS> Send-TdIncidentFile -File 'C:\TestFile.txt' -Number 'I1911-123' -InvisibleforCaller
+        Uploads a file to an incident. and makes it invisible for caller.
+    .EXAMPLE
+        PS> Send-TdIncidentFile -File 'C:\ScanResult.txt' -Number 'I1911-123' -Description "Copy of the scan results from the target machine"
+        Uploads a file to an incident with a description.
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdIncidentFile')]
     param (
