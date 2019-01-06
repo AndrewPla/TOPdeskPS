@@ -50,7 +50,7 @@
             $uri = "$uri&browserFriendlyUrls=true"
         }
         $res = Invoke-TdMethod -Uri $uri
-        $res
+        $res.results
     }
 
 }

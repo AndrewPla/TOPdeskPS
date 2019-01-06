@@ -55,6 +55,7 @@ Accept wildcard characters: False
 
 ### -ResultSize
 The amount of incidents to be returned.
+Requests greater than 100 require multiple api calls
 
 ```yaml
 Type: Int32
@@ -63,7 +64,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 10
+Default value: 100
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

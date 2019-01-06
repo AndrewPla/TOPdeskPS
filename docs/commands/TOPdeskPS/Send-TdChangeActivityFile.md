@@ -5,67 +5,65 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdPermissionGroup
+# Send-TdChangeActivityFile
 
 ## SYNOPSIS
-returns list of permission groups
+Upload a file to a change activity.
 
 ## SYNTAX
 
 ```
-Get-TdPermissionGroup [[-Name] <String>] [-Operator <String>] [<CommonParameters>]
+Send-TdChangeActivityFile [-ChangeId] <String> [-File] <FileInfo[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of permission groups
+Upload a file to a change activity.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdPermissionGroup
+Get-TdChangeActivity 'C1811-123' | Send-TdChangeActivityFile -File 'C:\TestFile.txt'
 ```
 
-returns list of permission groups
+Uploads a file to a change activity
 
 ### EXAMPLE 2
 ```
-Get-TdOperator -TOPdeskloginName 'Juanita Smith' | Get-TdPermissionGroup
+Get-TdChangeDetail 'C1211-123' | Send-TdChangeActivityFile -file 'C:\log.txt'
 ```
 
-returns permission groups for Juanita Smith
+uploads a file to C1211-123
 
 ## PARAMETERS
 
-### -Name
-Name of the operator group that you want returned.
-Wildcards are supported.
-Default value is '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: GroupName
-
-Required: False
-Position: 1
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Operator
-Id of the operator that you want to return the permission groups for
+### -ChangeId
+Id of the change activity that you want to work with.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: id
 
-Required: False
-Position: Named
+Required: True
+Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -File
+File that you want to upload.
+
+```yaml
+Type: FileInfo[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

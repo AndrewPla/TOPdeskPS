@@ -22,7 +22,7 @@
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdIncidentFile')]
     param (
 
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [string]
         $Number,
 

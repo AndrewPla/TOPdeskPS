@@ -28,11 +28,18 @@ Get-TDArchiveReason -Name 'No longer employed'
 
 Gets the archive reason with the name 'no longer employed'
 
+### EXAMPLE 2
+```
+Get-TdArchiveReason -name 'Phased*'
+```
+
+Returns all archive reasons that begin with "phased"
+
 ## PARAMETERS
 
 ### -Name
-Name of the branch that you want returned.Wildcards are supported.
-Default value is '*'
+Name of the branch that you want returned.
+Wildcards are supported.
 
 ```yaml
 Type: String

@@ -13,7 +13,7 @@ Gets actions from an incident
 ## SYNTAX
 
 ```
-Get-TdIncidentAction [[-Number] <String>] [[-PageSize] <Int32>] [[-Start] <Int32>] [<CommonParameters>]
+Get-TdIncidentAction [-Number] <String> [[-PageSize] <Int32>] [[-Start] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,10 +38,10 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -56,7 +56,7 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: 10
+Default value: 100
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

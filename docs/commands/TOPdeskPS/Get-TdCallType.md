@@ -28,6 +28,13 @@ Get-TdCallType
 
 Gets list of call types
 
+### EXAMPLE 2
+```
+Get-TdCalltype Alert
+```
+
+Returns the alert call type
+
 ## PARAMETERS
 
 ### -Name

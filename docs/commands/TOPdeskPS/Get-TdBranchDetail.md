@@ -13,7 +13,7 @@ Gets details of a branch
 ## SYNTAX
 
 ```
-Get-TdBranchDetail -BranchId <Object> [<CommonParameters>]
+Get-TdBranchDetail -Branch <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +30,7 @@ Returns details about 'examplebranch'
 
 ## PARAMETERS
 
-### -BranchId
+### -Branch
 ID of the branch.
 See Get-TdBranch
 

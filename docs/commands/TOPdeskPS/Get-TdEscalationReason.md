@@ -13,7 +13,7 @@ Gets all EscalationReasons
 ## SYNTAX
 
 ```
-Get-TdEscalationReason [[-Name] <Object>] [<CommonParameters>]
+Get-TdEscalationReason [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +36,7 @@ Wildcards are supported.
 Default value is '*'
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
