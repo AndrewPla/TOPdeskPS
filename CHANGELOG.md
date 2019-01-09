@@ -1,6 +1,6 @@
 # TOPdeskPS Release History
 
-## 0.0.7 - ????
+## 0.0.7 - January 6th, 2019
 
 ### Added
 
