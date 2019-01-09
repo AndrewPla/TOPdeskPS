@@ -1,5 +1,11 @@
 # TOPdeskPS Release History
 
+## 0.0.8- Jan 9th, 2019
+
+### Fixed
+* Get-TdDepartment - Fixed the name parameter #56
+* New-TdPerson - Fixed the department argument #57
+
 ## 0.0.7 - January 6th, 2019
 
 ### Added
