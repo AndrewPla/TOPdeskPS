@@ -266,7 +266,7 @@
                     id = $departmentId
                 }
                 Write-PSFMessage -Level InternalComment -Message "Adding departmentId to Body"
-                $Body | Add-Member -MemberType NoteProperty -Name 'department' -Value $departmentIdObject
+                $Body | Add-Member -MemberType NoteProperty -Name 'departmentId' -Value $departmentIdObject
             }
 
 
