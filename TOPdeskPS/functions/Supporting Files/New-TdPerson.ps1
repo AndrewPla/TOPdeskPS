@@ -279,7 +279,7 @@
             'Method' = 'Post'
         }
 
-        if (-not (Test-PSFShouldProcess -PSCmdlet PSCmdlet -Target $uri -Action 'creating new person')) {
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'creating new person')) {
             return
         }
         Invoke-TdMethod @params
