@@ -1,14 +1,13 @@
 ﻿function Get-TdDepartment {
     <#
 .SYNOPSIS
-    returns list of departments
+    returns departments
 .DESCRIPTION
-    returns list of departments
-    .PARAMETER Name
+    returns departments and their external links.
+.PARAMETER Name
         Filter based on the name. Wildcards accepted.
-
 .EXAMPLE
-    PS C:\> Get-TdDepartment
+    PS> Get-TdDepartment
     returns list of departments
 .EXAMPLE
     PS> Get-TdDepartment 'IT'
@@ -29,7 +28,7 @@
 
         $uri = (Get-TdUrl) + "/tas/api/departments"
         $res = Invoke-TdMethod -Uri $uri
-        $res
+        $res | Where-object name -like $name
     }
 
 }
