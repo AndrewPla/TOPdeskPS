@@ -1,51 +1,55 @@
 ﻿function Set-TdOperator {
     <#
 .SYNOPSIS
-    Update operator
+    Update operators
 .DESCRIPTION
-    Update an operator by id
-    .PARAMETER Operator
-    Id of the operator that you want to edit
+    Update an operator by id. You can update the various properties of an operator. You can also archive an operator if you provide an archive. Same thing goes for Unarchiving a user. Due to api limitiations Archive/Unarchive requests may not be combined with updates to other properties of a user. They must be sent in seperate requests.
 
-    .PARAMETER SurName
+.PARAMETER Operator
+Id of the operator that you want to edit
+
+.PARAMETER SurName
 Surname of the operator
 
 .PARAMETER FirstName
     Firstname of the operator
 
-    .PARAMETER Gender
+.PARAMETER Gender
     The gender of the operator
 
-    .PARAMETER EmployeeNumber
+.PARAMETER EmployeeNumber
         The employee number of the operator
 
-        .PARAMETER Telephone
+    .PARAMETER Telephone
             The telephone number for the operator
-    .PARAMETER MobileNumber
+.PARAMETER MobileNumber
         Mobile number for the operator
 
-    .PARAMETER NetworkLoginName
+   .PARAMETER NetworkLoginName
         The network login name for the operator
 
-        .PARAMETER Email
-            Email address of the operator
+.PARAMETER Email
+    Email address of the operator
 
-    .PARAMETER Branch
-        The id of the branch that you want to give the operator
+.PARAMETER Branch
+    The id of the branch that you want to give the operator
 
-    .PARAMETER Location
-        Location id of the operator
+.PARAMETER Location
+    Location id of the operator
 
-    .PARAMETER Department
-        The department id of the operator
-    .PARAMETER BudgetHolder
+.PARAMETER Department
+    The department id of the operator
+
+.PARAMETER BudgetHolder
         The budget holder id of the operator
-    .PARAMETER LoginPermission
+
+.PARAMETER LoginPermission
 specify whether the operator has the permission to log on
 
 .PARAMETER LoginName
     Login name, operator requires permission “Settings > Login Settings”
 Is mandatory when loginPermission is set to true.
+
 .PARAMETER Password
     Password, operator requires permission "Settings > Login Settings".
 Is mandatory when “Functional Settings > Login Settings > Operator’s Section > Password mandatory on Operator card” is set.
@@ -53,23 +57,34 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
 .PARAMETER TasksToAdd
     All of the tasks that you want to grant the operator
 
-    .PARAMETER TasksToRemove
+.PARAMETER TasksToRemove
     All of the tasks that you wish to revoke from the operator
 
-    .PARAMETER ArchiveReason
-        specify an archiving reason ID to archive the operator.
-    .PARAMETER Unarchive
+.PARAMETER ArchiveReason
+        Id of the archive reason that will be used to archive the operator. See Get-TdArchiveReason
+.PARAMETER Unarchive
         Specify if you want to unarchive an operator.
 
-    .PARAMETER Confirm
+.PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
-    .PARAMETER WhatIf
+.PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
 .EXAMPLE
-    PS C:\> Set-TdOperator -id $operator.id -password (read-host -assecurestring)
+    PS> Get-TdOperator -TOPdeskLoginName 'first.last' | Set-TdOperator -Surname 'UpdatedSurname'
+
+    Updates the surname of the first.last operator.
+
+.EXAMPLE
+    PS> Set-TdOperator -id $operator.id -password (read-host -assecurestring) -Login
+
     Update the password for the operator stored in the $operator variable
+
+.EXAMPLE
+    PS> Get-TdOperator -TOPdeskLoginName 'first.last' | Set-TdOperator -ArchiveReason (Get-TdArchiveReason 'no longer employed').id -LoginPermission:$false
+
+.EXAMPLE
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperator',
         SupportsShouldProcess = $true)]
