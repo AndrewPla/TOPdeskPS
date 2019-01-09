@@ -1,7 +1,7 @@
 ﻿function Invoke-TdMethod {
     <#
 	.SYNOPSIS
-		internal wrapper for Invoke-RestMethod. This command is exposed in case you encounter api calls that aren't part of this module. All api commands call this command  to perform the web request.
+		Wrapper for Invoke-RestMethod. This command is exposed in case you encounter api calls that aren't part of this module. All api commands call this command to perform the web request.
 
 	.DESCRIPTION
 		A detailed description of the Invoke-TdMethod function.
