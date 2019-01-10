@@ -1,24 +1,24 @@
 ﻿@{
     # Script module or binary module file associated with this manifest
-    RootModule = 'TOPdeskPS.psm1'
+    RootModule        = 'TOPdeskPS.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.0.9'
+    ModuleVersion     = '0.0.10'
 
     # ID used to uniquely identify this module
-    GUID = '3c6f28d6-772c-4325-8236-d4bc99373aa9'
+    GUID              = '3c6f28d6-772c-4325-8236-d4bc99373aa9'
 
     # Author of this module
-    Author = 'Andrew Pla'
+    Author            = 'Andrew Pla'
 
     # Company or vendor of this module
-    CompanyName = ''
+    CompanyName       = ''
 
     # Copyright statement for this module
-    Copyright = 'Copyright (c) 2018 Andrew Pla'
+    Copyright         = 'Copyright (c) 2018 Andrew Pla'
 
     # Description of the functionality provided by this module
-    Description = 'Module to interact with the TOPdesk API. Interact with changes, incidents, assets, supporting files, notifications and more.'
+    Description       = 'Module to interact with the TOPdesk API. Interact with changes, incidents, assets, supporting files, notifications and more.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
@@ -40,7 +40,7 @@
 
     # Modules that must be imported into the global environment prior to importing
     # this module
-    RequiredModules = @(
+    RequiredModules   = @(
         @{
             ModuleName = 'PSFramework'; ModuleVersion = '0.10.27.128'
         }
@@ -57,7 +57,7 @@
     #TypesToProcess = @('xml\TOPdeskPS.Types.ps1xml')
 
     # Format files (.ps1xml) to be loaded when importing this module
-    FormatsToProcess = @('xml\TOPdeskPS.Format.ps1xml')
+    FormatsToProcess  = @('xml\TOPdeskPS.Format.ps1xml')
 
     # Modules to import as nested modules of the module specified in
     # ModuleToProcess
@@ -170,34 +170,34 @@
     )
 
     # Cmdlets to export from this module
-    CmdletsToExport = ''
+    CmdletsToExport   = ''
 
     # Variables to export from this module
     VariablesToExport = ''
 
     # Aliases to export from this module
-    AliasesToExport = ''
+    AliasesToExport   = ''
 
     # List of all modules packaged with this module
-    ModuleList = @()
+    ModuleList        = @()
 
     # List of all files packaged with this module
-    FileList = @()
+    FileList          = @()
 
     # Private data to pass to the module specified in ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-    PrivateData = @{
+    PrivateData       = @{
 
         #Support for PowerShellGet galleries.
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('TOPdesk', 'API')
+            Tags         = @('TOPdesk', 'API')
 
             # A URL to the license for this module.
-            LicenseUri = 'https://github.com/AndrewPla/TOPdeskPS/blob/master/LICENSE.md'
+            LicenseUri   = 'https://github.com/AndrewPla/TOPdeskPS/blob/master/LICENSE.md'
 
             # A URL to the main website for this project.
-            ProjectUri = 'https://andrewpla.github.io/TOPdeskPS'
+            ProjectUri   = 'https://andrewpla.github.io/TOPdeskPS'
 
             # A URL to an icon representing this module.
             # IconUri = ''
