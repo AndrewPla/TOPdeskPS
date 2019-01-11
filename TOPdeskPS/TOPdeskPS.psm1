@@ -1,5 +1,5 @@
 $script:ModuleRoot = $PSScriptRoot
-$script:ModuleVersion = "0.0.10" #(Invoke-Expression (Get-Content "$ModuleRoot\TOPdeskPS.psd1" -Raw)).ModuleVersion
+$script:ModuleVersion = "0.0.11" #(Invoke-Expression (Get-Content "$ModuleRoot\TOPdeskPS.psd1" -Raw)).ModuleVersion
 
 # Declare directory separating character for X-Plat compatibility
 $script:dc = [System.IO.Path]::DirectorySeparatorChar
