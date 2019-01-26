@@ -84,6 +84,9 @@ Task Build -Depends Test {
 
 
     # Generate Markdown Docs
+
+    $lines
+    "Generating Docs"
     $docspath = "$ProjectRoot\docs\commands"
     $excludedCommands = @("")
     Import-Module $env:bhpsmodulemanifest -force -Global
