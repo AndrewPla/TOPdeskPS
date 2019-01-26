@@ -86,7 +86,7 @@ Task Build -Depends Test {
     # Generate Markdown Docs
     $docspath = "$ProjectRoot\docs\commands"
     $excludedCommands = @("")
-    Import-Module $env:bhpsmodulemanifest -force
+    Import-Module $env:bhpsmodulemanifest -force -Global
     $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
