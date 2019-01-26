@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-TdDepartment
 
 ## SYNOPSIS
-returns list of departments
+returns departments
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-TdDepartment [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns list of departments
+returns departments and their external links.
 
 ## EXAMPLES
 

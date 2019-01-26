@@ -33,10 +33,10 @@ This will also search archived files.
 
 ### EXAMPLE 2
 ```
-Get-TdPerson -Email 'User@company.com'
+Get-TdPerson -Email 'User@company.com' | Format-List *
 ```
 
-Returns the person whose email is 'user@company.com'
+Returns the person whose email is 'user@company.com' and displays all details of the result.
 
 ## PARAMETERS
 

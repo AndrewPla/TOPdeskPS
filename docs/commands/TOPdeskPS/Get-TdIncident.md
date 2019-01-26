@@ -35,16 +35,23 @@ The most you can grab per request is 100.
 Get-TdIncident
 ```
 
-Grabs a list of 10 incidents
+returns incidents
 
 ### EXAMPLE 2
+```
+Get-Tdincident | Format-List *
+```
+
+return incidents and all of their properties
+
+### EXAMPLE 3
 ```
 Get-TdIncident -Closed
 ```
 
-Gets list of last 10 colsed incidents
+Returns incidents and includes closed incidents.
 
-### EXAMPLE 3
+### EXAMPLE 4
 ```
 Get-TdIncident -ResultSize 2000
 ```

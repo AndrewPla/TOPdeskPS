@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-TdOperator
 
 ## SYNOPSIS
-Update operator
+Update operators
 
 ## SYNTAX
 
@@ -32,16 +32,38 @@ Set-TdOperator -Operator <Object> [-Unarchive] [-WhatIf] [-Confirm] [<CommonPara
 ```
 
 ## DESCRIPTION
-Update an operator by id
+Update an operator by id.
+You can update the various properties of an operator.
+You can also archive an operator if you provide an archive.
+Same thing goes for Unarchiving a user.
+Due to api limitiations Archive/Unarchive requests may not be combined with updates to other properties of a user.
+They must be sent in seperate requests.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Set-TdOperator -id $operator.id -password (read-host -assecurestring)
+Get-TdOperator -TOPdeskLoginName 'first.last' | Set-TdOperator -Surname 'UpdatedSurname'
+```
+
+Updates the surname of the first.last operator.
+
+### EXAMPLE 2
+```
+Set-TdOperator -id $operator.id -password (read-host -assecurestring) -Login
 ```
 
 Update the password for the operator stored in the $operator variable
+
+### EXAMPLE 3
+```
+Get-TdOperator -TOPdeskLoginName 'first.last' | Set-TdOperator -ArchiveReason (Get-TdArchiveReason 'no longer employed').id -LoginPermission:$false
+```
+
+### EXAMPLE 4
+```
+
+```
 
 ## PARAMETERS
 
@@ -318,7 +340,8 @@ Accept wildcard characters: False
 ```
 
 ### -ArchiveReason
-specify an archiving reason ID to archive the operator.
+Id of the archive reason that will be used to archive the operator.
+See Get-TdArchiveReason
 
 ```yaml
 Type: String
