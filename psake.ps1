@@ -41,7 +41,7 @@ Task Test -Depends Init {
     # Need to tell psake or it will proceed to the deployment. Danger!
 
     try {
-        & "$ProjectRoot\TOPdeskPS\tests\pester.ps1" -Show 'Header', 'fails'
+        & "$ProjectRoot\TOPdeskPS\tests\pester.ps1" -Show 'fails'
     }
     catch {
         Write-Error "Failed tests, build failed"
@@ -84,6 +84,7 @@ Task Build -Depends Test {
 
 
     # Generate Markdown Docs
+    $docspath =
     $excludedCommands = @("")
     Write-PSFMessage -Level Verbose -Message "Processing $moduleName"
     Write-PSFMessage -Level Verbose -Message "  Creating list of commands to process"
