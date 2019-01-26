@@ -84,28 +84,26 @@ Task Build -Depends Test {
 
 
     # Generate Markdown Docs
-    $docspath =
+    $docspath = "$ProjectRoot\docs\commands"
     $excludedCommands = @("")
-    Write-PSFMessage -Level Verbose -Message "Processing $moduleName"
-    Write-PSFMessage -Level Verbose -Message "  Creating list of commands to process"
-    $commands = Get-Command -Module $moduleName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
+    Import-Module $env:bhpsmodulemanifest -force
+        $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
-    Write-PSFMessage -Level Verbose -Message "  $($commands.Count) commands found"
 
     Write-PSFMessage -Level Verbose -Message "  Creating markdown help files"
-    Remove-Item "$($docsPath)\$($moduleName)" -Recurse -ErrorAction Ignore
-    $null = New-Item "$($docsPath)\$($moduleName)" -ItemType Directory
-    $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\$($moduleName)"
+    Remove-Item "$($docsPath)\$($env:BHProjectName)" -Recurse -ErrorAction Ignore
+    $null = New-Item "$($docsPath)\$($env:BHProjectName)" -ItemType Directory
+    $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\$($env:BHProjectName)"
 
     Write-PSFMessage -Level Verbose -Message "  Creating index file"
-    Set-Content -Path "$($docsPath)\$($moduleName).md" -Value @"
-# $moduleName Command Reference
+    Set-Content -Path "$($docsPath)\$($env:BHProjectName).md" -Value @"
+# $env:BHProjectName Command Reference
 
 "@ -Encoding Ascii
 
     foreach ($command in $commands) {
-        Add-Content -Path "$($docsPath)\$($moduleName).md" -Value " - [$command]($($moduleName)/$command.html)"
+        Add-Content -Path "$($docsPath)\$($env:BHProjectName).md" -Value " - [$command]($($env:BHProjectName)/$command.html)"
     }
 }
 
