@@ -6,6 +6,6 @@
 Install-Module Psake, PSDeploy, Pester, BuildHelpers, psframework, psscriptanalyzer, platyps -force
 Import-Module Psake, BuildHelpers
 
-Set-BuildEnvironment
+Set-BuildEnvironment -Force
 
 Invoke-psake .\psake.ps1 -taskList $Task -nologo

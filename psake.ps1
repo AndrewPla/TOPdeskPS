@@ -1,7 +1,7 @@
 # This was stolen from https://github.com/RamblingCookieMonster/PSSlack/blob/master/psake.ps1
 # RamblingCookieMonster is awesome
 Properties {
-    Set-BuildEnvironment
+    Set-BuildEnvironment -Force
     # Find the build folder based on build system
     $ProjectRoot = $ENV:BHProjectPath
     if (-not $ProjectRoot) {
