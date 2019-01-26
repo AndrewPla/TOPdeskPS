@@ -3,7 +3,7 @@
     RootModule = 'TOPdeskPS.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.0.9'
+    ModuleVersion = '0.0.14'
 
     # ID used to uniquely identify this module
     GUID = '3c6f28d6-772c-4325-8236-d4bc99373aa9'
@@ -109,6 +109,7 @@
         'Get-TdImpact'
         'Get-TdIncident'
         'Get-TdIncidentAction'
+        'Get-TdIncidentTimeSpent'
         'Get-TdLocation'
         'Get-TdLocationDetail'
         'Get-TdOperator'
@@ -159,6 +160,7 @@
         'Set-TdChangeActivity'
         'Set-TdChangeProcessingStatus'
         'Set-TdIncident'
+        'Set-TdIncidentTimeSpent'
         'Set-TdOperator'
         'Set-TdOperatorBranchFilter'
         'Set-TdOperatorCategoryFilter'
