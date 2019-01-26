@@ -87,7 +87,7 @@ Task Build -Depends Test {
     $docspath = "$ProjectRoot\docs\commands"
     $excludedCommands = @("")
     Import-Module $env:bhpsmodulemanifest -force
-        $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
+    $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
 
