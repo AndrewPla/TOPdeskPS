@@ -1,5 +1,5 @@
 $script:ModuleRoot = $PSScriptRoot
-$script:ModuleVersion = '0.0.14'
+$script:ModuleVersion = "0.0.14"
 
 $script:__LoginToken = $null
 function Import-ModuleFile {
