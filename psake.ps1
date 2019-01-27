@@ -114,7 +114,7 @@ Task Build -Depends Test {
     }
 }
 
-Task Deploy -Depends init {
+Task Deploy -Depends build {
     $lines
 
 Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
