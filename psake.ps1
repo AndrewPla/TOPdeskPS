@@ -3,7 +3,7 @@
 Properties {
     
     # setup the apikey 
-    $key = $psgallery
+    $key = $env:psgallery
     
     Set-BuildEnvironment -Force
     # Find the build folder based on build system
