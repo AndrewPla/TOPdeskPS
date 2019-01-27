@@ -1,6 +1,10 @@
 # This was stolen from https://github.com/RamblingCookieMonster/PSSlack/blob/master/psake.ps1
 # RamblingCookieMonster is awesome
 Properties {
+    
+    # setup the apikey 
+    $key = $psgallery
+    
     Set-BuildEnvironment -Force
     # Find the build folder based on build system
     $ProjectRoot = $ENV:BHProjectPath
@@ -113,5 +117,5 @@ Task Build -Depends Test {
 Task Deploy -Depends init {
     $lines
 
-Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $testingApiKey -Force
+Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
 }
