@@ -1,4 +1,5 @@
-﻿param($Task = 'Default')
+﻿param($Task = 'Default',$apikey)
+ if ($apikey) { $global:testingApiKey }
 
 # Grab nuget bits, install modules, set build variables, start build.
 #Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
