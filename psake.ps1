@@ -91,10 +91,13 @@ Task Build -Depends Test {
 
     # Set the value of $script:ModuleVersion in the .psm1. This is consumed by the license functionality of psframework.
     try {
-        $currentVersion = (Invoke-Expression (Get-Content "$projectRoot\TOPdeskPS\TOPdeskPS.psd1" -Raw)).ModuleVersion
+        $currentVersion = Get-Metadata -path $env:BHPSModuleManifest
         $psm1Content = Get-Content "$projectroot\topdeskps\topdeskps.psm1"
-        $oldVersion = $psm1Content -like '$script:ModuleVersion ='
+        $oldVersion = $psm1Content -like '$script:ModuleVersion =*'
         $newVersion = '$script:ModuleVersion = "{0}"' -f $currentversion
+        $newpsm1Content = $psm1content.replace($oldVersion, $newVersion)
+        "Updating psm1 with moduleversion"
+        Set-Content "$projectroot\topdeskps\topdeskps.psm1" -Value $newpsm1Content
     }
     catch {
         throw 'unable to update $script:moduleversion in topdeskps.psm1'
