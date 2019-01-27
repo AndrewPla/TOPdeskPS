@@ -1,5 +1,4 @@
 ﻿param($Task = 'Default',$apikey)
- if ($apikey) { $global:testingApiKey }
 
 # Grab nuget bits, install modules, set build variables, start build.
 #Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
@@ -9,5 +8,13 @@ Import-Module Psake, BuildHelpers
 
 Set-BuildEnvironment -Force
 
-Invoke-psake .\psake.ps1 -taskList $Task -nologo
+$psakeParams = @{
+buildfile = '.\psake.ps1'
+tasklist = $task
+nologo = $true
+}
+
+if ($apikey) { $psakeParams['parameters'] = @{psgallery = $apikey} }
+
+Invoke-psake @psakeParams
 exit ( [int]( -not $psake.build_success ) )
