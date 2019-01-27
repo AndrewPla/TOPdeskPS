@@ -30,7 +30,7 @@ if (
             FromSource $ENV:BHPSModulePath
             To PSGallery
             WithOptions @{
-                ApiKey = $ENV:NugetApiKey
+                ApiKey = $testingapikey
             }
         }
     }
