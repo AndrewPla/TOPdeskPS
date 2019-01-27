@@ -6,7 +6,9 @@ PowerShell module to interact with TOPdesk through its REST API. This module can
 
 ## Preparing TOPdesk
 
-In order to connect to TOPdesk you will need to have an account with the required permissions. Create a separate permission group that only allows the use of the API. Enable permissions for "REST API".
+In order to connect to TOPdesk you will need to have an account with the required permissions. Create a separate permission group that only allows the use of the API. Enable permissions for "REST API". 
+
+See https://developers.topdesk.com/tutorial.html#show-collapse-config-topdesk for instructions on how to grant API permissions and how to generate an application password if you prefer. This module supports using an application password and using standard topdesk login creds.
 
 ## Installing the module
 TOPdeskPS is published to the PowerShell gallery and can be installed by running:

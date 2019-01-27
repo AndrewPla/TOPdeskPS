@@ -8,9 +8,9 @@ schema: 2.0.0
 # Invoke-TdMethod
 
 ## SYNOPSIS
-internal wrapper for Invoke-RestMethod.
+Wrapper for Invoke-RestMethod.
 This command is exposed in case you encounter api calls that aren't part of this module.
-All api commands call this command  to perform the web request.
+All api commands call this command to perform the web request.
 
 ## SYNTAX
 

@@ -5,51 +5,50 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TdDepartment
+# Get-TdIncidentTimeSpent
 
 ## SYNOPSIS
-returns departments
+Retrieves time spent on an incident
 
 ## SYNTAX
 
 ```
-Get-TdDepartment [[-Name] <String>] [<CommonParameters>]
+Get-TdIncidentTimeSpent [[-Number] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-returns departments and their external links.
+Retrieves time spent on an incident
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-TdDepartment
+Get-TdIncident | Get-TdIncidentTimeSpent
 ```
 
-returns list of departments
+Returns time spent for the provided incidents
 
 ### EXAMPLE 2
 ```
-Get-TdDepartment 'IT'
+Get-TdIncidentTimeSpent i1811-123
 ```
 
-Returns the IT department
+returns time spent for i1811-123
 
 ## PARAMETERS
 
-### -Name
-Filter based on the name.
-Wildcards accepted.
+### -Number
+The number of the incident that you want to retrieve time spent for.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: IncidentNumber
 
 Required: False
 Position: 1
-Default value: *
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

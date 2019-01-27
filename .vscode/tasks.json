@@ -40,40 +40,19 @@
     },
     "tasks": [
         {
-            "label": "BuildMarkdownDocs",
+            "label": "Test",
             "type": "shell",
-            "command": "${cwd}/build.ps1 -BuildMarkdownDocs -Verbose"
+            "command": "Invoke-Psake ${cwd}/psake.ps1 -tasklist 'test' -Verbose"
         },
         {
-            "label": "Publish",
+            "label": "Build",
             "type": "shell",
-            "command": "${cwd}/build.ps1 -Task Publish -Verbose"
-        },
-        {
-            "label": "Compile",
-            "type": "shell",
-            "command": "${cwd}/build.ps1 -Task Compile -Verbose"
-        },
-        {
-            "label": "Analyze",
-            "type": "shell",
-            "command": "${cwd}/build.ps1 -Task Analyze -Verbose"
-        },+
-        {
-            "label": "Pester",
-            "type": "shell",
-            "command": "${cwd}/build.ps1 -Pester -Verbose",
-            "problemMatcher": "$pester"
+            "command": "Invoke-Psake ${cwd}/psake.ps1 -Tasklist build -Verbose"
         },
         {
             "label": "Plaster New Function",
             "type": "shell",
             "command": "Invoke-Plaster -templatepath ./templates/NewFunction -destinationpath ./"
-        },
-        {
-            "label": "Update Module Files",
-            "type": "shell",
-            "command": "$funkynames = Get-Childitem ./topdeskps/functions -recurse -filter '*.ps1' | select-object -expandproperty basename;Update-MetaData -path ./topdeskps/topdeskps.psd1 -propertyname functionstoexport -value @($funkynames);Copy-item ./topdeskps -destination ($env:psmodulepath -split ';')[0] -container -recurse -verbose -force"
         }
     ]
 }
