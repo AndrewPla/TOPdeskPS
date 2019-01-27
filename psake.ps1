@@ -1,10 +1,6 @@
 # This was stolen from https://github.com/RamblingCookieMonster/PSSlack/blob/master/psake.ps1
 # RamblingCookieMonster is awesome
 Properties {
-    
-    # setup the apikey 
-    $key = $env:psgallery
-    
     Set-BuildEnvironment -Force
     # Find the build folder based on build system
     $ProjectRoot = $ENV:BHProjectPath
@@ -21,6 +17,10 @@ Properties {
     if ($ENV:BHCommitMessage -match "!verbose") {
         $Verbose = @{Verbose = $True}
     }
+
+    # setup the apikey
+    $key = $env:psgallery
+
 }
 
 Task Default -Depends Test
@@ -74,18 +74,31 @@ Task Build -Depends Test {
     # Load the module, read the exported functions, update the psd1 FunctionsToExport
     Set-ModuleFunctions @Verbose
 
+
+
     # Bump the module version if we didn't manually bump it
     Try {
         $GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
         $GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
         if ($GalleryVersion -ge $GithubVersion) {
             Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $GalleryVersion -ErrorAction stop
+
         }
     }
     Catch {
         "Failed to update version for '$env:BHProjectName': $_.`nContinuing with existing version"
     }
 
+    # Set the value of $script:ModuleVersion in the .psm1. This is consumed by the license functionality of psframework.
+    try {
+        $currentVersion = (Invoke-Expression (Get-Content "$projectRoot\TOPdeskPS\TOPdeskPS.psd1" -Raw)).ModuleVersion
+        $psm1Content = Get-Content "$projectroot\topdeskps\topdeskps.psm1"
+        $oldVersion = $psm1Content -like '$script:ModuleVersion ='
+        $newVersion = '$script:ModuleVersion = "{0}"' -f $currentversion
+    }
+    catch {
+        throw 'unable to update $script:moduleversion in topdeskps.psm1'
+    }
 
     # Generate Markdown Docs
 
@@ -117,5 +130,5 @@ Task Build -Depends Test {
 Task Deploy -Depends init {
     $lines
 
-Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
+    Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
 }
