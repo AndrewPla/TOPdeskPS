@@ -1,4 +1,8 @@
 $script:ModuleRoot = $PSScriptRoot
+
+# Declare directory separating character for X-Plat compatibility
+$script:dc = [System.IO.Path]::DirectorySeparatorChar
+
 $script:ModuleVersion = "0.0.14"
 
 $script:__LoginToken = $null
@@ -36,17 +40,17 @@ $script:doDotSource = Get-PSFConfigValue -FullName TOPdeskPS.Import.DoDotSource 
 if ($TOPdeskPS_dotsourcemodule) { $script:doDotSource = $true }
 
 # Execute Preimport actions
-. Import-ModuleFile -Path "$ModuleRoot\internal\scripts\preimport.ps1"
+. Import-ModuleFile -Path "$ModuleRoot$($dc)internal$($dc)scripts$($dc)preimport.ps1"
 
 # Import all internal functions
-foreach ($function in (Get-ChildItem "$ModuleRoot\internal\functions" -Filter "*.ps1" -Recurse -ErrorAction Ignore)) {
+foreach ($function in (Get-ChildItem "$ModuleRoot$($dc)internal$($dc)functions" -Filter "*.ps1" -Recurse -ErrorAction Ignore)) {
     . Import-ModuleFile -Path $function.FullName
 }
 
 # Import all public functions
-foreach ($function in (Get-ChildItem "$ModuleRoot\functions" -Filter "*.ps1" -Recurse -ErrorAction Ignore)) {
+foreach ($function in (Get-ChildItem "$ModuleRoot$($dc)functions" -Filter "*.ps1" -Recurse -ErrorAction Ignore)) {
     . Import-ModuleFile -Path $function.FullName
 }
 
 # Execute Postimport actions
-. Import-ModuleFile -Path "$ModuleRoot\internal\scripts\postimport.ps1"
+. Import-ModuleFile -Path "$ModuleRoot$($dc)internal$($dc)scripts$($dc)postimport.ps1"
