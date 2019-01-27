@@ -113,10 +113,5 @@ Task Build -Depends Test {
 Task Deploy -Depends init {
     $lines
 
-    $Params = @{
-        Path = $ProjectRoot
-        Force = $true
-        Recurse = $false # We keep psdeploy artifacts, avoid deploying those : )
-    }
-    Invoke-PSDeploy @Verbose @Params -erroraction stop
+Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $env:ApiKey -Force
 }
