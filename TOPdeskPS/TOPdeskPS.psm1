@@ -1,8 +1,9 @@
 $script:ModuleRoot = $PSScriptRoot
-$script:ModuleVersion = "0.0.11" #(Invoke-Expression (Get-Content "$ModuleRoot\TOPdeskPS.psd1" -Raw)).ModuleVersion
 
 # Declare directory separating character for X-Plat compatibility
 $script:dc = [System.IO.Path]::DirectorySeparatorChar
+
+$script:ModuleVersion = "0.0.14"
 
 $script:__LoginToken = $null
 function Import-ModuleFile {
