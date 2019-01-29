@@ -65,7 +65,7 @@
     # NestedModules = @()
 
     # Functions to export from this module
-    FunctionsToExport = @('Add-TdAssetAssignment','Connect-TdService','Disconnect-TdService','Get-TdApiVersion','Get-TdArchiveReason','Get-TdAsset','Get-TdAssetAssignment','Get-TdAssetCapability','Get-TdAssetCapabilityDetail','Get-TdAssetDetail','Get-TdAssetField','Get-TdAssetFieldValue','Get-TdAssetFile','Get-TdAssetLink','Get-TdAssetLinkPossibleRelation','Get-TdAssetTemplate','Get-TdAssetTemplateBlank','Get-TdBranch','Get-TdBranchDetail','Get-TdBranchFilter','Get-TdBudgetHolder','Get-TdCallType','Get-TdCategory','Get-TdCategoryFilter','Get-TdChange','Get-TdChangeActivity','Get-TdChangeCalendar','Get-TdChangeCalendarDetail','Get-TdChangeCalendarProgress','Get-TdChangeCalendarRequest','Get-TdChangeDetail','Get-TdChangeProgress','Get-TdChangeRequest','Get-TdChangeTemplate','Get-TdClosureCode','Get-TdCountry','Get-TdDeescalationReason','Get-TdDepartment','Get-TdDuration','Get-TdEntryType','Get-TdEscalationReason','Get-TdImpact','Get-TdIncident','Get-TdIncidentAction','Get-TdIncidentTimeSpent','Get-TdLocation','Get-TdLocationDetail','Get-TdOperator','Get-TdOperatorAvatar','Get-TdOperatorFilter','Get-TdOperatorGroup','Get-TdOperatorGroupMember','Get-TdPermissionGroup','Get-TdPerson','Get-TdPersonAvatar','Get-TdPersonGroup','Get-TdPriority','Get-TdProcessingStatus','Get-TdServiceWindow','Get-TdSubcategory','Get-TdSupplier','Get-TdSupplierContact','Get-TdTimeSpentReason','Get-TdUrgency','Get-TdUrl','Invoke-TdMethod','New-TdAsset','New-TdAssetCapability','New-TdBranch','New-TdBudgetHolder','New-TdChange','New-TdChangeAction','New-TdChangeProgress','New-TdDepartment','New-TdIncident','New-TdOperator','New-TdOperatorGroup','New-TdPerson','Remove-TdAsset','Remove-TdAssetAssignment','Remove-TdAssetFile','Remove-TdAssetLink','Send-TdAssetFile','Send-TdChangeActivityFile','Send-TdChangeFile','Send-TdIncidentFile','Send-TdNotification','Send-TdWebDAVFile','Set-TdAsset','Set-TdAssetCapability','Set-TdAssetLink','Set-TdBranch','Set-TdChange','Set-TdChangeActivity','Set-TdChangeProcessingStatus','Set-TdIncident','Set-TdIncidentTimeSpent','Set-TdOperator','Set-TdOperatorBranchFilter','Set-TdOperatorCategoryFilter','Set-TdOperatorGroup','Set-TdOperatorOperatorFilter','Set-TdOperatorOperatorGroup','Set-TdOperatorPermissionGroup','Set-TdPerson')
+    FunctionsToExport = @('Add-TdAssetAssignment', 'Connect-TdService', 'Disconnect-TdService', 'Get-TdApiVersion', 'Get-TdArchiveReason', 'Get-TdAsset', 'Get-TdAssetAssignment', 'Get-TdAssetCapability', 'Get-TdAssetCapabilityDetail', 'Get-TdAssetDetail', 'Get-TdAssetField', 'Get-TdAssetFieldValue', 'Get-TdAssetFile', 'Get-TdAssetLink', 'Get-TdAssetLinkPossibleRelation', 'Get-TdAssetTemplate', 'Get-TdAssetTemplateBlank', 'Get-TdBranch', 'Get-TdBranchDetail', 'Get-TdBranchFilter', 'Get-TdBudgetHolder', 'Get-TdCallType', 'Get-TdCategory', 'Get-TdCategoryFilter', 'Get-TdChange', 'Get-TdChangeActivity', 'Get-TdChangeCalendar', 'Get-TdChangeCalendarDetail', 'Get-TdChangeCalendarProgress', 'Get-TdChangeCalendarRequest', 'Get-TdChangeDetail', 'Get-TdChangeProgress', 'Get-TdChangeRequest', 'Get-TdChangeTemplate', 'Get-TdClosureCode', 'Get-TdCountry', 'Get-TdDeescalationReason', 'Get-TdDepartment', 'Get-TdDuration', 'Get-TdEntryType', 'Get-TdEscalationReason', 'Get-TdImpact', 'Get-TdIncident', 'Get-TdIncidentAction', 'Get-TdIncidentTimeSpent', 'Get-TdLocation', 'Get-TdLocationDetail', 'Get-TdOperator', 'Get-TdOperatorAvatar', 'Get-TdOperatorFilter', 'Get-TdOperatorGroup', 'Get-TdOperatorGroupMember', 'Get-TdPermissionGroup', 'Get-TdPerson', 'Get-TdPersonAvatar', 'Get-TdPersonGroup', 'Get-TdPriority', 'Get-TdProcessingStatus', 'Get-TdServiceWindow', 'Get-TdSubcategory', 'Get-TdSupplier', 'Get-TdSupplierContact', 'Get-TdTimeSpentReason', 'Get-TdUrgency', 'Get-TdUrl', 'Invoke-TdMethod', 'New-TdAsset', 'New-TdAssetCapability', 'New-TdBranch', 'New-TdBudgetHolder', 'New-TdChange', 'New-TdChangeAction', 'New-TdChangeProgress', 'New-TdDepartment', 'New-TdIncident', 'New-TdOperator', 'New-TdOperatorGroup', 'New-TdPerson', 'Remove-TdAsset', 'Remove-TdAssetAssignment', 'Remove-TdAssetFile', 'Remove-TdAssetLink', 'Send-TdAssetFile', 'Send-TdChangeActivityFile', 'Send-TdChangeFile', 'Send-TdIncidentFile', 'Send-TdNotification', 'Send-TdWebDAVFile', 'Set-TdAsset', 'Set-TdAssetCapability', 'Set-TdAssetLink', 'Set-TdBranch', 'Set-TdChange', 'Set-TdChangeActivity', 'Set-TdChangeProcessingStatus', 'Set-TdIncident', 'Set-TdIncidentTimeSpent', 'Set-TdOperator', 'Set-TdOperatorBranchFilter', 'Set-TdOperatorCategoryFilter', 'Set-TdOperatorGroup', 'Set-TdOperatorOperatorFilter', 'Set-TdOperatorOperatorGroup', 'Set-TdOperatorPermissionGroup', 'Set-TdPerson')
 
     # Cmdlets to export from this module
     CmdletsToExport = ''
@@ -107,23 +107,3 @@
 
     } # End of PrivateData hashtable
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
