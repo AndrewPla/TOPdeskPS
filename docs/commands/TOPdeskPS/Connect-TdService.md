@@ -100,7 +100,7 @@ Aliases:
 Required: False
 Position: 3
 Default value: (
-            Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
+           Get-TdUrl)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -8,10 +8,8 @@
 
 	.EXAMPLE
 		PS C:\> Get-TdUrl
-		Grabs the TOPdesk url from the config system using Get-PSFConfigValue
+		Grabs the TOPdesk url from the config system using Get-PSFConfigValue -Fullname TOPdeskPS.Url
 
-	.NOTES
-		Additional information about the function.
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdUrl')]
@@ -25,7 +23,7 @@
             Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull
         }
         catch {
-            throw 'Unable to find your TOPdesk url. Try running Connect-TdService.'
+            throw 'Unable to find your TOPdesk url. Try running Connect-TdService -Url "https://yourtopdeskurl".'
         }
     }
     end {

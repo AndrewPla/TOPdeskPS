@@ -64,6 +64,7 @@
  - [Get-TdSupplierContact](TOPdeskPS/Get-TdSupplierContact.html)
  - [Get-TdTimeSpentReason](TOPdeskPS/Get-TdTimeSpentReason.html)
  - [Get-TdUrgency](TOPdeskPS/Get-TdUrgency.html)
+ - [Get-TdUrl](TOPdeskPS/Get-TdUrl.html)
  - [Invoke-TdMethod](TOPdeskPS/Invoke-TdMethod.html)
  - [New-TdAsset](TOPdeskPS/New-TdAsset.html)
  - [New-TdAssetCapability](TOPdeskPS/New-TdAssetCapability.html)

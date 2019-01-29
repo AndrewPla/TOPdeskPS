@@ -33,7 +33,46 @@ Task Init {
     "`n"
 }
 
-Task Test -Depends Init {
+Task UpdateModule -Depends Init {
+    # Grab all of the functions inside of our functions folder. This avoids any private functions that we don't want to export.
+    $functionsToExport = Get-ChildItem "$env:BHProjectPath\topdeskps\functions" -Recurse -Filter '*.ps1' |
+        Select -ExpandProperty Basename |
+        Sort-Object
+
+    Set-ModuleFunctions -FunctionsToExport $functionsToExport @Verbose
+
+
+
+    # Bump the module version if we didn't manually bump it
+    Try {
+        $GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
+        $GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
+        if ($GalleryVersion -ge $GithubVersion) {
+            Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $GalleryVersion -ErrorAction stop
+
+        }
+    }
+    Catch {
+        "Failed to update version for '$env:BHProjectName': $_.`nContinuing with existing version"
+    }
+
+    # Set the value of $script:ModuleVersion in the .psm1. This is consumed by the license functionality of psframework.
+    try {
+        $currentVersion = Get-Metadata -path $env:BHPSModuleManifest
+        $psm1Content = Get-Content "$projectroot\topdeskps\topdeskps.psm1"
+        $oldVersion = $psm1Content -like '$script:ModuleVersion =*'
+        $newVersion = '$script:ModuleVersion = "{0}"' -f $currentversion
+        $newpsm1Content = $psm1content.replace($oldVersion, $newVersion)
+        "Updating psm1 with moduleversion"
+        Set-Content "$projectroot\topdeskps\topdeskps.psm1" -Value $newpsm1Content
+    }
+    catch {
+        throw 'unable to update $script:moduleversion in topdeskps.psm1'
+    }
+
+}
+
+Task Test -Depends UpdateModule {
     $lines
     "`n`tSTATUS: Testing with PowerShell $PSVersion"
 
@@ -68,40 +107,10 @@ Task Test -Depends Init {
 }
 
 
-Task Build -Depends Test {
+
+Task BuildMarkdown -Depends Test {
     $lines
 
-    # Load the module, read the exported functions, update the psd1 FunctionsToExport
-    Set-ModuleFunctions @Verbose
-
-
-
-    # Bump the module version if we didn't manually bump it
-    Try {
-        $GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
-        $GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
-        if ($GalleryVersion -ge $GithubVersion) {
-            Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $GalleryVersion -ErrorAction stop
-
-        }
-    }
-    Catch {
-        "Failed to update version for '$env:BHProjectName': $_.`nContinuing with existing version"
-    }
-
-    # Set the value of $script:ModuleVersion in the .psm1. This is consumed by the license functionality of psframework.
-    try {
-        $currentVersion = Get-Metadata -path $env:BHPSModuleManifest
-        $psm1Content = Get-Content "$projectroot\topdeskps\topdeskps.psm1"
-        $oldVersion = $psm1Content -like '$script:ModuleVersion =*'
-        $newVersion = '$script:ModuleVersion = "{0}"' -f $currentversion
-        $newpsm1Content = $psm1content.replace($oldVersion, $newVersion)
-        "Updating psm1 with moduleversion"
-        Set-Content "$projectroot\topdeskps\topdeskps.psm1" -Value $newpsm1Content
-    }
-    catch {
-        throw 'unable to update $script:moduleversion in topdeskps.psm1'
-    }
 
     # Generate Markdown Docs
 
@@ -130,7 +139,7 @@ Task Build -Depends Test {
     }
 }
 
-Task Deploy -Depends build {
+Task Deploy -Depends test {
     $lines
 
     Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
