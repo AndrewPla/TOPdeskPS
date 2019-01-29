@@ -14,14 +14,14 @@ Gets incidents
 
 ### List (Default)
 ```
-Get-TdIncident [-ResultSize <Int32>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved] [-Archived]
+Get-TdIncident [-ResultSize <Object>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved] [-Archived]
  [<CommonParameters>]
 ```
 
 ### Number
 ```
-Get-TdIncident [[-Number] <String[]>] [-ResultSize <Int32>] [-Start <Int32>] [-Completed] [-Closed] [-Resolved]
- [-Archived] [<CommonParameters>]
+Get-TdIncident [[-Number] <String[]>] [-ResultSize <Object>] [-Start <Int32>] [-Completed] [-Closed]
+ [-Resolved] [-Archived] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -80,13 +80,13 @@ The amount of incidents to be returned.
 Due to API limitations we're only able to return 100 incidents per api call.
 
 ```yaml
-Type: Int32
+Type: Object
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 10
+Default value: 10000
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
