@@ -4,9 +4,11 @@
         Gets persons
     .DESCRIPTION
         Gets persons
-    .PARAMETER PageSize
-		The amount of incidents to be returned per request. The default value is 10 and the maximum value is 100.
-	.PARAMETER Start
+
+    .PARAMETER ResultSize
+    The amount of operators to be returned. Requests greater than 100 require multiple api calls. Useful if you want to return all operators
+
+    .PARAMETER Start
 		This is the offset at which you want to start listing incidents. This is useful if you want to grab more than 100 incidents.
 		The default value is 0.
     .PARAMETER Archived
@@ -48,15 +50,14 @@
 
         [switch]$Archived,
 
-        [ValidateRange(1, 100)]
-        [int]$PageSize = 10,
+        [ValidateRange(1, 100000)]
+        [int]
+        $ResultSize = 100,
 
         [int]$Start = 0
     )
     Write-PSFMessage -Level debug -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    $uri = (Get-TdUrl) + '/tas/api/persons'
-    $uri = "$Uri/?start=$Start&page_size=$PageSize"
-
+    $uri = (Get-TdUrl) + '/tas/api/persons/?'
 
     if ($PSBoundParameters.keys -contains 'FirstName') {
         $uri = "$uri&firstname=$FirstName"
@@ -87,9 +88,49 @@
         $uri = "$uri&archive=$Archive"
     }
 
-    $Params = @{
-        'uri' = $uri
+
+    #region Send Multiple requests to until the resultsize is met
+
+    #define pagesize outside the loop so we can set the pagesize
+
+    if ($ResultSize -gt 100) {
+        $pageSize = 100
     }
-    $res = Invoke-TdMethod @Params
-    $res | Select-PSFObject -Typename 'TOPdeskPS.Person' -KeepInputObject
+    else {
+        $pageSize = $ResultSize
+    }
+
+    $uri = $uri.replace('?&', '?')
+    $count = 0
+
+    $status = 'not finished'
+
+    do {
+
+        $persons = @()
+
+        $remaining = $ResultSize - $count
+
+        if ($remaining -le 100) { $status = 'finished'; $pagesize = $remaining }
+
+        $loopingUri = "$uri&start=$Start&page_size=$pageSize"
+        $Params = @{
+            'uri' = $loopingUri
+        }
+
+        $persons += Invoke-TdMethod @Params
+
+
+        foreach ($p in $persons) {
+            if ($p.id) { $p | Select-PSFObject -Typename 'TOPdeskPS.Person' -KeepInputObject }
+
+            # end the loop if the api doesn't return a person id.
+            else {Write-psfmessage 'No personId found, ending loop.' ; $status = 'finished'}
+        }
+
+        $count += $persons.count
+        $start += $PageSize
+
+    }
+    until ($status -like 'finished')
 }
