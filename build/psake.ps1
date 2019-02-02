@@ -149,6 +149,7 @@ Task Compile -depends Test {
     else {
         $publishDir = New-Item -Path $env:BHProjectPath -Name publish -ItemType Directory
     }
+    "PublishDir = $publishDir"
     Copy-Item -Path "$($env:BHProjectPath)\$env:BHProjectName" -Destination $publishDir.FullName -Recurse -Force
 
 
