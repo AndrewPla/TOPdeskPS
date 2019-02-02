@@ -9,13 +9,13 @@ Import-Module Psake, BuildHelpers
 Set-BuildEnvironment -Force
 
 $psakeParams = @{
-    buildfile = '.\psake.ps1'
+    buildfile = "$env:BHProjectPath\build\psake.ps1"
     tasklist = $task
     nologo = $true
     Verbose = $VerbosePreference
 }
 
-if ($apikey) { $psakeParams['parameters'] = @{psgallery = $apikey} 
+if ($apikey) { $psakeParams['parameters'] = @{psgallery = $apikey}
 }
 
 Invoke-psake @psakeParams
