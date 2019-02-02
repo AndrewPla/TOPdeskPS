@@ -13,7 +13,7 @@ Create a new asset
 ## SYNTAX
 
 ```
-New-TdAsset [-TemplateId] <String> [[-Body] <PSObject>] [[-Name] <String>] [-WhatIf] [-Confirm]
+New-TdAsset [[-TemplateId] <String>] [[-Body] <PSObject>] [[-Name] <String>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Type: String
 Parameter Sets: (All)
 Aliases: Id
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
@@ -56,10 +56,10 @@ This model must contain every mandatory field with a value.
 Note: do not add a name or type_id key as they are handled seperately in the parameters name and TemplateId, respectively.
 
 Example:
-{
-  "numberField": "string",
- "textField": "string",
-"dropdownField": "string"
+$body = @{
+    serialnumber = '123'
+    type_id = 'Id Of the template that you want to use'
+    name = 'Server01'
 }
 
 ```yaml

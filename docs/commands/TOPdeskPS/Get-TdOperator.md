@@ -54,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResultSize
-The amount of incidents to be returned.
+The amount of operators to be returned.
 Requests greater than 100 require multiple api calls
 
 ```yaml

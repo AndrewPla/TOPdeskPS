@@ -14,7 +14,7 @@ Gets persons
 
 ```
 Get-TdPerson [[-FirstName] <String>] [[-Email] <String>] [[-LastName] <String>] [[-NetworkLoginName] <String>]
- [[-SspLoginName] <String>] [[-MobileNumber] <String>] [-Archived] [[-PageSize] <Int32>] [[-Start] <Int32>]
+ [[-SspLoginName] <String>] [[-MobileNumber] <String>] [-Archived] [[-ResultSize] <Int32>] [[-Start] <Int32>]
  [<CommonParameters>]
 ```
 
@@ -149,9 +149,10 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PageSize
-The amount of incidents to be returned per request.
-The default value is 10 and the maximum value is 100.
+### -ResultSize
+The amount of operators to be returned.
+Requests greater than 100 require multiple api calls.
+Useful if you want to return all operators
 
 ```yaml
 Type: Int32
@@ -160,7 +161,7 @@ Aliases:
 
 Required: False
 Position: 7
-Default value: 10
+Default value: 100
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
