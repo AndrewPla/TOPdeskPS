@@ -16,10 +16,6 @@ Properties {
 
     # setup the apikey
     $key = $env:psgallery
-
-
-
-
 }
 
 Task Default -Depends Test
