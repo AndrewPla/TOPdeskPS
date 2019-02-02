@@ -12,6 +12,11 @@ Returns TOPdesk assets
 
 ## SYNTAX
 
+### List (Default)
+```
+Get-TdAsset [-Archived] [-Field <String[]>] [<CommonParameters>]
+```
+
 ### Standard Query
 ```
 Get-TdAsset [-NameFragment <String>] [-Archived] [-ShowAssignments] [-TemplateName <String>]

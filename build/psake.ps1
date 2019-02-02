@@ -14,14 +14,8 @@ Properties {
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $lines = '----------------------------------------------------------------------'
 
-    $Verbose = @{}
-    if ($ENV:BHCommitMessage -match "!verbose") {
-        $Verbose = @{Verbose = $True}
-    }
-
     # setup the apikey
     $key = $env:psgallery
-
 }
 
 Task Default -Depends Test
@@ -36,7 +30,9 @@ Task Init {
 
 Task UpdateModule -Depends Init {
     # Grab all of the functions inside of our functions folder. This avoids any private functions that we don't want to export.
-    $functionsToExport = Get-ChildItem "$env:BHProjectPath\topdeskps\functions" -Recurse -Filter '*.ps1' |
+
+    "Setting Functions to Export"
+    $functionsToExport = Get-ChildItem "$env:BHProjectPath\$env:BHProjectName\functions" -Recurse -Filter '*.ps1' |
         Select -ExpandProperty Basename |
         Sort-Object
 
@@ -117,14 +113,17 @@ Task BuildMarkdown -Depends Test {
 
     $lines
     "Generating Docs"
-    $docspath = "$ProjectRoot\docs\commands"
+    $docspath = "$env:BHProjectPath\docs\commands"
     $excludedCommands = @("")
-    Import-Module $env:bhpsmodulemanifest -force -Global
+    Import-Module "$env:BHPSModuleManifest" -force -Global
     $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
 
-    Write-PSFMessage -Level Verbose -Message "  Creating markdown help files"
+    "Found $($commands.count) commands found
+     -Commands `n $($commands|out-string)"
+    $lines
+    "Creating markdown help files."
     Remove-Item "$($docsPath)\$($env:BHProjectName)" -Recurse -ErrorAction Ignore
     $null = New-Item "$($docsPath)\$($env:BHProjectName)" -ItemType Directory
     $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\$($env:BHProjectName)"
@@ -138,10 +137,72 @@ Task BuildMarkdown -Depends Test {
     foreach ($command in $commands) {
         Add-Content -Path "$($docsPath)\$($env:BHProjectName).md" -Value " - [$command]($($env:BHProjectName)/$command.html)"
     }
+
+
+
 }
 
-Task Deploy -Depends test {
-    $lines
+Task Compile -depends BuildMarkdown {
+    'Creating and populating publishing directory'
 
-    Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
+    $publishDir = New-Item -Path $env:BHProjectPath -Name publish -ItemType Directory
+    Copy-Item -Path "$($env:BHProjectPath)\$env:BHProjectName" -Destination $publishDir.FullName -Recurse -Force
+
+
+    #region Gather text data to compile
+    $text = @()
+    $processed = @()
+
+
+    # Gather Stuff to run before
+    foreach ($line in (Get-Content "$env:BHProjectPath\build\filesBefore.txt" | Where-Object { $_ -notlike "#*" })) {
+        if ([string]::IsNullOrWhiteSpace($line)) { continue }
+
+        $basePath = Join-Path "$($publishDir.FullName)\$env:BHProjectName" $line
+        foreach ($entry in (Resolve-Path -Path $basePath)) {
+            $item = Get-Item $entry
+            if ($item.PSIsContainer) { continue }
+            if ($item.FullName -in $processed) { continue }
+            $text += [System.IO.File]::ReadAllText($item.FullName)
+            $processed += $item.FullName
+        }
+    }
+
+
+
+    # Gather commands
+    Get-ChildItem -Path "$($publishDir.FullName)\$env:BHProjectName\internal\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
+        $text += [System.IO.File]::ReadAllText($_.FullName)
+    }
+    Get-ChildItem -Path "$($publishDir.FullName)\$env:BHProjectName\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
+        $text += [System.IO.File]::ReadAllText($_.FullName)
+    }
+
+    # Gather stuff to run afterwards
+    foreach ($line in (Get-Content "$env:BHProjectPath\build\filesAfter.txt" | Where-Object { $_ -notlike "#*" })) {
+        if ([string]::IsNullOrWhiteSpace($line)) { continue }
+
+        $basePath = Join-Path "$($publishDir.FullName)\$env:BHProjectName" $line
+        foreach ($entry in (Resolve-Path -Path $basePath)) {
+            $item = Get-Item $entry
+            if ($item.PSIsContainer) { continue }
+            if ($item.FullName -in $processed) { continue }
+            $text += [System.IO.File]::ReadAllText($item.FullName)
+            $processed += $item.FullName
+        }
+    }
+    #endregion Gather text data to compile
+
+    #region Update the psm1 file
+    $fileData = [System.IO.File]::ReadAllText("$($publishDir.FullName)\$env:BHProjectName\$env:BHProjectName.psm1")
+    $fileData = $fileData.Replace('"<was not compiled>"', '"<was compiled>"')
+    $fileData = $fileData.Replace('"<compile code into here>"', ($text -join "`n`n"))
+    [System.IO.File]::WriteAllText("$($publishDir.FullName)\$env:BHProjectName\$env:BHProjectName.psm1", $fileData, [System.Text.Encoding]::UTF8)
+    #endregion Update the psm1 file
+}
+
+Task Deploy -Depends compile {
+    $lines
+    'publishing the module to the gallery.'
+    Publish-Module -Path "$env:BHProjectPath\publish" -NuGetApiKey $Key
 }
