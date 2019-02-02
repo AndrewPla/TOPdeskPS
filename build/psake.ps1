@@ -115,12 +115,15 @@ Task BuildMarkdown -Depends Test {
     "Generating Docs"
     $docspath = "$env:BHProjectPath\docs\commands"
     $excludedCommands = @("")
-    Import-Module $env:bhpsmodulemanifest -force -Global
+    Import-Module "$env:BHPSModuleManifest" -force -Global
     $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
 
-    Write-PSFMessage -Level Verbose -Message "  Creating markdown help files"
+    "Found $($commands.count) commands found
+     -Commands `n $($commands|out-string)"
+    $lines
+    "Creating markdown help files."
     Remove-Item "$($docsPath)\$($env:BHProjectName)" -Recurse -ErrorAction Ignore
     $null = New-Item "$($docsPath)\$($env:BHProjectName)" -ItemType Directory
     $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\$($env:BHProjectName)"
