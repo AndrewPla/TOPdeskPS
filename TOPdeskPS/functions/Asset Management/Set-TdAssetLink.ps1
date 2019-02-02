@@ -37,7 +37,6 @@
         [string]
         $TargetAssetId,
 
-        [Parameter(Mandatory)]
         [ValidateSet('parent', 'child')]
         [string]
         $Type = 'child',
