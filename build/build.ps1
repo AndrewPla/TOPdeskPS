@@ -2,8 +2,13 @@
 
 # Grab nuget bits, install modules, set build variables, start build.
 #Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
+$modules =  'Psake', 'PSDeploy', 'Pester', 'BuildHelpers', 'psframework', 'psscriptanalyzer', 'platyps'
 
-Install-Module Psake, PSDeploy, Pester, BuildHelpers, psframework, psscriptanalyzer, platyps -force
+foreach ($module in $modules){
+  "Installing Module $module"
+  "###############################################################"
+    Install-Module $module -force
+}
 Import-Module Psake, BuildHelpers
 
 Set-BuildEnvironment -Force
