@@ -42,12 +42,12 @@
         {
             "label": "Test",
             "type": "shell",
-            "command": "Invoke-Psake ${cwd}/psake.ps1 -tasklist 'test' -Verbose"
+            "command": "Invoke-Psake ${cwd}/build/psake.ps1 -tasklist 'test' -Verbose"
         },
         {
             "label": "Build",
             "type": "shell",
-            "command": "Invoke-Psake ${cwd}/psake.ps1 -Tasklist buildmarkdown -Verbose"
+            "command": "Invoke-Psake ${cwd}/build/psake.ps1 -Tasklist buildmarkdown -Verbose"
         },
         {
             "label": "Plaster New Function",
