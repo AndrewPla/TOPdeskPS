@@ -142,7 +142,7 @@ Task BuildMarkdown -Depends Test {
 
 }
 
-Task Compile -depends BuildMarkdown {
+Task Compile -depends Test {
     'Creating and populating publishing directory'
 
     $publishDir = New-Item -Path $env:BHProjectPath -Name publish -ItemType Directory
