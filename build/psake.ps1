@@ -142,10 +142,13 @@ Task BuildMarkdown -Depends Test {
 
 }
 
-Task Compile -depends Test  {
+Task Compile -depends Test {
     'Creating and populating publishing directory'
 
-    $publishDir = New-Item -Path $env:BHProjectPath -Name publish -ItemType Directory
+    if (Test-Path "$env:BHPSprojectpath\publish") { $publishDir = Get-Item "$env:BHPSprojectpath\publish" }
+    else {
+        $publishDir = New-Item -Path $env:BHProjectPath -Name publish -ItemType Directory
+    }
     Copy-Item -Path "$($env:BHProjectPath)\$env:BHProjectName" -Destination $publishDir.FullName -Recurse -Force
 
 
