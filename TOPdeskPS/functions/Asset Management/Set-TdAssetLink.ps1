@@ -29,19 +29,20 @@
     (
         [Parameter(Mandatory = $true)]
         [Alias('id', 'SourceId')]
-        [system.string]
+        [string]
         $AssetId,
 
         [Parameter(Mandatory = $true)]
         [Alias('targetId')]
-        [system.string]
+        [string]
         $TargetAssetId,
 
+        [Parameter(Mandatory)]
         [ValidateSet('parent', 'child')]
-        [system.string]
+        [string]
         $Type = 'child',
 
-        [system.string]
+        [string]
         $CapabilityId
     )
 
@@ -69,14 +70,13 @@
         Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
 
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $Body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
-        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $AssetId -Action 'Updating asset link.')) {
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $AssetId -Action "Sending Body $($body | convertto-json)")) {
             return
         }
         Invoke-TdMethod @params
     }
-    end {}
 }

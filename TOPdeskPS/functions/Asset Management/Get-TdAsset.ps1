@@ -93,7 +93,7 @@
                 foreach ($f in $field) {
                     $uri = $uri + "&field=$F"
                 }
-                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty results
+                Invoke-TdMethod -Uri $uri  | Select-Object -ExpandProperty results
             }
         }
     }
