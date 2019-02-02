@@ -30,7 +30,7 @@
         [Parameter(Mandatory = $true,
             ValueFromPipelineByPropertyName = $true)]
         [Alias('Id')]
-        [system.string]
+        [string]
         $AssetId,
 
         [Parameter(Mandatory)]
@@ -54,11 +54,17 @@
 
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/assets/$AssetId/assignments"
 
-        Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
 
         $body = [pscustomobject]@{}
 
         switch ($PSBoundParameters.Keys) {
+            AssetId {
+
+                # need to create an array with 1 string only. TOPdesk will change this in the future.
+                $asset = @($assetId)
+                $body | Add-Member -MemberType NoteProperty -Name 'assetIds' -Value $asset
+            }
+
             LinkType {
                 $body | Add-Member -MemberType NoteProperty -Name linkType -Value $LinkType
             }
@@ -70,11 +76,11 @@
             }
         }
         $params = @{
-            'Uri' = $uri
-            'Body' = $body | ConvertTo-Json
+            'Uri'    = $uri
+            'Body'   = $body | ConvertTo-Json
             'Method' = 'Put'
         }
-        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'adding asset assignment.')) {
+        if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body $($body | convertto-json) ")) {
             return
         }
         Invoke-TdMethod @params
