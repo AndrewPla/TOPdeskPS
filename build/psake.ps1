@@ -181,7 +181,7 @@ Task Compile -depends Test {
     Get-ChildItem -Path $InternalFunctions -Recurse -File -Filter "*.ps1" | ForEach-Object {
         $text += [System.IO.File]::ReadAllText($_.FullName)
     }
-    Get-ChildItem -Path "$($publishDir.FullName)\$TOPdeskPS\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
+    Get-ChildItem -Path "$($publishDir.FullName)\TOPdeskPS\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
         $text += [System.IO.File]::ReadAllText($_.FullName)
     }
 
