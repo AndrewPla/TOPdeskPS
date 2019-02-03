@@ -211,5 +211,5 @@ Task Compile -depends Test {
 Task Deploy -Depends compile {
     $lines
     'publishing the module to the gallery.'
-    Publish-Module -Path "$ProjectRoot\publish" -NuGetApiKey $Key
+    Publish-Module -Path "$ProjectRoot\publish\TOPdeskPS" -NuGetApiKey $Key
 }
