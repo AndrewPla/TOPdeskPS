@@ -175,7 +175,7 @@ Task Compile -depends Test {
 
 
     # Gather commands
-    Get-ChildItem -Path "$($publishDir.FullName)\$env:BHProjectName\internal\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
+    Get-ChildItem -Path (Resolve-Path "$($publishDir.FullName)\$env:BHProjectName\internal\functions").path -Recurse -File -Filter "*.ps1" | ForEach-Object {
         $text += [System.IO.File]::ReadAllText($_.FullName)
     }
     Get-ChildItem -Path "$($publishDir.FullName)\$env:BHProjectName\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
