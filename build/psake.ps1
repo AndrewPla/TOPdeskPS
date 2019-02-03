@@ -32,7 +32,7 @@ Task UpdateModule -Depends Init {
     # Grab all of the functions inside of our functions folder. This avoids any private functions that we don't want to export.
 
     "Setting Functions to Export"
-    $functionsToExport = Get-ChildItem "$env:BHProjectPath\$env:BHProjectName\functions" -Recurse -Filter '*.ps1' |
+    $functionsToExport = Get-ChildItem "$ProjectRoot\TOPdeskPS\functions" -Recurse -Filter '*.ps1' |
         Select -ExpandProperty Basename |
         Sort-Object
 
@@ -42,7 +42,7 @@ Task UpdateModule -Depends Init {
 
     # Bump the module version if we didn't manually bump it
     Try {
-        $GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
+        $GalleryVersion = Get-NextNugetPackageVersion -Name TOPdeskPS -ErrorAction Stop
         $GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
         if ($GalleryVersion -ge $GithubVersion) {
             Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $GalleryVersion -ErrorAction stop
@@ -50,7 +50,7 @@ Task UpdateModule -Depends Init {
         }
     }
     Catch {
-        "Failed to update version for '$env:BHProjectName': $_.`nContinuing with existing version"
+        "Failed to update version for 'TOPdeskPS': $_.`nContinuing with existing version"
     }
 
     # Set the value of $script:ModuleVersion in the .psm1. This is consumed by the license functionality of psframework.
@@ -113,10 +113,10 @@ Task BuildMarkdown -Depends Test {
 
     $lines
     "Generating Docs"
-    $docspath = "$env:BHProjectPath\docs\commands"
+    $docspath = "$ProjectRoot\docs\commands"
     $excludedCommands = @("")
     Import-Module "$env:BHPSModuleManifest" -force -Global
-    $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
+    $commands = Get-Command -Module TOPdeskPS -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
 
@@ -124,12 +124,12 @@ Task BuildMarkdown -Depends Test {
      -Commands `n $($commands|out-string)"
     $lines
     "Creating markdown help files."
-    Remove-Item "$($docsPath)\$($env:BHProjectName)" -Recurse -ErrorAction Ignore
-    $null = New-Item "$($docsPath)\$($env:BHProjectName)" -ItemType Directory
-    $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\$($env:BHProjectName)"
+    Remove-Item "$($docsPath)\TOPdeskPS" -Recurse -ErrorAction Ignore
+    $null = New-Item "$($docsPath)\TOPdeskPS" -ItemType Directory
+    $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\TOPdeskPS"
 
     Write-PSFMessage -Level Verbose -Message "  Creating index file"
-    Set-Content -Path "$($docsPath)\$($env:BHProjectName).md" -Value @"
+    Set-Content -Path "$($docsPath)\TOPdeskPS.md" -Value @"
 # $env:BHProjectName Command Reference
 
 "@ -Encoding Ascii
@@ -145,12 +145,11 @@ Task BuildMarkdown -Depends Test {
 Task Compile -depends Test {
     'Creating and populating publishing directory'
 
-    if (Test-Path "$env:BHPSprojectpath\publish") { $publishDir = Get-Item "$env:BHPSprojectpath\publish" }
-    else {
-        $publishDir = New-Item -Path $env:BHProjectPath -Name publish -ItemType Directory
-    }
+
+    $publishDir = New-Item -Path $ProjectRoot -Name publish -ItemType Directory -Force
+
     "PublishDir = $publishDir"
-    Copy-Item -Path "$($env:BHProjectPath)\$env:BHProjectName" -Destination $publishDir.FullName -Recurse -Force
+    Copy-Item -Path "$($ProjectRoot)\TOPdeskPS" -Destination $publishDir.FullName -Recurse -Force
 
 
     #region Gather text data to compile
@@ -159,10 +158,10 @@ Task Compile -depends Test {
 
 
     # Gather Stuff to run before
-    foreach ($line in (Get-Content "$env:BHProjectPath\build\filesBefore.txt" | Where-Object { $_ -notlike "#*" })) {
+    foreach ($line in (Get-Content "$ProjectRoot\build\filesBefore.txt" | Where-Object { $_ -notlike "#*" })) {
         if ([string]::IsNullOrWhiteSpace($line)) { continue }
 
-        $basePath = Join-Path "$($publishDir.FullName)\$env:BHProjectName" $line
+        $basePath = Join-Path "$($publishDir.FullName)\TOPdeskPS" $line
         foreach ($entry in (Resolve-Path -Path $basePath)) {
             $item = Get-Item $entry
             if ($item.PSIsContainer) { continue }
@@ -175,22 +174,22 @@ Task Compile -depends Test {
 
 
     # Gather commands
-    "Project NAme: $env:BHProjectName"
+    "Project NAme: TOPdeskPS"
     ""
     $InternalFunctions = Get-Item "$($publishDir.FullName)\TOPdeskPS\internal\functions"
 
     Get-ChildItem -Path $InternalFunctions -Recurse -File -Filter "*.ps1" | ForEach-Object {
         $text += [System.IO.File]::ReadAllText($_.FullName)
     }
-    Get-ChildItem -Path "$($publishDir.FullName)\$env:BHProjectName\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
+    Get-ChildItem -Path "$($publishDir.FullName)\$TOPdeskPS\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
         $text += [System.IO.File]::ReadAllText($_.FullName)
     }
 
     # Gather stuff to run afterwards
-    foreach ($line in (Get-Content "$env:BHProjectPath\build\filesAfter.txt" | Where-Object { $_ -notlike "#*" })) {
+    foreach ($line in (Get-Content "$ProjectRoot\build\filesAfter.txt" | Where-Object { $_ -notlike "#*" })) {
         if ([string]::IsNullOrWhiteSpace($line)) { continue }
 
-        $basePath = Join-Path "$($publishDir.FullName)\$env:BHProjectName" $line
+        $basePath = Join-Path "$($publishDir.FullName)\TOPdeskPS" $line
         foreach ($entry in (Resolve-Path -Path $basePath)) {
             $item = Get-Item $entry
             if ($item.PSIsContainer) { continue }
@@ -202,15 +201,15 @@ Task Compile -depends Test {
     #endregion Gather text data to compile
 
     #region Update the psm1 file
-    $fileData = [System.IO.File]::ReadAllText("$($publishDir.FullName)\$env:BHProjectName\$env:BHProjectName.psm1")
+    $fileData = [System.IO.File]::ReadAllText("$($publishDir.FullName)\TOPdeskPS\TOPdeskPS.psm1")
     $fileData = $fileData.Replace('"<was not compiled>"', '"<was compiled>"')
     $fileData = $fileData.Replace('"<compile code into here>"', ($text -join "`n`n"))
-    [System.IO.File]::WriteAllText("$($publishDir.FullName)\$env:BHProjectName\$env:BHProjectName.psm1", $fileData, [System.Text.Encoding]::UTF8)
+    [System.IO.File]::WriteAllText("$($publishDir.FullName)\TOPdeskPS\$env:BHProjectName.psm1", $fileData, [System.Text.Encoding]::UTF8)
     #endregion Update the psm1 file
 }
 
 Task Deploy -Depends compile {
     $lines
     'publishing the module to the gallery.'
-    Publish-Module -Path "$env:BHProjectPath\publish" -NuGetApiKey $Key
+    Publish-Module -Path "$ProjectRoot\publish" -NuGetApiKey $Key
 }
