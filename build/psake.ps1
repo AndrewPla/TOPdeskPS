@@ -175,8 +175,9 @@ Task Compile -depends Test {
 
 
     # Gather commands
-
-    $InternalFunctions = Get-Item "$($publishDir.FullName)\$env:BHProjectName\internal\functions"
+    "Project NAme: $env:BHProjectName"
+    ""
+    $InternalFunctions = Get-Item "$($publishDir.FullName)\TOPdeskPS\internal\functions"
 
     Get-ChildItem -Path $InternalFunctions -Recurse -File -Filter "*.ps1" | ForEach-Object {
         $text += [System.IO.File]::ReadAllText($_.FullName)
