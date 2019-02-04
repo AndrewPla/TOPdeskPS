@@ -89,17 +89,14 @@
                 $uri = "$uri/?"
 
                 if ($PSBoundParameters.keys -contains 'Completed') {
-                    Write-PSFMessage -Level InternalComment -Message "Completed = $Completed"
                     $uri = "$uri&completed=$Completed"
                 }
 
                 if ($PSBoundParameters.keys -contains 'Closed') {
-                    Write-PSFMessage -Level InternalComment -Message "Closed = $Closed"
                     $uri = "$uri&closed=$Closed"
                 }
 
                 if ($PSBoundParameters.keys -contains 'Resolved') {
-                    Write-PSFMessage -Level InternalComment -Message "Resolved = $Resolved"
                     $uri = "$uri&resolved=$Resolved"
                 }
 
