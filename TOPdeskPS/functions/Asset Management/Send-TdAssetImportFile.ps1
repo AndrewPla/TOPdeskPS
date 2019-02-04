@@ -1,4 +1,4 @@
-function Send-TdAssetImportFile {
+﻿function Send-TdAssetImportFile {
     <#
     .SYNOPSIS
         Sends a file to containing assets to be uploaded to asset management.
@@ -10,9 +10,16 @@ function Send-TdAssetImportFile {
         Configure the import using the csv containing your asset information. Set the Scheduling of the import to be Automated
 
         When you upload a csv with the same name as specified in your import, TOPdesk will automatically trigger an import of the csv when you upload it using this command.
+
+    .PARAMETER File
+        The csv containing your assets
+    .PARAMETER Confirm
+        If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+    .PARAMETER WhatIf
+        If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
     .EXAMPLE
         PS C:\> Send-TdAssetImportFile -File 'C:\AssetsToImport.csv'
-        Sends C:\AssetstoImport.csv to TOPdesk asset import. This will cause an import to occur.
+        Sends C:\AssetstoImport.csv to TOPdesk asset import. This will cause an import to occur
 
     #>
     [cmdletbinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Send-TdAssetImportFile',
