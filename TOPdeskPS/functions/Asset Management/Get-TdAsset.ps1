@@ -24,10 +24,11 @@
 		Get all topdesk assets
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAsset')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAsset', DefaultParameterSetName = 'List')]
 
     param
     (
+
         [Parameter(ParameterSetName = 'Standard Query')]
         [system.string]$NameFragment,
 
@@ -84,6 +85,15 @@
                     $uri = $uri + "&field=$F"
                 }
                 Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty results | Select-PSFObject -Typename 'TOPdeskPS.Asset' -KeepInputObject
+            }
+
+            List {
+                $Uri = (Get-TdUrl) + '/tas/api/assetmgmt/import/assets/?'
+
+                foreach ($f in $field) {
+                    $uri = $uri + "&field=$F"
+                }
+                Invoke-TdMethod -Uri $uri  | Select-Object -ExpandProperty results
             }
         }
     }

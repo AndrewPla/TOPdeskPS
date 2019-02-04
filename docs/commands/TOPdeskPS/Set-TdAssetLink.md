@@ -13,7 +13,7 @@ Links asset to target asset
 ## SYNTAX
 
 ```
-Set-TdAssetLink [-AssetId] <String> [-TargetAssetId] <String> [[-Type] <String>] [[-CapabilityId] <String>]
+Set-TdAssetLink [-AssetId] <String> [-TargetAssetId] <String> [-Type] <String> [[-CapabilityId] <String>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -79,7 +79,7 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 3
 Default value: Child
 Accept pipeline input: False

@@ -45,7 +45,7 @@
             "command": "Invoke-Psake ${cwd}/psake.ps1 -tasklist 'test' -Verbose"
         },
         {
-            "label": "Build",
+            "label": "BuildMarkdown",
             "type": "shell",
             "command": "Invoke-Psake ${cwd}/psake.ps1 -Tasklist buildmarkdown -Verbose"
         },

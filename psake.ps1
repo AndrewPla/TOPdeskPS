@@ -1,3 +1,4 @@
+
 # This was stolen from https://github.com/RamblingCookieMonster/PSSlack/blob/master/psake.ps1
 # RamblingCookieMonster is awesome
 Properties {
@@ -13,14 +14,8 @@ Properties {
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $lines = '----------------------------------------------------------------------'
 
-    $Verbose = @{}
-    if ($ENV:BHCommitMessage -match "!verbose") {
-        $Verbose = @{Verbose = $True}
-    }
-
     # setup the apikey
     $key = $env:psgallery
-
 }
 
 Task Default -Depends Test
@@ -35,7 +30,9 @@ Task Init {
 
 Task UpdateModule -Depends Init {
     # Grab all of the functions inside of our functions folder. This avoids any private functions that we don't want to export.
-    $functionsToExport = Get-ChildItem "$env:BHProjectPath\topdeskps\functions" -Recurse -Filter '*.ps1' |
+
+    "Setting Functions to Export"
+    $functionsToExport = Get-ChildItem "$ProjectRoot\TOPdeskPS\functions" -Recurse -Filter '*.ps1' |
         Select -ExpandProperty Basename |
         Sort-Object
 
@@ -45,7 +42,7 @@ Task UpdateModule -Depends Init {
 
     # Bump the module version if we didn't manually bump it
     Try {
-        $GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
+        $GalleryVersion = Get-NextNugetPackageVersion -Name TOPdeskPS -ErrorAction Stop
         $GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
         if ($GalleryVersion -ge $GithubVersion) {
             Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $GalleryVersion -ErrorAction stop
@@ -53,7 +50,7 @@ Task UpdateModule -Depends Init {
         }
     }
     Catch {
-        "Failed to update version for '$env:BHProjectName': $_.`nContinuing with existing version"
+        "Failed to update version for 'TOPdeskPS': $_.`nContinuing with existing version"
     }
 
     # Set the value of $script:ModuleVersion in the .psm1. This is consumed by the license functionality of psframework.
@@ -118,18 +115,21 @@ Task BuildMarkdown -Depends Test {
     "Generating Docs"
     $docspath = "$ProjectRoot\docs\commands"
     $excludedCommands = @("")
-    Import-Module $env:bhpsmodulemanifest -force -Global
-    $commands = Get-Command -Module $env:BHProjectName -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
+    Import-Module "$env:BHPSModuleManifest" -force -Global
+    $commands = Get-Command -Module TOPdeskPS -CommandType Function, Cmdlet | Select-Object -ExpandProperty Name | Where-Object {
         $_ -notin $excludedCommands
     } | Sort-Object
 
-    Write-PSFMessage -Level Verbose -Message "  Creating markdown help files"
-    Remove-Item "$($docsPath)\$($env:BHProjectName)" -Recurse -ErrorAction Ignore
-    $null = New-Item "$($docsPath)\$($env:BHProjectName)" -ItemType Directory
-    $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\$($env:BHProjectName)"
+    "Found $($commands.count) commands found
+     -Commands `n $($commands|out-string)"
+    $lines
+    "Creating markdown help files."
+    Remove-Item "$($docsPath)\TOPdeskPS" -Recurse -ErrorAction Ignore
+    $null = New-Item "$($docsPath)\TOPdeskPS" -ItemType Directory
+    $null = New-MarkdownHelp -Command $commands -OutputFolder "$($docsPath)\TOPdeskPS"
 
     Write-PSFMessage -Level Verbose -Message "  Creating index file"
-    Set-Content -Path "$($docsPath)\$($env:BHProjectName).md" -Value @"
+    Set-Content -Path "$($docsPath)\TOPdeskPS.md" -Value @"
 # $env:BHProjectName Command Reference
 
 "@ -Encoding Ascii
@@ -137,10 +137,79 @@ Task BuildMarkdown -Depends Test {
     foreach ($command in $commands) {
         Add-Content -Path "$($docsPath)\$($env:BHProjectName).md" -Value " - [$command]($($env:BHProjectName)/$command.html)"
     }
+
+
+
 }
 
-Task Deploy -Depends test {
-    $lines
+Task Compile -depends Test {
+    'Creating and populating publishing directory'
 
-    Publish-Module -Path "$ProjectRoot\$($env:BHProjectName)" -NuGetApiKey $Key
+
+    $publishDir = New-Item -Path $ProjectRoot -Name publish -ItemType Directory -Force
+
+    "PublishDir = $publishDir"
+    Copy-Item -Path "$($ProjectRoot)\TOPdeskPS" -Destination $publishDir.FullName -Recurse -Force
+
+
+    #region Gather text data to compile
+    $text = @()
+    $processed = @()
+
+
+    # Gather Stuff to run before
+    foreach ($line in (Get-Content "$ProjectRoot\build\filesBefore.txt" | Where-Object { $_ -notlike "#*" })) {
+        if ([string]::IsNullOrWhiteSpace($line)) { continue }
+
+        $basePath = Join-Path "$($publishDir.FullName)\TOPdeskPS" $line
+        foreach ($entry in (Resolve-Path -Path $basePath)) {
+            $item = Get-Item $entry
+            if ($item.PSIsContainer) { continue }
+            if ($item.FullName -in $processed) { continue }
+            $text += [System.IO.File]::ReadAllText($item.FullName)
+            $processed += $item.FullName
+        }
+    }
+
+
+
+    # Gather commands
+    "Project NAme: TOPdeskPS"
+    ""
+    $InternalFunctions = Get-Item "$($publishDir.FullName)\TOPdeskPS\internal\functions"
+
+    Get-ChildItem -Path $InternalFunctions -Recurse -File -Filter "*.ps1" | ForEach-Object {
+        $text += [System.IO.File]::ReadAllText($_.FullName)
+    }
+    Get-ChildItem -Path "$($publishDir.FullName)\TOPdeskPS\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
+        $text += [System.IO.File]::ReadAllText($_.FullName)
+    }
+
+    # Gather stuff to run afterwards
+    foreach ($line in (Get-Content "$ProjectRoot\build\filesAfter.txt" | Where-Object { $_ -notlike "#*" })) {
+        if ([string]::IsNullOrWhiteSpace($line)) { continue }
+
+        $basePath = Join-Path "$($publishDir.FullName)\TOPdeskPS" $line
+        foreach ($entry in (Resolve-Path -Path $basePath)) {
+            $item = Get-Item $entry
+            if ($item.PSIsContainer) { continue }
+            if ($item.FullName -in $processed) { continue }
+            $text += [System.IO.File]::ReadAllText($item.FullName)
+            $processed += $item.FullName
+        }
+    }
+    #endregion Gather text data to compile
+
+    #region Update the psm1 file
+    $fileData = [System.IO.File]::ReadAllText("$($publishDir.FullName)\TOPdeskPS\TOPdeskPS.psm1")
+    $fileData = $fileData.Replace('"<was not compiled>"', '"<was compiled>"')
+    $fileData = $fileData.Replace('"<compile code into here>"', ($text -join "`n`n"))
+    [System.IO.File]::WriteAllText("$($publishDir.FullName)\TOPdeskPS\$env:BHProjectName.psm1", $fileData, [System.Text.Encoding]::UTF8)
+    #endregion Update the psm1 file
+}
+
+Task Deploy -Depends compile {
+    $lines
+    'publishing the module to the gallery.'
+    Publish-Module -Path "$ProjectRoot\publish\TOPdeskPS" -NuGetApiKey $Key
 }

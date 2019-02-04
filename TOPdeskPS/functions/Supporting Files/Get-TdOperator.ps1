@@ -6,8 +6,8 @@
     returns list of operators
 .PARAMETER Name
     human readable name to filter for operator by. Uses the dynamcName field
-	.PARAMETER ResultSize
-		The amount of incidents to be returned. Requests greater than 100 require multiple api calls
+.PARAMETER ResultSize
+	The amount of operators to be returned. Requests greater than 100 require multiple api calls
 .PARAMETER FirstName
     Retrieve only operators with first name starting with this.
     .PARAMETER LastName

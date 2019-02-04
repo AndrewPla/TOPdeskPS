@@ -13,11 +13,12 @@
         This model must contain every mandatory field with a value. Note: do not add a name or type_id key as they are handled seperately in the parameters name and TemplateId, respectively.
 
         Example:
-        {
-          "numberField": "string",
-         "textField": "string",
-        "dropdownField": "string"
+        $body = @{
+            serialnumber = '123'
+            type_id = 'Id Of the template that you want to use'
+            name = 'Server01'
         }
+
         	.PARAMETER Confirm
 		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -32,8 +33,7 @@
     [CmdletBinding( SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdAsset')]
     param (
-        #TODO add support for pipeline
-        [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName)]
         [Alias('Id')]
         [system.string]$TemplateId,
 
@@ -48,9 +48,13 @@
     }
 
     process {
+
+        # create a body if one wasn't provided.
         if (-not $body) {
             $body = [PSCustomObject]@{}
         }
+
+        # Go through parameters and add them to our body
         switch ($PSBoundParameters.Keys) {
             TemplateId {
                 $body | Add-Member -MemberType NoteProperty -Name 'type_id' -Value $TemplateId
@@ -59,13 +63,14 @@
                 $body | Add-Member -MemberType NoteProperty -Name 'name' -Value $Name
             }
         }
-        Write-PSFMessage "$($body | ConvertTo-Json | Out-String)" -Level debug
+
+
         $params = @{
             'Uri'    = $uri
             'Body'   = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
-        if ($PSCmdlet.ShouldProcess("Create" , "Creating New Asset with TemplateId $TemplateId")) {
+        if ($PSCmdlet.ShouldProcess("Send body --- $($body | convertto-json)" , "to $uri")) {
             Invoke-TdMethod @params
         }
     }
