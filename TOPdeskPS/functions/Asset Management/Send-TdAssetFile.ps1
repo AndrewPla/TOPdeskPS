@@ -1,9 +1,9 @@
 ﻿function Send-TdAssetFile {
     <#
     .SYNOPSIS
-        Upload a file to an incident identified
+        Upload a file to an asset
     .DESCRIPTION
-        Upload a file to an incident identified
+        Upload a file to an asset
     .PARAMETER Number
         The number of the incident that you want to upload a file to.
     .PARAMETER File
@@ -32,6 +32,9 @@
                 if (-Not ($_ | Test-Path -PathType Leaf)) {
                     throw "The Path argument must be a file. Folder paths are not allowed."
                 }
+                if (-Not (Get-Item $_)) {
+                    throw "Cannot find path $($_)"
+                }
                 return $true
             })]
         [System.IO.FileInfo]
@@ -46,6 +49,7 @@
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/uploads/?assetId=$AssetId"
         Write-PSFMessage "Uri - $uri" -Level debug
 
+        $File = Get-Item $file
 
         $params = @{
             Uri = $Uri
