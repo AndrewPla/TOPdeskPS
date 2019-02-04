@@ -56,7 +56,7 @@
 
         [ValidateRange(1, 100000)]
         [int]
-        $ResultSize = 10000,
+        $ResultSize = 10,
 
         [int]
         $Start = 0,
