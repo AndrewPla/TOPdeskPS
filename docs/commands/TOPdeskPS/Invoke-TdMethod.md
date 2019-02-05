@@ -65,7 +65,8 @@ Accept wildcard characters: False
 
 ### -Body
 The body of the request to be sent to TOPdesk.
-Accepts a PSCustomObject and converts it to JSON.
+Accepts a PSCustomObject.
+If you also specify a file we will convert the body into a multipart/form request.
 
 ```yaml
 Type: PSObject
@@ -111,11 +112,14 @@ Accept wildcard characters: False
 
 ### -File
 path to the file that you want to upload.
+If you specify a body then we will construct a multipart/form request.
+In Windows PowerShell this functionality isn't built in.
+If no body is specified then we will just use the -infile parameter of Invoke-RestMethod
 
 ```yaml
 Type: FileInfo
 Parameter Sets: (All)
-Aliases:
+Aliases: InFile
 
 Required: False
 Position: Named

@@ -49,7 +49,7 @@
 
 
         $params = @{
-            Infile = $file
+            file = $file
             uri = $uri
             Method = 'PUT'
             ContentType = 'application/octet-stream'

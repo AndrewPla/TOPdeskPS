@@ -20,7 +20,7 @@ TOPdeskPS is published to the PowerShell gallery and can be installed by running
 
 ## Connecting to TOPdesk
 
-### Using TOPdesk login Credentials (not MFA)
+### Using TOPdesk login Credentials (not SSO)
 ```powershell
   Connect-TdService -url 'https://Company.TOPdesk.net' -Register
 ```
