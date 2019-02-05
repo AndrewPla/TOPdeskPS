@@ -8,7 +8,7 @@ schema: 2.0.0
 # Send-TdAssetFile
 
 ## SYNOPSIS
-Upload a file to an incident identified
+Upload a file to an asset
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Send-TdAssetFile [-AssetId] <String> [-File] <FileInfo> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Upload a file to an incident identified
+Upload a file to an asset
 
 ## EXAMPLES
 

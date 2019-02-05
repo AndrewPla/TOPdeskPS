@@ -86,7 +86,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 10000
+Default value: 10
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
