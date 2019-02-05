@@ -54,6 +54,7 @@
         $Token,
 
         [Parameter(ParameterSetName = 'File')]
+        [Alias('InFile')]
         [ValidateScript( {
                 if (-Not ($_ | Test-Path)) {
                     throw "File or folder does not exist"
