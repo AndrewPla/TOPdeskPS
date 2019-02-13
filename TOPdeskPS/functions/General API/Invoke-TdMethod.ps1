@@ -7,10 +7,10 @@
 		A detailed description of the Invoke-TdMethod function.
 
 	.PARAMETER ContentType
-		A description of the ContentType parameter.
+		default for contenttype is application/json . You may need to use a different contenttype for uploading files.
 
 	.PARAMETER Uri
-		A description of the Uri parameter.
+		the uri that you are targeting
 
 	.PARAMETER Body
 		The body of the request to be sent to TOPdesk. Accepts a PSCustomObject. If you also specify a file we will convert the body into a multipart/form request.
@@ -40,8 +40,8 @@
         [uri]
         $Uri,
 
-        [system.string]
-        $ContentType = 'application/json',
+        [string]
+        $ContentType = 'application/json' ,
 
         [pscustomobject]
         $Body,
@@ -72,6 +72,9 @@
     )
 
     process {
+        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
+        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
+
         if ($Token) {
             $Headers = @{
                 'Authorization' = $Token
@@ -95,7 +98,9 @@
                     'Method' = $Method
                     'Uri' = $Uri
                     'Headers' = $Headers
-                    'ContentType' = $ContentType
+                }
+                if ($ContentType) {
+                    $params.contenttype = $contenttype
                 }
                 Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
                 Invoke-RestMethod @Params
@@ -107,113 +112,88 @@
 
                 switch ($PSVersionTable.PSVersion.Major) {
                     5 {
-                        # If there are no arguments then we can simply upload the file using Invoke-RestMethod
-                        if (-not $body) {
-                            $Params = @{
-                                'Method' = $Method
-                                'Uri' = $Uri
-                                'Headers' = $Headers
-                                'ContentType' = $ContentType
-                                'Infile' = $file
-                            }
-                            Invoke-Restmethod @params
+                        #TOPdesk always want a multipart request for files from what I've seen.
+
+                        # Use fiddler to troubleshoot this.
+                        # We are going to generate webrequest
+
+                        Add-Type -AssemblyName System.web
+
+                        $boundary = [System.Guid]::NewGuid().ToString()
+
+                        # determine content type
+                        $mimeType = [System.Web.MimeMapping]::GetMimeMapping($File)
+
+                        if ($mimeType) {
+                            $ContentType = $mimeType
+                        }
+                        else {
+                            $ContentType = "application/octet-stream"
                         }
 
-                        # if a body is provided then we need to create a multipart request, which requires a workaround
-                        if ($body) {
-                            # Use fiddler to troubleshoot this.
-                            # We are going to generate webrequest
-
-                            Add-Type -AssemblyName System.web
-
-                            $boundary = [System.Guid]::NewGuid().ToString()
-
-                            # determine content type
-                            $mimeType = [System.Web.MimeMapping]::GetMimeMapping($InFile)
-
-                            if ($mimeType) {
-                                $ContentType = $mimeType
-                            }
-                            else {
-                                $ContentType = "application/octet-stream"
-                            }
 
 
+                        $fileBin = [System.IO.File]::ReadAllBytes($File)
+                        $enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
+                        $fileEnc = $enc.GetString($fileBin)
 
-                            $fileBin = [System.IO.File]::ReadAllBytes($File)
-                            $enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
-                            $fileEnc = $enc.GetString($fileBin)
+                        $LF = "`r`n"
+                        $fileName = Split-Path $File -leaf
 
-                            $LF = "`r`n"
-                            $fileName = Split-Path $File -leaf
+                        # composed contains all lines of our web request
+                        $composedBody = @()
 
-                            # composed contains all lines of our web request
-                            $composedBody = @()
-
-                            # Loop through all members of the body and add their values to the request.
-                            $bodyMembers = $body.psobject.Members | where-object membertype -like 'noteproperty'
-                            foreach ($b in $bodyMembers ) {
-                                $composedBody += "--$boundary"
-                                $composedBody += "Content-Type: text/plain; charset=utf-8"
-                                $composedBody += "Content-Disposition: form-data; name=$($b.name)$LF"
-                                $composedBody += "$($b.value)"
-                            }
-
-
-                            # now we add the actual content of the of file
-                            $composedBody += (
-                                "--$boundary",
-                                "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`"",
-                                "Content-Type: $ContentType$LF",
-                                $fileEnc,
-                                "--$boundary--$LF"
-                            ) -join $LF
-
-
-                            $composedBody = $composedBody -join $LF
-                            $params = @{
-                                uri = $Uri
-                                Method = $Method
-                                ContentType = "multipart/form-data; boundary=`"$boundary`""
-                                Body = $composedBody
-                                Headers = $Headers
-                            }
-                            Invoke-RestMethod @params
+                        # Loop through all members of the body and add their values to the request.
+                        $bodyMembers = $body.psobject.Members | where-object membertype -like 'noteproperty'
+                        foreach ($b in $bodyMembers ) {
+                            $composedBody += "--$boundary"
+                            $composedBody += "Content-Type: text/plain; charset=utf-8"
+                            $composedBody += "Content-Disposition: form-data; name=$($b.name)$LF"
+                            $composedBody += "$($b.value)"
                         }
+
+
+                        # now we add the actual content of the of file
+                        $composedBody += (
+                            "--$boundary",
+                            "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`"",
+                            "Content-Type: $ContentType$LF",
+                            $fileEnc,
+                            "--$boundary--$LF"
+                        ) -join $LF
+
+
+                        $composedBody = $composedBody -join $LF
+                        $params = @{
+                            uri = $Uri
+                            Method = $Method
+                            ContentType = "multipart/form-data; boundary=`"$boundary`""
+                            Body = $composedBody
+                            Headers = $Headers
+                        }
+                        Invoke-RestMethod @params
+
                     }
 
 
                     6 {
-                        if (-not $body) {
-                            $params = @{
-                                Uri = $uri
-                                Method = $Method
-                                Headers = $Headers
-                                Infile = $file
-                            }
-                            Invoke-RestMethod @params
+
+                        $form = @{
+                            file = Get-Item $file
                         }
 
-                        # if there is a body then we need a multipart/form request
-                        if ($body) {
-
-
-                            $form = @{
-                                file = Get-Item $file
-                            }
-
-                            $bodyMembers = $body.psobject.Members | where-object membertype -like 'noteproperty'
-                            foreach ($b in $bodyMembers) {
-                                $form.add( "$($b.name)", "$($b.Value)")
-                            }
-                            $params = @{
-                                Uri = $uri
-                                Method = $Method
-                                Form = $Form
-                                Headers = $Headers
-                            }
-                            Invoke-RestMethod @params
+                        $bodyMembers = $body.psobject.Members | where-object membertype -like 'noteproperty'
+                        foreach ($b in $bodyMembers) {
+                            $form.add( "$($b.name)", "$($b.Value)")
                         }
+                        $params = @{
+                            Uri = $uri
+                            Method = $Method
+                            Form = $Form
+                            Headers = $Headers
+                        }
+                        Invoke-RestMethod @params
+
                     }
 
 
