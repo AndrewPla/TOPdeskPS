@@ -7,7 +7,8 @@
     .PARAMETER AssetId
         ID of asset which is the subject of the assignment
     .PARAMETER LinkType
-        Some of the other ID parameters must be also provided based on the current linkType. Available values: branch, location, person, personGroup
+        Some of the other ID parameters must be also provided based on the current linkType. Available values: branch, location, person, personGroup, incident
+        the incident linktype isn't currently documented, but it works!
     .PARAMETER LinkToId
         ID of the assigned entity. If it's a location, parent branch ID must be also provided.
     .PARAMETER BranchId
@@ -34,7 +35,7 @@
         $AssetId,
 
         [Parameter(Mandatory)]
-        [ValidateSet('branch', 'location', 'person', 'personGroup')]
+        [ValidateSet('branch', 'location', 'person', 'personGroup', 'incident')]
         [system.string]
         $LinkType,
 
@@ -76,8 +77,8 @@
             }
         }
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $body | ConvertTo-Json
             'Method' = 'Put'
         }
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending Body $($body | convertto-json) ")) {
