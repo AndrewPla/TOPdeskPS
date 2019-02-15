@@ -6,7 +6,7 @@
     returns list of operator groups or groups for a provided operator.
 .PARAMETER NameFragment
    Retrieve only operator groups with name starting with this. No wildcards
-.PARAMETER Operator
+.PARAMETER OperatorId
     Id of the operator that you want to return operator groups for.
 .PARAMETER ResultSize
     The number of results that you want returned.
