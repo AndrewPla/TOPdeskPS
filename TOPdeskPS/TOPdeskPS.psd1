@@ -3,7 +3,7 @@
     RootModule = 'TOPdeskPS.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.0.20'
+    ModuleVersion = '0.1.0'
 
 
     # ID used to uniquely identify this module
@@ -107,3 +107,6 @@
 
     } # End of PrivateData hashtable
 }
+
+
+
