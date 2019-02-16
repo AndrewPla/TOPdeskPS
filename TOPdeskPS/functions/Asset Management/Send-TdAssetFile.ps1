@@ -10,6 +10,9 @@
         Path and name to the file that you want to upload to the incident.
     .PARAMETER AssetID
         Id of the asset that you want to send a file to. See Get-TdAsset
+
+    .PARAMETER ContentType
+        You can manually specify the type of content that it is. This should only be used if you experience issues. This contenttype is passed to Invoke-RestMethod
     .EXAMPLE
         PS C:\> Get-TdAsset -NameFragment 'test-computer' | Send-TdAssetFile -File "C:\log.txt"
         Sends a File to the asset named test-computer.
@@ -38,7 +41,10 @@
                 return $true
             })]
         [System.IO.FileInfo]
-        $File
+        $File,
+
+        [string]
+        $ContentType
     )
     begin {
     }
@@ -55,6 +61,10 @@
             Uri = $Uri
             Method = 'Post'
             File = $File
+        }
+
+        if ($ContentType) {
+            $params.ContentType = $ContentType
         }
         Invoke-TdMethod @params
     }

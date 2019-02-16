@@ -1,24 +1,24 @@
 ﻿function New-TdOperator {
     <#
-.SYNOPSIS
-    Create an operator
-.DESCRIPTION
-    Create new operators. Operator must have create permission on operators
+    .SYNOPSIS
+        Create an operator
+    .DESCRIPTION
+        Create new operators. Operator must have create permission on operators
 
-.PARAMETER SurName
-Surname of the operator
+    .PARAMETER SurName
+        Surname of the operator
 
-.PARAMETER FirstName
-    Firstname of the operator
+    .PARAMETER FirstName
+        Firstname of the operator
 
     .PARAMETER Gender
-    The gender of the operator
+        The gender of the operator
 
     .PARAMETER EmployeeNumber
         The employee number of the operator
 
-        .PARAMETER Telephone
-            The telephone number for the operator
+    .PARAMETER Telephone
+        The telephone number for the operator
     .PARAMETER MobileNumber
         Mobile number for the operator
 
@@ -28,7 +28,7 @@ Surname of the operator
         .PARAMETER Email
             Email address of the operator
 
-    .PARAMETER Branch
+    .PARAMETER BranchId
         The id of the branch that you want to give the operator
 
     .PARAMETER Location
@@ -39,23 +39,23 @@ Surname of the operator
     .PARAMETER BudgetHolder
         The budget holder id of the operator
     .PARAMETER LoginPermission
-specify whether the operator has the permission to log on
+        specify whether the operator has the permission to log on
 
-.PARAMETER LoginName
-    Login name, operator requires permission “Settings > Login Settings”
-Is mandatory when loginPermission is set to true.
-.PARAMETER Password
-    Password, operator requires permission "Settings > Login Settings".
-Is mandatory when “Functional Settings > Login Settings > Operator’s Section > Password mandatory on Operator card” is set.
+    .PARAMETER LoginName
+        Login name, operator requires permission “Settings > Login Settings”
+        Is mandatory when loginPermission is set to true.
+    .PARAMETER Password
+        Password, operator requires permission "Settings > Login Settings".
+        Is mandatory when “Functional Settings > Login Settings > Operator’s Section > Password mandatory on Operator card” is set.
     .PARAMETER Tasks
         Specify the tasks that you want the operator to have.
-.PARAMETER Confirm
-    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
-.PARAMETER WhatIf
-    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
-.EXAMPLE
-    PS C:\> New-TdOperator -Surname 'Smith' -firstname 'John' -branch (Get-TdBranch -Name HQ).id
-    Creates a new operator name John Smith in the HQ branch
+    .PARAMETER Confirm
+        If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+    .PARAMETER WhatIf
+        If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+    .EXAMPLE
+        PS C:\> New-TdOperator -Surname 'Smith' -firstname 'John' -branchId (Get-TdBranch -Name HQ).id
+        Creates a new operator name John Smith in the HQ branch
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdOperator',
         SupportsShouldProcess = $true)]
@@ -95,7 +95,7 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
 
         [Parameter(Mandatory)]
         [string]
-        $Branch,
+        $BranchId,
 
         [string]
         $Location,
@@ -195,9 +195,9 @@ Is mandatory when “Functional Settings > Login Settings > Operator’s Section
                 $memberParams['Value'] = $email
                 Add-Member @memberParams
             }
-            branch {
+            branchId {
                 $memberParams['Name'] = 'branch'
-                $memberParams['Value'] = @{id = $branch}
+                $memberParams['Value'] = @{id = $BranchId}
                 Add-Member @memberParams
             }
             location {

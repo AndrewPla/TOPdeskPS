@@ -4,9 +4,9 @@
     Returns operator groups
 .DESCRIPTION
     returns list of operator groups or groups for a provided operator.
-.PARAMETER Name
-   Retrieve only operator groups with name starting with this.
-.PARAMETER Operator
+.PARAMETER NameFragment
+   Retrieve only operator groups with name starting with this. No wildcards
+.PARAMETER OperatorId
     Id of the operator that you want to return operator groups for.
 .PARAMETER ResultSize
     The number of results that you want returned.
@@ -25,11 +25,11 @@
     param (
         [Parameter(Position = 0,
             ParameterSetName = 'List')]
-        [string]$Name,
+        [string]$NameFragment,
 
         [Parameter(ValueFromPipelineByPropertyName, ParameterSetName = 'Operator')]
         [Alias('id')]
-        $Operator,
+        $OperatorId,
 
         [Parameter(ParameterSetName = 'List')]
         [ValidateRange(1, 100000)]
@@ -46,25 +46,27 @@
     )
 
     process {
-        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level internalcomment
+        Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -level InternalComment
+        Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -level InternalComment
 
         switch ($PsCmdlet.ParameterSetName) {
             Operator {
-                $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/operatorgroups"
+                $uri = "$(Get-TdUrl)/tas/api/operators/id/$OperatorId/operatorgroups"
                 $res = Invoke-TdMethod -Uri $uri
                 $res
             }
 
             List {
                 $uri = (Get-TdUrl) + "/tas/api/operatorgroups/?"
-                Switch ($PSBoundParameters.keys) {
-                    Archived {
-                        $uri = "$uri&archived=$($archived.tostring().tolower())"
-                    }
-                    Name {
-                        $uri = "$uri&name=$name"
-                    }
+
+
+                if ($Archived) {
+                    $uri = "$uri&archived=$($archived.tostring().tolower())"
                 }
+                if ($NameFragment) {
+                    $uri = "$uri&name=$NameFragment"
+                }
+
 
                 if ($ResultSize -gt 100) {$pageSize = 100}
                 else { $pageSize = $ResultSize }
@@ -85,6 +87,7 @@
                     }
 
                     $loopingUri = "$uri&start=$Start&page_size=$pageSize"
+
                     $Params = @{
                         'uri' = $loopingUri.replace('?&', '?')
                     }

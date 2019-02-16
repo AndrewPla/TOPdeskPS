@@ -33,7 +33,7 @@ Task UpdateModule -Depends Init {
 
     "Setting Functions to Export"
     $functionsToExport = Get-ChildItem "$ProjectRoot\TOPdeskPS\functions" -Recurse -Filter '*.ps1' |
-        Select -ExpandProperty Basename |
+        Select-Object -ExpandProperty Basename |
         Sort-Object
 
     Set-ModuleFunctions -FunctionsToExport $functionsToExport @Verbose

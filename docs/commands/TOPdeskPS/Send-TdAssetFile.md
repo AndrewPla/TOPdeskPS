@@ -13,7 +13,7 @@ Upload a file to an asset
 ## SYNTAX
 
 ```
-Send-TdAssetFile [-AssetId] <String> [-File] <FileInfo> [<CommonParameters>]
+Send-TdAssetFile [-AssetId] <String> [-File] <FileInfo> [[-ContentType] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,6 +58,23 @@ Required: True
 Position: 2
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -ContentType
+You can manually specify the type of content that it is.
+This should only be used if you experience issues.
+This contenttype is passed to Invoke-RestMethod
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

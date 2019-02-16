@@ -4,18 +4,18 @@
     Link and unlink operator groups from an operator
 .DESCRIPTION
     link and unlink operator groups from an operator
-    .PARAMETER Operator
+.PARAMETER OperatorId
     Id of the operator that you want to link/unlink operator groups from
-.PARAMETER Link
-ids of groups that you want to link
-.PARAMETER Unlink
-ids of groups that you want to unlink
+.PARAMETER LinkId
+    ids of groups that you want to link
+.PARAMETER UnlinkId
+    ids of groups that you want to unlink.
 .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 .PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
-    PS C:\> Get-TdOperator 'Test User' | Set-TdOperatorOperatorGroup -Link (Get-TdOperatorGroup 'Group1').id
+    PS C:\> Get-TdOperator 'Test User' | Set-TdOperatorOperatorGroup -LinkId (Get-TdOperatorGroup 'Group1').id
     Link the group1 operatorgroup to Test User
 #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Set-TdOperatorOperatorGroup',
@@ -24,29 +24,29 @@ ids of groups that you want to unlink
     (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('id')]
-        $Operator,
+        $OperatorId,
 
         [Parameter(ParameterSetName = 'Link')]
         [string[]]
-        $Link,
+        $LinkId,
 
         [Parameter(ParameterSetName = 'Unlink')]
         [string[]]
-        $Unlink
+        $UnlinkId
     )
 
     process {
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level InternalComment
 
-        $uri = "$(Get-TdUrl)/tas/api/operators/id/$Operator/operatorgroups"
+        $uri = "$(Get-TdUrl)/tas/api/operators/id/$OperatorId/operatorgroups"
         $body = [PSCustomObject]@{}
         switch ($PSBoundParameters.keys) {
-            Link {
+            LinkId {
                 $body = [PSCustomObject]@{}
                 $memberParams = @{ Membertype = 'Noteproperty'; InputObject = $body}
 
-                foreach ($l in $Link) {
+                foreach ($l in $LinkId) {
                     $memberParams['Name'] = 'id'
                     $memberParams['Value'] = $l
                     Add-Member @memberParams
@@ -66,10 +66,10 @@ ids of groups that you want to unlink
                 }
 
             }
-            Unlink {
+            UnlinkId {
                 $body = [PSCustomObject]@{}
                 $memberParams = @{ Membertype = 'Noteproperty'; InputObject = $body}
-                foreach ($l in $UnLink) {
+                foreach ($l in $UnLinkId) {
                     $memberParams['Name'] = 'id'
                     $memberParams['Value'] = $l
                     Add-Member @memberParams
