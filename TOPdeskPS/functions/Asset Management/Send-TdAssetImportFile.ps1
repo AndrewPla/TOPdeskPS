@@ -42,21 +42,38 @@
         [System.IO.FileInfo]
         $File
     )
+
+    begin {
+        if (-not $Script:__LoginToken) {
+            throw 'no connection to topdesk, try running Connect-TdService'
+        }
+        else {
+            $Headers = @{
+                'Authorization' = $Script:__LoginToken
+                'Content-Type' = 'application/octet-stream'
+            }
+        }
+    }
     process {
+        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] ParameterSetName: $($PsCmdlet.ParameterSetName)"
+        Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
 
         $file = Get-Item $file
         $uri = "$(Get-TdUrl)/services/import-to-api-v1/api/sourceFiles?filename=$($File.name)"
 
 
         $params = @{
-            file = $file
+            Infile = $file
             uri = $uri
             Method = 'PUT'
-            ContentType = 'application/octet-stream'
+            Headers = $Headers
+            #            ContentType = 'application/octet-stream'
         }
+
+        # Going to use Invoke-RestMethod as this is one of the only endpoints that doesn't require us to build a file.
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action "Sending to Invoke-RestMethod -- $($params | out-string)")) {
             return
         }
-        Invoke-TdMethod @params
+        Invoke-RestMethod @params
     }
 }
