@@ -53,8 +53,6 @@
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
 
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/uploads/?assetId=$AssetId"
-        Write-PSFMessage "Uri - $uri" -Level debug
-
         $File = Get-Item $file
 
         $params = @{
