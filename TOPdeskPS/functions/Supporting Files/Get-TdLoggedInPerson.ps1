@@ -7,6 +7,7 @@
         returns the logged in person.
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Get-TdLoggedInPerson')]
+    param()
     $url = "$(Get-TdUrl)/tas/api/persons/current"
     Invoke-TdMethod -Uri $url
 }
