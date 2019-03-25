@@ -16,7 +16,7 @@
     #>
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdKnowledgeItem')]
     param (
-        [string]$Term = '*'
+        [string]$Term = ' '
     )
     $url = "$(Get-TdUrl)/tas/api/knowledgeBase/public"
     $body = "query { knowledgeItems(search: {term: `"$Term`"}) { id number translations { id languageId knowledgeItemId title description content }}}"
