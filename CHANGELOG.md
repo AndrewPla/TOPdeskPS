@@ -1,5 +1,16 @@
 # TOPdeskPS Release History
 
+## 0.1.2
+
+### Added
+
+* Get-TdKnowledgeItem
+
+### Fixed
+
+* New-TdIncident parameter CallerEmail is no longer mandatory.
+
+
 ## 0.0.8- Jan 9th, 2019
 
 ### Fixed

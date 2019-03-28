@@ -301,8 +301,7 @@ Can only be set by operators.
         [string]
         $BriefDescription,
 
-        [Parameter(Mandatory = $true,
-            HelpMessage = 'Email of the caller for the incident')]
+        [Parameter()]
         [PSFValidatePattern('\w+([-+.'''''''']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*', ErrorMessage = '{0} is not a valid email address.')]
         [string]
         $CallerLookupEmail,
