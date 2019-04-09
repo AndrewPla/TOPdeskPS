@@ -445,6 +445,20 @@ Can only be set by operators.
                 $Body | Add-Member -Membertype NoteProperty -Name 'callType' -Value ([pscustomobject]@{id = $CallTypeId })
             }
             Status {
+
+                # Make sure that the case is set properly
+                switch ($Status) {
+                    'firstline' {
+                        $status = 'firstLine'
+                    }
+                    'secondline' {
+                        $status = 'secondLine'
+                    }
+                    'partial' {
+                        $status = 'partial'
+                    }
+                }
+
                 $Body | Add-Member -MemberType NoteProperty -Name 'status' -Value $Status
             }
             Request {
