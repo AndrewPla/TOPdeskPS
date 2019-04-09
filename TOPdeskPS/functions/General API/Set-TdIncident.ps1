@@ -314,9 +314,6 @@ Cannot be filled in if the incident has a supplier service linked.
 
         $IncidentURL = (Get-TdUrl) + "/tas/api/incidents/number/$($Number.ToLower())"
 
-
-
-        Write-PSFMessage -Level Verbose -Message "Generating Body of request"
         $Body = [PSCustomObject]@{}
         $callerBody = [PSCustomObject]@{}
 
