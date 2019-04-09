@@ -1,4 +1,9 @@
 # TOPdeskPS Release History
+## 0.1.3
+
+### Fixed
+* Fixed the Status parameter of New-TdIncident so it now enforces the proper casing. Closes #89
+
 
 ## 0.1.2
 
