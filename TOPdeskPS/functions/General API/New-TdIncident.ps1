@@ -312,9 +312,9 @@ Can only be set by operators.
         $CallerLookupId,
 
 
-        [ValidateSet('FirstLine', 'SecondLine', 'Partial')]
+        [ValidateSet('firstLine', 'secondLine', 'partial')]
         [string]
-        $Status = 'FirstLine',
+        $Status = 'firstLine',
 
         [string]
         $Request,
@@ -413,8 +413,8 @@ Can only be set by operators.
         Write-PSFMessage -Level InternalComment -Message "[$($MyInvocation.MyCommand.Name)] PSBoundParameters: $($PSBoundParameters | Out-String)"
 
 
-        $Body = [PSCustomObject]@{}
-        $callerBody = [pscustomobject]@{}
+        $Body = [PSCustomObject]@{ }
+        $callerBody = [pscustomobject]@{ }
 
         switch ($PSBoundParameters.Keys) {
             Action {
@@ -442,10 +442,10 @@ Can only be set by operators.
                     [pscustomobject]@{ id = $MainIncidentId } )
             }
             CallTypeId {
-                $Body | Add-Member -Membertype NoteProperty -Name 'callType' -Value ([pscustomobject]@{id = $CallTypeId})
+                $Body | Add-Member -Membertype NoteProperty -Name 'callType' -Value ([pscustomobject]@{id = $CallTypeId })
             }
             Status {
-                $Body | Add-Member -MemberType NoteProperty -Name 'status' -Value $Status.tolower()
+                $Body | Add-Member -MemberType NoteProperty -Name 'status' -Value $Status
             }
             Request {
                 $Body | Add-Member -MemberType NoteProperty -Name 'request' -Value $Request
@@ -469,12 +469,12 @@ Can only be set by operators.
 
             ObjectName {
                 $Body | Add-Member -MemberType NoteProperty -Name 'object' -Value (
-                    [pscustomobject]@{ name = $ObjectName})
+                    [pscustomobject]@{ name = $ObjectName })
             }
 
             LocationId {
                 $Body | Add-Member -MemberType NoteProperty -Name 'location' -Value (
-                    [pscustomobject]@{ id = $LocationId}
+                    [pscustomobject]@{ id = $LocationId }
                 )
             }
 
@@ -483,19 +483,19 @@ Can only be set by operators.
             #region Processing
             OperatorId {
                 $Body | Add-Member -Membertype NoteProperty -Name 'operator' -Value (
-                    [pscustomobject]@{id = $OperatorId})
+                    [pscustomobject]@{id = $OperatorId })
             }
             OperatorGroupId {
                 $Body | Add-Member -Membertype NoteProperty -Name 'operatorGroup' -Value (
-                    [pscustomobject]@{id = $operatorGroupId})
+                    [pscustomobject]@{id = $operatorGroupId })
             }
             SupplierId {
                 $Body | Add-Member -Membertype NoteProperty -Name 'supplier' -Value (
-                    [pscustomobject]@{id = $SupplierId})
+                    [pscustomobject]@{id = $SupplierId })
             }
             ProcessingStatusId {
                 $Body | Add-Member -Membertype NoteProperty -Name 'processingStatus' -Value (
-                    [pscustomobject]@{id = $ProcessingStatusId})
+                    [pscustomobject]@{id = $ProcessingStatusId })
             }
             Responded {
                 $Body | Add-Member -Membertype noteproperty -name 'responded' -Value $Responded.tostring().tolower()
@@ -517,7 +517,7 @@ Can only be set by operators.
             }
             ClosureCodeId {
                 $Body | Add-Member -Membertype NoteProperty -Name 'closureCode' -Value (
-                    [pscustomobject]@{id = $ClosureCodeId})
+                    [pscustomobject]@{id = $ClosureCodeId })
             }
             Costs {
                 $Body | Add-Member -Membertype NoteProperty -Name 'costs' -Value $Costs
@@ -562,13 +562,13 @@ Can only be set by operators.
 
             CallerLookupEmail {
                 $Body | Add-Member -MemberType NoteProperty -Name 'callerLookup' -Value (
-                    [pscustomobject]@{ email = $CallerLookupEmail}
+                    [pscustomobject]@{ email = $CallerLookupEmail }
                 )
             }
 
             CallerLookupId {
                 $Body | Add-Member -MemberType NoteProperty -Name 'callerLookup' -Value (
-                    [pscustomobject]@{ id = $CallerLookupId}
+                    [pscustomobject]@{ id = $CallerLookupId }
                 )
             }
 
@@ -580,7 +580,7 @@ Can only be set by operators.
             }
             MajorCallObjectId {
                 $Body | Add-Member -MemberType NoteProperty -Name 'majorCallObject' -Value (
-                    [pscustomobject]@{ id = $MajorCallObjectId}
+                    [pscustomobject]@{ id = $MajorCallObjectId }
                 )
             }
             PublishToSsd {
@@ -597,7 +597,7 @@ Can only be set by operators.
                     'id' = $callerBranchId
                 }
 
-                $callerBody | Add-member -MemberType noteproperty -Name 'branch' -value $obj
+                $callerBody | Add-Member -MemberType noteproperty -Name 'branch' -value $obj
             }
 
             CallerPhoneNumber {
@@ -658,7 +658,7 @@ Can only be set by operators.
             'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
-        if ($PSCmdlet.ShouldProcess("The Request" , "Creating new incident with body -- `n $($body | convertto-json)")) {
+        if ($PSCmdlet.ShouldProcess("The Request" , "Creating new incident with body -- `n $($body | ConvertTo-Json)")) {
             Invoke-TdMethod @Params
         }
     }
