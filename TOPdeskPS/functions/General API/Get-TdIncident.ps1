@@ -466,9 +466,9 @@ Retrieve one or more incidents with the given ids, make sure "page_size" is set 
                 $uri = $uri.Replace('?&', '?')
                 $count = 0
                 do {
-                    $incidents = @()
+                    $incidents = New-Object System.Collections.Arraylist
 
-                    if ($ResultSize -like 'unlimited') {$ResultSize = 99999999}
+                    if ($ResultSize -like 'unlimited') { $ResultSize = 99999999 }
                     $remaining = $ResultSize - $count
                     Write-PSFMessage "$remaining incidents remaining"
 
@@ -481,7 +481,9 @@ Retrieve one or more incidents with the given ids, make sure "page_size" is set 
                     $Params = @{
                         'uri' = $loopingUri
                     }
-                    $Incidents += Invoke-TdMethod @Params
+
+                    # add the incidents to our arraylist
+                    [void]$Incidents.add((Invoke-TdMethod @Params))
                     if (($Incidents.count) -eq 1) {
                         Write-PSFMessage 'No incidents remaining.'
                         $LoopingStatus = 'finished'
@@ -502,12 +504,14 @@ Retrieve one or more incidents with the given ids, make sure "page_size" is set 
 
             Number {
                 foreach ($num in $Number) {
-                    $Incidents = @()
+                    $Incidents = New-Object System.Collections.Arraylist
                     $uri = "$uri/number/$($num.ToLower())"
                     $Params = @{
                         'uri' = $uri
                     }
-                    $Incidents += Invoke-TdMethod @Params
+
+                    # add the incidents to our arraylist
+                    [void]$Incidents.add((Invoke-TdMethod @Params))
                     foreach ($Incident in $Incidents) {
                         $Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
                     }
