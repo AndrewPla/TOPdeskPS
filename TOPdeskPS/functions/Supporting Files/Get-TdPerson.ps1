@@ -118,14 +118,13 @@
             'uri' = $loopingUri
         }
 
-        $persons += Invoke-TdMethod @Params
-
+        $persons = Invoke-TdMethod @Params
 
         foreach ($p in $persons) {
             if ($p.id) { $p | Select-PSFObject -Typename 'TOPdeskPS.Person' -KeepInputObject }
 
             # end the loop if the api doesn't return a person id.
-            else {Write-psfmessage 'No personId found, ending loop.' ; $status = 'finished'}
+            else { Write-psfmessage 'No personId found, ending loop.' ; $status = 'finished' }
         }
 
         $count += $persons.count
