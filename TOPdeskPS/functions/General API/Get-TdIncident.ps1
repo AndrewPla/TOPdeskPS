@@ -466,26 +466,26 @@ Retrieve one or more incidents with the given ids, make sure "page_size" is set 
                 $uri = $uri.Replace('?&', '?')
                 $count = 0
                 do {
-                    $incidents = New-Object System.Collections.Arraylist
-
+                    # Add a number to 'unlimited'
                     if ($ResultSize -like 'unlimited') { $ResultSize = 99999999 }
                     $remaining = $ResultSize - $count
-                    Write-PSFMessage "$remaining incidents remaining"
 
+                    # 10000 is the most we can get per api call. if -LE 10k is needed then we don't need to loop any more.
                     if ($remaining -le 10000) {
                         $pageSize = $remaining
                         $loopingStatus = 'finished'
                     }
 
+                    # Set the uri each time we loop because we need to increase the start
                     $loopingUri = "$uri&start=$Start&page_size=$pageSize"
                     $Params = @{
                         'uri' = $loopingUri
                     }
 
-                    # add the incidents to our arraylist
-                    [void]$Incidents.add((Invoke-TdMethod @Params))
+                    # grab the incidents
+                    $incidents = Invoke-TdMethod @Params
+
                     if (($Incidents.count) -eq 1) {
-                        Write-PSFMessage 'No incidents remaining.'
                         $LoopingStatus = 'finished'
                     }
 
@@ -496,28 +496,26 @@ Retrieve one or more incidents with the given ids, make sure "page_size" is set 
                     }
                     $count += $incidents.count
                     $start += $PageSize
-
-
                 }
                 until ($loopingStatus -like 'finished')
             }
 
             Number {
                 foreach ($num in $Number) {
-                    $Incidents = New-Object System.Collections.Arraylist
                     $uri = "$uri/number/$($num.ToLower())"
                     $Params = @{
                         'uri' = $uri
                     }
 
-                    # add the incidents to our arraylist
-                    [void]$Incidents.add((Invoke-TdMethod @Params))
-                    foreach ($Incident in $Incidents) {
-                        $Incident | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
+                    Invoke-TdMethod @Params |
+                    Foreach-Object {
+                        # add the type to the result
+                        $_ | Select-PSFObject -Typename 'TOPdeskPS.Incident' -KeepInputObject
                     }
                 }
             }
         }
     }
+}
 }
 
