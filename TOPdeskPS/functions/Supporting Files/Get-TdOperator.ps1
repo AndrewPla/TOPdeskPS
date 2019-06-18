@@ -100,14 +100,14 @@
                 'uri' = $loopingUri
             }
 
-            $operators += Invoke-TdMethod @Params
+            $operators = Invoke-TdMethod @Params
             foreach ($op in $operators) {
                 if ($op.id) { $op | Select-PSFObject -Typename 'TOPdeskPS.Operator' -KeepInputObject }
-                else {$status = 'finished'}
+                else { $status = 'finished' }
             }
 
 
-            if (($operators.count) -eq $remaining) {
+            if (($operators.count) -le $remaining) {
                 Write-PSFMessage 'No operators remaining.'
                 $status = 'finished'
             }

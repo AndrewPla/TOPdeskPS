@@ -68,7 +68,7 @@
                 }
 
 
-                if ($ResultSize -gt 100) {$pageSize = 100}
+                if ($ResultSize -gt 100) { $pageSize = 100 }
                 else { $pageSize = $ResultSize }
 
                 $uri = $uri.Replace('?&', '?')
@@ -92,10 +92,10 @@
                         'uri' = $loopingUri.replace('?&', '?')
                     }
 
-                    $groups += Invoke-TdMethod @Params
+                    $groups = Invoke-TdMethod @Params
                     foreach ($group in $groups) {
-                        if ($group.id) {$group}
-                        else {$status = 'finished'}
+                        if ($group.id) { $group }
+                        else { $status = 'finished' }
                     }
                     if (($groups.count) -eq $remaining) {
                         Write-PSFMessage 'No groups remaining.'
@@ -104,7 +104,7 @@
 
 
                     $remaining = $ResultSize - $count
-                    if ($remaining = 0) { $status = 'finished'}
+                    if ($remaining = 0) { $status = 'finished' }
                     $count += $groups.count
                     $start += $PageSize
                 }
