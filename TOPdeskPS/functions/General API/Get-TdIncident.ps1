@@ -517,5 +517,4 @@ Retrieve one or more incidents with the given ids, make sure "page_size" is set 
         }
     }
 }
-}
 
