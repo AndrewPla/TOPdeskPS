@@ -15,8 +15,12 @@
 .PARAMETER Archived
     Specify whether you want archived operator groups included
 .EXAMPLE
-    PS C:\> Get-TdOperatorGroup -resultsize 1000
+    PS > Get-TdOperatorGroup -resultsize 1000
     returns up to 1000 operator groups.
+
+.Example
+    PS > Get-TdOperator | Get-TdOperatorGroup
+    Returns operator groups for operators
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperatorGroup',
@@ -34,7 +38,7 @@
         [Parameter(ParameterSetName = 'List')]
         [ValidateRange(1, 100000)]
         [int]
-        $ResultSize = 10,
+        $ResultSize = 100,
 
         [Parameter(ParameterSetName = 'List')]
         [switch]
