@@ -3,7 +3,7 @@ $script:ModuleRoot = $PSScriptRoot
 # Declare directory separating character for X-Plat compatibility
 $script:dc = [System.IO.Path]::DirectorySeparatorChar
 
-$script:ModuleVersion = "0.1.4"
+$script:ModuleVersion = "0.1.5"
 
 $script:__LoginToken = $null
 function Import-ModuleFile {

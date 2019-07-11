@@ -1,4 +1,11 @@
 # TOPdeskPS Release History
+
+## 0.1.5
+
+### Fixed
+* Get-TdPersonGroup has been updated to include more parameters, including -ResultSize which will automatically loop and send multiple web requests without the need for manually doing any looping.
+* Increased the required versin of PSFramework
+
 ## 0.1.3
 
 ### Fixed

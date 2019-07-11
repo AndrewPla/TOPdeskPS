@@ -15,13 +15,16 @@
 .PARAMETER Archived
     Specify whether you want archived operator groups included
 .EXAMPLE
-    PS C:\> Get-TdOperatorGroup -resultsize 1000
+    PS > Get-TdOperatorGroup -resultsize 1000
     returns up to 1000 operator groups.
+
+.Example
+    PS > Get-TdOperator | Get-TdOperatorGroup
+    Returns operator groups for operators
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperatorGroup',
         DefaultParameterSetName = 'List')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSPossibleIncorrectUsageOfAssignmentOperator", "", Justification = "I want to set the status to finished, dangit!")]
     param (
         [Parameter(Position = 0,
             ParameterSetName = 'List')]
@@ -34,7 +37,7 @@
         [Parameter(ParameterSetName = 'List')]
         [ValidateRange(1, 100000)]
         [int]
-        $ResultSize = 10,
+        $ResultSize = 100,
 
         [Parameter(ParameterSetName = 'List')]
         [switch]
@@ -104,7 +107,7 @@
 
 
                     $remaining = $ResultSize - $count
-                    if ($remaining = 0) { $status = 'finished' }
+                    if ($remaining -eq 0) { $status = 'finished' }
                     $count += $groups.count
                     $start += $PageSize
                 }
