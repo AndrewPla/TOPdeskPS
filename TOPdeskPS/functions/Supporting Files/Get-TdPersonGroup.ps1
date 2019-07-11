@@ -88,7 +88,7 @@
 
 
             $remaining = $ResultSize - $count
-            if ($remaining = 0) { $status = 'finished' }
+            if ($remaining -eq 0) { $status = 'finished' }
             $count += $groups.count
             $start += $PageSize
         }

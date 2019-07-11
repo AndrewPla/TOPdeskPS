@@ -25,7 +25,6 @@
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdOperatorGroup',
         DefaultParameterSetName = 'List')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSPossibleIncorrectUsageOfAssignmentOperator", "", Justification = "I want to set the status to finished, dangit!")]
     param (
         [Parameter(Position = 0,
             ParameterSetName = 'List')]
@@ -108,7 +107,7 @@
 
 
                     $remaining = $ResultSize - $count
-                    if ($remaining = 0) { $status = 'finished' }
+                    if ($remaining -eq 0) { $status = 'finished' }
                     $count += $groups.count
                     $start += $PageSize
                 }
