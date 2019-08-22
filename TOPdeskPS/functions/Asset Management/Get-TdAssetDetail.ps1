@@ -1,4 +1,4 @@
-﻿function Get-TdAssetDetail {
+function Get-TdAssetDetail {
     <#
     .SYNOPSIS
         Returns additional information about assets
@@ -7,8 +7,11 @@
     .PARAMETER AssetId
         Id of the asset that you want more details about
     .EXAMPLE
-        PS C:\> Get-TdAsset | Get-TdAssetDetail
+        PS > Get-TdAsset | Get-TdAssetDetail
         Returns details for assets returned with Get-TdAsset
+    .Example
+        PS > Get-TdAsset TestAsset123 | Get-TdAssetDetail
+        Returns details for TestAsset123
     .NOTES
         See https://developers.topdesk.com/explorer/?page=assets#/Assets/getAssets for more information.
 #>
