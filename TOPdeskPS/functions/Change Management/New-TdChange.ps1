@@ -91,7 +91,7 @@
 
     process {
 
-        $body = [PSCustomObject]@{}
+        $body = [PSCustomObject]@{ }
         switch ($PSBoundParameters.Keys) {
             BriefDescription {
                 Write-PSFMessage -Level InternalComment -Message "Adding briefDescription to Body"
@@ -156,10 +156,9 @@
             'Body' = $body | ConvertTo-Json
             'Method' = 'Post'
         }
-        if ($PSCmdlet.ShouldProcess("Request" , "Sending change request $BriefDescription")) {
+        if ($PSCmdlet.ShouldProcess("Request" , "Sending change request with body $($body | convertto-json | out-string)")) {
             Invoke-TdMethod @params
         }
-
     }
 
     end {
