@@ -23,5 +23,4 @@ function <%=$PLASTER_PARAM_FunctionName%> {
         $res = Invoke-TdMethod -Uri $uri
         $res
     }
-\
 }
