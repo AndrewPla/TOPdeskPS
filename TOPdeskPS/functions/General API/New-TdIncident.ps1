@@ -177,6 +177,7 @@ The given time offset will be used. Without a given offset Zulu/UTC time will be
 .PARAMETER Completed
 Whether the incident is completed.
 Can only be set by operators.
+Allowed values: true, false
 
 .PARAMETER CompletedDate
 Whether the incident is completed.
@@ -186,6 +187,7 @@ Can only be set by operators.
 Whether the incident is closed.
 Can only be set by operators.
 For partials, will be ignored. The value of completed will be used instead.
+Allowed values: true, false
 
 .PARAMETER ClosedDate
 Closed date.
@@ -354,10 +356,12 @@ Can only be set by operators.
 
         [string]$ResponseDate,
 
+        [ValidateSet('true', 'false')]
         [switch]$Completed,
 
         [string]$CompletedDate,
 
+        [ValidateSet('true', 'false')]
         [string]$Closed,
 
         [string]$ClosedDate,
@@ -366,12 +370,7 @@ Can only be set by operators.
 
         [string]$Costs,
 
-
-
-
         # Construct caller body
-
-
 
         [string]
         $CallerPhoneNumber,
@@ -391,9 +390,6 @@ Can only be set by operators.
         [string]$CallerPersonExtraFieldAId,
 
         [string]$CallerPersonExtraFieldBId,
-
-        # end construct caller body
-
 
         # Major Call
         [switch]$MajorCall,
@@ -524,7 +520,7 @@ Can only be set by operators.
                 $Body | Add-Member -Membertype NoteProperty -Name 'completedDate' -Value $CompletedDate
             }
             Closed {
-                $Body | Add-Member -Membertype noteproperty -name 'Closed' -Value $Closed.tostring().tolower()
+                $Body | Add-Member -Membertype noteproperty -name 'closed' -Value $Closed.tostring().tolower()
             }
             ClosedDate {
                 $Body | Add-Member -Membertype NoteProperty -Name 'closedDate' -Value $ClosedDate
