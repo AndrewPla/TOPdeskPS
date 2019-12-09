@@ -1,4 +1,4 @@
-function Set-TdAssetGridFieldAsset {
+﻿function Set-TdAssetGridFieldAsset {
     <#
 .SYNOPSIS
     updates a gridfield for an existing asset
@@ -15,9 +15,8 @@ function Set-TdAssetGridFieldAsset {
 .PARAMETER WhatIf
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 .EXAMPLE
-    PS > $asset = Get-TdAsset -NameFragment TestAsset123 | Get-TdAssetDetails
+    PS > $assetDetails = Get-TdAsset -NameFragment TestAsset123 | Get-TdAssetDetails
     PS > $widget = $assetDetails.Data.'@gridwidgetfield_UNID' | Select -first 1
-    PS > $body = [pscustomobject]@{ 'carrier-port' = '12345'}
     PS > Set-TdAssetGridFieldAsset -AssetId $widget -HostAssetId $asset.id -body $body
     updates the first row of the gridview on $asset
 .LINK

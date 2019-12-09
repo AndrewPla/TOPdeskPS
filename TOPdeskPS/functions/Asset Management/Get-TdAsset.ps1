@@ -16,12 +16,18 @@
         When it’s given it returns more meta information, including all person and location related assignments. See ‘/assignments’ endpoint documentation for more details about the response format.
     .PARAMETER TemplateId
         Id of the template specifying the type of assets to return. see Get-Tdtemplate to retrieve the id.
+        Using this parameter will return all assets of a given template.
     .PARAMETER Field
         Which asset fields to include in the response. If not specified, only the id and name will be included. Fields should be referenced by their field id, not their display name. See Get-tdAssetField
-
+    .PARAMETER LinkedTo
+        Entity type and id of the entity the assets were linked to, separated by a slash character (accepted values: person, personGroup, branch, location, incident, changeActivity, knowledge, change, problem, omActivity, omSeries). For example: person/4878f620-e404-4f2d-9d53-622a1693d467
 	.EXAMPLE
-		PS C:\> Get-TdAsset
-		Get all topdesk assets
+		PS > Get-TdAsset
+        Get all topdesk assets
+    .EXAMPLE
+        PS > $template = Get-TdAssetTemplate -name 'network device'
+        PS > Get-TdAsset -TemplateId $template.id
+        Returns all assets for the 'network device' template.
 #>
 
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/Get-TdAsset', DefaultParameterSetName = 'List')]
@@ -30,7 +36,7 @@
     (
 
         [Parameter(ParameterSetName = 'Standard Query')]
-        [system.string]$NameFragment,
+        [string]$NameFragment,
 
         [switch]$Archived,
 
@@ -38,11 +44,15 @@
         [switch]$ShowAssignments,
 
         [Parameter(ParameterSetName = 'Standard Query')]
-        [system.string]$TemplateName,
+        [string]$TemplateName,
 
         # This is a different query so we need a seperate parameter set.
         [Parameter(Mandatory, ParameterSetName = 'Template Query')]
-        $TemplateId,
+        [string]$TemplateId,
+
+        [Parameter(ParameterSetName = 'Standard Query')]
+        [string]
+        $LinkedTo,
 
         [system.string[]]
         $Field = 'name'
@@ -68,8 +78,11 @@
                     TemplateName {
                         $uri = "$uri&templateName=$TemplateName"
                     }
+                    LinkedTo {
+                        $uri = "$uri&linkedTo=$LinkedTo"
+                    }
                 }
-                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty dataset  | Select-PSFObject -Typename 'TOPdeskPS.Asset' -KeepInputObject
+                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty dataset | Select-PSFObject -Typename 'TOPdeskPS.Asset' -KeepInputObject
             }
 
             'Template Query' {
@@ -93,7 +106,7 @@
                 foreach ($f in $field) {
                     $uri = $uri + "&field=$F"
                 }
-                Invoke-TdMethod -Uri $uri  | Select-Object -ExpandProperty results
+                Invoke-TdMethod -Uri $uri | Select-Object -ExpandProperty results
             }
         }
     }

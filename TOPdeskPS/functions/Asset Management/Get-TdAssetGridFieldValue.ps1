@@ -1,4 +1,4 @@
-function Get-TdAssetGridFieldValue {
+﻿function Get-TdAssetGridFieldValue {
 
     <#
 .SYNOPSIS

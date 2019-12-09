@@ -19,7 +19,7 @@
     param
     (
         [Parameter(
-            mandatory = $true,
+            mandatory,
             ValueFromPipelineByPropertyName
         )]
         [Alias('Id')]

@@ -26,15 +26,23 @@
 		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
 
     .EXAMPLE
-        PS C:\> New-TdAsset -TemplateId $templateId -Name 'TestComputer' -body @{Type = 'Computer'}
+        PS> New-TdAsset -TemplateId $templateId -Name 'TestComputer' -body @{Type = 'Computer'}
         Creates a new asset named TestComputer. It also sets the asset type to 'Computer'
+    .EXAMPLE
+        PS> $template = Get-TdAsset 'Network Device' | Get-TdAssetTemplateBlank
+        PS> $widgetTemplateId = $template.fields.'@gridfieldwidget_12345'.properties.templateId
+        PS> [pscustomobject]$body = @{name = '24Port-ASDF-Switch'; port-number = 24}
+        PS> New-TdAsset -TemplateId $widgetTemplateId -Body $body
+
+        First, we grab a blank template for the asset type that will be used. In this example, we are creating a network device.
+        We capture the template Id of a gridfield widget on the network device asset. This will create a new row for the gridfield. The new row will have the name and port-number that is specified.
 
     #>
     [CmdletBinding( SupportsShouldProcess = $true,
         HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/New-TdAsset')]
     param (
         [Parameter(ValueFromPipelineByPropertyName)]
-        [Alias('Id')]
+        [Alias('Id', 'type_id')]
         [system.string]$TemplateId,
 
         [pscustomobject]$Body,
@@ -51,7 +59,7 @@
 
         # create a body if one wasn't provided.
         if (-not $body) {
-            $body = [PSCustomObject]@{}
+            $body = [PSCustomObject]@{ }
         }
 
         # Go through parameters and add them to our body
@@ -66,8 +74,8 @@
 
 
         $params = @{
-            'Uri'    = $uri
-            'Body'   = $Body | ConvertTo-Json
+            'Uri' = $uri
+            'Body' = $Body | ConvertTo-Json
             'Method' = 'Post'
         }
         if ($PSCmdlet.ShouldProcess("Send body --- $($body | convertto-json)" , "to $uri")) {

@@ -32,7 +32,7 @@
 
 #>
 
-    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod')]
+    [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Invoke-TdMethod', DefaultParameterSetName = '__AllParameterSets')]
     param
     (
 
@@ -53,7 +53,7 @@
         [string]
         $Token,
 
-        [Parameter(ParameterSetName = 'File')]
+        [Parameter(ParameterSetName = 'File', Mandatory)]
         [Alias('InFile')]
         [ValidateScript( {
                 if (-Not ($_ | Test-Path)) {
@@ -68,7 +68,11 @@
                 return $true
             })]
         [system.io.fileinfo]
-        $File
+        $File,
+
+        [Parameter(ParameterSetName = 'OutFile', Mandatory)]
+        [string]
+        $OutFile
     )
 
     process {
@@ -94,11 +98,11 @@
         Switch ($PSCmdlet.ParameterSetName) {
             '__AllParameterSets' {
                 $Params = @{
-                    'Body' = $Body
                     'Method' = $Method
                     'Uri' = $Uri
                     'Headers' = $Headers
                 }
+                if ($Body) { $Params['Body'] = $Body }
                 if ($ContentType) {
                     $params.contenttype = $contenttype
                 }
@@ -201,7 +205,16 @@
                 }
 
             }
+            'OutFile' {
+                $Params = @{
+                    'Body' = $Body
+                    'Method' = $Method
+                    'Uri' = $Uri
+                    'Headers' = $Headers
+                    'Outfile' = $outfile
+                }
+                Invoke-RestMethod @params
+            }
         }
     }
 }
-

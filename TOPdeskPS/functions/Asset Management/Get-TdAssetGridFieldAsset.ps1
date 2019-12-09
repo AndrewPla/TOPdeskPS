@@ -1,4 +1,4 @@
-function Get-TdAssetGridFieldAsset {
+﻿function Get-TdAssetGridFieldAsset {
     <#
 .SYNOPSIS
     retrieves a line from a grid field
