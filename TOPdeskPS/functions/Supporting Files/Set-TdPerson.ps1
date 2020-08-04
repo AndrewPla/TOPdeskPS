@@ -126,12 +126,11 @@
         [switch]$IsManager,
         [string]$ManagerId,
         [string]$BudgetholderID
-
     )
 
     process {
 
-        $uri = (Get-TdUrl) + "/tas/api/persons/id/$Id"
+        $uri = (Get-TdUrl) + "/tas/api/persons/id/$PersonId"
         Write-PSFMessage "uri -$uri" -Level InternalComment
 
 
@@ -248,14 +247,11 @@
 
        	$Params = @{
             Uri = $uri
-            Body = $Body
+            Body = $Body | ConvertTo-Json
             Method = 'put'
         }
-        if ($PSCmdlet.ShouldProcess("The changes" , "Changing person $id")) {
+        if ($PSCmdlet.ShouldProcess("The changes" , "Changing person $PersonId")) {
             Invoke-TdMethod @Params
         }
-
     }
-
-
 }
