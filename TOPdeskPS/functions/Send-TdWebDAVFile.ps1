@@ -66,7 +66,6 @@ function Send-TdWebDAVFile {
     )
 
     begin {
-$Folder
         Write-PSFMessage "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param' -Level InternalComment
     }
 
@@ -86,7 +85,7 @@ $Folder
                 Credential  = $Credential
                 ContentType = 'application/octet-stream'
             }
-            Invoke-WebRequest @Params | Out-Null
+            Invoke-WebRequest @Params
         }
         catch {
             switch ($_.Exception.Response.StatusCode.Value__) {
