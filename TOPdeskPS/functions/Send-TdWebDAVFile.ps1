@@ -1,4 +1,4 @@
-﻿function Send-TdWebDAVFile {
+function Send-TdWebDAVFile {
     <#
 	.SYNOPSIS
 		Sends a file to your TOPdesk webdav share
@@ -35,7 +35,6 @@
 	.NOTES
 		See Help About_TOPdesk_files for more
 #>
-
     [CmdletBinding(HelpUri = 'https://andrewpla.github.io/TOPdeskPS/commands/TOPdeskPS/Send-TdWebDAVFile')]
     param
     (
@@ -56,28 +55,26 @@
         $Credential,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet('accesslogs', 'csvexport', 'database_backup', 'import', 'photos', 'topsis', 'upload', 'web')]
-        [System.IO.FileInfo]
+        [ValidateSet('accesslogs', 'csvexport', 'database_backup', 'import', 'photos', 'photos/items', 'photos/locations', 'photos/objects', 'photos/operators', 'photos/others', 'photos/persons', 'photos/sites', 'topsis', 'upload', 'web')]
+        [string]
         $Folder,
 
         [Alias('TOPdeskUrl')]
        	[PSFValidatePattern('http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?', ErrorMessage = '{0} is not a valid TOPdesk Url.')]
         [System.String]
-        $Url = (
-            Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
+        $Url = (Get-PSFConfigValue -FullName TOPdeskPS.Url -NotNull -ErrorAction Continue)
     )
 
     begin {
         Write-PSFMessage "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param' -Level InternalComment
-        $FileName = Get-Item -Path $File | Select-Object -ExpandProperty Name
-        $UploadUrl = $Url + '/webdav' + "$Folder/$FileName"
-        Write-PSFMessage "UploadUrl: $UploadUrl" -Level InternalComment
-        $Folder = $Folder.name.ToString().tolower()
     }
+
     process {
         Write-PSFMessage "Processing $File" -Level Verbose
         $FileName = Get-Item -Path $File | Select-Object -ExpandProperty Name
-        $UploadUrl = (Get-TdUrl -ErrorAction Stop) + '/webdav' + "$Folder/$FileName"
+        $UploadUrl = "$Url/webdav/$Folder/$FileName"
+
+
         Write-PSFMessage "UploadUrl: $UploadUrl" -Level InternalComment
         try {
             Write-PSFMessage 'Uploading File...' -Level Verbose
@@ -86,7 +83,7 @@
                 Method      = 'Put'
                 InFile      = $File
                 Credential  = $Credential
-                ContentType = 'application/x-www-form-urlencoded'
+                ContentType = 'application/octet-stream'
             }
             Invoke-WebRequest @Params
         }
@@ -107,5 +104,4 @@
             }
         }
     }
-    end {}
 }
