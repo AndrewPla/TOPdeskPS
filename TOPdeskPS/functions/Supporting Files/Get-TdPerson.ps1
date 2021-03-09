@@ -12,7 +12,7 @@
 		This is the offset at which you want to start listing incidents. This is useful if you want to grab more than 100 incidents.
 		The default value is 0.
     .PARAMETER Archived
-        Whether to retrieve archived incidents.
+        Whether to retrieve archived
     .PARAMETER FirstName
         Retrieve only persons with first name starting with this
     .PARAMETER LastName
@@ -24,7 +24,7 @@
     .PARAMETER Email
         Retrieve only persons with email starting with this
     .PARAMETER MobileNumber
-     Retrieve only persons with mobile number ending with this. Spaces and dashes are ignored. For example: 6-12345678 will match both +316 12345678 and 06 1234 5678
+     Retrieve only per sons with mobile number ending with this. Spaces and dashes are ignored. For example: 6-12345678 will match both +316 12345678 and 06 1234 5678
     .EXAMPLE
         PS C:\> Get-TdPerson -FirstName 'Bob' -Archived
             Returns all persons with the firstname starting with Bob. This will also search archived files.
@@ -56,8 +56,8 @@
 
         [int]$Start = 0
     )
-    Write-PSFMessage -Level debug -Message "Bound parameters: $($PSBoundParameters.Keys -join ", ")" -Tag 'debug', 'start', 'param'
-    $uri = (Get-TdUrl) + '/tas/api/persons/?'
+    Write-Verbose "Bound parameters: $($PSBoundParameters.Keys -join ", ")"
+    $uri = (Get-TdUrl) + '/tas/api/persons?'
 
     if ($PSBoundParameters.keys -contains 'FirstName') {
         $uri = "$uri&firstname=$FirstName"
@@ -77,17 +77,18 @@
 
     if ($PSBoundParameters.keys -contains 'email') {
         $uri = "$uri&email=$email"
-        Write-PSFMessage "email added - $uri" -Level debug
+        Write-Verbose "email added - $uri"
     }
 
     if ($PSBoundParameters.keys -contains 'MobileNumber') {
         $uri = "$uri&mobile_number=$MobileNumber"
     }
 
-    if ($PSBoundParameters.keys -contains 'Archive') {
-        $uri = "$uri&archive=$Archive"
+    if ($PSBoundParameters.keys -contains 'Archived') {
+        $uri = "$uri&archived=true"
     }
 
+    Write-Verbose $uri
 
     #region Send Multiple requests to until the resultsize is met
 
@@ -124,7 +125,7 @@
             if ($p.id) { $p | Select-PSFObject -Typename 'TOPdeskPS.Person' -KeepInputObject }
 
             # end the loop if the api doesn't return a person id.
-            else { Write-psfmessage 'No personId found, ending loop.' ; $status = 'finished' }
+            else { $status = 'finished' }
         }
 
         $count += $persons.count
