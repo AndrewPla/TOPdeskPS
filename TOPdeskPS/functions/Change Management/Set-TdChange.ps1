@@ -1,4 +1,4 @@
-function Set-TdChange {
+﻿function Set-TdChange {
     <#
 .SYNOPSIS
     Sort of sets a change, this is poorly supported by TOPdesk :/

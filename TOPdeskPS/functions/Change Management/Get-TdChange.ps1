@@ -1,4 +1,4 @@
-function Get-TdChange {
+﻿function Get-TdChange {
     <#
 .SYNOPSIS
     Returns changes
@@ -41,7 +41,7 @@ function Get-TdChange {
 
     param
     (
-        [Parameter(Position=0)]
+        [Parameter(Position = 0)]
         [string[]]
         $Id,
 
@@ -121,11 +121,11 @@ function Get-TdChange {
         }
 
         if ($PSBoundParameters.Keys -contains 'Open') {
-                $methodParams['Uri'] = "$($methodParams.uri)&open=$($Open.ToString().ToLower())"
+            $methodParams['Uri'] = "$($methodParams.uri)&open=$($Open.ToString().ToLower())"
         }
 
         if ($PSBoundParameters.Keys -contains 'Archived') {
-                $methodParams['Uri'] = "$($methodParams.uri)&archived=$($Archived.ToString().ToLower())"
+            $methodParams['Uri'] = "$($methodParams.uri)&archived=$($Archived.ToString().ToLower())"
         }
 
         (Invoke-TdMethod @methodParams).results
