@@ -1,4 +1,4 @@
-function Send-TdWebDAVFile {
+﻿function Send-TdWebDAVFile {
     <#
 	.SYNOPSIS
 		Sends a file to your TOPdesk webdav share
@@ -79,10 +79,10 @@ function Send-TdWebDAVFile {
         try {
             Write-PSFMessage 'Uploading File...' -Level Verbose
             $Params = @{
-                Uri         = $UploadUrl
-                Method      = 'Put'
-                InFile      = $File
-                Credential  = $Credential
+                Uri = $UploadUrl
+                Method = 'Put'
+                InFile = $File
+                Credential = $Credential
                 ContentType = 'application/octet-stream'
             }
             Invoke-WebRequest @Params

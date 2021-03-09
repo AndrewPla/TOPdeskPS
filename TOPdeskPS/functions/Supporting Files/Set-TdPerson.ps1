@@ -1,4 +1,4 @@
-function Set-TdPerson {
+﻿function Set-TdPerson {
     <#
     .SYNOPSIS
         Modify properties on a person
