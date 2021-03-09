@@ -78,6 +78,10 @@
         Email of the caller.
         Can only be set by operators
 
+    .PARAMETER ClosureCode
+        Closure code by id or name.
+        Can only be set by operators.
+
     .PARAMETER Impact
         Impact by id.
         Can only be set by operators.
@@ -165,10 +169,6 @@ Cannot be filled in if the incident has a supplier service linked.
 
     .PARAMETER PublishToSsd
         Whether the incident should be published in the Self Service Desk, only major incidents can be published.
-        Can only be set by operators.
-
-    .PARAMETER ClosureCode
-        Closure code by id.
         Can only be set by operators.
 
     .PARAMETER ExternalNumber
@@ -314,8 +314,8 @@ Cannot be filled in if the incident has a supplier service linked.
 
         $IncidentURL = (Get-TdUrl) + "/tas/api/incidents/number/$($Number.ToLower())"
 
-        $Body = [PSCustomObject]@{}
-        $callerBody = [PSCustomObject]@{}
+        $Body = [PSCustomObject]@{ }
+        $callerBody = [PSCustomObject]@{ }
 
         switch ($PSBoundParameters.Keys) {
             Action {
@@ -337,6 +337,10 @@ Cannot be filled in if the incident has a supplier service linked.
                 $CallerLookup = @{ 'email' = $CallerEmail }
                 $Body | Add-Member -MemberType NoteProperty -Name 'callerLookup' -Value $CallerLookup
             }
+            ClosureCode {
+                $val = @{id = $ClosureCode }
+                $body | Add-Member -MemberType NoteProperty -name 'closureCode' -Value $val
+            }
             Subcategory {
                 $SubcategoryValue = @{
                     name = $Subcategory
@@ -354,7 +358,7 @@ Cannot be filled in if the incident has a supplier service linked.
                 $Body | Add-Member -MemberType NoteProperty -Name 'entryType' -Value $EntryTypeValue
             }
             CallType {
-                $callTypeValue = @{ id = $CallType}
+                $callTypeValue = @{ id = $CallType }
                 $Body | Add-Member -MemberType NoteProperty -Name 'callType' -Value $callTypeValue
             }
             ExternalNumber {
@@ -362,22 +366,22 @@ Cannot be filled in if the incident has a supplier service linked.
             }
 
             Impact {
-                $val = @{id = $Impact}
+                $val = @{id = $Impact }
                 $Body | Add-Member -MemberType NoteProperty -Name impact -Value $val
             }
 
             Urgency {
-                $val = @{id = $urgency}
+                $val = @{id = $urgency }
                 $Body | Add-Member -MemberType NoteProperty -Name urgency -Value $val
             }
 
             Priority {
-                $val = @{id = $Priority}
+                $val = @{id = $Priority }
                 $body | Add-Member -MemberType NoteProperty -name priority -Value $val
             }
 
             ObjectId {
-                $val = @{id = $ObjectId}
+                $val = @{id = $ObjectId }
                 $body | Add-Member -MemberType NoteProperty -name object -Value $val
             }
 
@@ -387,22 +391,22 @@ Cannot be filled in if the incident has a supplier service linked.
             }
 
             Operator {
-                $val = @{id = $Operator}
+                $val = @{id = $Operator }
                 $body | Add-Member -MemberType NoteProperty -name operator -Value $val
             }
 
             OperatorGroup {
-                $val = @{id = $OperatorGroup}
+                $val = @{id = $OperatorGroup }
                 $body | Add-Member -MemberType NoteProperty -name operatorGroup -Value $val
             }
 
             Supplier {
-                $val = @{id = $Supplier}
+                $val = @{id = $Supplier }
                 $body | Add-Member -MemberType NoteProperty -name supplier -Value $val
             }
 
             ProcessingStatus {
-                $val = @{id = $ProcessingStatus}
+                $val = @{id = $ProcessingStatus }
                 $body | Add-Member -MemberType NoteProperty -name processingStatus -Value $val
             }
             Responded {
@@ -421,7 +425,7 @@ Cannot be filled in if the incident has a supplier service linked.
             }
 
             Duration {
-                $val = @{id = $Duration}
+                $val = @{id = $Duration }
                 $body | Add-Member -MemberType NoteProperty -name duration -Value $val
             }
             TargetDate {
@@ -438,7 +442,7 @@ Cannot be filled in if the incident has a supplier service linked.
             }
 
             MajorCallObject {
-                $val = @{id = $MajorCallObject}
+                $val = @{id = $MajorCallObject }
                 $Body | Add-Member -MemberType NoteProperty -Name majorCallObject -Value $val
             }
 
@@ -449,7 +453,7 @@ Cannot be filled in if the incident has a supplier service linked.
             #region Caller Parameters
             CallerBranch {
                 $caller = $true
-                $val = @{id = $CallerBranch}
+                $val = @{id = $CallerBranch }
                 $callerBody | Add-Member -MemberType NoteProperty -Name branch -Value $val
             }
             CallerEmail {

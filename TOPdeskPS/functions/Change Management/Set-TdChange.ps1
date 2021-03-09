@@ -1,4 +1,4 @@
-﻿function Set-TdChange {
+function Set-TdChange {
     <#
 .SYNOPSIS
     Sort of sets a change, this is poorly supported by TOPdesk :/
@@ -32,7 +32,7 @@
         Write-PsfMessage "ParameterSetName: $($PsCmdlet.ParameterSetName)" -Level InternalComment
         Write-PSfMessage "PSBoundParameters: $($PSBoundParameters | Out-String)" -Level InternalComment
 
-        $uri = "$(Get-TdUrl)/tas/api/operatorchanges/$ChangeId"
+        $uri = "$(Get-TdUrl)/tas/api/operatorChanges/$ChangeId"
         $body = $BodyInput
 
         if (-not (Test-PSFShouldProcess -PSCmdlet $PSCmdlet -Target $uri -Action 'Sending Request')) {
@@ -40,8 +40,9 @@
         }
         $methodParams = @{
             Uri = $uri
-            Body = ($body | ConvertTo-Json)
-            Method = $MethodName
+            Body = (ConvertTo-Json $body)
+            Method = 'Patch'
+            ContentType = 'application/json-patch+json'
         }
         $res = Invoke-TdMethod @methodParams
         $res

@@ -1,7 +1,5 @@
 # TOPdeskPS
 
-[![Build status](https://dev.azure.com/AndrewPlaTech/TOPdeskPS/_apis/build/status/Build)](https://dev.azure.com/AndrewPlaTech/TOPdeskPS/_build/latest?definitionId=1)
-
 ## Description
 
 PowerShell module to interact with TOPdesk through its REST API. This module can be used to ease daily administration of TOPdesk as well as provide awesome automation abilities.
