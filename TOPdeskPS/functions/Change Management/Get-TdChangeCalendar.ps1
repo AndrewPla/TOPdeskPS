@@ -14,6 +14,8 @@
     Branch to filter results by
 .PARAMETER Category
     Category of cards to obtain
+.PARAMETER Subcategory
+    Subcategory of cards to obtain
 .PARAMETER Status
     Status of cards to obtain
 .PARAMETER Type
@@ -50,6 +52,9 @@
 
         [string[]]
         $Category,
+        
+        [string[]]
+        $Subcategory,
 
         [string[]]
         $Status,
