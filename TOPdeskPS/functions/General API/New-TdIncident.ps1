@@ -83,6 +83,13 @@ For partials, if not provided, will be automatically copied from the main incide
 Can be set by persons only when the appropriate setting for the new call form is checked.
 It is an error to provide both an id and a name.
 
+.PARAMETER CategoryId
+Category by id.
+Can be set by operators.
+For partials, if not provided, will be automatically copied from the main incident.
+Can be set by persons only when the appropriate setting for the new call form is checked.
+It is an error to provide both an id and a name.
+
 .PARAMETER Subcategory
 	Subcategory by name.
 Can be set by operators.
@@ -325,6 +332,8 @@ Can only be set by operators.
         [string]
         $Category,
 
+        [string]$CategoryId,
+
         [string]$ImpactId,
 
         [string]$UrgencyId,
@@ -477,6 +486,10 @@ Can only be set by operators.
                     name = $Category
                 }
                 $Body | Add-Member -MemberType NoteProperty -Name 'category' -Value $CategoryValue
+            }
+
+            CategoryId {
+                $Body | Add-Member -Membertype NoteProperty -Name 'category' -Value ([pscustomobject]@{id = $CategoryId })
             }
 
             #region Object/location
