@@ -104,14 +104,12 @@
                 }
                 Write-PSFMessage -Level InternalComment -Message "Params to be bassed to IRM: $($params.Keys -join ",")"
                 Invoke-RestMethod @Params
-
             }
 
 
             'File' {
-
                 switch ($PSVersionTable.PSVersion.Major) {
-                    5 {
+                    { $_ -le 5 } {
                         #TOPdesk always want a multipart request for files from what I've seen.
 
                         # Use fiddler to troubleshoot this.
@@ -130,7 +128,6 @@
                         else {
                             $ContentType = "application/octet-stream"
                         }
-
 
 
                         $fileBin = [System.IO.File]::ReadAllBytes($File)
@@ -172,12 +169,10 @@
                             Headers = $Headers
                         }
                         Invoke-RestMethod @params
-
                     }
 
 
-                    6 {
-
+                    { $_ -ge 6 } {
                         $form = @{
                             file = Get-Item $file
                         }
@@ -193,13 +188,8 @@
                             Headers = $Headers
                         }
                         Invoke-RestMethod @params
-
                     }
-
-
-
                 }
-
             }
         }
     }
