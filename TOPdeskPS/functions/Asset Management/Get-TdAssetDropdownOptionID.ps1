@@ -1,4 +1,4 @@
-function Get-TdAssetDropdownOptionID {
+﻿function Get-TdAssetDropdownOptionID {
     <#
 	.SYNOPSIS
 		Gets a dropdown option id based on a name, and creates it if doesn’t exist.
@@ -33,7 +33,7 @@ function Get-TdAssetDropdownOptionID {
         $uri = (Get-TdUrl) + "/tas/api/assetmgmt/dropdowns/$DropdownMenuName"
 
         $body = [PSCustomObject]@{'name' = $DropdownOptionName}
-		
+
 		Write-PSFMessage "$($Body | ConvertTo-Json | Out-String)" -Level debug
 
 	   $params = @{
