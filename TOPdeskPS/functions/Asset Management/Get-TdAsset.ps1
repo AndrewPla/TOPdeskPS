@@ -3,9 +3,14 @@
 	.SYNOPSIS
 		Returns TOPdesk assets
 	.DESCRIPTION
-        This API returns a list of assets. By default the following fields are included: id, name (text), etag and state (archived).
-         You can use various parameters to filter this list or to retrieve other fields from the assets. In Asset Management, paging is missing deliberately.
-         To return all assets for a given template please use the TemplateId parameter. You can also specify the fields that you would like returned when performing a template query.
+        This function returns a list of assets. It has 3 modi:
+        - Without parameters. This calls the ./assetmgmt/import/assets endpoint. It returns all non-archived assets (id and name)
+        - With the NameFragment parameter. This calls the ./assetmgmt/assets endpoint. 
+          It returns a maximum of 50 assets. 
+          By default the following fields are included: id, name (text), etag and state (archived). 
+          You can use various parameters to filter this list or to retrieve other fields from the assets. 
+          In Asset Management, paging is missing deliberately.
+        - With the TemplateId parameter. This calls the ./assetmgmt/assets/templateId/{templateId} endpoint. It returns all assets (id only) for a given template (id).
     .PARAMETER NameFragment
         To filter assets by their name-fragment use this parameter. It’s case-insensitive.
     .PARAMETER Archived
