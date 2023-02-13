@@ -78,7 +78,7 @@
                         $uri = (get-tdurl) + "/tas/api/assetmgmt/assets/templateId/$TemplateId/?"
                     }
                     Archived {
-                        $uri = $uri + "&includeArchived=$Archived/"
+                        $uri = $uri + "&includeArchived=$Archived"
                     }
                 }
                 foreach ($f in $field) {
