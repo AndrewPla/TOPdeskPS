@@ -9,7 +9,7 @@
     .PARAMETER NameFragment
         To filter assets by their name-fragment use this parameter. It’s case-insensitive.
     .PARAMETER Archived
-        Whether to show archived assets. if performing a standard query it will return all, if performing a Tempalte query it will only return active assets.
+        Whether to show archived assets. Leave out for all, or specify true/false for only archived, or only active assets, respectively.
     .PARAMETER TemplateName
         To filter assets by a specific template’s name (case sensitive).
     .PARAMETER ShowAssignments
@@ -32,7 +32,7 @@
         [Parameter(ParameterSetName = 'Standard Query')]
         [system.string]$NameFragment,
 
-        [switch]$Archived,
+        [system.boolean]$Archived,
 
         [Parameter(ParameterSetName = 'Standard Query')]
         [switch]$ShowAssignments,
