@@ -3,13 +3,18 @@
 	.SYNOPSIS
 		Returns TOPdesk assets
 	.DESCRIPTION
-        This API returns a list of assets. By default the following fields are included: id, name (text), etag and state (archived).
-         You can use various parameters to filter this list or to retrieve other fields from the assets. In Asset Management, paging is missing deliberately.
-         To return all assets for a given template please use the TemplateId parameter. You can also specify the fields that you would like returned when performing a template query.
+        This function returns a list of assets. It has 3 modi:
+        - Without parameters. This calls the ./assetmgmt/import/assets endpoint. It returns all non-archived assets (id and name)
+        - With the NameFragment parameter. This calls the ./assetmgmt/assets endpoint. 
+          It returns a maximum of 50 assets. 
+          By default the following fields are included: id, name (text), etag and state (archived). 
+          You can use various parameters to filter this list or to retrieve other fields from the assets. 
+          In Asset Management, paging is missing deliberately.
+        - With the TemplateId parameter. This calls the ./assetmgmt/assets/templateId/{templateId} endpoint. It returns all assets (id only) for a given template (id).
     .PARAMETER NameFragment
         To filter assets by their name-fragment use this parameter. It’s case-insensitive.
     .PARAMETER Archived
-        Whether to show archived assets. if performing a standard query it will return all, if performing a Tempalte query it will only return active assets.
+        Whether to show archived assets. Leave out for all, or specify true/false for only archived, or only active assets, respectively.
     .PARAMETER TemplateName
         To filter assets by a specific template’s name (case sensitive).
     .PARAMETER ShowAssignments
@@ -32,7 +37,7 @@
         [Parameter(ParameterSetName = 'Standard Query')]
         [system.string]$NameFragment,
 
-        [switch]$Archived,
+        [system.boolean]$Archived,
 
         [Parameter(ParameterSetName = 'Standard Query')]
         [switch]$ShowAssignments,
@@ -78,7 +83,7 @@
                         $uri = (get-tdurl) + "/tas/api/assetmgmt/assets/templateId/$TemplateId/?"
                     }
                     Archived {
-                        $uri = $uri + "&includeArchived=$Archived/"
+                        $uri = $uri + "&includeArchived=$Archived"
                     }
                 }
                 foreach ($f in $field) {
